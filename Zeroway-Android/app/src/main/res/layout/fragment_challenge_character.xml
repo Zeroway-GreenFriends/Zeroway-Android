@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#E7F4F3">
+
+    <ImageButton
+        android:id="@+id/challenge_character_goback_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:src="@drawable/ic_goback"
+        android:backgroundTint="#E7F4F3"/>
+
+    <TextView
+        android:id="@+id/challenge_character_nickname_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/challenge_character_goback_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="400dp"
+        android:text="닉네임"
+        android:textColor="#000000"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/challenge_character_level_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/challenge_character_nickname_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="10dp"
+        android:text="Lv.5"
+        android:textColor="#6FE0D6"
+        android:textSize="16sp"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/challenge_character_nickname_tv"
+        app:layout_constraintStart_toEndOf="@id/challenge_character_level_tv"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+
+        android:progressTint="#6FE0D6"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
