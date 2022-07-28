@@ -22,8 +22,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="20dp"
-        android:text="다양한 챌린지를 통해  ‘ 제로웨이스트 라이프 ’를\n
-        더욱 재미있게 시작해보세요."
+        android:text="다양한 챌린지를 통해  ‘ 제로웨이스트 라이프 ’를\n더욱 재미있게 시작해보세요."
         android:textSize="12sp"
         android:textColor="#37ACA2"
         android:gravity="center"/>
@@ -36,7 +35,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="200dp"
-        android:src="@drawable/ic_kakao_login"/>
+        android:src="@drawable/ic_kakao_login"
+        android:backgroundTint="@color/white"/>
 
     <ImageButton
         android:id="@+id/login_naver_login_iv"
@@ -45,8 +45,8 @@
         app:layout_constraintTop_toBottomOf="@id/login_kakao_login_iv"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/ic_naver_login"/>
+        android:src="@drawable/ic_naver_login"
+        android:backgroundTint="@color/white"/>
 
     <ImageButton
         android:id="@+id/login_google_login_iv"
@@ -55,7 +55,7 @@
         app:layout_constraintTop_toBottomOf="@id/login_naver_login_iv"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/ic_google_login"/>
+        android:src="@drawable/ic_google_login"
+        android:backgroundTint="@color/white"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
