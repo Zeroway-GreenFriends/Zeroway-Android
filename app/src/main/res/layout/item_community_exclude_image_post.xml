@@ -31,7 +31,6 @@
         android:id="@+id/item_community_exclude_image_select_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
         android:layout_marginEnd="10dp"
         android:src="@drawable/ic_select"
         app:layout_constraintBottom_toBottomOf="@id/item_community_exclude_image_profile_name_tv"

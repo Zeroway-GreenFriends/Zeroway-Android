@@ -31,7 +31,6 @@
         android:id="@+id/item_community_include_image_select_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
         android:layout_marginEnd="10dp"
         android:src="@drawable/ic_select"
         app:layout_constraintBottom_toBottomOf="@id/item_community_include_image_profile_name_tv"
@@ -41,7 +40,7 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/item_community_include_image_image_vp"
         android:layout_width="0dp"
-        android:layout_height="279dp"
+        android:layout_height="300dp"
         android:layout_marginTop="6dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
