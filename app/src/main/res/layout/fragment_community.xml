@@ -19,7 +19,7 @@
             app:navigationIcon="@drawable/ic_back">
 
             <TextView
-                android:id="@+id/toolBarTitle"
+                android:id="@+id/community_toolbar_title_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="커뮤니티"
@@ -93,7 +93,7 @@
                 android:scrollbars="none"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintTop_toBottomOf="@id/community_latest_iv"
-                tools:listitem="@layout/item_community_include_image" />
+                tools:listitem="@layout/item_community_include_image_post" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -105,8 +105,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|right"
         android:layout_margin="16dp"
-        app:srcCompat="@drawable/ic_community_post"
-        android:backgroundTint="@color/zeroway_mint" />
-
+        android:backgroundTint="@color/zeroway_mint"
+        app:srcCompat="@drawable/ic_community_post" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
