@@ -42,6 +42,7 @@
         app:layout_constraintTop_toBottomOf="@id/item_home_word_title_tv" />
 
     <TextView
+        android:id="@+id/item_homne_word_content"
         android:layout_width="223dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="23dp"

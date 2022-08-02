@@ -33,6 +33,7 @@
             android:textSize="10sp" />
 
         <TextView
+            android:id="@+id/item_home_use_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="15회 사용"
@@ -43,7 +44,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/item_home_use_title_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"

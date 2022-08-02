@@ -40,12 +40,14 @@
         app:layout_constraintTop_toBottomOf="@+id/item_home_shop_title_tv">
 
         <ImageView
+            android:id="@+id/item_home_shop_image_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="3dp"
             android:src="@drawable/ic_star_white" />
 
         <TextView
+            android:id="@+id/item_home_shop_score_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="3dp"
@@ -54,6 +56,7 @@
             android:textSize="7sp" />
 
         <TextView
+            android:id="@+id/item_home_shop_count_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="(268명)"
