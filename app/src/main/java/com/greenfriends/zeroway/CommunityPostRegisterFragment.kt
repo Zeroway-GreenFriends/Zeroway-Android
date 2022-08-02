@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.greenfriends.zeroway.databinding.FragmentCommunityPostBinding
 
-class CommunityPostFragment: Fragment() {
+class CommunityPostRegisterFragment: Fragment() {
     private lateinit var binding: FragmentCommunityPostBinding
 
     override fun onCreateView(
