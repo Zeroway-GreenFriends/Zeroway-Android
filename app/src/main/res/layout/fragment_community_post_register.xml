@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/zeroway_background">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/community_post_register_tb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:menu="@menu/tool_bar_item"
+            app:navigationIcon="@drawable/ic_back">
+
+            <TextView
+                android:id="@+id/community_post_register_toolbar_title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="게시물 작성"
+                android:textColor="@color/zeroway_black"
+                android:textSize="14sp" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/zeroway_background"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/community_post_register_cl"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/community_post_background"
+            app:layout_constraintBottom_toTopOf="@id/community_post_register_rv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/community_post_register_camera_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/ic_camera"
+                app:layout_constraintBottom_toBottomOf="@id/community_post_register_album_iv"
+                app:layout_constraintEnd_toStartOf="@id/community_post_register_album_iv"
+                app:layout_constraintTop_toTopOf="@id/community_post_register_album_iv" />
+
+            <ImageView
+                android:id="@+id/community_post_register_album_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/ic_album"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/community_post_register_rv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="60dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@id/community_post_register_btn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:listitem="@layout/item_community_post_image" />
+
+        <Button
+            android:id="@+id/community_post_register_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="60dp"
+            android:background="@drawable/button_background"
+            android:text="확인"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

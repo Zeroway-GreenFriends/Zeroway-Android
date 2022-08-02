@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/community_post_background">
+
+    <ImageView
+        android:id="@+id/item_community_include_image_profile_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="6dp"
+        android:src="@drawable/ic_profile"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/item_community_include_image_profile_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:text="쏘멍"
+        android:textColor="@color/zeroway_black"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@id/item_community_include_image_profile_iv"
+        app:layout_constraintStart_toEndOf="@id/item_community_include_image_profile_iv"
+        app:layout_constraintTop_toTopOf="@id/item_community_include_image_profile_iv" />
+
+    <ImageView
+        android:id="@+id/item_community_include_image_select_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/ic_select"
+        app:layout_constraintBottom_toBottomOf="@id/item_community_include_image_profile_name_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/item_community_include_image_profile_name_tv" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/item_community_include_image_image_vp"
+        android:layout_width="0dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="6dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/item_community_include_image_profile_iv" />
+
+    <com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
+        android:id="@+id/item_community_include_image_image_sdi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        app:dampingRatio="0.5"
+        app:dotsColor="@color/zeroway_mint"
+        app:dotsSize="6dp"
+        app:dotsSpacing="3dp"
+        app:dotsStrokeColor="@color/zeroway_gray"
+        app:dotsStrokeWidth="3dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/item_community_include_image_image_vp"
+        app:stiffness="300" />
+
+    <ImageView
+        android:id="@+id/item_community_include_image_like_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="6dp"
+        android:src="@drawable/ic_like_off"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/item_community_include_image_image_vp" />
+
+    <ImageView
+        android:id="@+id/item_community_include_image_chat_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:src="@drawable/ic_chat"
+        app:layout_constraintBottom_toBottomOf="@id/item_community_include_image_like_iv"
+        app:layout_constraintStart_toEndOf="@id/item_community_include_image_like_iv"
+        app:layout_constraintTop_toTopOf="@id/item_community_include_image_like_iv" />
+
+    <ImageView
+        android:id="@+id/item_community_include_image_bookmark_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/ic_bookmark_off"
+        app:layout_constraintBottom_toBottomOf="@id/item_community_include_image_chat_iv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/item_community_include_image_chat_iv" />
+
+    <TextView
+        android:id="@+id/item_community_include_image_hits_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/like"
+        android:textColor="@color/zeroway_black"
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/item_community_include_image_like_iv" />
+
+    <TextView
+        android:id="@+id/item_community_include_image_hits_input_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:text="103개"
+        android:textColor="@color/zeroway_black"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@id/item_community_include_image_hits_tv"
+        app:layout_constraintStart_toEndOf="@id/item_community_include_image_hits_tv"
+        app:layout_constraintTop_toTopOf="@id/item_community_include_image_hits_tv" />
+
+    <TextView
+        android:id="@+id/item_community_include_image_text_input_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="6dp"
+        android:text="내용"
+        android:textColor="@color/zeroway_black"
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/item_community_include_image_hits_tv" />
+
+    <TextView
+        android:id="@+id/item_community_include_image_comments_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="10dp"
+        android:text="댓글 3개 모두 보기"
+        android:textColor="@color/zeroway_gray"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/item_community_include_image_text_input_tv" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
