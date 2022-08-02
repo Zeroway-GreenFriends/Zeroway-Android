@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#2EEABD">
+    android:background="@drawable/ic_levelup_background">
 
     <TextView
         android:id="@+id/levelup_levelup_tv"
@@ -12,20 +12,30 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="150dp"
         android:textColor="@color/zeroway_dark_mint"
-        android:textStyle="bold"
         android:text="LEVEL UP !"
+        android:textStyle="bold"
+        android:fontFamily="@font/fredoka_regular"
         android:textSize="20sp"/>
+
+    <ImageView
+        android:id="@+id/levelup_shadow_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="400dp"
+        android:src="@drawable/ic_char_shadow"/>
 
     <TextView
         android:id="@+id/levelup_level_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/levelup_levelup_tv"
+        app:layout_constraintTop_toBottomOf="@id/levelup_shadow_iv"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="300dp"
         android:text="Lv.6"
         android:textSize="18sp"
         android:textColor="@color/zeroway_dark_mint"/>

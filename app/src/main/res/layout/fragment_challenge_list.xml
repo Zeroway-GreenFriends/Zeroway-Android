@@ -37,14 +37,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="40dp"
-        android:background="@drawable/ic_challenge_list_detail"/>
+        android:background="@drawable/ic_challenge_list_detail"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:gravity="center"/>
 
     <ImageButton
         android:id="@+id/challenge_list_check_btn1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="@id/challenge_list_list_tv1"
+        app:layout_constraintBottom_toBottomOf="@id/challenge_list_list_tv1"
         app:layout_constraintStart_toStartOf="@id/challenge_list_list_tv1"
+        android:layout_marginStart="10dp"
         android:src="@drawable/ic_check_circle"
         android:backgroundTint="@color/white"/>
 
@@ -56,7 +61,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="23dp"
-        android:background="@drawable/ic_challenge_list_detail"/>
+        android:background="@drawable/ic_challenge_list_detail"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:gravity="center"/>
 
     <ImageButton
         android:id="@+id/challenge_list_check_btn2"
@@ -64,6 +72,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="@id/challenge_list_list_tv2"
         app:layout_constraintStart_toStartOf="@id/challenge_list_list_tv2"
+        app:layout_constraintBottom_toBottomOf="@id/challenge_list_list_tv2"
+        android:layout_marginStart="10dp"
         android:src="@drawable/ic_check_circle"
         android:backgroundTint="@color/white"/>
 
@@ -75,7 +85,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="23dp"
-        android:background="@drawable/ic_challenge_list_detail"/>
+        android:background="@drawable/ic_challenge_list_detail"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:gravity="center"/>
 
     <ImageButton
         android:id="@+id/challenge_list_check_btn3"
@@ -83,6 +96,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="@id/challenge_list_list_tv3"
         app:layout_constraintStart_toStartOf="@id/challenge_list_list_tv3"
+        app:layout_constraintBottom_toBottomOf="@id/challenge_list_list_tv3"
+        android:layout_marginStart="10dp"
         android:src="@drawable/ic_check_circle"
         android:backgroundTint="@color/white"/>
 
@@ -94,7 +109,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="23dp"
-        android:background="@drawable/ic_challenge_list_detail"/>
+        android:background="@drawable/ic_challenge_list_detail"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:gravity="center"/>
 
     <ImageButton
         android:id="@+id/challenge_list_check_btn4"
@@ -102,6 +120,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="@id/challenge_list_list_tv4"
         app:layout_constraintStart_toStartOf="@id/challenge_list_list_tv4"
+        app:layout_constraintBottom_toBottomOf="@id/challenge_list_list_tv4"
+        android:layout_marginStart="10dp"
         android:src="@drawable/ic_check_circle"
         android:backgroundTint="@color/white"/>
 
@@ -113,7 +133,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="23dp"
-        android:background="@drawable/ic_challenge_list_detail"/>
+        android:background="@drawable/ic_challenge_list_detail"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:gravity="center"/>
 
     <ImageButton
         android:id="@+id/challenge_list_check_btn5"
@@ -121,6 +144,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="@id/challenge_list_list_tv5"
         app:layout_constraintStart_toStartOf="@id/challenge_list_list_tv5"
+        app:layout_constraintBottom_toBottomOf="@id/challenge_list_list_tv5"
+        android:layout_marginStart="10dp"
         android:src="@drawable/ic_check_circle"
         android:backgroundTint="@color/white"/>
 

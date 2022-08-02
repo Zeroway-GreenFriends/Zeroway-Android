@@ -12,19 +12,29 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:layout_marginStart="10dp"
         android:src="@drawable/ic_goback"
         android:backgroundTint="#E7F4F3"/>
+
+    <ImageView
+        android:id="@+id/challenge_character_shadow_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="400dp"
+        android:src="@drawable/ic_char_shadow"/>
 
     <TextView
         android:id="@+id/challenge_character_nickname_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/challenge_character_goback_btn"
+        app:layout_constraintTop_toBottomOf="@+id/challenge_character_shadow_iv"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="400dp"
+        android:layout_marginTop="20dp"
         android:text="닉네임"
         android:textColor="#000000"
         android:textSize="18sp"/>
