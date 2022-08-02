@@ -21,3 +21,13 @@ data class UseList(
     val count: String,
     val title: String
 )
+
+data class AlarmList(
+    val title: String,
+    val time: String,
+    val content: String
+)
+
+data class WordSearchList(
+    val content: String
+)

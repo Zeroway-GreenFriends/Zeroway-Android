@@ -22,6 +22,22 @@ class HomeFragment : Fragment() {
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
+        binding.homeAlarmIv.setOnClickListener {
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(R.id.main_fl, AlarmFragment())
+                ?.commitAllowingStateLoss()
+        }
+
+        binding.homeWordMoreIv.setOnClickListener {
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(R.id.main_fl, WordFragment())
+                ?.commitAllowingStateLoss()
+        }
+        binding.homeWordMoreTv.setOnClickListener {
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(R.id.main_fl, WordFragment())
+                ?.commitAllowingStateLoss()
+        }
         //환경용어 RecyclerView 연결
         wordDatas.apply {
             add(
