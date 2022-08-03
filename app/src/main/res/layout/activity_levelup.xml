@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/ic_levelup_background">
+
+    <TextView
+        android:id="@+id/levelup_levelup_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="150dp"
+        android:textColor="@color/zeroway_dark_mint"
+        android:text="LEVEL UP !"
+        android:textStyle="bold"
+        android:fontFamily="@font/fredoka_regular"
+        android:textSize="20sp"/>
+
+    <ImageView
+        android:id="@+id/levelup_shadow_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="400dp"
+        android:src="@drawable/ic_char_shadow"/>
+
+    <TextView
+        android:id="@+id/levelup_level_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/levelup_shadow_iv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Lv.6"
+        android:textSize="18sp"
+        android:textColor="@color/zeroway_dark_mint"/>
+
+    <Button
+        android:id="@+id/challenge_list_ok_btn"
+        android:layout_width="110dp"
+        android:layout_height="40dp"
+        app:layout_constraintTop_toBottomOf="@id/levelup_level_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="10dp"
+        android:text="확인"
+        android:textSize="16sp"
+        android:textColor="@color/zeroway_mint"
+        android:background="@drawable/ic_ok_btn_detail_white"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
