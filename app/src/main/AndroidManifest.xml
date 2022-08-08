@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.greenfriends.zeroway">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
 
     <application
         android:allowBackup="true"
@@ -11,9 +19,7 @@
         android:theme="@style/Theme.Zeroway">
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="false"/>
         <activity
             android:name=".SplashActivity"
             android:exported="true">
@@ -25,7 +31,10 @@
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:exported="true"/>
+            android:exported="false"/>
+        <activity
+            android:name=".SignUpActivity"
+            android:exported="false"/>
     </application>
 
 </manifest>
