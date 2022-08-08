@@ -53,4 +53,17 @@ dependencies {
 
     // NAVER 로그인 API
     implementation 'com.navercorp.nid:oauth:5.1.1'
+
+    // Retrofit2
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    // Gson
+    implementation 'com.google.code.gson:gson:2.9.0'
+
+    // Circle ImageView
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    // Glide
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
 }
