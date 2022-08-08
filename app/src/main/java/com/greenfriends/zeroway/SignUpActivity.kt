@@ -3,8 +3,6 @@ package com.greenfriends.zeroway
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.greenfriends.zeroway.databinding.ActivityLoginBinding
-import com.greenfriends.zeroway.databinding.ActivityMainBinding
 import com.greenfriends.zeroway.databinding.ActivitySignupBinding
 
 class SignUpActivity : AppCompatActivity() {
