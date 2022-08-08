@@ -13,6 +13,7 @@ import com.navercorp.nid.profile.data.NidProfileResponse
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
+    private var email: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,8 +26,15 @@ class LoginActivity : AppCompatActivity() {
     private fun onClickNaverLogin() {
         binding.loginNaverLoginIv.setOnClickListener {
             naverLogin()
-            startActivity(Intent(this, MainActivity::class.java))
         }
+    }
+
+    private fun startSignUpActivity() {
+        val intent = Intent(this, SignUpActivity::class.java)
+        intent.putExtra("email", email)
+        intent.putExtra("provider", "NAVER")
+        startActivity(intent)
+        finish()
     }
 
     private fun initializeNaverClient() {
@@ -39,10 +47,13 @@ class LoginActivity : AppCompatActivity() {
     private fun naverLogin() {
         initializeNaverClient()
         lateinit var naverToken: String
+
         val profileCallback = object : NidProfileCallback<NidProfileResponse> {
             override fun onSuccess(result: NidProfileResponse) {
                 val userId = result.profile?.id
+                email = result.profile?.email.toString()
                 Log.d("NAVER/LOGIN/SUCCESS", "id:${userId}, token: $naverToken")
+                startSignUpActivity()
             }
 
             override fun onFailure(httpStatus: Int, message: String) {
@@ -55,6 +66,7 @@ class LoginActivity : AppCompatActivity() {
                 onFailure(errorCode, message)
             }
         }
+
         val oAuthLoginCallback = object : OAuthLoginCallback {
             override fun onSuccess() {
                 naverToken = NaverIdLoginSDK.getAccessToken().toString()
