@@ -43,7 +43,7 @@ class LoginActivity : AppCompatActivity(), LoginView {
     private fun startSignUpActivity() {
         val intent = Intent(this, SignUpActivity::class.java)
         intent.putExtra("email", email)
-        intent.putExtra("provider", "NAVER")
+        intent.putExtra("provider", provider)
         startActivity(intent)
         finish()
     }
