@@ -11,9 +11,8 @@ data class User(
 data class Result(
     @SerializedName("accessToken") val accessToken: String,
     @SerializedName("refreshToken") val refreshToken: String,
-    @SerializedName("newUser") val newUser: Boolean
 )
 
-data class LoginResponse(
+data class AuthResponse(
     @SerializedName("result") val result: Result
 )
