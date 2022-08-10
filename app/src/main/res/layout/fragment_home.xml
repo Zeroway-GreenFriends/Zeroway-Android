@@ -202,7 +202,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/home_tip_cl"
             android:layout_width="match_parent"
-            android:layout_height="380dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
             android:background="@color/zeroway_background"
             app:layout_constraintTop_toBottomOf="@id/home_shop_rv">

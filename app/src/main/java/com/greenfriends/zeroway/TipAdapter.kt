@@ -4,14 +4,15 @@ package com.greenfriends.zeroway
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.greenfriends.zeroway.data.TipResponse
 import com.greenfriends.zeroway.databinding.ItemHomeTipBinding
 
 
-class TipAdapter(private val tipList: ArrayList<TipList>) :
+class TipAdapter(private val tipList: ArrayList<TipResponse>) :
     RecyclerView.Adapter<TipAdapter.ViewHolder>() {
 
     interface MyItemClickListener {
-        fun onItemClick(tip: TipList)
+        fun onItemClick(tip: TipResponse)
     }
 
     private lateinit var mItemClickListener: MyItemClickListener
@@ -28,6 +29,7 @@ class TipAdapter(private val tipList: ArrayList<TipList>) :
     }
 
     override fun onBindViewHolder(holder: TipAdapter.ViewHolder, position: Int) {
+        holder.bind(tipList[position])
         holder.itemView.setOnClickListener {
             mItemClickListener.onItemClick(tipList[position])
         }
@@ -40,8 +42,9 @@ class TipAdapter(private val tipList: ArrayList<TipList>) :
     inner class ViewHolder(val binding: ItemHomeTipBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(tip: TipList) {
-            binding.itemHomeTipNumberTv.text = tip.number
+        fun bind(tip: TipResponse) {
+            binding.itemHomeTipNumberTv.text = tip.num
+            binding.itemHomeTipTitleTv.text = tip.title
             binding.itemHomeTipContentTv.text = tip.content
         }
     }

@@ -1,18 +1,23 @@
 package com.greenfriends.zeroway
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.greenfriends.zeroway.api.AuthService
+import com.greenfriends.zeroway.api.HomeService
+import com.greenfriends.zeroway.api.TipView
+import com.greenfriends.zeroway.data.TipResponse
 import com.greenfriends.zeroway.databinding.FragmentHomeBinding
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), TipView {
     private lateinit var binding: FragmentHomeBinding
     private var wordDatas = ArrayList<WordList>()
     private var shopDatas = ArrayList<ShopList>()
-    private var tipDatas = ArrayList<TipList>()
+    private var tipDatas = ArrayList<TipResponse>()
     private var useDatas = ArrayList<UseList>()
 
     override fun onCreateView(
@@ -82,16 +87,17 @@ class HomeFragment : Fragment() {
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
         //실천팁 RecyclerView 연결
-        tipDatas.apply {
-            add(TipList("Tip 1", "비닐봉지, 일회용컵 등 일회용품 사용하지 않기를 실천해보아요."))
-            add(TipList("Tip 2", "비닐봉지, 일회용컵 등 일회용품 사용하지 않기를 실천해보아요."))
-            add(TipList("Tip 3", "비닐봉지, 일회용컵 등 일회용품 사용하지 않기를 실천해보아요."))
-        }
+//        tipDatas.apply {
+//            add(TipList("Tip 1", "비닐봉지, 일회용컵 등 일회용품 사용하지 않기를 실천해보아요."))
+//            add(TipList("Tip 2", "비닐봉지, 일회용컵 등 일회용품 사용하지 않기를 실천해보아요."))
+//            add(TipList("Tip 3", "비닐봉지, 일회용컵 등 일회용품 사용하지 않기를 실천해보아요."))
+//        }
 
-        val tipAdapter = TipAdapter(tipDatas)
-        binding.homeTipRv.adapter = tipAdapter
-        binding.homeTipRv.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        getTip()
+//        val tipAdapter = TipAdapter(tipDatas)
+//        binding.homeTipRv.adapter = tipAdapter
+//        binding.homeTipRv.layoutManager =
+//            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
         //사용횟수 RecyclerView 연결
         useDatas.apply {
@@ -107,6 +113,30 @@ class HomeFragment : Fragment() {
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
         return binding.root
+    }
+
+    private fun getTip() {
+        val homeService = HomeService()
+        homeService.setTipView(this)
+        homeService.getTip()
+    }
+
+    override fun onTipSuccess(result: List<TipResponse>) {
+        var count = 0
+        for (i in result) {
+            Log.e("i",i.toString())
+            count++
+            tipDatas.add(TipResponse("Tip ${count}",i.title,i.content))
+        }
+        val tipAdapter = TipAdapter(tipDatas)
+        binding.homeTipRv.adapter = tipAdapter
+        binding.homeTipRv.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+
+    }
+
+    override fun onTipFailure() {
+        TODO("Not yet implemented")
     }
 
 }

@@ -13,7 +13,7 @@ interface AuthRetrofitInterface {
     ): Call<AuthResponse>
 
     @Multipart
-    @POST("user/auth/signup")
+    @POST("user")
     fun signUp(
         @Part profileImg: MultipartBody.Part,
         @Part("signInReq") user: RequestBody
