@@ -13,6 +13,13 @@ data class Result(
     @SerializedName("refreshToken") val refreshToken: String,
 )
 
+data class LoginRequest(
+    @SerializedName("email") val email: String
+)
+
 data class AuthResponse(
+    @SerializedName("isSuccess") val isSuccess: Boolean,
+    @SerializedName("code") val code: Int,
+    @SerializedName("message") val message: String,
     @SerializedName("result") val result: Result
 )
