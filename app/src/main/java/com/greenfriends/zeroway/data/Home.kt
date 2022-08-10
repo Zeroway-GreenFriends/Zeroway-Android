@@ -7,3 +7,8 @@ data class TipResponse(
     @SerializedName("title") val title: String,
     @SerializedName("content") val content: String
 )
+
+data class TermResponse(
+    @SerializedName("term") val term: String,
+    @SerializedName("description") val description: String
+)

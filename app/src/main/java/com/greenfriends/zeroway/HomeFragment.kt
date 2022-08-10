@@ -9,13 +9,15 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.greenfriends.zeroway.api.AuthService
 import com.greenfriends.zeroway.api.HomeService
+import com.greenfriends.zeroway.api.TermView
 import com.greenfriends.zeroway.api.TipView
+import com.greenfriends.zeroway.data.TermResponse
 import com.greenfriends.zeroway.data.TipResponse
 import com.greenfriends.zeroway.databinding.FragmentHomeBinding
 
-class HomeFragment : Fragment(), TipView {
+class HomeFragment : Fragment(), TipView, TermView {
     private lateinit var binding: FragmentHomeBinding
-    private var wordDatas = ArrayList<WordList>()
+    private var termDatas = ArrayList<TermResponse>()
     private var shopDatas = ArrayList<ShopList>()
     private var tipDatas = ArrayList<TipResponse>()
     private var useDatas = ArrayList<UseList>()
@@ -44,34 +46,34 @@ class HomeFragment : Fragment(), TipView {
                 ?.commitAllowingStateLoss()
         }
         //환경용어 RecyclerView 연결
-        wordDatas.apply {
-            add(
-                WordList(
-                    "탄소 중립(炭素中立)",
-                    "carbon neutrality",
-                    "[환경] 탄소를 배출하는 만큼 그에 상응하는 조치를 취하여 실질 배출량을 ‘0’으로 만드는 일"
-                )
-            )
-            add(
-                WordList(
-                    "탄소 중립(炭素中立)",
-                    "carbon neutrality",
-                    "[환경] 탄소를 배출하는 만큼 그에 상응하는 조치를 취하여 실질 배출량을 ‘0’으로 만드는 일"
-                )
-            )
-            add(
-                WordList(
-                    "탄소 중립(炭素中立)",
-                    "carbon neutrality",
-                    "[환경] 탄소를 배출하는 만큼 그에 상응하는 조치를 취하여 실질 배출량을 ‘0’으로 만드는 일"
-                )
-            )
-        }
+//        wordDatas.apply {
+//            add(
+//                WordList(
+//                    "탄소 중립(炭素中立)",
+//                    "carbon neutrality",
+//                    "[환경] 탄소를 배출하는 만큼 그에 상응하는 조치를 취하여 실질 배출량을 ‘0’으로 만드는 일"
+//                )
+//            )
+//            add(
+//                WordList(
+//                    "탄소 중립(炭素中立)",
+//                    "carbon neutrality",
+//                    "[환경] 탄소를 배출하는 만큼 그에 상응하는 조치를 취하여 실질 배출량을 ‘0’으로 만드는 일"
+//                )
+//            )
+//            add(
+//                WordList(
+//                    "탄소 중립(炭素中立)",
+//                    "carbon neutrality",
+//                    "[환경] 탄소를 배출하는 만큼 그에 상응하는 조치를 취하여 실질 배출량을 ‘0’으로 만드는 일"
+//                )
+//            )
+//        }
 
-        val wordAdapter = WordAdapter(wordDatas)
-        binding.homeWordRv.adapter = wordAdapter
-        binding.homeWordRv.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+//        val termAdapter = TermAdapter(termDatas)
+//        binding.homeWordRv.adapter = termAdapter
+//        binding.homeWordRv.layoutManager =
+//            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
 
         //제로웨이스트샵 RecyclerView 연결
@@ -94,6 +96,7 @@ class HomeFragment : Fragment(), TipView {
 //        }
 
         getTip()
+        getTerm()
 //        val tipAdapter = TipAdapter(tipDatas)
 //        binding.homeTipRv.adapter = tipAdapter
 //        binding.homeTipRv.layoutManager =
@@ -124,9 +127,9 @@ class HomeFragment : Fragment(), TipView {
     override fun onTipSuccess(result: List<TipResponse>) {
         var count = 0
         for (i in result) {
-            Log.e("i",i.toString())
+            Log.e("i", i.toString())
             count++
-            tipDatas.add(TipResponse("Tip ${count}",i.title,i.content))
+            tipDatas.add(TipResponse("Tip ${count}", i.title, i.content))
         }
         val tipAdapter = TipAdapter(tipDatas)
         binding.homeTipRv.adapter = tipAdapter
@@ -136,6 +139,27 @@ class HomeFragment : Fragment(), TipView {
     }
 
     override fun onTipFailure() {
+        TODO("Not yet implemented")
+    }
+
+    private fun getTerm() {
+        val homeService = HomeService()
+        homeService.setTermView(this)
+        homeService.getTerm()
+    }
+
+    override fun onTermSuccess(result: List<TermResponse>) {
+        for (i in result) {
+            termDatas.add(i)
+        }
+        val termAdapter = TermAdapter(termDatas)
+        binding.homeWordRv.adapter = termAdapter
+        binding.homeWordRv.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+
+    }
+
+    override fun onTermFailure() {
         TODO("Not yet implemented")
     }
 

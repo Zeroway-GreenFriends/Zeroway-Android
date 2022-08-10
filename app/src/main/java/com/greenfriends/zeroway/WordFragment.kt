@@ -51,11 +51,11 @@ class WordFragment : Fragment() {
             )
         }
 
-        val wordAdapter = WordAdapter(wordDatas)
-        binding.wordWordRv.adapter = wordAdapter
-        binding.wordWordRv.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-
+//        val wordAdapter = WordAdapter(wordDatas)
+//        binding.wordWordRv.adapter = wordAdapter
+//        binding.wordWordRv.layoutManager =
+//            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+//
 
         //환경 용어 검색 RecyclerView 연결
         wordSearchDatas.apply {
