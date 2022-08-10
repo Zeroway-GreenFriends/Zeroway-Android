@@ -1,16 +1,26 @@
 package com.greenfriends.zeroway
 
 import android.content.ContentValues
+import android.content.Context
+import android.content.ContextWrapper
 import android.content.Intent
+import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import com.greenfriends.zeroway.databinding.ActivityLoginBinding
 import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
+import java.io.OutputStream
+import java.util.*
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity(), LoginView {
     private lateinit var binding: ActivityLoginBinding
+    lateinit var imageFile: File
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,9 +48,13 @@ class LoginActivity : AppCompatActivity() {
                                         "\n사진: ${user.kakaoAccount?.profile?.profileImageUrl}"
                             )
                             //서버 연동
+                            login(
+                                File.createTempFile("11111111",""),
+                                user.kakaoAccount?.email!!,user.kakaoAccount?.profile?.nickname!!,"KAKAO"
+                            )
                         }
                     }
-                    startActivity(Intent(this, MainActivity::class.java))
+                    //startActivity(Intent(this, MainActivity::class.java))
                 }
             }
         }
@@ -55,4 +69,27 @@ class LoginActivity : AppCompatActivity() {
 
         setContentView(binding.root)
     }
+
+    private fun login(profileImg: File, email:String,nickname:String,provider:String) {
+        val authService = AuthService()
+        authService.setLoginView(this)
+        authService.login(profileImg,email,nickname, provider)
+    }
+
+
+    override fun onLoginSuccess(newUser: Boolean) {
+        when(newUser){
+            true -> {
+                startActivity(Intent(this, SignUpActivity::class.java))
+            }
+            false -> {
+                startActivity(Intent(this, MainActivity::class.java))
+            }
+        }
+    }
+
+    override fun onLoginFailure() {
+        TODO("Not yet implemented")
+    }
+
 }
