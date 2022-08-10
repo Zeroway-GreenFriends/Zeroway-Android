@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.greenfriends.zeroway">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
 
     <application
         android:name=".ZerowayApplication"
@@ -18,21 +26,21 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:host="oauth"
+                <data
+                    android:host="oauth"
                     android:scheme="kakao307669f1987730b12c5a548ce1573c4d" />
             </intent-filter>
         </activity>
 
         <activity
-            android:name="com.greenfriends.zeroway.MainActivity"
-            android:exported="true">
-
-        </activity>
+            android:name=".MainActivity"
+            android:exported="false" />
         <activity
-            android:name="com.greenfriends.zeroway.SplashActivity"
+            android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,8 +49,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.greenfriends.zeroway.LoginActivity"
-            android:exported="true"/>
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SignUpActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
