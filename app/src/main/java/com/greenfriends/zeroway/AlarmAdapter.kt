@@ -5,9 +5,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.greenfriends.zeroway.databinding.ItemAlarmBinding
-import com.greenfriends.zeroway.databinding.ItemHomeShopBinding
-import com.greenfriends.zeroway.databinding.ItemHomeTipBinding
-import com.greenfriends.zeroway.databinding.ItemHomeWordBinding
 
 
 class AlarmAdapter(private val alarmList: ArrayList<AlarmList>) :

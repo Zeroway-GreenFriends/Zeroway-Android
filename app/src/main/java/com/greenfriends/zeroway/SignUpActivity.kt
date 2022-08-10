@@ -7,6 +7,7 @@ import android.database.Cursor
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+
 import android.os.Environment
 import android.provider.MediaStore
 import android.provider.Settings
@@ -48,7 +49,6 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
         setPermission()
         setActivityResultLauncher()
         setProfileImage()
-        setNickName()
 
         signUp()
     }
@@ -102,7 +102,9 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
 
     private fun signUp() {
         binding.signupStartBtn.setOnClickListener {
+            setNickName()
             val user = User(email, nickname, provider)
+            Log.e("USER",user.toString())
             val userRequestBody =
                 gson.toJson(user).toRequestBody("application/json; charset=utf-8".toMediaType())
             val fileRequestBody = file.asRequestBody("text/x-markdown; charset=utf-8".toMediaType())

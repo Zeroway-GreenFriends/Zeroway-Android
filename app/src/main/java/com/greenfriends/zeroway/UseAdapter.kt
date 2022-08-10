@@ -4,9 +4,7 @@ package com.greenfriends.zeroway
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.greenfriends.zeroway.databinding.ItemHomeShopBinding
 import com.greenfriends.zeroway.databinding.ItemHomeUseBinding
-import com.greenfriends.zeroway.databinding.ItemHomeWordBinding
 
 
 class UseAdapter(private val useList: ArrayList<UseList>) :

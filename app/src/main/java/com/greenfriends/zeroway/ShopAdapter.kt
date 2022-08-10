@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.greenfriends.zeroway.databinding.ItemHomeShopBinding
-import com.greenfriends.zeroway.databinding.ItemHomeWordBinding
 
 
 class ShopAdapter(private val shopList: ArrayList<ShopList>) :

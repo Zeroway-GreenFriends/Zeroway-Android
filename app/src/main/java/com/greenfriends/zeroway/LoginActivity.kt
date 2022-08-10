@@ -1,13 +1,18 @@
 package com.greenfriends.zeroway
 
+import android.content.ContentValues
 import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
+import com.greenfriends.zeroway.databinding.ActivityLoginBinding
+import com.kakao.sdk.common.util.Utility
+import com.kakao.sdk.user.UserApiClient
+import java.io.File
+import java.util.*
 import com.greenfriends.zeroway.api.AuthService
 import com.greenfriends.zeroway.api.LoginView
 import com.greenfriends.zeroway.data.Result
-import com.greenfriends.zeroway.databinding.ActivityLoginBinding
 import com.navercorp.nid.NaverIdLoginSDK
 import com.navercorp.nid.oauth.NidOAuthLogin
 import com.navercorp.nid.oauth.OAuthLoginCallback
@@ -24,6 +29,7 @@ class LoginActivity : AppCompatActivity(), LoginView {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        onClickKakaoLogin()
         onClickNaverLogin()
     }
 
@@ -54,6 +60,13 @@ class LoginActivity : AppCompatActivity(), LoginView {
         authService.login(email)
     }
 
+
+    private fun onClickKakaoLogin() {
+        binding.loginKakaoLoginIv.setOnClickListener {
+            kakaoLogin()
+        }
+    }
+
     private fun onClickNaverLogin() {
         binding.loginNaverLoginIv.setOnClickListener {
             naverLogin()
@@ -65,6 +78,34 @@ class LoginActivity : AppCompatActivity(), LoginView {
         val naverClientSecret = getString(R.string.naver_client_secret)
         val naverClientName = getString(R.string.app_name)
         NaverIdLoginSDK.initialize(this, naverClientId, naverClientSecret, naverClientName)
+    }
+
+
+    private fun kakaoLogin() {
+        UserApiClient.instance.loginWithKakaoAccount(this) { token, error ->
+            if (error != null) {
+                Log.e("카카오/로그인 실패", error.toString())
+            } else if (token != null) {
+                Log.i("카카오/로그인 성공", "카카오/로그인 성공 ${token.accessToken}")
+                //닉네임, 이메일 받기
+                UserApiClient.instance.me { user, error ->
+                    if (error != null) {
+                        Log.e(ContentValues.TAG, "카카오/사용자 정보 요청 실패", error)
+                    } else if (user != null) {
+                        Log.i(
+                            ContentValues.TAG, "카카오/사용자 정보 요청 성공" +
+                                    "\n닉네임: ${user.kakaoAccount?.profile?.nickname}" +
+                                    "\n이메일: ${user.kakaoAccount?.email}" +
+                                    "\n사진: ${user.kakaoAccount?.profile?.profileImageUrl}"
+                        )
+                        //서버 연동
+                        setEmail(user.kakaoAccount?.email!!)
+                        setProvider("KAKAO")
+                        login()
+                    }
+                }
+            }
+        }
     }
 
     private fun naverLogin() {
@@ -128,4 +169,6 @@ class LoginActivity : AppCompatActivity(), LoginView {
         startSignUpActivity()
         finish()
     }
+
+
 }
