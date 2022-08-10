@@ -49,7 +49,6 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
         setPermission()
         setActivityResultLauncher()
         setProfileImage()
-        setNickName()
 
         signUp()
     }
@@ -103,6 +102,7 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
 
     private fun signUp() {
         binding.signupStartBtn.setOnClickListener {
+            setNickName()
             val user = User(email, nickname, provider)
             Log.e("USER",user.toString())
             val userRequestBody =
