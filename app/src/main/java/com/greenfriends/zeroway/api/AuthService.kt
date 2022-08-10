@@ -2,6 +2,7 @@ package com.greenfriends.zeroway.api
 
 import android.util.Log
 import com.greenfriends.zeroway.data.AuthResponse
+import com.greenfriends.zeroway.data.LoginRequest
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -21,9 +22,9 @@ class AuthService {
         this.signUpView = signUpView
     }
 
-    fun login(email: String) {
+    fun login(loginRequest: LoginRequest) {
         val authService = retrofit?.create(AuthRetrofitInterface::class.java)
-        authService!!.login(email).enqueue(object : Callback<AuthResponse> {
+        authService!!.login(loginRequest).enqueue(object : Callback<AuthResponse> {
             override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
                 Log.d("API/LOGIN/SUCCESS", response.body().toString())
                 if (response.isSuccessful) {

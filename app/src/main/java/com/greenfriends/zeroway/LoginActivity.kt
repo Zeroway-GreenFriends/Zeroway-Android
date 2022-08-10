@@ -2,17 +2,15 @@ package com.greenfriends.zeroway
 
 import android.content.ContentValues
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import com.greenfriends.zeroway.databinding.ActivityLoginBinding
-import com.kakao.sdk.common.util.Utility
-import com.kakao.sdk.user.UserApiClient
-import java.io.File
-import java.util.*
+import androidx.appcompat.app.AppCompatActivity
 import com.greenfriends.zeroway.api.AuthService
 import com.greenfriends.zeroway.api.LoginView
+import com.greenfriends.zeroway.data.LoginRequest
 import com.greenfriends.zeroway.data.Result
+import com.greenfriends.zeroway.databinding.ActivityLoginBinding
+import com.kakao.sdk.user.UserApiClient
 import com.navercorp.nid.NaverIdLoginSDK
 import com.navercorp.nid.oauth.NidOAuthLogin
 import com.navercorp.nid.oauth.OAuthLoginCallback
@@ -57,9 +55,8 @@ class LoginActivity : AppCompatActivity(), LoginView {
     private fun login() {
         val authService = AuthService()
         authService.setLoginView(this)
-        authService.login(email)
+        authService.login(LoginRequest(email))
     }
-
 
     private fun onClickKakaoLogin() {
         binding.loginKakaoLoginIv.setOnClickListener {
@@ -169,6 +166,4 @@ class LoginActivity : AppCompatActivity(), LoginView {
         startSignUpActivity()
         finish()
     }
-
-
 }
