@@ -88,26 +88,15 @@ class HomeFragment : Fragment(), TipView, TermView {
         binding.homeShopRv.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
-        //실천팁 RecyclerView 연결
-//        tipDatas.apply {
-//            add(TipList("Tip 1", "비닐봉지, 일회용컵 등 일회용품 사용하지 않기를 실천해보아요."))
-//            add(TipList("Tip 2", "비닐봉지, 일회용컵 등 일회용품 사용하지 않기를 실천해보아요."))
-//            add(TipList("Tip 3", "비닐봉지, 일회용컵 등 일회용품 사용하지 않기를 실천해보아요."))
-//        }
-
         getTip()
         getTerm()
-//        val tipAdapter = TipAdapter(tipDatas)
-//        binding.homeTipRv.adapter = tipAdapter
-//        binding.homeTipRv.layoutManager =
-//            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
         //사용횟수 RecyclerView 연결
         useDatas.apply {
             add(UseList("15회 사용", "유리재질 텀블러"))
-            add(UseList("15회 사용", "유리재질 텀블러"))
-            add(UseList("15회 사용", "유리재질 텀블러"))
-            add(UseList("15회 사용", "유리재질 텀블러"))
+            add(UseList("17회 사용", "플라스틱 텀블러"))
+            add(UseList("39회 사용", "세라믹 텀블러"))
+            add(UseList("7100회 사용", "면재질 텀블러"))
         }
 
         val useAdapter = UseAdapter(useDatas)
