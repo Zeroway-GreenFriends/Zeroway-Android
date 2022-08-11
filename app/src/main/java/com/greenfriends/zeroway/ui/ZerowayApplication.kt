@@ -1,4 +1,4 @@
-package com.greenfriends.zeroway
+package com.greenfriends.zeroway.ui
 
 import android.app.Application
 import com.kakao.sdk.common.KakaoSdk

@@ -1,4 +1,4 @@
-package com.greenfriends.zeroway
+package com.greenfriends.zeroway.model
 
 data class WordList(
     val title: String,

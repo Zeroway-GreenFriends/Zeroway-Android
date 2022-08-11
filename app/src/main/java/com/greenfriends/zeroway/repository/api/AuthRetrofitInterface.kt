@@ -1,7 +1,7 @@
-package com.greenfriends.zeroway.api
+package com.greenfriends.zeroway.repository.api
 
-import com.greenfriends.zeroway.data.AuthResponse
-import com.greenfriends.zeroway.data.LoginRequest
+import com.greenfriends.zeroway.model.AuthResponse
+import com.greenfriends.zeroway.model.LoginRequest
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call

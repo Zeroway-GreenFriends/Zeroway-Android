@@ -1,4 +1,4 @@
-package com.greenfriends.zeroway.data
+package com.greenfriends.zeroway.model
 
 import com.google.gson.annotations.SerializedName
 

@@ -1,9 +1,10 @@
-package com.greenfriends.zeroway
+package com.greenfriends.zeroway.ui
 
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.greenfriends.zeroway.model.AlarmList
 import com.greenfriends.zeroway.databinding.ItemAlarmBinding
 
 
@@ -20,14 +21,14 @@ class AlarmAdapter(private val alarmList: ArrayList<AlarmList>) :
         mItemClickListener = itemClickListener
     }
 
-    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): AlarmAdapter.ViewHolder {
+    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val binding: ItemAlarmBinding =
             ItemAlarmBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
 
         return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: AlarmAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.itemView.setOnClickListener {
             mItemClickListener.onItemClick(alarmList[position])
         }

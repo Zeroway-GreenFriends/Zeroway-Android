@@ -1,9 +1,10 @@
-package com.greenfriends.zeroway
+package com.greenfriends.zeroway.ui
 
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.greenfriends.zeroway.model.ShopList
 import com.greenfriends.zeroway.databinding.ItemHomeShopBinding
 
 
@@ -20,14 +21,14 @@ class ShopAdapter(private val shopList: ArrayList<ShopList>) :
         mItemClickListener = itemClickListener
     }
 
-    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ShopAdapter.ViewHolder {
+    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val binding: ItemHomeShopBinding =
             ItemHomeShopBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
 
         return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ShopAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.itemView.setOnClickListener {
             mItemClickListener.onItemClick(shopList[position])
         }
