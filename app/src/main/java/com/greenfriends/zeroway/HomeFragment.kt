@@ -89,7 +89,7 @@ class HomeFragment : Fragment(), TipView, TermView {
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
         getTip()
-        getTerm()
+        getTerm(null, null, null)
 
         //사용횟수 RecyclerView 연결
         useDatas.apply {
@@ -131,15 +131,20 @@ class HomeFragment : Fragment(), TipView, TermView {
         TODO("Not yet implemented")
     }
 
-    private fun getTerm() {
+    private fun getTerm(keyword: String?, page: Int?, size: Int?) {
         val homeService = HomeService()
         homeService.setTermView(this)
-        homeService.getTerm()
+        homeService.getTerm(keyword, page, size)
     }
 
     override fun onTermSuccess(result: List<TermResponse>) {
+        var cnt = 0
         for (i in result) {
             termDatas.add(i)
+            cnt++
+            if (cnt == 5) {
+                break
+            }
         }
         val termAdapter = TermAdapter(termDatas)
         binding.homeWordRv.adapter = termAdapter

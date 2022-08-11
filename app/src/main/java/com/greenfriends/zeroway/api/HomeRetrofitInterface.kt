@@ -11,8 +11,8 @@ interface HomeRetrofitInterface {
 
     @GET("term")
     fun getTerm(
-        @Query("keyword") keyword: String?,
-        @Query("keyword") page: Int?,
-        @Query("keyword") size: Int?,
+        @Query("keyword") keyword: String? = null,
+        @Query("keyword") page: Int? = null,
+        @Query("keyword") size: Int? = null,
     ): Call<List<TermResponse>>
 }

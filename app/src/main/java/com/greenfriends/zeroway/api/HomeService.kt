@@ -42,9 +42,11 @@ class HomeService {
         })
     }
 
-    fun getTerm() {
+    fun getTerm(keyword:String?,page:Int?,size:Int?) {
         val homeService = retrofit?.create(HomeRetrofitInterface::class.java)
-        homeService!!.getTerm(null,null,null).enqueue(object : Callback<List<TermResponse>> {
+        homeService!!.getTerm(
+            keyword, page, size
+        ).enqueue(object : Callback<List<TermResponse>> {
             override fun onResponse(
                 call: Call<List<TermResponse>>,
                 response: Response<List<TermResponse>>
