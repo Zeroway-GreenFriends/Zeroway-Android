@@ -1,111 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <data>
+
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/zeroway_background">
+        android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/community_tb"
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_scrollFlags="scroll|enterAlways"
-            app:menu="@menu/tool_bar_item"
-            app:navigationIcon="@drawable/ic_back">
+            android:background="@color/zeroway_background">
 
-            <TextView
-                android:id="@+id/community_toolbar_title_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="커뮤니티"
-                android:textColor="@color/zeroway_black"
-                android:textSize="14sp" />
-
-        </androidx.appcompat.widget.Toolbar>
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/zeroway_background"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/community_latest_iv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="6dp"
-                android:src="@drawable/ic_community_latest"
-                app:layout_constraintBottom_toBottomOf="@id/community_latest_tv"
-                app:layout_constraintEnd_toStartOf="@id/community_latest_tv"
-                app:layout_constraintTop_toTopOf="@id/community_latest_tv" />
-
-            <TextView
-                android:id="@+id/community_latest_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:text="@string/latest"
-                android:textColor="@color/zeroway_black"
-                android:textSize="10sp"
-                app:layout_constraintBottom_toBottomOf="@id/community_popularity_iv"
-                app:layout_constraintEnd_toStartOf="@id/community_popularity_iv"
-                app:layout_constraintTop_toTopOf="@id/community_popularity_iv" />
-
-            <ImageView
-                android:id="@+id/community_popularity_iv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="6dp"
-                android:src="@drawable/ic_community_popularity"
-                app:layout_constraintBottom_toBottomOf="@id/community_popularity_tv"
-                app:layout_constraintEnd_toStartOf="@id/community_popularity_tv"
-                app:layout_constraintTop_toTopOf="@id/community_popularity_tv" />
-
-            <TextView
-                android:id="@+id/community_popularity_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:text="@string/popularity"
-                android:textColor="@color/zeroway_black"
-                android:textSize="10sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.recyclerview.widget.RecyclerView
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/community_tb"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:scrollbars="none"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintTop_toBottomOf="@id/community_latest_iv"
-                tools:listitem="@layout/item_community_include_image_post" />
+                android:layout_height="wrap_content"
+                app:layout_scrollFlags="scroll|enterAlways"
+                app:menu="@menu/tool_bar_item"
+                app:navigationIcon="@drawable/ic_back">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/community_toolbar_title_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="커뮤니티"
+                    android:textColor="@color/zeroway_black"
+                    android:textSize="14sp" />
 
-    </androidx.core.widget.NestedScrollView>
+            </androidx.appcompat.widget.Toolbar>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/community_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
-        android:layout_margin="16dp"
-        android:backgroundTint="@color/zeroway_mint"
-        app:srcCompat="@drawable/ic_community_post" />
+        </com.google.android.material.appbar.AppBarLayout>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/zeroway_background"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/community_latest_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="6dp"
+                    android:src="@drawable/ic_community_latest"
+                    app:layout_constraintBottom_toBottomOf="@id/community_latest_tv"
+                    app:layout_constraintEnd_toStartOf="@id/community_latest_tv"
+                    app:layout_constraintTop_toTopOf="@id/community_latest_tv" />
+
+                <TextView
+                    android:id="@+id/community_latest_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:text="@string/latest"
+                    android:textColor="@color/zeroway_black"
+                    android:textSize="10sp"
+                    app:layout_constraintBottom_toBottomOf="@id/community_popularity_iv"
+                    app:layout_constraintEnd_toStartOf="@id/community_popularity_iv"
+                    app:layout_constraintTop_toTopOf="@id/community_popularity_iv" />
+
+                <ImageView
+                    android:id="@+id/community_popularity_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="6dp"
+                    android:src="@drawable/ic_community_popularity"
+                    app:layout_constraintBottom_toBottomOf="@id/community_popularity_tv"
+                    app:layout_constraintEnd_toStartOf="@id/community_popularity_tv"
+                    app:layout_constraintTop_toTopOf="@id/community_popularity_tv" />
+
+                <TextView
+                    android:id="@+id/community_popularity_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/popularity"
+                    android:textColor="@color/zeroway_black"
+                    android:textSize="10sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:scrollbars="none"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@id/community_latest_iv"
+                    tools:listitem="@layout/item_community_include_image_post" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/community_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_margin="16dp"
+            android:backgroundTint="@color/zeroway_mint"
+            app:srcCompat="@drawable/ic_community_post" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>
