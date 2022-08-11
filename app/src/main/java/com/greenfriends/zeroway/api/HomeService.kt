@@ -11,6 +11,8 @@ class HomeService {
     private var retrofit = RetrofitClient.getRetrofit()
     private lateinit var tipView: TipView
     private lateinit var termView: TermView
+    private lateinit var termSearchView: TermSearchView
+
 
     fun setTipView(tipView: TipView) {
         this.tipView = tipView
@@ -18,6 +20,10 @@ class HomeService {
 
     fun setTermView(termView: TermView) {
         this.termView = termView
+    }
+
+    fun setTermSerachView(termSearchView: TermSearchView) {
+        this.termSearchView = termSearchView
     }
 
 
@@ -42,7 +48,7 @@ class HomeService {
         })
     }
 
-    fun getTerm(keyword:String?,page:Int?,size:Int?) {
+    fun getTerm(keyword: String?, page: Int?, size: Int?) {
         val homeService = retrofit?.create(HomeRetrofitInterface::class.java)
         homeService!!.getTerm(
             keyword, page, size
@@ -56,6 +62,29 @@ class HomeService {
                     termView.onTermSuccess(response.body()!!)
                 } else {
                     termView.onTermFailure()
+                }
+            }
+
+            override fun onFailure(call: Call<List<TermResponse>>, t: Throwable) {
+                Log.d("TERM/FAILURE", t.message.toString())
+            }
+        })
+    }
+
+    fun getTermSearch(keyword: String?, page: Int?, size: Int?) {
+        val homeService = retrofit?.create(HomeRetrofitInterface::class.java)
+        homeService!!.getTerm(
+            keyword, page, size
+        ).enqueue(object : Callback<List<TermResponse>> {
+            override fun onResponse(
+                call: Call<List<TermResponse>>,
+                response: Response<List<TermResponse>>
+            ) {
+                Log.d("TERM/SUCCESS", response.toString())
+                if (response.isSuccessful) {
+                    termSearchView.onTermSearchSuccess(response.body()!!)
+                } else {
+                    termSearchView.onTermSearchFailure()
                 }
             }
 

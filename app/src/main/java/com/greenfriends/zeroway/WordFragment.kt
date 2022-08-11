@@ -1,17 +1,23 @@
 package com.greenfriends.zeroway
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.greenfriends.zeroway.api.HomeService
+import com.greenfriends.zeroway.api.TermSearchView
+import com.greenfriends.zeroway.api.TermView
+import com.greenfriends.zeroway.data.TermResponse
 import com.greenfriends.zeroway.databinding.FragmentWordBinding
 
-class WordFragment : Fragment() {
+class WordFragment : Fragment(), TermView, TermSearchView {
     private lateinit var binding: FragmentWordBinding
-    private var wordDatas = ArrayList<WordList>()
-    private var wordSearchDatas = ArrayList<WordSearchList>()
+    private var wordDatas = ArrayList<TermResponse>()
+    private var wordSearchDatas = ArrayList<String>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,53 +32,75 @@ class WordFragment : Fragment() {
                 ?.commitAllowingStateLoss()
         }
 
-        //환경용어 RecyclerView 연결
-        wordDatas.apply {
-            add(
-                WordList(
-                    "탄소 중립(炭素中立)",
-                    "carbon neutrality",
-                    "[환경] 탄소를 배출하는 만큼 그에 상응하는 조치를 취하여 실질 배출량을 ‘0’으로 만드는 일"
-                )
-            )
-            add(
-                WordList(
-                    "탄소 중립(炭素中立)",
-                    "carbon neutrality",
-                    "[환경] 탄소를 배출하는 만큼 그에 상응하는 조치를 취하여 실질 배출량을 ‘0’으로 만드는 일"
-                )
-            )
-            add(
-                WordList(
-                    "탄소 중립(炭素中立)",
-                    "carbon neutrality",
-                    "[환경] 탄소를 배출하는 만큼 그에 상응하는 조치를 취하여 실질 배출량을 ‘0’으로 만드는 일"
-                )
-            )
+        getTerm(null, null, null)
+//        binding.wordSearchIv.setOnClickListener {
+//            getTermSearch(binding.wordSearchEt.text.toString(), null, null)
+//        }
+        binding.wordSearchEt.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                //getTermSearch(binding.wordSearchEt.text.toString(), null, null)
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                //getTermSearch(binding.wordSearchEt.text.toString(), null, null)
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+
+                getTermSearch(binding.wordSearchEt.text.toString(), null, null)
+            }
+
         }
+        )
+        return binding.root
+    }
 
-//        val wordAdapter = WordAdapter(wordDatas)
-//        binding.wordWordRv.adapter = wordAdapter
-//        binding.wordWordRv.layoutManager =
-//            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-//
+    private fun getTerm(keyword: String?, page: Int?, size: Int?) {
+        val homeService = HomeService()
+        homeService.setTermView(this)
+        homeService.getTerm(keyword, page, size)
+    }
 
-        //환경 용어 검색 RecyclerView 연결
-        wordSearchDatas.apply {
-            add(WordSearchList("[환경] 탄소 중립(炭素中立)"))
-            add(WordSearchList("[환경] 탄소 중립(炭素中立)"))
-            add(WordSearchList("[환경] 탄소 중립(炭素中立)"))
-            add(WordSearchList("[환경] 탄소 중립(炭素中立)"))
-            add(WordSearchList("[환경] 탄소 중립(炭素中立)"))
-            add(WordSearchList("[환경] 탄소 중립(炭素中立)"))
-            add(WordSearchList("[환경] 탄소 중립(炭素中立)"))
+    override fun onTermSuccess(result: List<TermResponse>) {
+        var cnt = 0
+        for (i in result) {
+            wordDatas.add(i)
+            cnt++
+            if (cnt == 5) {
+                break
+            }
         }
+        val termAdapter = TermAdapter(wordDatas)
+        binding.wordWordRv.adapter = termAdapter
+        binding.wordWordRv.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
-        val wordSearchAdapter = WordSearchAdapter(wordSearchDatas)
-        binding.wordSearchRv.adapter = wordSearchAdapter
+    }
+
+    override fun onTermFailure() {
+        TODO("Not yet implemented")
+    }
+
+
+    private fun getTermSearch(keyword: String?, page: Int?, size: Int?) {
+        val homeService = HomeService()
+        homeService.setTermSerachView(this)
+        homeService.getTermSearch(keyword, page, size)
+    }
+
+    override fun onTermSearchSuccess(result: List<TermResponse>) {
+        wordSearchDatas.clear()
+        for (i in result) {
+            wordSearchDatas.add(i.term)
+        }
+        val termSearchAdapter = WordSearchAdapter(wordSearchDatas)
+        binding.wordSearchRv.adapter = termSearchAdapter
         binding.wordSearchRv.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
-        return binding.root
+    }
+
+    override fun onTermSearchFailure() {
+        TODO("Not yet implemented")
     }
 }

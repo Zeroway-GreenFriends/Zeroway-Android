@@ -7,10 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.greenfriends.zeroway.api.AuthService
-import com.greenfriends.zeroway.api.HomeService
-import com.greenfriends.zeroway.api.TermView
-import com.greenfriends.zeroway.api.TipView
+import com.greenfriends.zeroway.api.*
 import com.greenfriends.zeroway.data.TermResponse
 import com.greenfriends.zeroway.data.TipResponse
 import com.greenfriends.zeroway.databinding.FragmentHomeBinding

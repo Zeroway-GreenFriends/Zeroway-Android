@@ -7,11 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.greenfriends.zeroway.databinding.ItemWordSearchBinding
 
 
-class WordSearchAdapter(private val wordList: ArrayList<WordSearchList>) :
+class WordSearchAdapter(private val wordList: ArrayList<String>) :
     RecyclerView.Adapter<WordSearchAdapter.ViewHolder>() {
 
     interface MyItemClickListener {
-        fun onItemClick(word: WordSearchList)
+        fun onItemClick(word: String)
     }
 
     private lateinit var mItemClickListener: MyItemClickListener
@@ -28,6 +28,7 @@ class WordSearchAdapter(private val wordList: ArrayList<WordSearchList>) :
     }
 
     override fun onBindViewHolder(holder: WordSearchAdapter.ViewHolder, position: Int) {
+        holder.bind(wordList[position])
         holder.itemView.setOnClickListener {
             mItemClickListener.onItemClick(wordList[position])
         }
@@ -40,8 +41,8 @@ class WordSearchAdapter(private val wordList: ArrayList<WordSearchList>) :
     inner class ViewHolder(val binding: ItemWordSearchBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(word: WordSearchList) {
-            binding.itemWordSearchTitleTv.text = word.content
+        fun bind(word: String) {
+            binding.itemWordSearchTitleTv.text = word
         }
     }
 
