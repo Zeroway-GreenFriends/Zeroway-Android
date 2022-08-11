@@ -1,7 +1,8 @@
-package com.greenfriends.zeroway
+package com.greenfriends.zeroway.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.greenfriends.zeroway.R
 import com.greenfriends.zeroway.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

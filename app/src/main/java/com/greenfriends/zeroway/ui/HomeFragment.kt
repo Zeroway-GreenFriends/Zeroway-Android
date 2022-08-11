@@ -1,4 +1,4 @@
-package com.greenfriends.zeroway
+package com.greenfriends.zeroway.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,7 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.greenfriends.zeroway.*
 import com.greenfriends.zeroway.databinding.FragmentHomeBinding
+import com.greenfriends.zeroway.model.ShopList
+import com.greenfriends.zeroway.model.TipList
+import com.greenfriends.zeroway.model.UseList
+import com.greenfriends.zeroway.model.WordList
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding

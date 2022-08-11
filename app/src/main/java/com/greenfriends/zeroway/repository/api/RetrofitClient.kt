@@ -1,4 +1,4 @@
-package com.greenfriends.zeroway.api
+package com.greenfriends.zeroway.repository.api
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
