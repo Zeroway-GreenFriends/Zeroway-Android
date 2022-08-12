@@ -57,7 +57,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <ImageView
+                    <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/community_post_detail_profile_iv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
