@@ -112,6 +112,7 @@
             android:layout_gravity="bottom|right"
             android:layout_margin="16dp"
             android:backgroundTint="@color/zeroway_mint"
+            app:borderWidth="0dp"
             app:srcCompat="@drawable/ic_community_post" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

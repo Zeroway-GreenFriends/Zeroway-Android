@@ -1,244 +1,251 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <data>
+
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/community_post_detail_tb"
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_scrollFlags="scroll|enterAlways"
-            app:menu="@menu/tool_bar_item"
-            app:navigationIcon="@drawable/ic_back">
+            android:background="@color/white">
 
-            <TextView
-                android:id="@+id/community_post_detail_toolbar_title_tv"
-                android:layout_width="wrap_content"
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/community_post_detail_tb"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="커뮤니티"
-                android:textColor="@color/zeroway_black"
-                android:textSize="14sp" />
+                app:layout_scrollFlags="scroll|enterAlways"
+                app:menu="@menu/tool_bar_item"
+                app:navigationIcon="@drawable/ic_back">
 
-        </androidx.appcompat.widget.Toolbar>
+                <TextView
+                    android:id="@+id/community_post_detail_toolbar_title_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="커뮤니티"
+                    android:textColor="@color/zeroway_black"
+                    android:textSize="14sp" />
 
-    </com.google.android.material.appbar.AppBarLayout>
+            </androidx.appcompat.widget.Toolbar>
 
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+        </com.google.android.material.appbar.AppBarLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/zeroway_gray">
+            android:layout_height="match_parent"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/community_post_detail_post_cl"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="2dp"
-                android:background="@color/white"
-                app:layout_constraintBottom_toTopOf="@id/community_post_detail_post_comments_cl"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:background="@color/zeroway_gray">
 
-                <ImageView
-                    android:id="@+id/community_post_detail_profile_iv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="10dp"
-                    android:src="@drawable/ic_profile"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/community_post_detail_profile_name_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="6dp"
-                    android:text="쏘멍"
-                    android:textColor="@color/zeroway_black"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="@id/community_post_detail_profile_iv"
-                    app:layout_constraintStart_toEndOf="@id/community_post_detail_profile_iv"
-                    app:layout_constraintTop_toTopOf="@id/community_post_detail_profile_iv" />
-
-                <ImageView
-                    android:id="@+id/community_post_detail_select_iv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    android:src="@drawable/ic_select"
-                    app:layout_constraintBottom_toBottomOf="@id/community_post_detail_profile_name_tv"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/community_post_detail_profile_name_tv" />
-
-                <androidx.viewpager2.widget.ViewPager2
-                    android:id="@+id/community_post_detail_image_vp"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/community_post_detail_post_cl"
                     android:layout_width="0dp"
-                    android:layout_height="300dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:background="@color/white"
+                    app:layout_constraintBottom_toTopOf="@id/community_post_detail_post_comments_cl"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/community_post_detail_profile_iv" />
+                    app:layout_constraintTop_toTopOf="parent">
 
-                <com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
-                    android:id="@+id/community_post_detail_image_sdi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    app:dampingRatio="0.5"
-                    app:dotsColor="@color/zeroway_mint"
-                    app:dotsSize="6dp"
-                    app:dotsSpacing="3dp"
-                    app:dotsStrokeColor="@color/zeroway_gray"
-                    app:dotsStrokeWidth="3dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/community_post_detail_image_vp"
-                    app:stiffness="300" />
+                    <ImageView
+                        android:id="@+id/community_post_detail_profile_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/ic_profile"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
-                    android:id="@+id/community_post_detail_like_iv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="6dp"
-                    android:src="@drawable/ic_like_off"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/community_post_detail_image_vp" />
+                    <TextView
+                        android:id="@+id/community_post_detail_profile_name_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:text="쏘멍"
+                        android:textColor="@color/zeroway_black"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="@id/community_post_detail_profile_iv"
+                        app:layout_constraintStart_toEndOf="@id/community_post_detail_profile_iv"
+                        app:layout_constraintTop_toTopOf="@id/community_post_detail_profile_iv" />
 
-                <ImageView
-                    android:id="@+id/community_post_detail_chat_iv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="6dp"
-                    android:src="@drawable/ic_chat"
-                    app:layout_constraintBottom_toBottomOf="@id/community_post_detail_like_iv"
-                    app:layout_constraintStart_toEndOf="@id/community_post_detail_like_iv"
-                    app:layout_constraintTop_toTopOf="@id/community_post_detail_like_iv" />
+                    <ImageView
+                        android:id="@+id/community_post_detail_select_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:src="@drawable/ic_select"
+                        app:layout_constraintBottom_toBottomOf="@id/community_post_detail_profile_name_tv"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/community_post_detail_profile_name_tv" />
 
-                <ImageView
-                    android:id="@+id/community_post_detail_bookmark_iv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    android:src="@drawable/ic_bookmark_off"
-                    app:layout_constraintBottom_toBottomOf="@id/community_post_detail_chat_iv"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/community_post_detail_chat_iv" />
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/community_post_detail_image_vp"
+                        android:layout_width="0dp"
+                        android:layout_height="300dp"
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/community_post_detail_profile_iv" />
 
-                <TextView
-                    android:id="@+id/community_post_detail_hits_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="10dp"
-                    android:text="@string/like"
-                    android:textColor="@color/zeroway_black"
-                    android:textSize="10sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/community_post_detail_like_iv" />
+                    <com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
+                        android:id="@+id/community_post_detail_image_sdi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        app:dampingRatio="0.5"
+                        app:dotsColor="@color/zeroway_mint"
+                        app:dotsSize="6dp"
+                        app:dotsSpacing="3dp"
+                        app:dotsStrokeColor="@color/zeroway_gray"
+                        app:dotsStrokeWidth="3dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/community_post_detail_image_vp"
+                        app:stiffness="300" />
 
-                <TextView
-                    android:id="@+id/community_post_detail_hits_input_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="6dp"
-                    android:text="103개"
-                    android:textColor="@color/zeroway_black"
-                    android:textSize="10sp"
-                    app:layout_constraintBottom_toBottomOf="@id/community_post_detail_hits_tv"
-                    app:layout_constraintStart_toEndOf="@id/community_post_detail_hits_tv"
-                    app:layout_constraintTop_toTopOf="@id/community_post_detail_hits_tv" />
+                    <ImageView
+                        android:id="@+id/community_post_detail_like_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="6dp"
+                        android:src="@drawable/ic_like_off"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/community_post_detail_image_vp" />
 
-                <TextView
-                    android:id="@+id/community_post_detail_text_input_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="6dp"
-                    android:text="내용"
-                    android:textColor="@color/zeroway_black"
-                    android:textSize="10sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/community_post_detail_hits_tv" />
+                    <ImageView
+                        android:id="@+id/community_post_detail_chat_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:src="@drawable/ic_chat"
+                        app:layout_constraintBottom_toBottomOf="@id/community_post_detail_like_iv"
+                        app:layout_constraintStart_toEndOf="@id/community_post_detail_like_iv"
+                        app:layout_constraintTop_toTopOf="@id/community_post_detail_like_iv" />
 
-                <TextView
-                    android:id="@+id/community_post_detail_day_tv"
-                    android:layout_width="wrap_content"
+                    <ImageView
+                        android:id="@+id/community_post_detail_bookmark_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:src="@drawable/ic_bookmark_off"
+                        app:layout_constraintBottom_toBottomOf="@id/community_post_detail_chat_iv"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/community_post_detail_chat_iv" />
+
+                    <TextView
+                        android:id="@+id/community_post_detail_hits_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/like"
+                        android:textColor="@color/zeroway_black"
+                        android:textSize="10sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/community_post_detail_like_iv" />
+
+                    <TextView
+                        android:id="@+id/community_post_detail_hits_input_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:text="103개"
+                        android:textColor="@color/zeroway_black"
+                        android:textSize="10sp"
+                        app:layout_constraintBottom_toBottomOf="@id/community_post_detail_hits_tv"
+                        app:layout_constraintStart_toEndOf="@id/community_post_detail_hits_tv"
+                        app:layout_constraintTop_toTopOf="@id/community_post_detail_hits_tv" />
+
+                    <TextView
+                        android:id="@+id/community_post_detail_text_input_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="6dp"
+                        android:text="내용"
+                        android:textColor="@color/zeroway_black"
+                        android:textSize="10sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/community_post_detail_hits_tv" />
+
+                    <TextView
+                        android:id="@+id/community_post_detail_day_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="1주"
+                        android:textColor="@color/zeroway_gray"
+                        android:textSize="10sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/community_post_detail_text_input_tv" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/community_post_detail_post_comments_cl"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="1주"
-                    android:textColor="@color/zeroway_gray"
-                    android:textSize="10sp"
+                    android:background="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/community_post_detail_text_input_tv" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <TextView
+                        android:id="@+id/community_post_detail_comments_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="10dp"
+                        android:text="댓글"
+                        android:textColor="@color/zeroway_gray"
+                        android:textSize="10sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:text="12"
+                        android:textColor="@color/zeroway_gray"
+                        android:textSize="10sp"
+                        app:layout_constraintBottom_toBottomOf="@id/community_post_detail_comments_tv"
+                        app:layout_constraintStart_toEndOf="@id/community_post_detail_comments_tv"
+                        app:layout_constraintTop_toTopOf="@id/community_post_detail_comments_tv" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="16dp"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/community_post_detail_comments_tv"
+                        tools:listitem="@layout/item_community_post_comments" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/community_post_detail_post_comments_cl"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
+        </androidx.core.widget.NestedScrollView>
 
-                <TextView
-                    android:id="@+id/community_post_detail_comments_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="10dp"
-                    android:text="댓글"
-                    android:textColor="@color/zeroway_gray"
-                    android:textSize="10sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="6dp"
-                    android:text="12"
-                    android:textColor="@color/zeroway_gray"
-                    android:textSize="10sp"
-                    app:layout_constraintBottom_toBottomOf="@id/community_post_detail_comments_tv"
-                    app:layout_constraintStart_toEndOf="@id/community_post_detail_comments_tv"
-                    app:layout_constraintTop_toTopOf="@id/community_post_detail_comments_tv" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="16dp"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/community_post_detail_comments_tv"
-                    tools:listitem="@layout/item_community_post_comments" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.core.widget.NestedScrollView>
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>
