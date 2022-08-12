@@ -72,12 +72,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="6dp"
-                        android:text="쏘멍"
+                        android:text=""
                         android:textColor="@color/zeroway_black"
                         android:textSize="12sp"
                         app:layout_constraintBottom_toBottomOf="@id/community_post_detail_profile_iv"
                         app:layout_constraintStart_toEndOf="@id/community_post_detail_profile_iv"
-                        app:layout_constraintTop_toTopOf="@id/community_post_detail_profile_iv" />
+                        app:layout_constraintTop_toTopOf="@id/community_post_detail_profile_iv"
+                        tools:text="조이" />
 
                     <ImageView
                         android:id="@+id/community_post_detail_select_iv"
@@ -161,24 +162,27 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="6dp"
-                        android:text="103개"
+                        android:text=""
                         android:textColor="@color/zeroway_black"
                         android:textSize="10sp"
                         app:layout_constraintBottom_toBottomOf="@id/community_post_detail_hits_tv"
                         app:layout_constraintStart_toEndOf="@id/community_post_detail_hits_tv"
-                        app:layout_constraintTop_toTopOf="@id/community_post_detail_hits_tv" />
+                        app:layout_constraintTop_toTopOf="@id/community_post_detail_hits_tv"
+                        tools:text="103개" />
 
                     <TextView
                         android:id="@+id/community_post_detail_text_input_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
                         android:layout_marginTop="6dp"
-                        android:text="내용"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="20dp"
+                        android:text=""
                         android:textColor="@color/zeroway_black"
                         android:textSize="10sp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/community_post_detail_hits_tv" />
+                        app:layout_constraintTop_toBottomOf="@id/community_post_detail_hits_tv"
+                        tools:text="오늘 나의 실천 인증! 두 줄 이상 작성 시에는 상세 보기에서 더 많은 내용을 확인 할 수 있습니다.오늘 나의 실천 인증! 두 줄 이상 작성 시에는 상세 보기에서 더 많은 내용을 확인 할 수 있습니다." />
 
                     <TextView
                         android:id="@+id/community_post_detail_day_tv"
@@ -187,12 +191,13 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="6dp"
                         android:layout_marginBottom="10dp"
-                        android:text="1주"
+                        android:text=""
                         android:textColor="@color/zeroway_gray"
                         android:textSize="10sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/community_post_detail_text_input_tv" />
+                        app:layout_constraintTop_toBottomOf="@id/community_post_detail_text_input_tv"
+                        tools:text="1주" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -221,12 +226,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="6dp"
-                        android:text="12"
+                        android:text=""
                         android:textColor="@color/zeroway_gray"
                         android:textSize="10sp"
                         app:layout_constraintBottom_toBottomOf="@id/community_post_detail_comments_tv"
                         app:layout_constraintStart_toEndOf="@id/community_post_detail_comments_tv"
-                        app:layout_constraintTop_toTopOf="@id/community_post_detail_comments_tv" />
+                        app:layout_constraintTop_toTopOf="@id/community_post_detail_comments_tv"
+                        tools:text="12" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:layout_width="0dp"
