@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="isChallenge"
+            type="Boolean" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -92,6 +95,22 @@
                         android:src="@drawable/ic_album"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent" />
+
+                    <TextView
+                        android:id="@+id/community_post_register_challenge_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@{isChallenge ? @drawable/ic_challenge_selected_background : @drawable/ic_challenge_unselected_background}"
+                        android:paddingStart="6dp"
+                        android:paddingTop="3dp"
+                        android:paddingEnd="6dp"
+                        android:paddingBottom="3dp"
+                        android:text="챌린지 인증하기"
+                        android:textColor="@color/white"
+                        app:layout_constraintBottom_toBottomOf="@id/community_post_register_camera_iv"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/community_post_register_camera_iv" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
