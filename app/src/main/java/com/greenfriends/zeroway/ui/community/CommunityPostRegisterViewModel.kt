@@ -22,11 +22,11 @@ class CommunityPostRegisterViewModel(private val communityPostRepository: Commun
         _isChallenge.value = !_isChallenge.value!!
     }
 
-    fun setImageUrl(imageUrl: List<String>) {
-        _imageUrl.value = imageUrl
+    fun setImageUrl(imageUrl: String) {
+        _imageUrl.value = _imageUrl.value?.plus(imageUrl) ?: listOf(imageUrl)
     }
 
-    fun setPost(accessToken: String, images: MultipartBody.Part, post: RequestBody) {
+    fun setPost(accessToken: String, images: List<MultipartBody.Part>, post: RequestBody) {
         viewModelScope.launch {
             communityPostRepository.setPost(accessToken, images, post)
         }

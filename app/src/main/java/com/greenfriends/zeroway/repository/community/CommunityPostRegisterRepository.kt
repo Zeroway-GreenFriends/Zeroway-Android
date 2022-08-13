@@ -5,7 +5,7 @@ import okhttp3.RequestBody
 
 class CommunityPostRegisterRepository(private val communityPostDataSourceImpl: CommunityPostRegisterDataSourceImpl) {
 
-    suspend fun setPost(accessToken: String, images: MultipartBody.Part, post: RequestBody) {
+    suspend fun setPost(accessToken: String, images: List<MultipartBody.Part>, post: RequestBody) {
         communityPostDataSourceImpl.setPost(accessToken, images, post)
     }
 }

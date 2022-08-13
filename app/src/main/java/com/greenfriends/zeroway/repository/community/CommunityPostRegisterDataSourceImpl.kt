@@ -12,7 +12,7 @@ class CommunityPostRegisterDataSourceImpl : CommunityPostRegisterDataSource {
 
     override suspend fun setPost(
         accessToken: String,
-        images: MultipartBody.Part,
+        images: List<MultipartBody.Part>,
         post: RequestBody
     ) {
         communityService!!.setPost(accessToken, images, post)

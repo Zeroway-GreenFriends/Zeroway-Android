@@ -5,5 +5,5 @@ import okhttp3.RequestBody
 
 interface CommunityPostRegisterDataSource {
 
-    suspend fun setPost(accessToken: String, images: MultipartBody.Part, post: RequestBody)
+    suspend fun setPost(accessToken: String, images: List<MultipartBody.Part>, post: RequestBody)
 }
