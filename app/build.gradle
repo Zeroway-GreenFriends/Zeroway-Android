@@ -33,6 +33,9 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+        freeCompilerArgs += [
+                '-Xjvm-default=enable'
+        ]
     }
 
     dataBinding {
@@ -78,4 +81,8 @@ dependencies {
 
     // Ktx
     implementation "androidx.fragment:fragment-ktx:1.5.1"
+
+    // ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
 }

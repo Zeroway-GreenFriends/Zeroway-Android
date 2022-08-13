@@ -7,8 +7,8 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.greenfriends.zeroway.MainActivity
 import com.greenfriends.zeroway.R
-import com.greenfriends.zeroway.repository.api.AuthService
-import com.greenfriends.zeroway.repository.login.LoginView
+import com.greenfriends.zeroway.network.AuthService
+import com.greenfriends.zeroway.network.LoginView
 import com.greenfriends.zeroway.model.LoginRequest
 import com.greenfriends.zeroway.model.Result
 import com.greenfriends.zeroway.databinding.ActivityLoginBinding

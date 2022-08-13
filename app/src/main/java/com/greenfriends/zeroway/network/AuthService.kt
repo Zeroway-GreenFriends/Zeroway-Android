@@ -1,10 +1,8 @@
-package com.greenfriends.zeroway.repository.api
+package com.greenfriends.zeroway.network
 
 import android.util.Log
 import com.greenfriends.zeroway.model.AuthResponse
 import com.greenfriends.zeroway.model.LoginRequest
-import com.greenfriends.zeroway.repository.login.LoginView
-import com.greenfriends.zeroway.repository.signup.SignUpView
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
