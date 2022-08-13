@@ -14,7 +14,7 @@ interface CommunityRetrofitInterface {
     @POST("post")
     suspend fun setPost(
         @Header("accessToken") accessToken: String,
-        @Part images: MultipartBody.Part,
+        @Part images: List<MultipartBody.Part>,
         @Part post: RequestBody
     ): Response<Void>
 }
