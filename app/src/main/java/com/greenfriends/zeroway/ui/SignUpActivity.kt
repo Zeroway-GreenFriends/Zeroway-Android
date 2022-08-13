@@ -17,8 +17,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import com.greenfriends.zeroway.MainActivity
-import com.greenfriends.zeroway.repository.api.AuthService
-import com.greenfriends.zeroway.repository.signup.SignUpView
+import com.greenfriends.zeroway.network.AuthService
+import com.greenfriends.zeroway.network.SignUpView
 import com.greenfriends.zeroway.model.Result
 import com.greenfriends.zeroway.model.User
 import com.greenfriends.zeroway.databinding.ActivitySignUpBinding

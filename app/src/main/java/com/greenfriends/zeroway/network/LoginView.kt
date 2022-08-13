@@ -1,4 +1,4 @@
-package com.greenfriends.zeroway.repository.login
+package com.greenfriends.zeroway.network
 
 import com.greenfriends.zeroway.model.Result
 

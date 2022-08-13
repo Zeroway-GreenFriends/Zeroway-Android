@@ -1,4 +1,4 @@
-package com.greenfriends.zeroway.repository.api
+package com.greenfriends.zeroway.network
 
 import com.greenfriends.zeroway.model.AuthResponse
 import com.greenfriends.zeroway.model.LoginRequest
