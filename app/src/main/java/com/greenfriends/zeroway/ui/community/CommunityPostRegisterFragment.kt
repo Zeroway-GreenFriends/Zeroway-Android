@@ -7,6 +7,7 @@ import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -149,9 +150,9 @@ class CommunityPostRegisterFragment : Fragment() {
                 for (i in imageUrls.indices) {
                     val file = File(imageUrls[i])
                     val postImageUrlRequestBody =
-                        file.asRequestBody("text/x-markdown; charset=utf-8".toMediaType())
+                        file.asRequestBody("image/jpeg".toMediaType())
                     val postImageUrlMultipartBodyPart = MultipartBody.Part.createFormData(
-                        "imageUrl$i",
+                        "images",
                         file.name,
                         postImageUrlRequestBody
                     )
