@@ -13,8 +13,8 @@ interface CommunityRetrofitInterface {
     @Multipart
     @POST("post")
     suspend fun setPost(
-        @Header("accessToken") accessToken: String,
+        @Header("Bearer") accessToken: String,
         @Part images: List<MultipartBody.Part>,
-        @Part post: RequestBody
+        @Part("post") post: RequestBody
     ): Response<Void>
 }
