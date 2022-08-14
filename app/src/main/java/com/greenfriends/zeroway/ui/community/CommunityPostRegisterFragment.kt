@@ -10,12 +10,22 @@ import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.google.gson.Gson
+import com.greenfriends.zeroway.R
 import com.greenfriends.zeroway.databinding.FragmentCommunityPostRegisterBinding
+import com.greenfriends.zeroway.model.CommunityPostRegisterContentRequest
 import com.greenfriends.zeroway.ui.common.ViewModelFactory
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
+import java.io.File
 
 class CommunityPostRegisterFragment : Fragment() {
 
@@ -23,6 +33,7 @@ class CommunityPostRegisterFragment : Fragment() {
     private lateinit var binding: FragmentCommunityPostRegisterBinding
     private lateinit var launcher: ActivityResultLauncher<Intent>
     private lateinit var adapter: CommunityPostRegisterAdapter
+    private val gson = Gson()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,6 +54,7 @@ class CommunityPostRegisterFragment : Fragment() {
         setChallengeClickListener()
         setAlbumClickListener()
         setActivityResultLauncher()
+        setPost()
     }
 
     private fun setObserve() {
@@ -56,6 +68,22 @@ class CommunityPostRegisterFragment : Fragment() {
             viewLifecycleOwner
         ) {
             adapter.submitList(it)
+        }
+
+        viewModel.setPostIsSuccess.observe(
+            viewLifecycleOwner
+        ) { isSuccess ->
+            if (isSuccess != null) {
+                if (isSuccess) {
+                    Toast.makeText(requireContext(), "게시물 작성을 완료했습니다.", Toast.LENGTH_SHORT).show()
+
+                } else {
+                    Toast.makeText(requireContext(), "게시물 작성을 실패했습니다.", Toast.LENGTH_SHORT).show()
+                }
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.main_fl, CommunityFragment())
+                    .commit()
+            }
         }
     }
 
@@ -98,5 +126,40 @@ class CommunityPostRegisterFragment : Fragment() {
         val result = cursor?.getString(index!!)
 
         return result!!
+    }
+
+    private fun getJwt(): String? {
+        val sharedPreferences =
+            activity?.getSharedPreferences("auth", AppCompatActivity.MODE_PRIVATE)
+        return sharedPreferences!!.getString("jwt", null)
+    }
+
+    private fun setPost() {
+        binding.communityPostRegisterBtn.setOnClickListener {
+            val content =
+                CommunityPostRegisterContentRequest(
+                    binding.communityPostRegisterContentTv.text.toString(),
+                    viewModel.getIsChallenge()!!
+                )
+            val imageUrls = viewModel.getImageUrls()
+            val postContentRequestBody =
+                gson.toJson(content).toRequestBody("application/json; charset=utf-8".toMediaType())
+            val postImageUrls = mutableListOf<MultipartBody.Part>()
+            if (!imageUrls.isNullOrEmpty()) {
+                for (i in imageUrls.indices) {
+                    val file = File(imageUrls[i])
+                    val postImageUrlRequestBody =
+                        file.asRequestBody("text/x-markdown; charset=utf-8".toMediaType())
+                    val postImageUrlMultipartBodyPart = MultipartBody.Part.createFormData(
+                        "imageUrl$i",
+                        file.name,
+                        postImageUrlRequestBody
+                    )
+                    postImageUrls.add(postImageUrlMultipartBodyPart)
+                }
+            }
+
+            viewModel.setPost(getJwt()!!, postImageUrls.toList(), postContentRequestBody)
+        }
     }
 }
