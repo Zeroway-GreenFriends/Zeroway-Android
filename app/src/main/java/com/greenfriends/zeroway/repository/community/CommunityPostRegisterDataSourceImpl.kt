@@ -4,6 +4,7 @@ import com.greenfriends.zeroway.network.CommunityRetrofitInterface
 import com.greenfriends.zeroway.network.RetrofitClient
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import retrofit2.Response
 
 class CommunityPostRegisterDataSourceImpl : CommunityPostRegisterDataSource {
 
@@ -14,7 +15,7 @@ class CommunityPostRegisterDataSourceImpl : CommunityPostRegisterDataSource {
         accessToken: String,
         images: List<MultipartBody.Part>,
         post: RequestBody
-    ) {
-        communityService!!.setPost(accessToken, images, post)
+    ): Response<Void> {
+        return communityService!!.setPost(accessToken, images, post)
     }
 }
