@@ -1,5 +1,6 @@
 package com.greenfriends.zeroway.ui.community
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -18,6 +19,9 @@ class CommunityPostRegisterViewModel(private val communityPostRepository: Commun
     private val _imageUrl = MutableLiveData<List<String>>()
     val imageUrl: LiveData<List<String>> = _imageUrl
 
+    private val _setPostIsSuccess = MutableLiveData<Boolean?>(null)
+    val setPostIsSuccess: LiveData<Boolean?> = _setPostIsSuccess
+
     fun setIsChallenge() {
         _isChallenge.value = !_isChallenge.value!!
     }
@@ -28,7 +32,17 @@ class CommunityPostRegisterViewModel(private val communityPostRepository: Commun
 
     fun setPost(accessToken: String, images: List<MultipartBody.Part>, post: RequestBody) {
         viewModelScope.launch {
-            communityPostRepository.setPost(accessToken, images, post)
+            val response = communityPostRepository.setPost(accessToken, images, post)
+            _setPostIsSuccess.value = response.isSuccessful
+            Log.d("API/POST/SETPOST", response.toString())
         }
+    }
+
+    fun getIsChallenge(): Boolean? {
+        return _isChallenge.value
+    }
+
+    fun getImageUrls(): List<String>? {
+        return _imageUrl.value
     }
 }

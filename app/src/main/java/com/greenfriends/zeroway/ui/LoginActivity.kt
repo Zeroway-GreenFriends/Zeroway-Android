@@ -7,11 +7,11 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.greenfriends.zeroway.MainActivity
 import com.greenfriends.zeroway.R
-import com.greenfriends.zeroway.network.AuthService
-import com.greenfriends.zeroway.network.LoginView
+import com.greenfriends.zeroway.databinding.ActivityLoginBinding
 import com.greenfriends.zeroway.model.LoginRequest
 import com.greenfriends.zeroway.model.Result
-import com.greenfriends.zeroway.databinding.ActivityLoginBinding
+import com.greenfriends.zeroway.network.AuthService
+import com.greenfriends.zeroway.network.LoginView
 import com.kakao.sdk.user.UserApiClient
 import com.navercorp.nid.NaverIdLoginSDK
 import com.navercorp.nid.oauth.NidOAuthLogin
@@ -156,9 +156,16 @@ class LoginActivity : AppCompatActivity(), LoginView {
         NaverIdLoginSDK.authenticate(this, oAuthLoginCallback)
     }
 
+    private fun saveJwt(jwt: String?) {
+        val sharedPreferences = getSharedPreferences("auth", MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("jwt", jwt)
+        editor.apply()
+    }
+
     override fun onLoginSuccess(result: Result) {
         Log.d("LOGIN/SUCCESS", "기존 회원 로그인 성공")
-        // jwt 저장하는 코드를 추가해야 하는 곳입니다.
+        saveJwt(result.accessToken)
         startMainActivity()
         finish()
     }
