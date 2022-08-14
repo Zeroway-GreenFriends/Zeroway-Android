@@ -20,6 +20,11 @@ data class CommunityPost(
     @SerializedName("imageList") val imageList: List<String>
 )
 
+data class CommunityPostRegisterContentRequest(
+    @SerializedName("content") val content: String,
+    @SerializedName("challenge") val isChallenge: Boolean
+)
+
 data class CommunityPostDeleteResponse(
     @SerializedName("isSuccess") val isSuccess: Boolean,
     @SerializedName("code") val code: Int,
