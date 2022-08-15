@@ -11,6 +11,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:src="@drawable/ic_splash"/>
+        android:src="@drawable/splash_screen"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

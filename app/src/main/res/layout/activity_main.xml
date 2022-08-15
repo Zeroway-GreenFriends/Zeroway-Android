@@ -10,21 +10,19 @@
         android:id="@+id/main_fl"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/main_bnv"/>
+        app:layout_constraintBottom_toTopOf="@id/main_bnv"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/main_bnv"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:labelVisibilityMode="labeled"
+        android:background="@color/white"
         android:elevation="50dp"
-        app:itemTextColor="@drawable/bottom_navi_icon"
         app:itemIconTint="@drawable/bottom_navi_icon"
-        android:background="@drawable/bottom_navi_background"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:itemTextColor="@drawable/bottom_navi_icon"
+        app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/bottom_navi_item"/>
+        app:menu="@menu/bottom_navi_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
