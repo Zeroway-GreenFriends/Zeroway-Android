@@ -9,10 +9,9 @@ data class CommunityResponse(
 data class CommunityPost(
     @SerializedName("postId") val postId: Long,
     @SerializedName("content") val content: String,
-    @SerializedName("createdAt") val createdAt: String, // LocalDataTime
     @SerializedName("challenge") val challenge: Boolean,
     @SerializedName("username") val username: String,
-    @SerializedName("userProfileImg") val userProfileImg: String,
+    @SerializedName("userProfileImg") val userProfileImg: String?,
     @SerializedName("likeCount") val likeCount: Int,
     @SerializedName("commentCount") val commentCount: Int,
     @SerializedName("liked") val liked: Boolean,

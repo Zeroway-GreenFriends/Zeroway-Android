@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="sort"
+            type="String" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -51,7 +54,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="6dp"
-                    android:src="@drawable/ic_community_latest"
+                    android:src='@{sort.equals("createdAt") ? @drawable/ic_sort_on : @drawable/ic_sort_off, default=@drawable/ic_sort_on}'
                     app:layout_constraintBottom_toBottomOf="@id/community_latest_tv"
                     app:layout_constraintEnd_toStartOf="@id/community_latest_tv"
                     app:layout_constraintTop_toTopOf="@id/community_latest_tv" />
@@ -63,7 +66,7 @@
                     android:layout_marginEnd="10dp"
                     android:text="@string/latest"
                     android:textColor="@color/zeroway_black"
-                    android:textSize="10sp"
+                    android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="@id/community_popularity_iv"
                     app:layout_constraintEnd_toStartOf="@id/community_popularity_iv"
                     app:layout_constraintTop_toTopOf="@id/community_popularity_iv" />
@@ -73,7 +76,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="6dp"
-                    android:src="@drawable/ic_community_popularity"
+                    android:src='@{sort.equals("like") ? @drawable/ic_sort_on : @drawable/ic_sort_off, default=@drawable/ic_sort_off}'
                     app:layout_constraintBottom_toBottomOf="@id/community_popularity_tv"
                     app:layout_constraintEnd_toStartOf="@id/community_popularity_tv"
                     app:layout_constraintTop_toTopOf="@id/community_popularity_tv" />
@@ -86,7 +89,7 @@
                     android:layout_marginEnd="16dp"
                     android:text="@string/popularity"
                     android:textColor="@color/zeroway_black"
-                    android:textSize="10sp"
+                    android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
