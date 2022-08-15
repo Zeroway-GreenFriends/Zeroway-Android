@@ -1,15 +1,14 @@
 package com.greenfriends.zeroway.network
 
+import com.greenfriends.zeroway.model.CommunityResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
-import retrofit2.http.Header
-import retrofit2.http.Multipart
-import retrofit2.http.POST
-import retrofit2.http.Part
+import retrofit2.http.*
 
 interface CommunityRetrofitInterface {
 
+    // 게시물 작성 API
     @Multipart
     @POST("post")
     suspend fun setPost(
@@ -17,4 +16,11 @@ interface CommunityRetrofitInterface {
         @Part images: List<MultipartBody.Part>,
         @Part("post") post: RequestBody
     ): Response<Void>
+
+    // 게시물 전체 조회 API
+    @GET("post/list")
+    suspend fun getPosts(
+        @Header("Bearer") accessToken: String,
+        @Query("sort") sort: String
+    ): Response<CommunityResponse>
 }
