@@ -34,7 +34,7 @@ class CommunityPostRegisterViewModel(private val communityPostRepository: Commun
         viewModelScope.launch {
             val response = communityPostRepository.setPost(accessToken, images, post)
             _setPostIsSuccess.value = response.isSuccessful
-            Log.d("API/POST/SETPOST", response.toString())
+            Log.d("COMMUNITY/GET/RESULT", response.toString())
         }
     }
 
