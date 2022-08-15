@@ -13,24 +13,27 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/community_post_background">
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/ic_community_post_background">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/item_community_include_image_profile_iv"
+            imageUrl="@{communityPost.userProfileImg}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="6dp"
-            android:src="@drawable/ic_profile"
+            android:scaleType="center"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_profile" />
 
         <TextView
             android:id="@+id/item_community_include_image_profile_name_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
-            android:text=""
+            android:text="@{communityPost.username}"
             android:textColor="@color/zeroway_black"
             android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="@id/item_community_include_image_profile_iv"
@@ -79,7 +82,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginTop="6dp"
-            android:src="@drawable/ic_like_off"
+            android:src="@{communityPost.liked ? @drawable/ic_like_on : @drawable/ic_like_off, default=@drawable/ic_like_off}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/item_community_include_image_image_vp" />
 
@@ -97,11 +100,29 @@
             android:id="@+id/item_community_include_image_bookmark_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:src="@drawable/ic_bookmark_off"
+            android:layout_marginStart="6dp"
+            android:src="@{communityPost.bookmarked ? @drawable/ic_bookmark_on : @drawable/ic_bookmark_off, default=@drawable/ic_bookmark_off}"
             app:layout_constraintBottom_toBottomOf="@id/item_community_include_image_chat_iv"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/item_community_include_image_chat_iv"
             app:layout_constraintTop_toTopOf="@id/item_community_include_image_chat_iv" />
+
+        <TextView
+            android:id="@+id/item_community_include_image_challenge_tv"
+            isVisible="@{communityPost.challenge}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/ic_challenge_selected_background"
+            android:paddingStart="6dp"
+            android:paddingTop="3dp"
+            android:paddingEnd="6dp"
+            android:paddingBottom="3dp"
+            android:text="챌린지 인증"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="@id/item_community_include_image_bookmark_iv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/item_community_include_image_bookmark_iv" />
 
         <TextView
             android:id="@+id/item_community_include_image_hits_tv"
@@ -117,10 +138,10 @@
 
         <TextView
             android:id="@+id/item_community_include_image_hits_input_tv"
+            communityPostLikeCount="@{communityPost.likeCount}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
-            android:text=""
             android:textColor="@color/zeroway_black"
             android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="@id/item_community_include_image_hits_tv"
@@ -137,6 +158,7 @@
             android:maxLines="1"
             android:paddingStart="15dp"
             android:paddingEnd="20dp"
+            android:text="@{communityPost.content}"
             android:textColor="@color/zeroway_black"
             android:textSize="10sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -145,12 +167,12 @@
 
         <TextView
             android:id="@+id/item_community_include_image_comments_tv"
+            communityPostCommentCount="@{communityPost.commentCount}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginTop="6dp"
             android:layout_marginBottom="10dp"
-            android:text=""
             android:textColor="@color/zeroway_gray"
             android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="parent"
