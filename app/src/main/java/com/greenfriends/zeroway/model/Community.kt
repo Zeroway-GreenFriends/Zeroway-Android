@@ -3,7 +3,7 @@ package com.greenfriends.zeroway.model
 import com.google.gson.annotations.SerializedName
 
 data class CommunityResponse(
-    @SerializedName("result") val communityPosts: List<CommunityPost>
+    @SerializedName("data") val communityPosts: List<CommunityPost>
 )
 
 data class CommunityPost(
