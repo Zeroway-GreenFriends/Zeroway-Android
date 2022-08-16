@@ -19,11 +19,10 @@
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/item_community_include_image_profile_iv"
             imageUrl="@{communityPost.userProfileImg}"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="6dp"
-            android:scaleType="center"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/ic_profile" />
@@ -53,11 +52,9 @@
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/item_community_include_image_image_vp"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="300dp"
             android:layout_marginTop="6dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/item_community_include_image_profile_iv" />
 
         <com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator

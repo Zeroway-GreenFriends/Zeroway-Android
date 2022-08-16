@@ -128,7 +128,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:reverseLayout="true"
-                    tools:listitem="@layout/item_community_post_image" />
+                    tools:listitem="@layout/item_community_post_register_image" />
 
                 <Button
                     android:id="@+id/community_post_register_btn"

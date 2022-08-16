@@ -19,8 +19,8 @@
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/item_community_exclude_image_profile_iv"
             imageUrl="@{communityPost.userProfileImg}"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="6dp"
             app:layout_constraintStart_toStartOf="parent"
