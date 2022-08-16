@@ -17,7 +17,7 @@ import com.greenfriends.zeroway.databinding.FragmentWordBinding
 class WordFragment : Fragment(), TermView, TermSearchView {
     private lateinit var binding: FragmentWordBinding
     private var wordDatas = ArrayList<TermResponse>()
-    private var wordSearchDatas = ArrayList<String>()
+    private var wordSearchDatas = ArrayList<TermResponse>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,20 +33,17 @@ class WordFragment : Fragment(), TermView, TermSearchView {
         }
 
         getTerm(null, null, null)
-//        binding.wordSearchIv.setOnClickListener {
-//            getTermSearch(binding.wordSearchEt.text.toString(), null, null)
-//        }
+
         binding.wordSearchEt.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                //getTermSearch(binding.wordSearchEt.text.toString(), null, null)
+                getTermSearch(binding.wordSearchEt.text.toString(), null, null)
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                //getTermSearch(binding.wordSearchEt.text.toString(), null, null)
+                getTermSearch(binding.wordSearchEt.text.toString(), null, null)
             }
 
             override fun afterTextChanged(p0: Editable?) {
-
                 getTermSearch(binding.wordSearchEt.text.toString(), null, null)
             }
 
@@ -71,6 +68,17 @@ class WordFragment : Fragment(), TermView, TermSearchView {
             }
         }
         val termAdapter = TermAdapter(wordDatas)
+
+        termAdapter.setMyItemClickListener(object : TermAdapter.MyItemClickListener {
+            override fun onItemClick(word: TermResponse) {
+                //dialog 띄우기
+                WordDialogFragment(word).show(
+                    fragmentManager!!, "WordDialog"
+                )
+            }
+
+        })
+
         binding.wordWordRv.adapter = termAdapter
         binding.wordWordRv.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
@@ -91,9 +99,20 @@ class WordFragment : Fragment(), TermView, TermSearchView {
     override fun onTermSearchSuccess(result: List<TermResponse>) {
         wordSearchDatas.clear()
         for (i in result) {
-            wordSearchDatas.add(i.term)
+            wordSearchDatas.add(i)
         }
         val termSearchAdapter = WordSearchAdapter(wordSearchDatas)
+
+        termSearchAdapter.setMyItemClickListener(object : WordSearchAdapter.MyItemClickListener {
+            override fun onItemClick(word: TermResponse) {
+                //dialog 띄우기
+                WordDialogFragment(word).show(
+                    fragmentManager!!, "WordDialog"
+                )
+            }
+
+        })
+
         binding.wordSearchRv.adapter = termSearchAdapter
         binding.wordSearchRv.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)

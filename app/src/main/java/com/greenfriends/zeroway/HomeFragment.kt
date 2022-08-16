@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.greenfriends.zeroway.api.*
@@ -42,36 +43,6 @@ class HomeFragment : Fragment(), TipView, TermView {
                 ?.replace(R.id.main_fl, WordFragment())
                 ?.commitAllowingStateLoss()
         }
-        //환경용어 RecyclerView 연결
-//        wordDatas.apply {
-//            add(
-//                WordList(
-//                    "탄소 중립(炭素中立)",
-//                    "carbon neutrality",
-//                    "[환경] 탄소를 배출하는 만큼 그에 상응하는 조치를 취하여 실질 배출량을 ‘0’으로 만드는 일"
-//                )
-//            )
-//            add(
-//                WordList(
-//                    "탄소 중립(炭素中立)",
-//                    "carbon neutrality",
-//                    "[환경] 탄소를 배출하는 만큼 그에 상응하는 조치를 취하여 실질 배출량을 ‘0’으로 만드는 일"
-//                )
-//            )
-//            add(
-//                WordList(
-//                    "탄소 중립(炭素中立)",
-//                    "carbon neutrality",
-//                    "[환경] 탄소를 배출하는 만큼 그에 상응하는 조치를 취하여 실질 배출량을 ‘0’으로 만드는 일"
-//                )
-//            )
-//        }
-
-//        val termAdapter = TermAdapter(termDatas)
-//        binding.homeWordRv.adapter = termAdapter
-//        binding.homeWordRv.layoutManager =
-//            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-
 
         //제로웨이스트샵 RecyclerView 연결
         shopDatas.apply {
@@ -139,11 +110,20 @@ class HomeFragment : Fragment(), TipView, TermView {
         for (i in result) {
             termDatas.add(i)
             cnt++
-            if (cnt == 5) {
+            if (cnt == 3) {
                 break
             }
         }
         val termAdapter = TermAdapter(termDatas)
+        termAdapter.setMyItemClickListener(object: TermAdapter.MyItemClickListener{
+            override fun onItemClick(word: TermResponse) {
+                //dialog 띄우기
+                 WordDialogFragment(word).show(
+                    fragmentManager!!,"WordDialog"
+                )
+            }
+
+        })
         binding.homeWordRv.adapter = termAdapter
         binding.homeWordRv.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
