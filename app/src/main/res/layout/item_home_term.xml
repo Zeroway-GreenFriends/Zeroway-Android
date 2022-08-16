@@ -1,64 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_home_term_cl"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:background="@drawable/ic_home_word"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent">
 
-    <ImageView
-        android:id="@+id/item_home_word_iv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scaleType="fitXY"
-        android:src="@drawable/ic_home_word"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/item_home_word_title_tv"
+        android:id="@+id/item_home_term_title_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="23dp"
         android:layout_marginTop="27dp"
         android:text="탄소 중립(炭素中立)"
         android:textColor="@color/white"
         android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@id/item_home_word_iv"
-        app:layout_constraintTop_toTopOf="@+id/item_home_word_iv" />
+        app:layout_constraintStart_toStartOf="@+id/item_homne_term_content_tv"
+        app:layout_constraintTop_toTopOf="@+id/item_home_term_cl" />
+
 
     <TextView
-        android:id="@+id/item_home_word_title_eng_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="23dp"
-        android:layout_marginTop="7dp"
-        android:text="carbon neutrality"
-        android:textColor="@color/white"
-        android:textSize="10sp"
-        app:layout_constraintStart_toStartOf="@id/item_home_word_iv"
-        app:layout_constraintTop_toBottomOf="@id/item_home_word_title_tv" />
-
-    <TextView
-        android:id="@+id/item_homne_word_content"
+        android:id="@+id/item_homne_term_content_tv"
         android:layout_width="223dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="23dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="16dp"
         android:text="[환경] 탄소를 배출하는 만큼 그에 상응하는 조치를 취하여 실질 배출량을 ‘0’으로 만드는 일"
         android:textColor="@color/white"
         android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="@id/item_home_word_iv"
-        app:layout_constraintTop_toBottomOf="@id/item_home_word_title_eng_tv" />
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/item_home_term_cl"
+        app:layout_constraintTop_toBottomOf="@+id/item_home_term_title_tv" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="31dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="24dp"
         android:text="자세히 보기"
         android:textColor="@color/zeroway_background"
         android:textSize="10sp"
@@ -71,7 +56,7 @@
         android:layout_height="14dp"
         android:layout_marginStart="3dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="24dp"
         android:src="@drawable/ic_arrow_mint"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

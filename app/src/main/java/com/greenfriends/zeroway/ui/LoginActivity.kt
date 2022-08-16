@@ -100,7 +100,8 @@ class LoginActivity : AppCompatActivity(), LoginView {
                         //서버 연동
                         setEmail(user.kakaoAccount?.email!!)
                         setProvider("KAKAO")
-                        login()
+                        //login()
+                        startMainActivity()
                     }
                 }
             }

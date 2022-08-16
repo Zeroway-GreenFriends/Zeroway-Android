@@ -1,4 +1,4 @@
-package com.greenfriends.zeroway.ui
+package com.greenfriends.zeroway.ui.alarm
 
 import android.os.Bundle
 import android.view.LayoutInflater

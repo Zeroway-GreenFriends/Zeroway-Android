@@ -1,18 +1,18 @@
-package com.greenfriends.zeroway.ui
+package com.greenfriends.zeroway.ui.home
 
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.greenfriends.zeroway.model.WordSearchList
+import com.greenfriends.zeroway.model.TermResponse
 import com.greenfriends.zeroway.databinding.ItemWordSearchBinding
 
 
-class WordSearchAdapter(private val wordList: ArrayList<WordSearchList>) :
+class WordSearchAdapter(private val wordList: ArrayList<TermResponse>) :
     RecyclerView.Adapter<WordSearchAdapter.ViewHolder>() {
 
     interface MyItemClickListener {
-        fun onItemClick(word: WordSearchList)
+        fun onItemClick(word: TermResponse)
     }
 
     private lateinit var mItemClickListener: MyItemClickListener
@@ -29,6 +29,7 @@ class WordSearchAdapter(private val wordList: ArrayList<WordSearchList>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.bind(wordList[position])
         holder.itemView.setOnClickListener {
             mItemClickListener.onItemClick(wordList[position])
         }
@@ -41,8 +42,8 @@ class WordSearchAdapter(private val wordList: ArrayList<WordSearchList>) :
     inner class ViewHolder(val binding: ItemWordSearchBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(word: WordSearchList) {
-            binding.itemWordSearchTitleTv.text = word.content
+        fun bind(word: TermResponse) {
+            binding.itemWordSearchTitleTv.text = word.term
         }
     }
 
