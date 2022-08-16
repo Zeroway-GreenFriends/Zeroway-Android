@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.greenfriends.zeroway.databinding.ItemCommunityPostImageBinding
+import com.greenfriends.zeroway.databinding.ItemCommunityPostRegisterImageBinding
 
 class CommunityPostRegisterAdapter :
     ListAdapter<String, CommunityPostRegisterAdapter.CommunityPostRegisterViewHolder>(
@@ -16,7 +16,7 @@ class CommunityPostRegisterAdapter :
         parent: ViewGroup,
         viewType: Int
     ): CommunityPostRegisterViewHolder {
-        val binding = ItemCommunityPostImageBinding.inflate(
+        val binding = ItemCommunityPostRegisterImageBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
@@ -28,9 +28,10 @@ class CommunityPostRegisterAdapter :
         holder.bind(getItem(position))
     }
 
-    class CommunityPostRegisterViewHolder(private val binding: ItemCommunityPostImageBinding) :
+    class CommunityPostRegisterViewHolder(private val binding: ItemCommunityPostRegisterImageBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(imageUrl: String) {
+
             binding.imageUrl = imageUrl
             binding.executePendingBindings()
         }

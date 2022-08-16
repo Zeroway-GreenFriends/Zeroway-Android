@@ -5,9 +5,11 @@ import android.content.Context
 import android.content.Intent
 import android.database.Cursor
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.os.Environment
 import android.provider.MediaStore
-import android.util.Log
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -54,6 +56,7 @@ class CommunityPostRegisterFragment : Fragment() {
         setCommunityPostRegisterAdapter()
         setChallengeClickListener()
         setAlbumClickListener()
+        setPermission()
         setActivityResultLauncher()
         setPost()
     }
@@ -105,6 +108,16 @@ class CommunityPostRegisterFragment : Fragment() {
             intent.data = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
             intent.type = "image/*"
             launcher.launch(intent)
+        }
+    }
+
+    private fun setPermission() {
+        if (Build.VERSION.SDK_INT >= 30) {
+            if (!Environment.isExternalStorageManager()) {
+                val getPermission = Intent()
+                getPermission.action = Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION;
+                startActivity(getPermission);
+            }
         }
     }
 
