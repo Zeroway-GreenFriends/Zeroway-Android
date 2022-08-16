@@ -28,6 +28,7 @@ class CommunityViewModel(private val communityRepository: CommunityRepository) :
     fun getPosts(accessToken: String, sort: String) {
         viewModelScope.launch {
             val response = communityRepository.getPosts(accessToken, sort)
+            Log.d("COMMUNITY/GET", response.body().toString())
             if (response.isSuccessful) {
                 _communityPosts.value = response.body()!!.communityPosts
             } else {
