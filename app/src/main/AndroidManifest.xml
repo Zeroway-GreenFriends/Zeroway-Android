@@ -4,6 +4,7 @@
     package="com.greenfriends.zeroway">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
@@ -13,7 +14,7 @@
         tools:ignore="ScopedStorage" />
 
     <application
-        android:name=".ZerowayApplication"
+        android:name=".ui.ZerowayApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -40,8 +41,9 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashActivity"
-            android:exported="true">
+            android:name=".ui.SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Zeroway.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -49,10 +51,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".ui.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".SignUpActivity"
+            android:name=".ui.SignUpActivity"
             android:exported="false" />
     </application>
 

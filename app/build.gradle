@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -32,6 +33,13 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+        freeCompilerArgs += [
+                '-Xjvm-default=enable'
+        ]
+    }
+
+    dataBinding {
+        enabled = true
     }
 }
 
@@ -57,16 +65,27 @@ dependencies {
     // NAVER 로그인 API
     implementation 'com.navercorp.nid:oauth:5.1.1'
 
-    // Retrofit2
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    // Network
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation platform("com.squareup.okhttp3:okhttp-bom:4.9.0")
+    implementation "com.squareup.okhttp3:okhttp"
+    implementation "com.squareup.okhttp3:logging-interceptor"
 
     // Gson
-    implementation 'com.google.code.gson:gson:2.9.0'
+    implementation 'com.google.code.gson:gson:2.9.1'
 
     // Circle ImageView
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
     // Glide
-    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
+    kapt "com.github.bumptech.glide:compiler:$glideVersion"
+
+    // Ktx
+    implementation "androidx.fragment:fragment-ktx:1.5.1"
+
+    // ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
 }

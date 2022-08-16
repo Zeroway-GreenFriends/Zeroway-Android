@@ -43,6 +43,7 @@
                 android:id="@+id/word_dialog_content"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
+                android:scrollbars="vertical"
                 android:text="기후 변화와 관련된 전 지구적 위험을 평가하고 국제적 대책을 마련하기 위해 세계기상기구(WMO)와 유엔환경계획(UNEP)이 1988년에 공동으로 설립한 유엔 산하 정부 간 협의체이다.
 본부는 스위스 제네바에 있으며 세계 각국의 기상학자, 해양학자, 빙하 전문가, 경제학자 "
                 android:textColor="@color/white"

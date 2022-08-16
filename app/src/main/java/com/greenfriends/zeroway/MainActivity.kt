@@ -3,6 +3,11 @@ package com.greenfriends.zeroway
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.greenfriends.zeroway.databinding.ActivityMainBinding
+import com.greenfriends.zeroway.ui.ChallengeCharacterFragment
+import com.greenfriends.zeroway.ui.home.HomeFragment
+import com.greenfriends.zeroway.ui.StoreFragment
+import com.greenfriends.zeroway.ui.UserFragment
+import com.greenfriends.zeroway.ui.community.CommunityFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
