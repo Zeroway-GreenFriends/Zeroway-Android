@@ -4,6 +4,7 @@ package com.greenfriends.zeroway.ui
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.greenfriends.zeroway.model.ShopList
 import com.greenfriends.zeroway.databinding.ItemHomeShopBinding
 
@@ -29,9 +30,10 @@ class ShopAdapter(private val shopList: ArrayList<ShopList>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.itemView.setOnClickListener {
-            mItemClickListener.onItemClick(shopList[position])
-        }
+        holder.bind(shopList[position])
+//        holder.itemView.setOnClickListener {
+//            mItemClickListener.onItemClick(shopList[position])
+//        }
     }
 
     override fun getItemCount(): Int {
@@ -43,8 +45,12 @@ class ShopAdapter(private val shopList: ArrayList<ShopList>) :
 
         fun bind(shop: ShopList) {
             binding.itemHomeShopTitleTv.text = shop.title
-            binding.itemHomeShopScoreTv.text = shop.score
-            binding.itemHomeShopCountTv.text = shop.count
+//            binding.itemHomeShopScoreTv.text = shop.score
+//            binding.itemHomeShopCountTv.text = shop.count
+
+//            Glide.with(binding.itemHomeShopImg.context)
+//                .load(shop.imgUrl)
+//                .into(binding.itemHomeShopImg)
         }
     }
 
