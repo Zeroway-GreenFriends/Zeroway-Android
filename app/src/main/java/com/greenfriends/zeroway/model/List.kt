@@ -8,8 +8,9 @@ data class WordList(
 
 data class ShopList(
     val title: String,
-    val score: String,
-    val count: String
+    val imgUrl: String
+//    val score: String,
+//    val count: String,
 )
 
 data class TipList(

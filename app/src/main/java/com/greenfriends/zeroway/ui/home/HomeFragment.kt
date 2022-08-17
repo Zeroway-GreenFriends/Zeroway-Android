@@ -12,15 +12,19 @@ import com.greenfriends.zeroway.network.HomeService
 import com.greenfriends.zeroway.api.*
 import com.greenfriends.zeroway.*
 import com.greenfriends.zeroway.databinding.FragmentHomeBinding
+import com.greenfriends.zeroway.network.StoreService
 import com.greenfriends.zeroway.ui.*
 import com.greenfriends.zeroway.ui.alarm.AlarmFragment
+import com.greenfriends.zeroway.ui.store.StoreAdapter
+import com.greenfriends.zeroway.ui.store.StoreFragment
 
-class HomeFragment : Fragment(), TipView, TermView {
+class HomeFragment : Fragment(), TipView, TermView, StoreListView {
     private lateinit var binding: FragmentHomeBinding
     private var termDatas = ArrayList<TermResponse>()
     private var shopDatas = ArrayList<ShopList>()
     private var tipDatas = ArrayList<TipResponse>()
     private var useDatas = ArrayList<UseList>()
+    private var homeStoreList = ArrayList<ShopList>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,18 +50,19 @@ class HomeFragment : Fragment(), TipView, TermView {
                 ?.commitAllowingStateLoss()
         }
 
-        //제로웨이스트샵 RecyclerView 연결
-        shopDatas.apply {
-            add(ShopList("제로웨이스트 쑥", "4.2점", "(268명)"))
-            add(ShopList("제로웨이스트 쑥", "4.2점", "(268명)"))
-            add(ShopList("제로웨이스트 쑥", "4.2점", "(268명)"))
+        binding.homeShopMoreIv.setOnClickListener {
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(R.id.main_fl, StoreFragment())
+                ?.commitAllowingStateLoss()
+        }
+        binding.homeShopMoreTv.setOnClickListener {
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(R.id.main_fl, StoreFragment())
+                ?.commitAllowingStateLoss()
         }
 
-        val shopAdapter = ShopAdapter(shopDatas)
-        binding.homeShopRv.adapter = shopAdapter
-        binding.homeShopRv.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
+        getStoreList(null,1,5)
         getTip()
         getTerm(null, null, null)
 
@@ -133,6 +138,29 @@ class HomeFragment : Fragment(), TipView, TermView {
     }
 
     override fun onTermFailure() {
+        TODO("Not yet implemented")
+    }
+
+    private fun getStoreList(keyword: String?, page: Int?, size: Int?) {
+        val storeService = StoreService()
+        storeService.setStoreListView(this)
+        storeService.getStoreList(keyword, page, size)
+    }
+
+    override fun onStoreListSuccess(result: List<StoreResponse>) {
+        for (i in result){
+            //homeStoreList.add(ShopList(i.name,i.imageUrl))
+            homeStoreList.add(ShopList(i.name,""))
+        }
+
+        Log.e("list",homeStoreList.toString())
+        val shopAdapter = ShopAdapter(homeStoreList)
+        binding.homeShopRv.adapter = shopAdapter
+        binding.homeShopRv.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+    }
+
+    override fun onStoreListFailure() {
         TODO("Not yet implemented")
     }
 
