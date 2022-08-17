@@ -3,10 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginHorizontal="20dp"
+    android:layout_marginVertical="15dp"
     android:background="@drawable/ic_store_list_background">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/item_store_list_img"
+        android:id="@+id/item_store_list_cv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="10dp"
@@ -15,6 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:id="@+id/item_store_list_img"
             android:layout_width="match_parent"
             android:layout_height="126dp"
             android:background="@color/zeroway_gray"
@@ -29,7 +32,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/item_store_list_img">
+        app:layout_constraintTop_toBottomOf="@+id/item_store_list_cv">
 
         <TextView
             android:id="@+id/item_store_list_title_tv"
