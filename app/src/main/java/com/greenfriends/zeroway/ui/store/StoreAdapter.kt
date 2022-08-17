@@ -34,9 +34,9 @@ class StoreAdapter(private val storeList: ArrayList<StoreResponse>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(storeList[position])
-        holder.itemView.setOnClickListener {
-            mItemClickListener.onItemClick(storeList[position])
-        }
+//        holder.itemView.setOnClickListener {
+//            mItemClickListener.onItemClick(storeList[position])
+//        }
     }
 
     override fun getItemCount(): Int {
