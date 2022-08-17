@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.greenfriends.zeroway.databinding.FragmentAlarmBinding
-import com.greenfriends.zeroway.databinding.FragmentChallengeBinding
 
 class AlarmFragment : Fragment() {
     private lateinit var binding: FragmentAlarmBinding

@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Zeroway</string>
+    <string name="naver_client_id">ODCesVjj97DnhN6xYmMM</string>
+    <string name="naver_client_secret">hMZKi5w0_Y</string>
     <string name="popularity">인기순</string>
     <string name="latest">최신순</string>
     <string name="like">좋아요</string>
