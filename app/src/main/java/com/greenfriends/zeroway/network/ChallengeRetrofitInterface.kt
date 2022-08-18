@@ -1,5 +1,6 @@
 package com.greenfriends.zeroway.network
 
+import com.greenfriends.zeroway.model.ChallengeLevelResponse
 import com.greenfriends.zeroway.model.ChallengeListResponse
 import com.greenfriends.zeroway.model.ChallengeResponse
 import com.greenfriends.zeroway.model.CommunityResponse
@@ -21,5 +22,10 @@ interface ChallengeRetrofitInterface {
         @Header("Bearer") accessToken: String
     ): Call<List<ChallengeListResponse>>
 
+    @PATCH("challenge/{challenge_id}/complete")
+    fun updateChallenge(
+        @Header("Bearer") accessToken: String,
+        @Path("challenge_id") challengeId: Long
+    ): Call<ChallengeLevelResponse>
 
 }

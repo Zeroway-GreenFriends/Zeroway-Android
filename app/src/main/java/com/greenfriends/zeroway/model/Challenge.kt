@@ -10,7 +10,7 @@ data class ChallengeResponse(
 )
 
 data class ChallengeListResponse(
-    @SerializedName("challengeId") val challengeId: Int,
+    @SerializedName("challengeId") val challengeId: Long,
     @SerializedName("content") val content: String,
     @SerializedName("complete") val complete: Boolean
 )

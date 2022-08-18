@@ -14,6 +14,7 @@ class ChallengeService {
     private var retrofit = RetrofitClient.getRetrofit()
     private lateinit var challengeView: ChallengeView
     private lateinit var challengeListView: ChallengeListView
+    private lateinit var challengeUpdateView: ChallengeUpdateView
 
     fun setChallengeView(challengeView: ChallengeView) {
         this.challengeView = challengeView
@@ -21,6 +22,10 @@ class ChallengeService {
 
     fun setChallengeListView(challengeListView: ChallengeListView) {
         this.challengeListView = challengeListView
+    }
+
+    fun setChallengeUpdateView(challengeUpdateView: ChallengeUpdateView) {
+        this.challengeUpdateView = challengeUpdateView
     }
 
     fun getChallenge(token: String) {
@@ -65,6 +70,29 @@ class ChallengeService {
             override fun onFailure(call: Call<List<ChallengeListResponse>>, t: Throwable) {
                 Log.d("CHALLENGE LIST/FAILURE", t.message.toString())
             }
+
+        })
+    }
+
+    fun updateChallenge(token: String, challengeId: Long) {
+        val challengeService = retrofit?.create(ChallengeRetrofitInterface::class.java)
+        challengeService!!.updateChallenge(token,challengeId).enqueue(object : Callback<ChallengeLevelResponse> {
+            override fun onResponse(
+                call: Call<ChallengeLevelResponse>,
+                response: Response<ChallengeLevelResponse>
+            ) {
+                Log.d("UPDATE/SUCCESS", response.toString())
+                if (response.isSuccessful) {
+                    challengeUpdateView.onChallengeUpdateSuccess(response.body()!!)
+                } else {
+                    challengeUpdateView.onChallengeUpdateFailure()
+                }
+            }
+
+            override fun onFailure(call: Call<ChallengeLevelResponse>, t: Throwable) {
+                Log.d("UPDATE/FAILURE", t.message.toString())
+            }
+
 
         })
     }
