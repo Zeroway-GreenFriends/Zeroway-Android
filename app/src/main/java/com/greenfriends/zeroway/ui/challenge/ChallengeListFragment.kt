@@ -5,11 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.greenfriends.zeroway.R
 import com.greenfriends.zeroway.databinding.FragmentChallengeListBinding
+import com.greenfriends.zeroway.model.ChallengeListResponse
+import com.greenfriends.zeroway.model.ShopList
+import com.greenfriends.zeroway.ui.ShopAdapter
 
 class ChallengeListFragment : Fragment() {
     private lateinit var binding: FragmentChallengeListBinding
+
+    private var challengeList = ArrayList<ChallengeListResponse>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -18,21 +24,14 @@ class ChallengeListFragment : Fragment() {
     ): View? {
         binding = FragmentChallengeListBinding.inflate(inflater, container, false)
 
-        binding.challengeListCheckBtn1.setOnClickListener{
-            binding.challengeListCheckBtn1.setImageResource(R.drawable.ic_check_circle_mint)
+        challengeList.apply {
+            add(ChallengeListResponse(1,"cici",false))
+            add(ChallengeListResponse(2,"icic",true))
         }
-        binding.challengeListCheckBtn2.setOnClickListener{
-            binding.challengeListCheckBtn2.setImageResource(R.drawable.ic_check_circle_mint)
-        }
-        binding.challengeListCheckBtn3.setOnClickListener{
-            binding.challengeListCheckBtn3.setImageResource(R.drawable.ic_check_circle_mint)
-        }
-        binding.challengeListCheckBtn4.setOnClickListener{
-            binding.challengeListCheckBtn4.setImageResource(R.drawable.ic_check_circle_mint)
-        }
-        binding.challengeListCheckBtn5.setOnClickListener{
-            binding.challengeListCheckBtn5.setImageResource(R.drawable.ic_check_circle_mint)
-        }
+        val challengeListAdapter = ChallengeListAdapter(challengeList)
+        binding.challengeListRv.adapter = challengeListAdapter
+        binding.challengeListRv.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
         return binding.root
     }

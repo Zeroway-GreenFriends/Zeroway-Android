@@ -50,7 +50,7 @@ class ChallengeCharacterFragment : Fragment(), ChallengeView {
         binding.challengeCharacterNicknameTv.text = result.nickname
         binding.challengeCharacterLevelTv.text = "Lv." + result.level.toString()
         binding.challengeCharacterLevelPb.setProgress(result.exp)
-        
+
         Glide.with(binding.challengeCharacterLevelImg.context)
             .load(result.imgUrl)
             .into(binding.challengeCharacterLevelImg)
