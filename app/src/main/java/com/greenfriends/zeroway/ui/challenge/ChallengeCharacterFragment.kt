@@ -47,6 +47,8 @@ class ChallengeCharacterFragment : Fragment(), ChallengeView {
     override fun onChallengeSuccess(result: ChallengeResponse) {
         Log.e("challenge", result.toString())
 
+        saveLevel(result.level)
+
         binding.challengeCharacterNicknameTv.text = result.nickname
         binding.challengeCharacterLevelTv.text = "Lv." + result.level.toString()
         binding.challengeCharacterLevelPb.setProgress(result.exp)
@@ -58,6 +60,13 @@ class ChallengeCharacterFragment : Fragment(), ChallengeView {
 
     override fun onChallengeFailure() {
         TODO("Not yet implemented")
+    }
+
+    private fun saveLevel(level: Int) {
+        val sharedPreferences = activity?.getSharedPreferences("level", AppCompatActivity.MODE_PRIVATE)
+        val editor = sharedPreferences!!.edit()
+        editor.putString("level", level.toString())
+        editor.apply()
     }
 
     private fun getJwt(): String? {

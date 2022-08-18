@@ -20,7 +20,7 @@ import com.greenfriends.zeroway.network.ChallengeService
 import com.greenfriends.zeroway.network.ChallengeUpdateView
 import com.greenfriends.zeroway.ui.ShopAdapter
 
-class ChallengeListFragment : Fragment(),ChallengeListView, ChallengeUpdateView {
+class ChallengeListFragment : Fragment(), ChallengeListView, ChallengeUpdateView {
     private lateinit var binding: FragmentChallengeListBinding
 
     private var challengeList = ArrayList<ChallengeListResponse>()
@@ -47,7 +47,7 @@ class ChallengeListFragment : Fragment(),ChallengeListView, ChallengeUpdateView 
 
         challengeList.clear()
 
-        for (i in result){
+        for (i in result) {
             challengeList.add(i)
         }
 
@@ -56,18 +56,62 @@ class ChallengeListFragment : Fragment(),ChallengeListView, ChallengeUpdateView 
         binding.challengeListRv.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
-        challengeListAdapter.setMyItemClickListener(object: ChallengeListAdapter.MyItemClickListener{
+        challengeListAdapter.setMyItemClickListener(object :
+            ChallengeListAdapter.MyItemClickListener {
             override fun onItemClick(challengeList: ChallengeListResponse) {
 
-                //patch 수행
-                updateChallenge(getJwt()!!,challengeList.challengeId)
+                updateChallenge(getJwt()!!, challengeList.challengeId)
 
             }
         })
+
+        savePatchLevel(2)
+
+        binding.challengeListOkBtn.setOnClickListener {
+
+            if ((getLevel()?.toInt()?.plus(1)) == getPatchLevel()?.toInt()) {
+                saveLevel(getPatchLevel()?.toInt()!!)
+                startActivity(Intent(context, LevelUpActivity::class.java))
+
+            } else {
+                activity?.supportFragmentManager?.beginTransaction()
+                    ?.replace(R.id.main_fl, ChallengeCharacterFragment())
+                    ?.commitAllowingStateLoss()
+            }
+        }
+
     }
 
     override fun onChallengeListFailure() {
         TODO("Not yet implemented")
+    }
+
+    private fun saveLevel(level: Int) {
+        val sharedPreferences =
+            activity?.getSharedPreferences("level", AppCompatActivity.MODE_PRIVATE)
+        val editor = sharedPreferences!!.edit()
+        editor.putString("level", level.toString())
+        editor.apply()
+    }
+
+    private fun savePatchLevel(level: Int) {
+        val sharedPreferences =
+            activity?.getSharedPreferences("level", AppCompatActivity.MODE_PRIVATE)
+        val editor = sharedPreferences!!.edit()
+        editor.putString("level_patch", level.toString())
+        editor.apply()
+    }
+
+    private fun getLevel(): String? {
+        val sharedPreferences =
+            activity?.getSharedPreferences("level", AppCompatActivity.MODE_PRIVATE)
+        return sharedPreferences!!.getString("level", null)
+    }
+
+    private fun getPatchLevel(): String? {
+        val sharedPreferences =
+            activity?.getSharedPreferences("level", AppCompatActivity.MODE_PRIVATE)
+        return sharedPreferences!!.getString("level_patch", null)
     }
 
     private fun getJwt(): String? {
@@ -79,16 +123,15 @@ class ChallengeListFragment : Fragment(),ChallengeListView, ChallengeUpdateView 
     private fun updateChallenge(token: String, challengeId: Long) {
         val challengeService = ChallengeService()
         challengeService.setChallengeUpdateView(this)
-        challengeService.updateChallenge(token,challengeId)
+        challengeService.updateChallenge(token, challengeId)
     }
 
     override fun onChallengeUpdateSuccess(result: ChallengeLevelResponse) {
 
         getChallengeList(getJwt()!!)
 
-        when(result.level){
-            //레벨업 했을 경우에 activity 띄우기
-        }
+        savePatchLevel(result.level)
+
     }
 
     override fun onChallengeUpdateFailure() {
