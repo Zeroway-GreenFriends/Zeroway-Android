@@ -6,13 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.greenfriends.zeroway.api.StoreListView
+import com.greenfriends.zeroway.network.StoreListView
 import com.greenfriends.zeroway.databinding.FragmentStoreBinding
 import com.greenfriends.zeroway.model.StoreResponse
-import com.greenfriends.zeroway.model.UseList
-import com.greenfriends.zeroway.network.HomeService
 import com.greenfriends.zeroway.network.StoreService
-import com.greenfriends.zeroway.ui.UseAdapter
 
 class StoreFragment : Fragment(), StoreListView {
     private lateinit var binding: FragmentStoreBinding
