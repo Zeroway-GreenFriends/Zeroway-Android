@@ -1,4 +1,4 @@
-package com.greenfriends.zeroway.repository.community
+package com.greenfriends.zeroway.repository.communitypostregister
 
 import com.greenfriends.zeroway.network.CommunityRetrofitInterface
 import com.greenfriends.zeroway.network.RetrofitClient

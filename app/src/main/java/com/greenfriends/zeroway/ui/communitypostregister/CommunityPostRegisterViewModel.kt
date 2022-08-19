@@ -1,11 +1,11 @@
-package com.greenfriends.zeroway.ui.community
+package com.greenfriends.zeroway.ui.communitypostregister
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.greenfriends.zeroway.repository.community.CommunityPostRegisterRepository
+import com.greenfriends.zeroway.repository.communitypostregister.CommunityPostRegisterRepository
 import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
 import okhttp3.RequestBody

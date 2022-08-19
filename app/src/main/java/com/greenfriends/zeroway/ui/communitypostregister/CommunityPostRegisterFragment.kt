@@ -1,4 +1,4 @@
-package com.greenfriends.zeroway.ui.community
+package com.greenfriends.zeroway.ui.communitypostregister
 
 import android.app.Activity
 import android.content.Context
@@ -24,6 +24,7 @@ import com.greenfriends.zeroway.R
 import com.greenfriends.zeroway.databinding.FragmentCommunityPostRegisterBinding
 import com.greenfriends.zeroway.model.CommunityPostRegisterContentRequest
 import com.greenfriends.zeroway.ui.common.ViewModelFactory
+import com.greenfriends.zeroway.ui.community.CommunityFragment
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
@@ -149,7 +150,7 @@ class CommunityPostRegisterFragment : Fragment() {
     }
 
     private fun setPost() {
-        binding.communityPostRegisterBtn.setOnClickListener {
+        binding.communityPostRegisterFab.setOnClickListener {
             val content =
                 CommunityPostRegisterContentRequest(
                     binding.communityPostRegisterContentTv.text.toString(),
