@@ -1,5 +1,6 @@
 package com.greenfriends.zeroway.network
 
+import com.greenfriends.zeroway.model.CommunityPostDetailResponse
 import com.greenfriends.zeroway.model.CommunityResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -23,4 +24,11 @@ interface CommunityRetrofitInterface {
         @Header("Bearer") accessToken: String,
         @Query("sort") sort: String
     ): Response<CommunityResponse>
+
+    // 게시물 상세 조회 API
+    @GET("post/{postId}")
+    suspend fun getPostDetail(
+        @Header("Bearer") accessToken: String,
+        @Path("postId") postId: String
+    ): Response<CommunityPostDetailResponse>
 }

@@ -1,9 +1,6 @@
 package com.greenfriends.zeroway.network
 
 import android.util.Log
-import com.greenfriends.zeroway.api.TermSearchView
-import com.greenfriends.zeroway.api.TermView
-import com.greenfriends.zeroway.api.TipView
 import com.greenfriends.zeroway.model.TermResponse
 import com.greenfriends.zeroway.model.TipResponse
 import retrofit2.Call

@@ -88,4 +88,7 @@ dependencies {
     // ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
+
+    // Recycler View
+    implementation "androidx.recyclerview:recyclerview:1.2.1"
 }

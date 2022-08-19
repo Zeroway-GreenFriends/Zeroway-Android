@@ -1,4 +1,4 @@
-package com.greenfriends.zeroway.ui.community
+package com.greenfriends.zeroway.ui.communitypostregister
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
