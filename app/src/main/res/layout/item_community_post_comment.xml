@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="communityPostDetailComment"
+            type="com.greenfriends.zeroway.model.CommunityPostDetailComment" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/item_community_post_comment_profile_iv"
+            imageUrl="@{communityPostDetailComment.userProfileImg}"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="6dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_profile" />
+
+        <TextView
+            android:id="@+id/item_community_post_comment_profile_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:text="@{communityPostDetailComment.userName}"
+            android:textColor="@color/zeroway_black"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="@id/item_community_post_comment_profile_iv"
+            app:layout_constraintStart_toEndOf="@id/item_community_post_comment_profile_iv"
+            app:layout_constraintTop_toTopOf="@id/item_community_post_comment_profile_iv"
+            tools:text="조이" />
+
+        <TextView
+            android:id="@+id/item_community_post_comment_content_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="40dp"
+            android:textColor="@color/zeroway_black"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toStartOf="@id/item_community_post_comment_like_iv"
+            app:layout_constraintStart_toEndOf="@id/item_community_post_comment_profile_name_tv"
+            app:layout_constraintTop_toTopOf="@id/item_community_post_comment_profile_name_tv"
+            tools:text="작성된 댓글을 보여주는 text view" />
+
+        <ImageView
+            android:id="@+id/item_community_post_comment_like_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="6dp"
+            android:src="@{communityPostDetailComment.liked ? @drawable/ic_like_on : @drawable/ic_like_off, default=@drawable/ic_like_off}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/item_community_post_comment_profile_name_tv" />
+
+        <TextView
+            android:id="@+id/item_community_post_comment_day_iv"
+            communityPostDate="@{communityPostDetailComment.weeksAgo}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp"
+            android:textColor="@color/zeroway_gray"
+            android:textSize="8sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/item_community_post_comment_profile_name_tv"
+            app:layout_constraintTop_toBottomOf="@id/item_community_post_comment_content_tv"
+            tools:text="1주" />
+
+        <TextView
+            android:id="@+id/item_community_post_comment_like_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:text="좋아요"
+            android:textColor="@color/zeroway_gray"
+            android:textSize="8sp"
+            app:layout_constraintBottom_toBottomOf="@id/item_community_post_comment_day_iv"
+            app:layout_constraintStart_toEndOf="@id/item_community_post_comment_day_iv"
+            app:layout_constraintTop_toTopOf="@id/item_community_post_comment_day_iv" />
+
+        <TextView
+            android:id="@+id/item_community_post_comment_like_input_tv"
+            convertIntToString="@{communityPostDetailComment.likeCount}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:textColor="@color/zeroway_gray"
+            android:textSize="8sp"
+            app:layout_constraintBottom_toBottomOf="@id/item_community_post_comment_like_tv"
+            app:layout_constraintStart_toEndOf="@id/item_community_post_comment_like_tv"
+            app:layout_constraintTop_toTopOf="@id/item_community_post_comment_like_tv"
+            tools:text="3" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
