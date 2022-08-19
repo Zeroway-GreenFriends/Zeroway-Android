@@ -53,25 +53,25 @@ data class CommunityPostLikeResponse(
 data class CommunityPostDetailResponse(
     @SerializedName("postId") val postId: Long,
     @SerializedName("username") val userName: String,
-    @SerializedName("userProfileImg") val userProfileImg: String,
+    @SerializedName("userProfileImg") val userProfileImg: String?,
     @SerializedName("content") val content: String,
-    @SerializedName("createdAt") val createdAt: String,
+    @SerializedName("weeksAgo") val weeksAgo: Int,
     @SerializedName("challenge") val challenge: Boolean,
     @SerializedName("likeCount") val likeCount: Int,
     @SerializedName("commentCount") val commentCount: Int,
     @SerializedName("liked") val liked: Boolean,
     @SerializedName("bookmarked") val bookmarked: Boolean,
     @SerializedName("imageList") val imageList: List<String>,
-    @SerializedName("commentList") val communityPostDetailCommentList: List<CommunityPostDetailCommentList>
+    @SerializedName("commentList") val communityPostDetailComments: List<CommunityPostDetailComment>
 )
 
-data class CommunityPostDetailCommentList(
-    @SerializedName("userId") val userId: Int,
+data class CommunityPostDetailComment(
+    @SerializedName("userId") val userId: Long,
     @SerializedName("username") val userName: String,
-    @SerializedName("userProfileImg") val userProfileImg: String,
+    @SerializedName("userProfileImg") val userProfileImg: String?,
     @SerializedName("commentId") val commentId: Long,
     @SerializedName("content") val content: String,
-    @SerializedName("createdAt") val createdAt: String, // LocalDataTime
+    @SerializedName("weeksAgo") val weeksAgo: Int,
     @SerializedName("likeCount") val likeCount: Int,
     @SerializedName("liked") val liked: Boolean
 )
