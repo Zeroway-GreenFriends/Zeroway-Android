@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.ConcatAdapter
 import com.greenfriends.zeroway.databinding.FragmentCommunityPostDetailBinding
+import com.greenfriends.zeroway.ui.common.EventObserve
 import com.greenfriends.zeroway.ui.common.ViewModelFactory
 
 class CommunityPostDetailFragment : Fragment() {
@@ -29,10 +30,24 @@ class CommunityPostDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.lifecycleOwner = viewLifecycleOwner
-        arguments?.getString("postId")?.let { viewModel.getPostDetail(getJwt()!!, it) }
 
+        setPostId()
         setObserve()
+        setOnClickListener()
+        getPostDetail()
     }
+
+    private fun setPostId() {
+        arguments?.getString("postId")?.let { viewModel.setPostId(it) }
+    }
+
+    /**
+     *  로그인 / 회원 가입 API에서 JWT, userProfileImg를 받아 와야 할 것 같다. 추후 수정 필요
+     *
+     * private fun setUserProfileImg() {
+            binding.communityPostDetailCommentProfileIv
+        }
+     */
 
     private fun setObserve() {
         val communityPostDetailAdapter = CommunityPostDetailAdapter()
@@ -46,6 +61,22 @@ class CommunityPostDetailFragment : Fragment() {
             communityPostDetailAdapter.submitList(listOf(communityPostDetailResponse))
             communityPostDetailCommentsAdapter.submitList(listOf(communityPostDetailResponse))
         }
+
+        viewModel.commentRegisterEvent.observe(
+            viewLifecycleOwner, EventObserve {
+                viewModel.setPostComment(getJwt()!!, viewModel.getPostId()!!, it)
+            }
+        )
+    }
+
+    private fun setOnClickListener() {
+        binding.communityPostDetailCommentRegisterTv.setOnClickListener {
+            viewModel.setCommentRegisterEvent(binding.communityPostDetailCommentEt.text.toString())
+        }
+    }
+
+    private fun getPostDetail() {
+        viewModel.getPostDetail(getJwt()!!, viewModel.getPostId()!!)
     }
 
     private fun getJwt(): String? {

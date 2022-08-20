@@ -1,7 +1,7 @@
 package com.greenfriends.zeroway.repository.communitypostdetail
 
+import com.greenfriends.zeroway.model.CommunityPostCommentRequest
 import com.greenfriends.zeroway.model.CommunityPostDetailResponse
-import com.greenfriends.zeroway.repository.communitypostdetail.CommunityPostDetailDataSourceImpl
 import retrofit2.Response
 
 class CommunityPostDetailRepository(private val communityPostDetailDataSourceImpl: CommunityPostDetailDataSourceImpl) {
@@ -11,5 +11,13 @@ class CommunityPostDetailRepository(private val communityPostDetailDataSourceImp
         postId: String
     ): Response<CommunityPostDetailResponse> {
         return communityPostDetailDataSourceImpl.getPostDetail(accessToken, postId)
+    }
+
+    suspend fun setPostComment(
+        accessToken: String,
+        postId: String,
+        content: CommunityPostCommentRequest
+    ): Response<Void> {
+        return communityPostDetailDataSourceImpl.setPostComment(accessToken, postId, content)
     }
 }
