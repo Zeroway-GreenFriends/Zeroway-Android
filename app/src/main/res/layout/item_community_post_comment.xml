@@ -44,6 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="60dp"
             android:layout_marginEnd="40dp"
+            android:text="@{communityPostDetailComment.content}"
             android:textColor="@color/zeroway_black"
             android:textSize="10sp"
             app:layout_constraintEnd_toStartOf="@id/item_community_post_comment_like_iv"

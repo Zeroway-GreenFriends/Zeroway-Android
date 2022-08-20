@@ -22,9 +22,9 @@
             android:layout_height="25dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="10dp"
-            android:src="@drawable/ic_profile"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_profile" />
 
         <TextView
             android:id="@+id/item_community_exclude_image_post_detail_profile_name_tv"

@@ -4,9 +4,6 @@
 
     <data>
 
-        <variable
-            name="communityPostDetail"
-            type="com.greenfriends.zeroway.model.CommunityPostDetailResponse" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -74,7 +71,6 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/community_post_detail_comment_profile_iv"
-                imageUrl="@{communityPostDetail.userProfileImg}"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="20dp"
