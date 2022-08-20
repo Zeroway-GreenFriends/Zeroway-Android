@@ -4,6 +4,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 object RetrofitClient {
     private const val BASE_URL = "https://www.zeroway.site/api/"
@@ -16,6 +17,9 @@ object RetrofitClient {
             }
             val client = OkHttpClient.Builder()
                 .addInterceptor(logger)
+//                .connectTimeout(300, TimeUnit.SECONDS)
+//                .readTimeout(300,TimeUnit.SECONDS)
+//                .writeTimeout(300,TimeUnit.SECONDS)
                 .build()
 
             retrofit = Retrofit.Builder()
