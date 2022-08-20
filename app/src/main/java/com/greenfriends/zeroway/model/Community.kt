@@ -75,3 +75,7 @@ data class CommunityPostDetailComment(
     @SerializedName("likeCount") val likeCount: Int,
     @SerializedName("liked") val liked: Boolean
 )
+
+data class CommunityPostCommentRequest(
+    @SerializedName("content") val content: String
+)
