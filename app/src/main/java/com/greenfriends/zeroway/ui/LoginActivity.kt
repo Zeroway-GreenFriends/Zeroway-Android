@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.greenfriends.zeroway.MainActivity
 import com.greenfriends.zeroway.R
 import com.greenfriends.zeroway.databinding.ActivityLoginBinding
 import com.greenfriends.zeroway.model.LoginRequest

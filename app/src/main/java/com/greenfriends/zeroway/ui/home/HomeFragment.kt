@@ -8,14 +8,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.greenfriends.zeroway.model.*
-import com.greenfriends.zeroway.network.HomeService
-import com.greenfriends.zeroway.api.*
 import com.greenfriends.zeroway.*
 import com.greenfriends.zeroway.databinding.FragmentHomeBinding
-import com.greenfriends.zeroway.network.StoreService
+import com.greenfriends.zeroway.network.*
 import com.greenfriends.zeroway.ui.*
 import com.greenfriends.zeroway.ui.alarm.AlarmFragment
-import com.greenfriends.zeroway.ui.store.StoreAdapter
 import com.greenfriends.zeroway.ui.store.StoreFragment
 
 class HomeFragment : Fragment(), TipView, TermView, StoreListView {

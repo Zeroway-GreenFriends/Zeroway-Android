@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.greenfriends.zeroway.model.CommunityPost
 import com.greenfriends.zeroway.repository.community.CommunityRepository
+import com.greenfriends.zeroway.ui.common.Event
 import kotlinx.coroutines.launch
 
 class CommunityViewModel(private val communityRepository: CommunityRepository) : ViewModel() {
@@ -17,12 +18,19 @@ class CommunityViewModel(private val communityRepository: CommunityRepository) :
     private val _communityPosts = MutableLiveData<List<CommunityPost>>()
     val communityPosts: LiveData<List<CommunityPost>> = _communityPosts
 
+    private val _communityPostDetailEvent = MutableLiveData<Event<Long>>()
+    val communityPostDetailEvent: LiveData<Event<Long>> = _communityPostDetailEvent
+
     fun setSort(sort: String) {
         _sort.value = sort
     }
 
     fun getSort(): String? {
         return _sort.value
+    }
+
+    fun setCommunityPostDetailEvent(postId: Long) {
+        _communityPostDetailEvent.value = Event(postId)
     }
 
     fun getPosts(accessToken: String, sort: String) {

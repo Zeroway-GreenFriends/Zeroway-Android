@@ -1,4 +1,4 @@
-package com.greenfriends.zeroway.api
+package com.greenfriends.zeroway.network
 
 import com.greenfriends.zeroway.model.TipResponse
 

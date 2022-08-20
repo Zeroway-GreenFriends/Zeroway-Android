@@ -10,7 +10,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.greenfriends.zeroway.R
 import com.greenfriends.zeroway.databinding.FragmentCommunityBinding
+import com.greenfriends.zeroway.ui.common.EventObserve
 import com.greenfriends.zeroway.ui.common.ViewModelFactory
+import com.greenfriends.zeroway.ui.communitypostdetail.CommunityPostDetailFragment
+import com.greenfriends.zeroway.ui.communitypostregister.CommunityPostRegisterFragment
 
 class CommunityFragment : Fragment() {
 
@@ -50,10 +53,16 @@ class CommunityFragment : Fragment() {
         ) {
             adapter.submitList(it)
         }
+
+        viewModel.communityPostDetailEvent.observe(
+            viewLifecycleOwner, EventObserve {
+                startCommunityPostDetailFragment(it.toString())
+            }
+        )
     }
 
     private fun setCommunityAdapter() {
-        adapter = CommunityAdapter()
+        adapter = CommunityAdapter(viewModel)
         binding.communityPostRv.adapter = adapter
     }
 
@@ -69,5 +78,16 @@ class CommunityFragment : Fragment() {
                 .replace(R.id.main_fl, CommunityPostRegisterFragment())
                 .commit()
         }
+    }
+
+    private fun startCommunityPostDetailFragment(postId: String) {
+        val bundle = Bundle()
+        bundle.putString("postId", postId)
+
+        val communityPostDetailFragment = CommunityPostDetailFragment()
+        communityPostDetailFragment.arguments = bundle
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.main_fl, communityPostDetailFragment)
+            .commit()
     }
 }

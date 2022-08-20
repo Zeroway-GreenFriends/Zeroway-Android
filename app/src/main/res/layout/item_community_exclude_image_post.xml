@@ -6,6 +6,10 @@
     <data>
 
         <variable
+            name="viewModel"
+            type="com.greenfriends.zeroway.ui.community.CommunityViewModel" />
+
+        <variable
             name="communityPost"
             type="com.greenfriends.zeroway.model.CommunityPost" />
     </data>
@@ -58,7 +62,7 @@
             android:layout_marginTop="6dp"
             android:src="@{communityPost.liked ? @drawable/ic_like_on : @drawable/ic_like_off, default=@drawable/ic_like_off}"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/item_community_exclude_image_text_input_tv" />
+            app:layout_constraintTop_toBottomOf="@id/item_community_exclude_image_content_tv" />
 
         <ImageView
             android:id="@+id/item_community_exclude_image_chat_iv"
@@ -81,7 +85,7 @@
             app:layout_constraintTop_toTopOf="@id/item_community_exclude_image_chat_iv" />
 
         <TextView
-            android:id="@+id/item_community_exclude_image_hits_tv"
+            android:id="@+id/item_community_exclude_image_like_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
@@ -93,20 +97,20 @@
             app:layout_constraintTop_toBottomOf="@id/item_community_exclude_image_like_iv" />
 
         <TextView
-            android:id="@+id/item_community_exclude_image_hits_input_tv"
+            android:id="@+id/item_community_exclude_image_like_count_tv"
             communityPostLikeCount="@{communityPost.likeCount}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
             android:textColor="@color/zeroway_black"
             android:textSize="10sp"
-            app:layout_constraintBottom_toBottomOf="@id/item_community_exclude_image_hits_tv"
-            app:layout_constraintStart_toEndOf="@id/item_community_exclude_image_hits_tv"
-            app:layout_constraintTop_toTopOf="@id/item_community_exclude_image_hits_tv"
+            app:layout_constraintBottom_toBottomOf="@id/item_community_exclude_image_like_tv"
+            app:layout_constraintStart_toEndOf="@id/item_community_exclude_image_like_tv"
+            app:layout_constraintTop_toTopOf="@id/item_community_exclude_image_like_tv"
             tools:text="103개" />
 
         <TextView
-            android:id="@+id/item_community_exclude_image_text_input_tv"
+            android:id="@+id/item_community_exclude_image_content_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
@@ -129,11 +133,12 @@
             android:layout_marginStart="15dp"
             android:layout_marginTop="6dp"
             android:layout_marginBottom="10dp"
+            android:onClick="@{() -> viewModel.setCommunityPostDetailEvent(communityPost.postId)}"
             android:textColor="@color/zeroway_gray"
             android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/item_community_exclude_image_hits_input_tv"
+            app:layout_constraintTop_toBottomOf="@id/item_community_exclude_image_like_count_tv"
             tools:text="댓글 3개 모두 보기" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

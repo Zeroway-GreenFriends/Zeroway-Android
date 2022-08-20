@@ -1,4 +1,4 @@
-package com.greenfriends.zeroway.repository.community
+package com.greenfriends.zeroway.repository.communitypostregister
 
 import okhttp3.MultipartBody
 import okhttp3.RequestBody

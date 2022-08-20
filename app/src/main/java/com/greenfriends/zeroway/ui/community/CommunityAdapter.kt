@@ -9,7 +9,7 @@ import com.greenfriends.zeroway.databinding.ItemCommunityExcludeImagePostBinding
 import com.greenfriends.zeroway.databinding.ItemCommunityIncludeImagePostBinding
 import com.greenfriends.zeroway.model.CommunityPost
 
-class CommunityAdapter :
+class CommunityAdapter(private val viewModel: CommunityViewModel) :
     ListAdapter<CommunityPost, RecyclerView.ViewHolder>(CommunityDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -45,11 +45,13 @@ class CommunityAdapter :
     inner class CommunityIncludeImageViewHolder(private val binding: ItemCommunityIncludeImagePostBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+        private val communityPostAdapter = CommunityPostAdapter()
+
         fun bind(communityPost: CommunityPost) {
-            val communityPostAdapter = CommunityPostAdapter()
             binding.itemCommunityIncludeImageImageVp.adapter = communityPostAdapter
             communityPostAdapter.submitList(communityPost.imageList)
             binding.itemCommunityIncludeImageImageSdi.setViewPager2(binding.itemCommunityIncludeImageImageVp)
+            binding.viewModel = viewModel
             binding.communityPost = communityPost
             binding.executePendingBindings()
         }
@@ -59,6 +61,7 @@ class CommunityAdapter :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(communityPost: CommunityPost) {
+            binding.viewModel = viewModel
             binding.communityPost = communityPost
             binding.executePendingBindings()
         }

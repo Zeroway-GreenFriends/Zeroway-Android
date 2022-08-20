@@ -10,8 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.greenfriends.zeroway.network.HomeService
-import com.greenfriends.zeroway.api.TermSearchView
-import com.greenfriends.zeroway.api.TermView
+import com.greenfriends.zeroway.network.TermSearchView
+import com.greenfriends.zeroway.network.TermView
 import com.greenfriends.zeroway.model.TermResponse
 import com.greenfriends.zeroway.R
 import com.greenfriends.zeroway.databinding.FragmentWordBinding
