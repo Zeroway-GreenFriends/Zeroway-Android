@@ -20,28 +20,29 @@
         android:textSize="20sp"/>
 
     <ImageView
-        android:id="@+id/levelup_shadow_iv"
+        android:id="@+id/levelup_character_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/ic_char_shadow"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="400dp"
-        android:src="@drawable/ic_char_shadow"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/levelup_levelup_tv" />
 
     <TextView
         android:id="@+id/levelup_level_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/levelup_shadow_iv"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="23dp"
         android:text="Lv.6"
+        android:textColor="@color/zeroway_dark_mint"
         android:textSize="18sp"
-        android:textColor="@color/zeroway_dark_mint"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/levelup_character_iv" />
 
     <Button
-        android:id="@+id/challenge_list_ok_btn"
+        android:id="@+id/levelup_ok_btn"
         android:layout_width="110dp"
         android:layout_height="40dp"
         app:layout_constraintTop_toBottomOf="@id/levelup_level_tv"

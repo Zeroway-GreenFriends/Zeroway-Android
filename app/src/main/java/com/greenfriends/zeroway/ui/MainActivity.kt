@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.greenfriends.zeroway.R
 import com.greenfriends.zeroway.databinding.ActivityMainBinding
+import com.greenfriends.zeroway.ui.challenge.ChallengeCharacterFragment
 import com.greenfriends.zeroway.ui.home.HomeFragment
 import com.greenfriends.zeroway.ui.store.StoreFragment
 import com.greenfriends.zeroway.ui.community.CommunityFragment
