@@ -10,7 +10,7 @@
         android:background="@drawable/ic_curved_mint_background">
 
         <ImageButton
-            android:id="@+id/word_dialog_close"
+            android:id="@+id/word_dialog_close_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -31,7 +31,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/word_dialog_title"
+                android:id="@+id/word_dialog_title_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30sp"
@@ -42,10 +42,13 @@
                 android:textSize="16sp"
                 android:letterSpacing="0.1"/>
 
-            <TextView
-                android:id="@+id/word_dialog_content"
+            <ScrollView
                 android:layout_width="247dp"
-                android:layout_height="112dp"
+                android:layout_height="112dp">
+            <TextView
+                android:id="@+id/word_dialog_content_tv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:scrollbars="vertical"
                 android:text="기후 변화와 관련된 전 지구적 위험을 평가하고 국제적 대책을 마련하기 위해 세계기상기구(WMO)와 유엔환경계획(UNEP)이 1988년에 공동으로 설립한 유엔 산하 정부 간 협의체이다.
 본부는 스위스 제네바에 있으며 세계 각국의 기상학자, 해양학자, 빙하 전문가, 경제학자 "
@@ -53,6 +56,7 @@
                 android:fontFamily="@font/notosans_regular"
                 android:textSize="12sp"
                 android:letterSpacing="0.1"/>
+            </ScrollView>
 
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
