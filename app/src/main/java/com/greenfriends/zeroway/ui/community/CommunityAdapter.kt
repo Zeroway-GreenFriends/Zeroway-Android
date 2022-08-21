@@ -42,9 +42,9 @@ class CommunityAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (getItemViewType(position) == 1) {
             (holder as CommunityIncludeImageViewHolder).bind(getItem(position))
-            holder.binding.itemCommunityIncludeImageLikeIv.setOnClickListener {
-                getItem(position).liked = !getItem(position).liked
-                with(holder.binding) {
+            with(holder.binding) {
+                itemCommunityIncludeImageLikeIv.setOnClickListener {
+                    getItem(position).liked = !getItem(position).liked
                     if (getItem(position).liked) {
                         itemCommunityIncludeImageLikeIv.setImageResource(R.drawable.ic_like_on)
                         ((itemCommunityIncludeImageLikeCountTv.text.substring(0 until itemCommunityIncludeImageLikeCountTv.text.length - 1)
@@ -58,14 +58,24 @@ class CommunityAdapter(
                             itemCommunityIncludeImageLikeCountTv.text = it
                         }
                     }
+                    onCommunityItemClickListener.setCommunityPostLike(getItem(position))
                 }
-                onCommunityItemClickListener.setCommunityPostLike(getItem(position))
+
+                itemCommunityIncludeImageBookmarkIv.setOnClickListener {
+                    getItem(position).bookmarked = !getItem(position).bookmarked
+                    if (getItem(position).bookmarked) {
+                        itemCommunityIncludeImageBookmarkIv.setImageResource(R.drawable.ic_bookmark_on)
+                    } else {
+                        itemCommunityIncludeImageBookmarkIv.setImageResource(R.drawable.ic_bookmark_off)
+                    }
+                    onCommunityItemClickListener.setCommunityPostBookmark(getItem(position))
+                }
             }
         } else {
             (holder as CommunityExcludeImageViewHolder).bind(getItem(position))
-            holder.binding.itemCommunityExcludeImageLikeIv.setOnClickListener {
-                getItem(position).liked = !getItem(position).liked
-                with(holder.binding) {
+            with(holder.binding) {
+                itemCommunityExcludeImageLikeIv.setOnClickListener {
+                    getItem(position).liked = !getItem(position).liked
                     if (getItem(position).liked) {
                         itemCommunityExcludeImageLikeIv.setImageResource(R.drawable.ic_like_on)
                         ((itemCommunityExcludeImageLikeCountTv.text.substring(0 until itemCommunityExcludeImageLikeCountTv.text.length - 1)
@@ -79,8 +89,18 @@ class CommunityAdapter(
                             itemCommunityExcludeImageLikeCountTv.text = it
                         }
                     }
+                    onCommunityItemClickListener.setCommunityPostLike(getItem(position))
                 }
-                onCommunityItemClickListener.setCommunityPostLike(getItem(position))
+
+                itemCommunityExcludeImageBookmarkIv.setOnClickListener {
+                    getItem(position).bookmarked = !getItem(position).bookmarked
+                    if (getItem(position).bookmarked) {
+                        itemCommunityExcludeImageBookmarkIv.setImageResource(R.drawable.ic_bookmark_on)
+                    } else {
+                        itemCommunityExcludeImageBookmarkIv.setImageResource(R.drawable.ic_bookmark_off)
+                    }
+                    onCommunityItemClickListener.setCommunityPostBookmark(getItem(position))
+                }
             }
         }
     }

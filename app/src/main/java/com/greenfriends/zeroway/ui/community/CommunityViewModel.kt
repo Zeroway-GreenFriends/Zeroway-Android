@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.greenfriends.zeroway.model.CommunityPost
+import com.greenfriends.zeroway.model.CommunityPostBookmarkRequest
 import com.greenfriends.zeroway.model.CommunityPostLikeRequest
 import com.greenfriends.zeroway.repository.community.CommunityRepository
 import com.greenfriends.zeroway.ui.common.Event
@@ -54,6 +55,22 @@ class CommunityViewModel(private val communityRepository: CommunityRepository) :
                 Log.d("COMMUNITY/LIKE/T", response.body().toString())
             } else {
                 Log.d("COMMUNITY/LIKE/F", response.errorBody()?.string()!!)
+            }
+        }
+    }
+
+    fun setPostBookmark(accessToken: String, postId: String, bookmark: Boolean) {
+        viewModelScope.launch {
+            val response =
+                communityRepository.setPostBookmark(
+                    accessToken,
+                    postId,
+                    CommunityPostBookmarkRequest(bookmark)
+                )
+            if (response.isSuccessful) {
+                Log.d("COMMUNITY/BOOKMARK/T", response.body().toString())
+            } else {
+                Log.d("COMMUNITY/BOOKMARK/F", response.errorBody()?.string()!!)
             }
         }
     }

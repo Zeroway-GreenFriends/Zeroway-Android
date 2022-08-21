@@ -1,5 +1,6 @@
 package com.greenfriends.zeroway.repository.community
 
+import com.greenfriends.zeroway.model.CommunityPostBookmarkRequest
 import com.greenfriends.zeroway.model.CommunityPostLikeRequest
 import com.greenfriends.zeroway.model.CommunityResponse
 import retrofit2.Response
@@ -16,5 +17,13 @@ class CommunityRepository(private val communityDataSourceImpl: CommunityDataSour
         like: CommunityPostLikeRequest
     ): Response<Void> {
         return communityDataSourceImpl.setPostLike(accessToken, postId, like)
+    }
+
+    suspend fun setPostBookmark(
+        accessToken: String,
+        postId: String,
+        bookmark: CommunityPostBookmarkRequest
+    ): Response<Void> {
+        return communityDataSourceImpl.setPostBookmark(accessToken, postId, bookmark)
     }
 }
