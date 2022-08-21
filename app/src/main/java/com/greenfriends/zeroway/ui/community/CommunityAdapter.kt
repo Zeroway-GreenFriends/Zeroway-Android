@@ -42,66 +42,8 @@ class CommunityAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (getItemViewType(position) == 1) {
             (holder as CommunityIncludeImageViewHolder).bind(getItem(position))
-            with(holder.binding) {
-                itemCommunityIncludeImageLikeIv.setOnClickListener {
-                    getItem(position).liked = !getItem(position).liked
-                    if (getItem(position).liked) {
-                        itemCommunityIncludeImageLikeIv.setImageResource(R.drawable.ic_like_on)
-                        ((itemCommunityIncludeImageLikeCountTv.text.substring(0 until itemCommunityIncludeImageLikeCountTv.text.length - 1)
-                            .toInt() + 1).toString() + "개").also {
-                            itemCommunityIncludeImageLikeCountTv.text = it
-                        }
-                    } else {
-                        itemCommunityIncludeImageLikeIv.setImageResource(R.drawable.ic_like_off)
-                        ((itemCommunityIncludeImageLikeCountTv.text.substring(0 until itemCommunityIncludeImageLikeCountTv.text.length - 1)
-                            .toInt() - 1).toString() + "개").also {
-                            itemCommunityIncludeImageLikeCountTv.text = it
-                        }
-                    }
-                    onCommunityItemClickListener.setCommunityPostLike(getItem(position))
-                }
-
-                itemCommunityIncludeImageBookmarkIv.setOnClickListener {
-                    getItem(position).bookmarked = !getItem(position).bookmarked
-                    if (getItem(position).bookmarked) {
-                        itemCommunityIncludeImageBookmarkIv.setImageResource(R.drawable.ic_bookmark_on)
-                    } else {
-                        itemCommunityIncludeImageBookmarkIv.setImageResource(R.drawable.ic_bookmark_off)
-                    }
-                    onCommunityItemClickListener.setCommunityPostBookmark(getItem(position))
-                }
-            }
         } else {
             (holder as CommunityExcludeImageViewHolder).bind(getItem(position))
-            with(holder.binding) {
-                itemCommunityExcludeImageLikeIv.setOnClickListener {
-                    getItem(position).liked = !getItem(position).liked
-                    if (getItem(position).liked) {
-                        itemCommunityExcludeImageLikeIv.setImageResource(R.drawable.ic_like_on)
-                        ((itemCommunityExcludeImageLikeCountTv.text.substring(0 until itemCommunityExcludeImageLikeCountTv.text.length - 1)
-                            .toInt() + 1).toString() + "개").also {
-                            itemCommunityExcludeImageLikeCountTv.text = it
-                        }
-                    } else {
-                        itemCommunityExcludeImageLikeIv.setImageResource(R.drawable.ic_like_off)
-                        ((itemCommunityExcludeImageLikeCountTv.text.substring(0 until itemCommunityExcludeImageLikeCountTv.text.length - 1)
-                            .toInt() - 1).toString() + "개").also {
-                            itemCommunityExcludeImageLikeCountTv.text = it
-                        }
-                    }
-                    onCommunityItemClickListener.setCommunityPostLike(getItem(position))
-                }
-
-                itemCommunityExcludeImageBookmarkIv.setOnClickListener {
-                    getItem(position).bookmarked = !getItem(position).bookmarked
-                    if (getItem(position).bookmarked) {
-                        itemCommunityExcludeImageBookmarkIv.setImageResource(R.drawable.ic_bookmark_on)
-                    } else {
-                        itemCommunityExcludeImageBookmarkIv.setImageResource(R.drawable.ic_bookmark_off)
-                    }
-                    onCommunityItemClickListener.setCommunityPostBookmark(getItem(position))
-                }
-            }
         }
     }
 
@@ -121,6 +63,36 @@ class CommunityAdapter(
             binding.viewModel = viewModel
             binding.communityPost = communityPost
             binding.executePendingBindings()
+
+            with(binding) {
+                itemCommunityIncludeImageLikeIv.setOnClickListener {
+                    communityPost.liked = !communityPost.liked
+                    if (communityPost.liked) {
+                        itemCommunityIncludeImageLikeIv.setImageResource(R.drawable.ic_like_on)
+                        ((itemCommunityIncludeImageLikeCountTv.text.substring(0 until itemCommunityIncludeImageLikeCountTv.text.length - 1)
+                            .toInt() + 1).toString() + "개").also {
+                            itemCommunityIncludeImageLikeCountTv.text = it
+                        }
+                    } else {
+                        itemCommunityIncludeImageLikeIv.setImageResource(R.drawable.ic_like_off)
+                        ((itemCommunityIncludeImageLikeCountTv.text.substring(0 until itemCommunityIncludeImageLikeCountTv.text.length - 1)
+                            .toInt() - 1).toString() + "개").also {
+                            itemCommunityIncludeImageLikeCountTv.text = it
+                        }
+                    }
+                    onCommunityItemClickListener.setCommunityPostLike(communityPost)
+                }
+
+                itemCommunityIncludeImageBookmarkIv.setOnClickListener {
+                    communityPost.bookmarked = !communityPost.bookmarked
+                    if (communityPost.bookmarked) {
+                        itemCommunityIncludeImageBookmarkIv.setImageResource(R.drawable.ic_bookmark_on)
+                    } else {
+                        itemCommunityIncludeImageBookmarkIv.setImageResource(R.drawable.ic_bookmark_off)
+                    }
+                    onCommunityItemClickListener.setCommunityPostBookmark(communityPost)
+                }
+            }
         }
     }
 
@@ -131,6 +103,36 @@ class CommunityAdapter(
             binding.viewModel = viewModel
             binding.communityPost = communityPost
             binding.executePendingBindings()
+
+            with(binding) {
+                itemCommunityExcludeImageLikeIv.setOnClickListener {
+                    communityPost.liked = !communityPost.liked
+                    if (communityPost.liked) {
+                        itemCommunityExcludeImageLikeIv.setImageResource(R.drawable.ic_like_on)
+                        ((itemCommunityExcludeImageLikeCountTv.text.substring(0 until itemCommunityExcludeImageLikeCountTv.text.length - 1)
+                            .toInt() + 1).toString() + "개").also {
+                            itemCommunityExcludeImageLikeCountTv.text = it
+                        }
+                    } else {
+                        itemCommunityExcludeImageLikeIv.setImageResource(R.drawable.ic_like_off)
+                        ((itemCommunityExcludeImageLikeCountTv.text.substring(0 until itemCommunityExcludeImageLikeCountTv.text.length - 1)
+                            .toInt() - 1).toString() + "개").also {
+                            itemCommunityExcludeImageLikeCountTv.text = it
+                        }
+                    }
+                    onCommunityItemClickListener.setCommunityPostLike(communityPost)
+                }
+
+                itemCommunityExcludeImageBookmarkIv.setOnClickListener {
+                    communityPost.bookmarked = !communityPost.bookmarked
+                    if (communityPost.bookmarked) {
+                        itemCommunityExcludeImageBookmarkIv.setImageResource(R.drawable.ic_bookmark_on)
+                    } else {
+                        itemCommunityExcludeImageBookmarkIv.setImageResource(R.drawable.ic_bookmark_off)
+                    }
+                    onCommunityItemClickListener.setCommunityPostBookmark(communityPost)
+                }
+            }
         }
     }
 }
