@@ -5,12 +5,21 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.greenfriends.zeroway.R
 import com.greenfriends.zeroway.databinding.ItemCommunityExcludeImagePostBinding
 import com.greenfriends.zeroway.databinding.ItemCommunityIncludeImagePostBinding
 import com.greenfriends.zeroway.model.CommunityPost
 
-class CommunityAdapter(private val viewModel: CommunityViewModel) :
+class CommunityAdapter(
+    private val viewModel: CommunityViewModel,
+) :
     ListAdapter<CommunityPost, RecyclerView.ViewHolder>(CommunityDiffCallback()) {
+
+    private lateinit var onCommunityItemClickListener: OnCommunityItemClickListener
+
+    fun setOnCommunityItemClickListener(onCommunityItemClickListener: OnCommunityItemClickListener) {
+        this.onCommunityItemClickListener = onCommunityItemClickListener
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return if (viewType == 1) {
@@ -33,8 +42,46 @@ class CommunityAdapter(private val viewModel: CommunityViewModel) :
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (getItemViewType(position) == 1) {
             (holder as CommunityIncludeImageViewHolder).bind(getItem(position))
+            holder.binding.itemCommunityIncludeImageLikeIv.setOnClickListener {
+                getItem(position).liked = !getItem(position).liked
+                with(holder.binding) {
+                    if (getItem(position).liked) {
+                        itemCommunityIncludeImageLikeIv.setImageResource(R.drawable.ic_like_on)
+                        ((itemCommunityIncludeImageLikeCountTv.text.substring(0 until itemCommunityIncludeImageLikeCountTv.text.length - 1)
+                            .toInt() + 1).toString() + "개").also {
+                            itemCommunityIncludeImageLikeCountTv.text = it
+                        }
+                    } else {
+                        itemCommunityIncludeImageLikeIv.setImageResource(R.drawable.ic_like_off)
+                        ((itemCommunityIncludeImageLikeCountTv.text.substring(0 until itemCommunityIncludeImageLikeCountTv.text.length - 1)
+                            .toInt() - 1).toString() + "개").also {
+                            itemCommunityIncludeImageLikeCountTv.text = it
+                        }
+                    }
+                }
+                onCommunityItemClickListener.setCommunityPostLike(getItem(position))
+            }
         } else {
             (holder as CommunityExcludeImageViewHolder).bind(getItem(position))
+            holder.binding.itemCommunityExcludeImageLikeIv.setOnClickListener {
+                getItem(position).liked = !getItem(position).liked
+                with(holder.binding) {
+                    if (getItem(position).liked) {
+                        itemCommunityExcludeImageLikeIv.setImageResource(R.drawable.ic_like_on)
+                        ((itemCommunityExcludeImageLikeCountTv.text.substring(0 until itemCommunityExcludeImageLikeCountTv.text.length - 1)
+                            .toInt() + 1).toString() + "개").also {
+                            itemCommunityExcludeImageLikeCountTv.text = it
+                        }
+                    } else {
+                        itemCommunityExcludeImageLikeIv.setImageResource(R.drawable.ic_like_off)
+                        ((itemCommunityExcludeImageLikeCountTv.text.substring(0 until itemCommunityExcludeImageLikeCountTv.text.length - 1)
+                            .toInt() - 1).toString() + "개").also {
+                            itemCommunityExcludeImageLikeCountTv.text = it
+                        }
+                    }
+                }
+                onCommunityItemClickListener.setCommunityPostLike(getItem(position))
+            }
         }
     }
 
@@ -42,7 +89,7 @@ class CommunityAdapter(private val viewModel: CommunityViewModel) :
         return if (getItem(position).imageList.isNotEmpty()) 1 else 0
     }
 
-    inner class CommunityIncludeImageViewHolder(private val binding: ItemCommunityIncludeImagePostBinding) :
+    inner class CommunityIncludeImageViewHolder(val binding: ItemCommunityIncludeImagePostBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         private val communityPostAdapter = CommunityPostAdapter()
@@ -57,7 +104,7 @@ class CommunityAdapter(private val viewModel: CommunityViewModel) :
         }
     }
 
-    inner class CommunityExcludeImageViewHolder(private val binding: ItemCommunityExcludeImagePostBinding) :
+    inner class CommunityExcludeImageViewHolder(val binding: ItemCommunityExcludeImagePostBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(communityPost: CommunityPost) {

@@ -1,7 +1,6 @@
 package com.greenfriends.zeroway.ui.community
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.greenfriends.zeroway.R
 import com.greenfriends.zeroway.databinding.FragmentCommunityBinding
+import com.greenfriends.zeroway.model.CommunityPost
 import com.greenfriends.zeroway.ui.common.EventObserve
 import com.greenfriends.zeroway.ui.common.ViewModelFactory
 import com.greenfriends.zeroway.ui.communitypostdetail.CommunityPostDetailFragment
@@ -34,36 +34,72 @@ class CommunityFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.lifecycleOwner = viewLifecycleOwner
-        Log.d("JWT", getJwt().toString())
-        viewModel.getPosts(getJwt()!!, viewModel.getSort()!!)
-        setCommunityAdapter()
+
+        getPosts()
         setObserve()
+        setOnClickListener()
+        setCommunityAdapter()
         startCommunityPostRegisterFragment()
+    }
+
+    private fun getPosts() {
+        viewModel.getPosts(getJwt()!!, viewModel.getSort()!!)
     }
 
     private fun setObserve() {
         viewModel.sort.observe(
             viewLifecycleOwner
-        ) {
-            binding.sort = it
+        ) { sort ->
+            binding.sort = sort
         }
 
         viewModel.communityPosts.observe(
             viewLifecycleOwner
-        ) {
-            adapter.submitList(it)
+        ) { communityPosts ->
+            adapter.submitList(communityPosts)
         }
 
         viewModel.communityPostDetailEvent.observe(
-            viewLifecycleOwner, EventObserve {
-                startCommunityPostDetailFragment(it.toString())
+            viewLifecycleOwner, EventObserve { postId ->
+                startCommunityPostDetailFragment(postId.toString())
             }
         )
+    }
+
+    private fun setOnClickListener() {
+        with(binding) {
+            communityLatestTv.setOnClickListener {
+                viewModel.setSort("createdAt")
+                getPosts()
+            }
+            communityPopularityTv.setOnClickListener {
+                viewModel.setSort("like")
+                getPosts()
+            }
+        }
     }
 
     private fun setCommunityAdapter() {
         adapter = CommunityAdapter(viewModel)
         binding.communityPostRv.adapter = adapter
+        adapter.setOnCommunityItemClickListener(object : OnCommunityItemClickListener {
+
+            override fun deleteCommunityPost() {
+                TODO("Not yet implemented")
+            }
+
+            override fun setCommunityPostLike(communityPost: CommunityPost) {
+                viewModel.setPostLike(
+                    getJwt()!!,
+                    communityPost.postId.toString(),
+                    communityPost.liked
+                )
+            }
+
+            override fun setCommunityPostBookmark() {
+                TODO("Not yet implemented")
+            }
+        })
     }
 
     private fun getJwt(): String? {
