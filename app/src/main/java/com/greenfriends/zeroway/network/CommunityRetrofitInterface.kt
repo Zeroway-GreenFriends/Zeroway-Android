@@ -56,4 +56,14 @@ interface CommunityRetrofitInterface {
         @Path("postId") postId: String,
         @Body like: CommunityPostLikeRequest
     ): Response<Void>
+
+    /**
+     * 커뮤니티 게시물 북마크 API
+     */
+    @POST("post/{postId}/bookmark")
+    suspend fun setPostBookmark(
+        @Header("Bearer") accessToken: String,
+        @Path("postId") postId: String,
+        @Body bookmark: CommunityPostBookmarkRequest
+    ): Response<Void>
 }
