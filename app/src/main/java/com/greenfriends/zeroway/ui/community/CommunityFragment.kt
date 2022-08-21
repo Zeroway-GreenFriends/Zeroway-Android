@@ -96,8 +96,12 @@ class CommunityFragment : Fragment() {
                 )
             }
 
-            override fun setCommunityPostBookmark() {
-                TODO("Not yet implemented")
+            override fun setCommunityPostBookmark(communityPost: CommunityPost) {
+                viewModel.setPostBookmark(
+                    getJwt()!!,
+                    communityPost.postId.toString(),
+                    communityPost.bookmarked
+                )
             }
         })
     }

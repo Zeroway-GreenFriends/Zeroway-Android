@@ -6,5 +6,5 @@ interface OnCommunityItemClickListener {
 
     fun deleteCommunityPost()
     fun setCommunityPostLike(communityPost: CommunityPost)
-    fun setCommunityPostBookmark()
+    fun setCommunityPostBookmark(communityPost: CommunityPost)
 }
