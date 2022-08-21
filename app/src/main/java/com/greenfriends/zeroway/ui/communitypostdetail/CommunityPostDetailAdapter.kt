@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.greenfriends.zeroway.R
 import com.greenfriends.zeroway.databinding.ItemCommunityExcludeImagePostDetailBinding
 import com.greenfriends.zeroway.databinding.ItemCommunityIncludeImagePostDetailBinding
 import com.greenfriends.zeroway.model.CommunityPostDetailResponse
@@ -14,6 +15,12 @@ class CommunityPostDetailAdapter :
     ListAdapter<CommunityPostDetailResponse, RecyclerView.ViewHolder>(
         CommunityPostDetailDiffCallback()
     ) {
+
+    private lateinit var onCommunityPostDetailItemClickListener: OnCommunityPostDetailItemClickListener
+
+    fun setOnCommunityPostDetailItemClickListener(onCommunityPostDetailItemClickListener: OnCommunityPostDetailItemClickListener) {
+        this.onCommunityPostDetailItemClickListener = onCommunityPostDetailItemClickListener
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return if (viewType == 1) {
@@ -38,10 +45,48 @@ class CommunityPostDetailAdapter :
             (holder as CommunityPostDetailIncludeImageViewHolder).bind(
                 getItem(position)
             )
+            with(holder.binding) {
+                itemCommunityIncludeImagePostDetailLikeIv.setOnClickListener {
+                    getItem(position).liked = !getItem(position).liked
+                    if (getItem(position).liked) {
+                        itemCommunityIncludeImagePostDetailLikeIv.setImageResource(R.drawable.ic_like_on)
+                        ((itemCommunityIncludeImagePostDetailLikeCountTv.text.substring(0 until itemCommunityIncludeImagePostDetailLikeCountTv.text.length - 1)
+                            .toInt() + 1).toString() + "개").also {
+                            itemCommunityIncludeImagePostDetailLikeCountTv.text = it
+                        }
+                    } else {
+                        itemCommunityIncludeImagePostDetailLikeIv.setImageResource(R.drawable.ic_like_off)
+                        ((itemCommunityIncludeImagePostDetailLikeCountTv.text.substring(0 until itemCommunityIncludeImagePostDetailLikeCountTv.text.length - 1)
+                            .toInt() - 1).toString() + "개").also {
+                            itemCommunityIncludeImagePostDetailLikeCountTv.text = it
+                        }
+                    }
+                    onCommunityPostDetailItemClickListener.setCommunityPostLike(getItem(position))
+                }
+            }
         } else {
             (holder as CommunityPostDetailExcludeImageViewHolder).bind(
                 getItem(position)
             )
+            with(holder.binding) {
+                itemCommunityExcludeImagePostDetailLikeIv.setOnClickListener {
+                    getItem(position).liked = !getItem(position).liked
+                    if (getItem(position).liked) {
+                        itemCommunityExcludeImagePostDetailLikeIv.setImageResource(R.drawable.ic_like_on)
+                        ((itemCommunityExcludeImagePostDetailLikeCountTv.text.substring(0 until itemCommunityExcludeImagePostDetailLikeCountTv.text.length - 1)
+                            .toInt() + 1).toString() + "개").also {
+                            itemCommunityExcludeImagePostDetailLikeCountTv.text = it
+                        }
+                    } else {
+                        itemCommunityExcludeImagePostDetailLikeIv.setImageResource(R.drawable.ic_like_off)
+                        ((itemCommunityExcludeImagePostDetailLikeCountTv.text.substring(0 until itemCommunityExcludeImagePostDetailLikeCountTv.text.length - 1)
+                            .toInt() - 1).toString() + "개").also {
+                            itemCommunityExcludeImagePostDetailLikeCountTv.text = it
+                        }
+                    }
+                    onCommunityPostDetailItemClickListener.setCommunityPostLike(getItem(position))
+                }
+            }
         }
     }
 
@@ -49,7 +94,7 @@ class CommunityPostDetailAdapter :
         return if (getItem(position).imageList.isNotEmpty()) 1 else 0
     }
 
-    class CommunityPostDetailIncludeImageViewHolder(private val binding: ItemCommunityIncludeImagePostDetailBinding) :
+    class CommunityPostDetailIncludeImageViewHolder(val binding: ItemCommunityIncludeImagePostDetailBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         private val communityPostAdapter = CommunityPostAdapter()
@@ -63,7 +108,7 @@ class CommunityPostDetailAdapter :
         }
     }
 
-    class CommunityPostDetailExcludeImageViewHolder(private val binding: ItemCommunityExcludeImagePostDetailBinding) :
+    class CommunityPostDetailExcludeImageViewHolder(val binding: ItemCommunityExcludeImagePostDetailBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(communityPostDetailResponse: CommunityPostDetailResponse) {

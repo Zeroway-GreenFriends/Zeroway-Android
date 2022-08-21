@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.ConcatAdapter
 import com.greenfriends.zeroway.databinding.FragmentCommunityPostDetailBinding
+import com.greenfriends.zeroway.model.CommunityPostDetailResponse
 import com.greenfriends.zeroway.ui.common.EventObserve
 import com.greenfriends.zeroway.ui.common.ViewModelFactory
 
@@ -16,6 +17,8 @@ class CommunityPostDetailFragment : Fragment() {
 
     private val viewModel: CommunityPostDetailViewModel by viewModels { ViewModelFactory() }
     private lateinit var binding: FragmentCommunityPostDetailBinding
+    private lateinit var communityPostDetailAdapter: CommunityPostDetailAdapter
+    private lateinit var communityPostDetailCommentsAdapter: CommunityPostDetailCommentsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,6 +37,7 @@ class CommunityPostDetailFragment : Fragment() {
         setPostId()
         setObserve()
         setOnClickListener()
+        setCommunityPostDetailAdapter()
         getPostDetail()
     }
 
@@ -45,16 +49,11 @@ class CommunityPostDetailFragment : Fragment() {
      *  로그인 / 회원 가입 API에서 JWT, userProfileImg를 받아 와야 할 것 같다. 추후 수정 필요
      *
      * private fun setUserProfileImg() {
-            binding.communityPostDetailCommentProfileIv
-        }
+    binding.communityPostDetailCommentProfileIv
+    }
      */
 
     private fun setObserve() {
-        val communityPostDetailAdapter = CommunityPostDetailAdapter()
-        val communityPostDetailCommentsAdapter = CommunityPostDetailCommentsAdapter()
-        binding.communityPostDetailRv.adapter =
-            ConcatAdapter(communityPostDetailAdapter, communityPostDetailCommentsAdapter)
-
         viewModel.communityPostDetailResponse.observe(
             viewLifecycleOwner
         ) { communityPostDetailResponse ->
@@ -73,6 +72,34 @@ class CommunityPostDetailFragment : Fragment() {
         binding.communityPostDetailCommentRegisterTv.setOnClickListener {
             viewModel.setCommentRegisterEvent(binding.communityPostDetailCommentEt.text.toString())
         }
+    }
+
+    private fun setCommunityPostDetailAdapter() {
+        communityPostDetailAdapter = CommunityPostDetailAdapter()
+        communityPostDetailCommentsAdapter = CommunityPostDetailCommentsAdapter()
+        binding.communityPostDetailRv.adapter =
+            ConcatAdapter(communityPostDetailAdapter, communityPostDetailCommentsAdapter)
+
+        communityPostDetailAdapter.setOnCommunityPostDetailItemClickListener(object :
+            OnCommunityPostDetailItemClickListener {
+
+            override fun deleteCommunityPost() {
+                TODO("Not yet implemented")
+            }
+
+            override fun setCommunityPostLike(communityPostDetail: CommunityPostDetailResponse) {
+                viewModel.setPostLike(
+                    getJwt()!!,
+                    communityPostDetail.postId.toString(),
+                    communityPostDetail.liked
+                )
+            }
+
+            override fun setCommunityPostBookmark(communityPostDetail: CommunityPostDetailResponse) {
+                TODO("Not yet implemented")
+            }
+
+        })
     }
 
     private fun getPostDetail() {
