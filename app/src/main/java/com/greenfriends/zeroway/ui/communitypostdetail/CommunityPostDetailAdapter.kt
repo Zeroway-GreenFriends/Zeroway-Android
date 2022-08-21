@@ -45,10 +45,33 @@ class CommunityPostDetailAdapter :
             (holder as CommunityPostDetailIncludeImageViewHolder).bind(
                 getItem(position)
             )
-            with(holder.binding) {
+        } else {
+            (holder as CommunityPostDetailExcludeImageViewHolder).bind(
+                getItem(position)
+            )
+        }
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return if (getItem(position).imageList.isNotEmpty()) 1 else 0
+    }
+
+    inner class CommunityPostDetailIncludeImageViewHolder(val binding: ItemCommunityIncludeImagePostDetailBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        private val communityPostAdapter = CommunityPostAdapter()
+
+        fun bind(communityPostDetailResponse: CommunityPostDetailResponse) {
+            binding.itemCommunityIncludeImagePostDetailImageVp.adapter = communityPostAdapter
+            communityPostAdapter.submitList(communityPostDetailResponse.imageList)
+            binding.itemCommunityIncludeImagePostDetailImageSdi.setViewPager2(binding.itemCommunityIncludeImagePostDetailImageVp)
+            binding.communityPostDetail = communityPostDetailResponse
+            binding.executePendingBindings()
+
+            with(binding) {
                 itemCommunityIncludeImagePostDetailLikeIv.setOnClickListener {
-                    getItem(position).liked = !getItem(position).liked
-                    if (getItem(position).liked) {
+                    communityPostDetailResponse.liked = !communityPostDetailResponse.liked
+                    if (communityPostDetailResponse.liked) {
                         itemCommunityIncludeImagePostDetailLikeIv.setImageResource(R.drawable.ic_like_on)
                         ((itemCommunityIncludeImagePostDetailLikeCountTv.text.substring(0 until itemCommunityIncludeImagePostDetailLikeCountTv.text.length - 1)
                             .toInt() + 1).toString() + "개").also {
@@ -61,17 +84,37 @@ class CommunityPostDetailAdapter :
                             itemCommunityIncludeImagePostDetailLikeCountTv.text = it
                         }
                     }
-                    onCommunityPostDetailItemClickListener.setCommunityPostLike(getItem(position))
+                    onCommunityPostDetailItemClickListener.setCommunityPostLike(
+                        communityPostDetailResponse
+                    )
+                }
+
+                itemCommunityIncludeImagePostDetailBookmarkIv.setOnClickListener {
+                    communityPostDetailResponse.bookmarked = !communityPostDetailResponse.bookmarked
+                    if (communityPostDetailResponse.bookmarked) {
+                        itemCommunityIncludeImagePostDetailBookmarkIv.setImageResource(R.drawable.ic_bookmark_on)
+                    } else {
+                        itemCommunityIncludeImagePostDetailBookmarkIv.setImageResource(R.drawable.ic_bookmark_off)
+                    }
+                    onCommunityPostDetailItemClickListener.setCommunityPostBookmark(
+                        communityPostDetailResponse
+                    )
                 }
             }
-        } else {
-            (holder as CommunityPostDetailExcludeImageViewHolder).bind(
-                getItem(position)
-            )
-            with(holder.binding) {
+        }
+    }
+
+    inner class CommunityPostDetailExcludeImageViewHolder(val binding: ItemCommunityExcludeImagePostDetailBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(communityPostDetailResponse: CommunityPostDetailResponse) {
+            binding.communityPostDetail = communityPostDetailResponse
+            binding.executePendingBindings()
+
+            with(binding) {
                 itemCommunityExcludeImagePostDetailLikeIv.setOnClickListener {
-                    getItem(position).liked = !getItem(position).liked
-                    if (getItem(position).liked) {
+                    communityPostDetailResponse.liked = !communityPostDetailResponse.liked
+                    if (communityPostDetailResponse.liked) {
                         itemCommunityExcludeImagePostDetailLikeIv.setImageResource(R.drawable.ic_like_on)
                         ((itemCommunityExcludeImagePostDetailLikeCountTv.text.substring(0 until itemCommunityExcludeImagePostDetailLikeCountTv.text.length - 1)
                             .toInt() + 1).toString() + "개").also {
@@ -84,36 +127,23 @@ class CommunityPostDetailAdapter :
                             itemCommunityExcludeImagePostDetailLikeCountTv.text = it
                         }
                     }
-                    onCommunityPostDetailItemClickListener.setCommunityPostLike(getItem(position))
+                    onCommunityPostDetailItemClickListener.setCommunityPostLike(
+                        communityPostDetailResponse
+                    )
+                }
+
+                itemCommunityExcludeImagePostDetailBookmarkIv.setOnClickListener {
+                    communityPostDetailResponse.bookmarked = !communityPostDetailResponse.bookmarked
+                    if (communityPostDetailResponse.bookmarked) {
+                        itemCommunityExcludeImagePostDetailBookmarkIv.setImageResource(R.drawable.ic_bookmark_on)
+                    } else {
+                        itemCommunityExcludeImagePostDetailBookmarkIv.setImageResource(R.drawable.ic_bookmark_off)
+                    }
+                    onCommunityPostDetailItemClickListener.setCommunityPostBookmark(
+                        communityPostDetailResponse
+                    )
                 }
             }
-        }
-    }
-
-    override fun getItemViewType(position: Int): Int {
-        return if (getItem(position).imageList.isNotEmpty()) 1 else 0
-    }
-
-    class CommunityPostDetailIncludeImageViewHolder(val binding: ItemCommunityIncludeImagePostDetailBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-
-        private val communityPostAdapter = CommunityPostAdapter()
-
-        fun bind(communityPostDetailResponse: CommunityPostDetailResponse) {
-            binding.itemCommunityIncludeImagePostDetailImageVp.adapter = communityPostAdapter
-            communityPostAdapter.submitList(communityPostDetailResponse.imageList)
-            binding.itemCommunityIncludeImagePostDetailImageSdi.setViewPager2(binding.itemCommunityIncludeImagePostDetailImageVp)
-            binding.communityPostDetail = communityPostDetailResponse
-            binding.executePendingBindings()
-        }
-    }
-
-    class CommunityPostDetailExcludeImageViewHolder(val binding: ItemCommunityExcludeImagePostDetailBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-
-        fun bind(communityPostDetailResponse: CommunityPostDetailResponse) {
-            binding.communityPostDetail = communityPostDetailResponse
-            binding.executePendingBindings()
         }
     }
 }
