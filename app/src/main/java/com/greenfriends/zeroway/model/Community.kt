@@ -59,8 +59,8 @@ data class CommunityPostDetailResponse(
     @SerializedName("challenge") val challenge: Boolean,
     @SerializedName("likeCount") val likeCount: Int,
     @SerializedName("commentCount") val commentCount: Int,
-    @SerializedName("liked") val liked: Boolean,
-    @SerializedName("bookmarked") val bookmarked: Boolean,
+    @SerializedName("liked") var liked: Boolean,
+    @SerializedName("bookmarked") var bookmarked: Boolean,
     @SerializedName("imageList") val imageList: List<String>,
     @SerializedName("commentList") val communityPostDetailComments: List<CommunityPostDetailComment>
 )

@@ -2,6 +2,7 @@ package com.greenfriends.zeroway.repository.communitypostdetail
 
 import com.greenfriends.zeroway.model.CommunityPostCommentRequest
 import com.greenfriends.zeroway.model.CommunityPostDetailResponse
+import com.greenfriends.zeroway.model.CommunityPostLikeRequest
 import retrofit2.Response
 
 interface CommunityPostDetailDataSource {
@@ -15,5 +16,11 @@ interface CommunityPostDetailDataSource {
         accessToken: String,
         postId: String,
         content: CommunityPostCommentRequest
+    ): Response<Void>
+
+    suspend fun setPostLike(
+        accessToken: String,
+        postId: String,
+        like: CommunityPostLikeRequest
     ): Response<Void>
 }
