@@ -40,8 +40,8 @@ class CommunityPostDetailViewModel(private val communityPostDetailRepository: Co
         viewModelScope.launch {
             val response =
                 communityPostDetailRepository.setPostComment(accessToken, postId, content)
-            Log.d("COMMUNITY/DETAIL/CMT", response.toString())
             if (response.isSuccessful) {
+                Log.d("COMMUNITY/COMMENT/T", response.body().toString())
                 getPostDetail(accessToken, postId)
             } else {
                 Log.d("COMMUNITY/COMMENT/F", response.errorBody()?.string()!!)
@@ -52,8 +52,8 @@ class CommunityPostDetailViewModel(private val communityPostDetailRepository: Co
     fun getPostDetail(accessToken: String, postId: String) {
         viewModelScope.launch {
             val response = communityPostDetailRepository.getPostDetail(accessToken, postId)
-            Log.d("COMMUNITY/DETAIL", response.body().toString())
             if (response.isSuccessful) {
+                Log.d("COMMUNITY/DETAIL/T", response.body().toString())
                 _communityPostDetailResponse.value = response.body()!!
             } else {
                 Log.d("COMMUNITY/DETAIL/F", response.errorBody()?.string()!!)
