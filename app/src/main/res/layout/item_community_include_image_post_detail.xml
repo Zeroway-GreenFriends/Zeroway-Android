@@ -16,7 +16,7 @@
         android:layout_marginBottom="2dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/item_community_exclude_image_post_detail_profile_iv"
+            android:id="@+id/item_community_include_image_post_detail_profile_iv"
             imageUrl="@{communityPostDetail.userProfileImg}"
             android:layout_width="25dp"
             android:layout_height="25dp"
@@ -27,27 +27,27 @@
             tools:src="@drawable/ic_profile" />
 
         <TextView
-            android:id="@+id/item_community_exclude_image_post_detail_profile_name_tv"
+            android:id="@+id/item_community_include_image_post_detail_profile_name_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
             android:text="@{communityPostDetail.userName}"
             android:textColor="@color/zeroway_black"
             android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="@id/item_community_exclude_image_post_detail_profile_iv"
-            app:layout_constraintStart_toEndOf="@id/item_community_exclude_image_post_detail_profile_iv"
-            app:layout_constraintTop_toTopOf="@id/item_community_exclude_image_post_detail_profile_iv"
+            app:layout_constraintBottom_toBottomOf="@id/item_community_include_image_post_detail_profile_iv"
+            app:layout_constraintStart_toEndOf="@id/item_community_include_image_post_detail_profile_iv"
+            app:layout_constraintTop_toTopOf="@id/item_community_include_image_post_detail_profile_iv"
             tools:text="조이" />
 
         <ImageView
-            android:id="@+id/item_community_exclude_image_post_detail_select_iv"
+            android:id="@+id/item_community_include_image_post_detail_select_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:src="@drawable/ic_select"
-            app:layout_constraintBottom_toBottomOf="@id/item_community_exclude_image_post_detail_profile_name_tv"
+            app:layout_constraintBottom_toBottomOf="@id/item_community_include_image_post_detail_profile_name_tv"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/item_community_exclude_image_post_detail_profile_name_tv" />
+            app:layout_constraintTop_toTopOf="@id/item_community_include_image_post_detail_profile_name_tv" />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/item_community_include_image_post_detail_image_vp"
@@ -56,7 +56,7 @@
             android:layout_marginTop="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/item_community_exclude_image_post_detail_profile_iv" />
+            app:layout_constraintTop_toBottomOf="@id/item_community_include_image_post_detail_profile_iv" />
 
         <com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
             android:id="@+id/item_community_include_image_post_detail_image_sdi"
@@ -75,7 +75,7 @@
             app:stiffness="300" />
 
         <ImageView
-            android:id="@+id/item_community_exclude_image_post_detail_like_iv"
+            android:id="@+id/item_community_include_image_post_detail_like_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -85,14 +85,14 @@
             app:layout_constraintTop_toBottomOf="@id/item_community_include_image_post_detail_image_vp" />
 
         <ImageView
-            android:id="@+id/item_community_exclude_image_post_detail_bookmark_iv"
+            android:id="@+id/item_community_include_image_post_detail_bookmark_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
             android:src="@{communityPostDetail.bookmarked ? @drawable/ic_bookmark_on : @drawable/ic_bookmark_off, default=@drawable/ic_bookmark_off}"
-            app:layout_constraintBottom_toBottomOf="@id/item_community_exclude_image_post_detail_like_iv"
-            app:layout_constraintStart_toEndOf="@id/item_community_exclude_image_post_detail_like_iv"
-            app:layout_constraintTop_toTopOf="@id/item_community_exclude_image_post_detail_like_iv" />
+            app:layout_constraintBottom_toBottomOf="@id/item_community_include_image_post_detail_like_iv"
+            app:layout_constraintStart_toEndOf="@id/item_community_include_image_post_detail_like_iv"
+            app:layout_constraintTop_toTopOf="@id/item_community_include_image_post_detail_like_iv" />
 
         <TextView
             android:id="@+id/item_community_include_image_post_detail_challenge_tv"
@@ -108,12 +108,12 @@
             android:text="챌린지 인증"
             android:textColor="@color/white"
             android:textSize="8sp"
-            app:layout_constraintBottom_toBottomOf="@id/item_community_exclude_image_post_detail_bookmark_iv"
+            app:layout_constraintBottom_toBottomOf="@id/item_community_include_image_post_detail_bookmark_iv"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/item_community_exclude_image_post_detail_bookmark_iv" />
+            app:layout_constraintTop_toTopOf="@id/item_community_include_image_post_detail_bookmark_iv" />
 
         <TextView
-            android:id="@+id/item_community_exclude_image_post_detail_like_tv"
+            android:id="@+id/item_community_include_image_post_detail_like_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -122,23 +122,23 @@
             android:textColor="@color/zeroway_black"
             android:textSize="10sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/item_community_exclude_image_post_detail_like_iv" />
+            app:layout_constraintTop_toBottomOf="@id/item_community_include_image_post_detail_like_iv" />
 
         <TextView
-            android:id="@+id/item_community_exclude_image_post_detail_like_count_tv"
+            android:id="@+id/item_community_include_image_post_detail_like_count_tv"
             communityPostLikeCount="@{communityPostDetail.likeCount}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
             android:textColor="@color/zeroway_black"
             android:textSize="10sp"
-            app:layout_constraintBottom_toBottomOf="@id/item_community_exclude_image_post_detail_like_tv"
-            app:layout_constraintStart_toEndOf="@id/item_community_exclude_image_post_detail_like_tv"
-            app:layout_constraintTop_toTopOf="@id/item_community_exclude_image_post_detail_like_tv"
+            app:layout_constraintBottom_toBottomOf="@id/item_community_include_image_post_detail_like_tv"
+            app:layout_constraintStart_toEndOf="@id/item_community_include_image_post_detail_like_tv"
+            app:layout_constraintTop_toTopOf="@id/item_community_include_image_post_detail_like_tv"
             tools:text="103개" />
 
         <TextView
-            android:id="@+id/item_community_exclude_image_post_detail_content_tv"
+            android:id="@+id/item_community_include_image_post_detail_content_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
@@ -148,11 +148,11 @@
             android:textColor="@color/zeroway_black"
             android:textSize="10sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/item_community_exclude_image_post_detail_like_tv"
+            app:layout_constraintTop_toBottomOf="@id/item_community_include_image_post_detail_like_tv"
             tools:text="오늘 나의 실천 인증! 두 줄 이상 작성 시에는 상세 보기에서 더 많은 내용을 확인 할 수 있습니다.오늘 나의 실천 인증! 두 줄 이상 작성 시에는 상세 보기에서 더 많은 내용을 확인 할 수 있습니다." />
 
         <TextView
-            android:id="@+id/item_community_exclude_image_post_detail_day_tv"
+            android:id="@+id/item_community_include_image_post_detail_day_tv"
             communityPostDate="@{communityPostDetail.weeksAgo}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -163,7 +163,7 @@
             android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/item_community_exclude_image_post_detail_content_tv"
+            app:layout_constraintTop_toBottomOf="@id/item_community_include_image_post_detail_content_tv"
             tools:text="1주" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
