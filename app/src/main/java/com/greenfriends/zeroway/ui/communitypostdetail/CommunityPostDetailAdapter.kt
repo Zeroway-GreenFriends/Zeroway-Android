@@ -35,11 +35,11 @@ class CommunityPostDetailAdapter :
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (getItemViewType(position) == 1) {
-            (holder as CommunityPostDetailAdapter.CommunityPostDetailIncludeImageViewHolder).bind(
+            (holder as CommunityPostDetailIncludeImageViewHolder).bind(
                 getItem(position)
             )
         } else {
-            (holder as CommunityPostDetailAdapter.CommunityPostDetailExcludeImageViewHolder).bind(
+            (holder as CommunityPostDetailExcludeImageViewHolder).bind(
                 getItem(position)
             )
         }
