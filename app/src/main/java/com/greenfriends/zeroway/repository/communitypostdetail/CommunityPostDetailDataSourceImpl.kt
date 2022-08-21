@@ -1,5 +1,6 @@
 package com.greenfriends.zeroway.repository.communitypostdetail
 
+import com.greenfriends.zeroway.model.CommunityPostBookmarkRequest
 import com.greenfriends.zeroway.model.CommunityPostCommentRequest
 import com.greenfriends.zeroway.model.CommunityPostDetailResponse
 import com.greenfriends.zeroway.model.CommunityPostLikeRequest
@@ -33,5 +34,13 @@ class CommunityPostDetailDataSourceImpl : CommunityPostDetailDataSource {
         like: CommunityPostLikeRequest
     ): Response<Void> {
         return communityService!!.setPostLike(accessToken, postId, like)
+    }
+
+    override suspend fun setPostBookmark(
+        accessToken: String,
+        postId: String,
+        bookmark: CommunityPostBookmarkRequest
+    ): Response<Void> {
+        return communityService!!.setPostBookmark(accessToken, postId, bookmark)
     }
 }
