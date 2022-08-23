@@ -21,9 +21,14 @@ import com.navercorp.nid.profile.data.NidProfileResponse
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.Constraints
 import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -38,9 +43,12 @@ class LoginActivity : AppCompatActivity(), LoginView {
     private var email: String = ""
     private var provider: String = ""
 
-    private val TAG = this.javaClass.simpleName
-    private lateinit var launcher: ActivityResultLauncher<Intent>
+    //firebase Auth
     private lateinit var firebaseAuth: FirebaseAuth
+    //google client
+    private lateinit var googleSignInClient: GoogleSignInClient
+    //private const val TAG = "GoogleActivity"
+    private val RC_SIGN_IN = 99
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -183,53 +191,64 @@ class LoginActivity : AppCompatActivity(), LoginView {
     }
 
     private fun googleLogin() {
-        firebaseAuth = FirebaseAuth.getInstance()
-        launcher = registerForActivityResult(
-            ActivityResultContracts.StartActivityForResult(), ActivityResultCallback { result ->
-                Log.e(TAG, "resultCode : ${result.resultCode}")
-                Log.e(TAG, "result : $result")
-                if (result.resultCode == RESULT_OK) {
-                    val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
-                    try {
-                        task.getResult(ApiException::class.java)?.let { account ->
-                            provider = account.idToken.toString()
-                            if (provider != null && provider != "") {
-                                val credential: AuthCredential = GoogleAuthProvider.getCredential(account.idToken, null)
-                                firebaseAuth.signInWithCredential(credential)
-                                    .addOnCompleteListener {
-                                        if (firebaseAuth.currentUser != null) {
-                                            val user: FirebaseUser = firebaseAuth.currentUser!!
-                                            email = user.email.toString()
-                                            Log.e(TAG, "email : $email")
-                                            val googleSignInToken = account.idToken ?: ""
-                                            if (googleSignInToken != "") {
-                                                Log.e(TAG, "googleSignInToken : $googleSignInToken")
-                                            } else {
-                                                Log.e(TAG, "googleSignInToken이 null")
-                                            }
-                                        }
-                                    }
-                            }
-                        } ?: throw Exception()
-                    }   catch (e: Exception) {
-                        e.printStackTrace()
-                    }
-                }
-            })
+        //Google 로그인 옵션 구성. requestIdToken 및 Email 요청
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            //'R.string.default_web_client_id' 에는 본인의 클라이언트 아이디를 넣어주시면 됩니다.
+            //저는 스트링을 따로 빼서 저렇게 사용했지만 스트링을 통째로 넣으셔도 됩니다.
+            .requestEmail()
+            .build()
 
-        binding.run {
-            loginGoogleLoginIv.setOnClickListener {
-                CoroutineScope(Dispatchers.IO).launch {
-                    val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                        .requestIdToken(getString(R.string.default_web_client_id))
-                        .requestEmail()
-                        .build()
-                    val googleSignInClient = GoogleSignIn.getClient(this@LoginActivity, gso)
-                    val signInIntent: Intent = googleSignInClient.signInIntent
-                    launcher.launch(signInIntent)
-                }
+        googleSignInClient = GoogleSignIn.getClient(this, gso)
+
+        //firebase auth 객체
+        firebaseAuth = FirebaseAuth.getInstance()
+
+
+    }
+
+    // onStart. 유저가 앱에 이미 구글 로그인을 했는지 확인
+    public override fun onStart() {
+        super.onStart()
+        val account = GoogleSignIn.getLastSignedInAccount(this)
+        if(account!==null){ // 이미 로그인 되어있을시 바로 메인 액티비티로 이동
+            startMainActivity()
+        }
+    }
+
+    public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
+                // Google Sign In was successful, authenticate with Firebase
+                val account = task.getResult(ApiException::class.java)
+                firebaseAuthWithGoogle(account!!)
+
+            } catch (e: ApiException) {
+                // Google Sign In failed, update UI appropriately
+                Log.w("LoginActivity", "Google sign in failed", e)
             }
         }
+    }
+
+    private fun firebaseAuthWithGoogle(acct: GoogleSignInAccount) {
+        Log.d("LoginActivity", "firebaseAuthWithGoogle:" + acct.id!!)
+
+        //Google SignInAccount 객체에서 ID 토큰을 가져와서 Firebase Auth로 교환하고 Firebase에 인증
+        val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
+        firebaseAuth.signInWithCredential(credential)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    Log.w("LoginActivity", "firebaseAuthWithGoogle 성공", task.exception)
+                    startMainActivity()
+                } else {
+                    Log.w("LoginActivity", "firebaseAuthWithGoogle 실패", task.exception)
+                    Snackbar.make(findViewById<ConstraintLayout>(R.id.login_layout), "로그인에 실패하였습니다.", Snackbar.LENGTH_SHORT).show()
+                }
+            }
     }
 
     private fun saveJwt(jwt: String?) {
