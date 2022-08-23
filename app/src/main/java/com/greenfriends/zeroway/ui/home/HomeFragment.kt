@@ -1,12 +1,15 @@
 package com.greenfriends.zeroway.ui.home
 
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.greenfriends.zeroway.model.*
 import com.greenfriends.zeroway.*
 import com.greenfriends.zeroway.databinding.FragmentHomeBinding
@@ -14,8 +17,10 @@ import com.greenfriends.zeroway.network.*
 import com.greenfriends.zeroway.ui.*
 import com.greenfriends.zeroway.ui.alarm.AlarmFragment
 import com.greenfriends.zeroway.ui.store.StoreFragment
+import retrofit2.http.Url
+import java.net.URL
 
-class HomeFragment : Fragment(), TipView, TermView, StoreListView {
+class HomeFragment : Fragment(), TipView, TermView, StoreListView, ChallengeView {
     private lateinit var binding: FragmentHomeBinding
     private var termDatas = ArrayList<TermResponse>()
     private var shopDatas = ArrayList<ShopList>()
@@ -58,7 +63,7 @@ class HomeFragment : Fragment(), TipView, TermView, StoreListView {
                 ?.commitAllowingStateLoss()
         }
 
-
+        getChallenge(getJwt()!!)
         getStoreList(null,1,5)
         getTip()
         getTerm(null, null, null)
@@ -146,8 +151,11 @@ class HomeFragment : Fragment(), TipView, TermView, StoreListView {
 
     override fun onStoreListSuccess(result: List<StoreResponse>) {
         for (i in result){
-            //homeStoreList.add(ShopList(i.name,i.imageUrl))
-            homeStoreList.add(ShopList(i.name,""))
+            if (i.imageUrl != null){
+                homeStoreList.add(ShopList(i.name,i.imageUrl))
+            } else {
+                homeStoreList.add(ShopList(i.name,""))
+            }
         }
 
         Log.e("list",homeStoreList.toString())
@@ -159,6 +167,31 @@ class HomeFragment : Fragment(), TipView, TermView, StoreListView {
 
     override fun onStoreListFailure() {
         TODO("Not yet implemented")
+    }
+
+    private fun getChallenge(token: String) {
+        val challengeService = ChallengeService()
+        challengeService.setChallengeView(this)
+        challengeService.getChallenge(token)
+    }
+
+    override fun onChallengeSuccess(result: ChallengeResponse) {
+        binding.homeUserNameTv.text = result.nickname+" 님,"
+        binding.homeLevelTv.text = "Level "+result.level.toString()
+        Glide.with(binding.homeLevelIv.context)
+            .load(Uri.parse(result.imgUrl))
+            .disallowHardwareConfig()
+            .into(binding.homeLevelIv)
+    }
+
+    override fun onChallengeFailure() {
+        TODO("Not yet implemented")
+    }
+
+    private fun getJwt(): String? {
+        val sharedPreferences =
+            activity?.getSharedPreferences("auth", AppCompatActivity.MODE_PRIVATE)
+        return sharedPreferences!!.getString("jwt", null)
     }
 
 }
