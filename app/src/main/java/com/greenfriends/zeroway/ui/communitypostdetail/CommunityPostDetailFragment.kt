@@ -75,7 +75,7 @@ class CommunityPostDetailFragment : Fragment() {
     }
 
     private fun setCommunityPostDetailAdapter() {
-        communityPostDetailAdapter = CommunityPostDetailAdapter()
+        communityPostDetailAdapter = CommunityPostDetailAdapter(requireContext())
         communityPostDetailCommentsAdapter = CommunityPostDetailCommentsAdapter()
         binding.communityPostDetailRv.adapter =
             ConcatAdapter(communityPostDetailAdapter, communityPostDetailCommentsAdapter)

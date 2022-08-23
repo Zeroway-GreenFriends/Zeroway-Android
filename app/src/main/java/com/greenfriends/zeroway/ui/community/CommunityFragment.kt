@@ -80,7 +80,7 @@ class CommunityFragment : Fragment() {
     }
 
     private fun setCommunityAdapter() {
-        adapter = CommunityAdapter(viewModel)
+        adapter = CommunityAdapter(viewModel, requireContext())
         binding.communityPostRv.adapter = adapter
         adapter.setOnCommunityItemClickListener(object : OnCommunityItemClickListener {
 

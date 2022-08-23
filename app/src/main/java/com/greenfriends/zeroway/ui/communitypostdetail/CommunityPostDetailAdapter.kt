@@ -1,7 +1,12 @@
 package com.greenfriends.zeroway.ui.communitypostdetail
 
+import android.content.Context
+import android.os.Build
+import android.view.ContextThemeWrapper
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -11,7 +16,7 @@ import com.greenfriends.zeroway.databinding.ItemCommunityIncludeImagePostDetailB
 import com.greenfriends.zeroway.model.CommunityPostDetailResponse
 import com.greenfriends.zeroway.ui.community.CommunityPostAdapter
 
-class CommunityPostDetailAdapter :
+class CommunityPostDetailAdapter(private val context: Context) :
     ListAdapter<CommunityPostDetailResponse, RecyclerView.ViewHolder>(
         CommunityPostDetailDiffCallback()
     ) {
@@ -100,6 +105,20 @@ class CommunityPostDetailAdapter :
                         communityPostDetailResponse
                     )
                 }
+
+                itemCommunityIncludeImagePostDetailSelectIv.setOnClickListener {
+                    val wrapper =
+                        ContextThemeWrapper(context, R.style.Widget_Material3_PopupMenu_Custom)
+                    val popup = PopupMenu(wrapper, it)
+                    popup.menuInflater.inflate(R.menu.menu_option_item, popup.menu)
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        popup.gravity = Gravity.END
+                    }
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                        popup.setForceShowIcon(true)
+                    }
+                    popup.show()
+                }
             }
         }
     }
@@ -142,6 +161,20 @@ class CommunityPostDetailAdapter :
                     onCommunityPostDetailItemClickListener.setCommunityPostBookmark(
                         communityPostDetailResponse
                     )
+                }
+
+                itemCommunityExcludeImagePostDetailSelectIv.setOnClickListener {
+                    val wrapper =
+                        ContextThemeWrapper(context, R.style.Widget_Material3_PopupMenu_Custom)
+                    val popup = PopupMenu(wrapper, it)
+                    popup.menuInflater.inflate(R.menu.menu_option_item, popup.menu)
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        popup.gravity = Gravity.END
+                    }
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                        popup.setForceShowIcon(true)
+                    }
+                    popup.show()
                 }
             }
         }
