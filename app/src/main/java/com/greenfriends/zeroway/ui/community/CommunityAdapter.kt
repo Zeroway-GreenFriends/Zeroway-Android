@@ -1,7 +1,12 @@
 package com.greenfriends.zeroway.ui.community
 
+import android.content.Context
+import android.os.Build
+import android.view.ContextThemeWrapper
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -12,6 +17,7 @@ import com.greenfriends.zeroway.model.CommunityPost
 
 class CommunityAdapter(
     private val viewModel: CommunityViewModel,
+    private val context: Context
 ) :
     ListAdapter<CommunityPost, RecyclerView.ViewHolder>(CommunityDiffCallback()) {
 
@@ -92,6 +98,20 @@ class CommunityAdapter(
                     }
                     onCommunityItemClickListener.setCommunityPostBookmark(communityPost)
                 }
+
+                itemCommunityIncludeImageSelectIv.setOnClickListener {
+                    val wrapper =
+                        ContextThemeWrapper(context, R.style.Widget_Material3_PopupMenu_Custom)
+                    val popup = PopupMenu(wrapper, it)
+                    popup.menuInflater.inflate(R.menu.menu_option_item, popup.menu)
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        popup.gravity = Gravity.END
+                    }
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                        popup.setForceShowIcon(true)
+                    }
+                    popup.show()
+                }
             }
         }
     }
@@ -131,6 +151,20 @@ class CommunityAdapter(
                         itemCommunityExcludeImageBookmarkIv.setImageResource(R.drawable.ic_bookmark_off)
                     }
                     onCommunityItemClickListener.setCommunityPostBookmark(communityPost)
+                }
+
+                itemCommunityExcludeImageSelectIv.setOnClickListener {
+                    val wrapper =
+                        ContextThemeWrapper(context, R.style.Widget_Material3_PopupMenu_Custom)
+                    val popup = PopupMenu(wrapper, it)
+                    popup.menuInflater.inflate(R.menu.menu_option_item, popup.menu)
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        popup.gravity = Gravity.END
+                    }
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                        popup.setForceShowIcon(true)
+                    }
+                    popup.show()
                 }
             }
         }
