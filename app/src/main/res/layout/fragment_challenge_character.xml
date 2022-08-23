@@ -84,6 +84,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/challenge_character_goback_btn"
-        app:srcCompat="@drawable/ic_level_1" />
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

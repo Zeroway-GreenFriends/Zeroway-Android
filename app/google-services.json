@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "81223738318",
+    "project_id": "zeroway-android-2d5fc",
+    "storage_bucket": "zeroway-android-2d5fc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:81223738318:android:b15661f987861760b3c19f",
+        "android_client_info": {
+          "package_name": "com.greenfriends.zeroway"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "81223738318-5ruekd6jpvbu8mdinqq6m6n9m9tt6ukv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.greenfriends.zeroway",
+            "certificate_hash": "153e91b74eafeb5d36e3592a38bd69e95585bfad"
+          }
+        },
+        {
+          "client_id": "81223738318-6ct2adskau7n2j3nn2m6n2rqh7n0nsnh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDY-yjf_foGbvXdmVUk2BNdaRe68TI7lXI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "81223738318-6ct2adskau7n2j3nn2m6n2rqh7n0nsnh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

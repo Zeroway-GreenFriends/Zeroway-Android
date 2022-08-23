@@ -34,10 +34,10 @@ class WordDialogFragment(val word: TermResponse): DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.wordDialogTitle.text = word.term
-        binding.wordDialogContent.text = word.description
+        binding.wordDialogTitleTv.text = word.term
+        binding.wordDialogContentTv.text = word.description
 
-        binding.wordDialogClose.setOnClickListener {
+        binding.wordDialogCloseBtn.setOnClickListener {
             dismiss()
         }
 
