@@ -25,7 +25,7 @@
     <TextView
         android:id="@+id/item_homne_term_content_tv"
         android:layout_width="223dp"
-        android:layout_height="wrap_content"
+        android:layout_height="53dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
