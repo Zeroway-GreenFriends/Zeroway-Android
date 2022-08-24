@@ -21,20 +21,26 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
+            android:id="@+id/word_dialog_ll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="57dp"
+            android:layout_marginTop="23dp"
+            android:layout_marginBottom="24dp"
             android:gravity="center"
             android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/word_dialog_close_btn">
 
             <TextView
                 android:id="@+id/word_dialog_title_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginBottom="30sp"
+                android:gravity="center"
+                android:paddingHorizontal="10sp"
                 android:text="IPCC"
                 android:fontFamily="@font/notosans_regular"
                 android:textStyle="bold"

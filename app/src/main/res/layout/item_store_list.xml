@@ -20,6 +20,7 @@
             android:id="@+id/item_store_list_img"
             android:layout_width="match_parent"
             android:layout_height="126dp"
+            android:scaleType="centerCrop"
             android:background="@color/zeroway_gray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

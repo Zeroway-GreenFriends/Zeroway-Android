@@ -48,9 +48,9 @@ class ShopAdapter(private val shopList: ArrayList<ShopList>) :
 //            binding.itemHomeShopScoreTv.text = shop.score
 //            binding.itemHomeShopCountTv.text = shop.count
 
-//            Glide.with(binding.itemHomeShopImg.context)
-//                .load(shop.imgUrl)
-//                .into(binding.itemHomeShopImg)
+            Glide.with(binding.itemHomeShopImg.context)
+                .load(shop.imgUrl)
+                .into(binding.itemHomeShopImg)
         }
     }
 
