@@ -1,4 +1,4 @@
-package com.greenfriends.zeroway.ui
+package com.greenfriends.zeroway.ui.signup
 
 import android.app.Activity
 import android.content.Context
@@ -21,6 +21,7 @@ import com.greenfriends.zeroway.network.SignUpView
 import com.greenfriends.zeroway.model.Result
 import com.greenfriends.zeroway.model.User
 import com.greenfriends.zeroway.databinding.ActivitySignUpBinding
+import com.greenfriends.zeroway.ui.MainActivity
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody

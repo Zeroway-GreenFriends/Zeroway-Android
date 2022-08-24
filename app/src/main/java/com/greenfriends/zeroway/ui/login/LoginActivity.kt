@@ -1,4 +1,4 @@
-package com.greenfriends.zeroway.ui
+package com.greenfriends.zeroway.ui.login
 
 import android.content.ContentValues
 import android.content.Intent
@@ -11,6 +11,8 @@ import com.greenfriends.zeroway.model.LoginRequest
 import com.greenfriends.zeroway.model.Result
 import com.greenfriends.zeroway.network.AuthService
 import com.greenfriends.zeroway.network.LoginView
+import com.greenfriends.zeroway.ui.MainActivity
+import com.greenfriends.zeroway.ui.signup.SignUpActivity
 import com.kakao.sdk.user.UserApiClient
 import com.navercorp.nid.NaverIdLoginSDK
 import com.navercorp.nid.oauth.NidOAuthLogin
