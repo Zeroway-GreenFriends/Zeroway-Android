@@ -1,4 +1,4 @@
-package com.greenfriends.zeroway.ui
+package com.greenfriends.zeroway.ui.home
 
 
 import android.view.LayoutInflater
@@ -29,7 +29,7 @@ class UseAdapter(private val useList: ArrayList<UseList>) :
     }
 
 
-    override fun onBindViewHolder(holder: UseAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(useList[position])
         holder.itemView.setOnClickListener {
             mItemClickListener.onItemClick(useList[position])

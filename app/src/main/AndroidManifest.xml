@@ -51,10 +51,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.LoginActivity"
+            android:name=".ui.login.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.SignUpActivity"
+            android:name=".ui.signup.SignUpActivity"
             android:exported="false" />
         <activity
             android:name=".ui.challenge.LevelUpActivity"

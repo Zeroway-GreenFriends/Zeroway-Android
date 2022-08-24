@@ -3,6 +3,7 @@ package com.greenfriends.zeroway.ui
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.greenfriends.zeroway.ui.login.LoginActivity
 
 class SplashActivity : AppCompatActivity() {
 

@@ -14,11 +14,8 @@ import com.greenfriends.zeroway.model.*
 import com.greenfriends.zeroway.*
 import com.greenfriends.zeroway.databinding.FragmentHomeBinding
 import com.greenfriends.zeroway.network.*
-import com.greenfriends.zeroway.ui.*
 import com.greenfriends.zeroway.ui.alarm.AlarmFragment
 import com.greenfriends.zeroway.ui.store.StoreFragment
-import retrofit2.http.Url
-import java.net.URL
 
 class HomeFragment : Fragment(), TipView, TermView, StoreListView, ChallengeView {
     private lateinit var binding: FragmentHomeBinding
