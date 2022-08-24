@@ -1,7 +1,7 @@
 package com.greenfriends.zeroway.repository.community
 
 import com.greenfriends.zeroway.model.CommunityPostBookmarkRequest
-import com.greenfriends.zeroway.model.CommunityPostLikeRequest
+import com.greenfriends.zeroway.model.CommunityLikeRequest
 import com.greenfriends.zeroway.model.CommunityResponse
 import retrofit2.Response
 
@@ -14,7 +14,7 @@ class CommunityRepository(private val communityDataSourceImpl: CommunityDataSour
     suspend fun setPostLike(
         accessToken: String,
         postId: String,
-        like: CommunityPostLikeRequest
+        like: CommunityLikeRequest
     ): Response<Void> {
         return communityDataSourceImpl.setPostLike(accessToken, postId, like)
     }

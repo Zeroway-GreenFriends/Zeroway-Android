@@ -13,6 +13,7 @@ import com.greenfriends.zeroway.GlideApp
 import com.greenfriends.zeroway.R
 import com.greenfriends.zeroway.common.POST_ID
 import com.greenfriends.zeroway.databinding.FragmentCommunityPostDetailBinding
+import com.greenfriends.zeroway.model.CommunityPostDetailComment
 import com.greenfriends.zeroway.model.CommunityPostDetailResponse
 import com.greenfriends.zeroway.ui.common.EventObserve
 import com.greenfriends.zeroway.ui.common.ViewModelFactory
@@ -96,29 +97,45 @@ class CommunityPostDetailFragment : Fragment() {
         binding.communityPostDetailRv.adapter =
             ConcatAdapter(communityPostDetailAdapter, communityPostDetailCommentsAdapter)
 
-        communityPostDetailAdapter.setOnCommunityPostDetailItemClickListener(object :
-            OnCommunityPostDetailItemClickListener {
+        communityPostDetailAdapter.setOnCommunityPostDetailPostClickListener(object :
+            OnCommunityPostDetailPostClickListener {
 
-            override fun deleteCommunityPost(communityPostDetail: CommunityPostDetailResponse) {
+            override fun deleteCommunityPost(communityPostDetailResponse: CommunityPostDetailResponse) {
                 viewModel.deletePost(
                     getJwt()!!,
-                    communityPostDetail.postId.toString()
+                    communityPostDetailResponse.postId.toString()
                 )
             }
 
-            override fun setCommunityPostLike(communityPostDetail: CommunityPostDetailResponse) {
+            override fun setCommunityPostLike(communityPostDetailResponse: CommunityPostDetailResponse) {
                 viewModel.setPostLike(
                     getJwt()!!,
-                    communityPostDetail.postId.toString(),
-                    communityPostDetail.liked
+                    communityPostDetailResponse.postId.toString(),
+                    communityPostDetailResponse.liked
                 )
             }
 
-            override fun setCommunityPostBookmark(communityPostDetail: CommunityPostDetailResponse) {
+            override fun setCommunityPostBookmark(communityPostDetailResponse: CommunityPostDetailResponse) {
                 viewModel.setPostBookmark(
                     getJwt()!!,
-                    communityPostDetail.postId.toString(),
-                    communityPostDetail.bookmarked
+                    communityPostDetailResponse.postId.toString(),
+                    communityPostDetailResponse.bookmarked
+                )
+            }
+        })
+
+        communityPostDetailCommentsAdapter.setOnCommunityPostDetailCommentClickListener(object :
+            OnCommunityPostDetailCommentClickListener {
+
+            override fun deleteCommunityPostComment(communityPostDetailComment: CommunityPostDetailComment) {
+                TODO("Not yet implemented")
+            }
+
+            override fun setCommunityPostCommentLike(communityPostDetailComment: CommunityPostDetailComment) {
+                viewModel.setPostCommentLike(
+                    getJwt()!!,
+                    communityPostDetailComment.commentId.toString(),
+                    communityPostDetailComment.liked
                 )
             }
         })

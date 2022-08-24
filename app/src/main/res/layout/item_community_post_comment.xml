@@ -89,7 +89,7 @@
             app:layout_constraintTop_toTopOf="@id/item_community_post_comment_day_iv" />
 
         <TextView
-            android:id="@+id/item_community_post_comment_like_input_tv"
+            android:id="@+id/item_community_post_comment_like_count_tv"
             convertIntToString="@{communityPostDetailComment.likeCount}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

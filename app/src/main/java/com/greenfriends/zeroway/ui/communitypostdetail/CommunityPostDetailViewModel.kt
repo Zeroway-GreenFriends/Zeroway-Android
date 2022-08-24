@@ -5,10 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.greenfriends.zeroway.model.CommunityLikeRequest
 import com.greenfriends.zeroway.model.CommunityPostBookmarkRequest
 import com.greenfriends.zeroway.model.CommunityPostCommentRequest
 import com.greenfriends.zeroway.model.CommunityPostDetailResponse
-import com.greenfriends.zeroway.model.CommunityPostLikeRequest
 import com.greenfriends.zeroway.repository.communitypostdetail.CommunityPostDetailRepository
 import com.greenfriends.zeroway.ui.common.Event
 import kotlinx.coroutines.launch
@@ -72,7 +72,7 @@ class CommunityPostDetailViewModel(private val communityPostDetailRepository: Co
                 communityPostDetailRepository.setPostLike(
                     accessToken,
                     postId,
-                    CommunityPostLikeRequest(like)
+                    CommunityLikeRequest(like)
                 )
             if (response.isSuccessful) {
                 Log.d("COMMUNITY/LIKE/T", response.body().toString())
@@ -112,6 +112,21 @@ class CommunityPostDetailViewModel(private val communityPostDetailRepository: Co
                 else -> {
                     Log.d("COMMUNITY/DELETE/F", response.errorBody()?.string()!!)
                 }
+            }
+        }
+    }
+
+    fun setPostCommentLike(accessToken: String, commentId: String, like: Boolean) {
+        viewModelScope.launch {
+            val response = communityPostDetailRepository.setPostCommentLike(
+                accessToken,
+                commentId,
+                CommunityLikeRequest(like)
+            )
+            if (response.isSuccessful) {
+                Log.d("COMMUNITY/LIKE/T", response.body().toString())
+            } else {
+                Log.d("COMMUNITY/LIKE/F", response.errorBody()?.string()!!)
             }
         }
     }

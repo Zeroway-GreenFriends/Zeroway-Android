@@ -1,7 +1,7 @@
 package com.greenfriends.zeroway.repository.community
 
 import com.greenfriends.zeroway.model.CommunityPostBookmarkRequest
-import com.greenfriends.zeroway.model.CommunityPostLikeRequest
+import com.greenfriends.zeroway.model.CommunityLikeRequest
 import com.greenfriends.zeroway.model.CommunityResponse
 import com.greenfriends.zeroway.network.CommunityRetrofitInterface
 import com.greenfriends.zeroway.network.RetrofitClient
@@ -19,7 +19,7 @@ class CommunityDataSourceImpl : CommunityDataSource {
     override suspend fun setPostLike(
         accessToken: String,
         postId: String,
-        like: CommunityPostLikeRequest
+        like: CommunityLikeRequest
     ): Response<Void> {
         return communityService!!.setPostLike(accessToken, postId, like)
     }
