@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.greenfriends.zeroway.R
+import com.greenfriends.zeroway.common.POST_ID
 import com.greenfriends.zeroway.databinding.FragmentCommunityBinding
 import com.greenfriends.zeroway.model.CommunityPost
 import com.greenfriends.zeroway.ui.common.EventObserve
@@ -72,7 +73,8 @@ class CommunityFragment : Fragment() {
                     Toast.makeText(requireContext(), "게시물이 삭제되었습니다.", Toast.LENGTH_SHORT).show()
                     getPosts()
                 } else {
-                    Toast.makeText(requireContext(), "해당 게시물 삭제 권한이 없습니다.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "해당 게시물 삭제 권한이 없습니다.", Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
         )
@@ -137,7 +139,7 @@ class CommunityFragment : Fragment() {
 
     private fun startCommunityPostDetailFragment(postId: String) {
         val bundle = Bundle()
-        bundle.putString("postId", postId)
+        bundle.putString(POST_ID, postId)
 
         val communityPostDetailFragment = CommunityPostDetailFragment()
         communityPostDetailFragment.arguments = bundle

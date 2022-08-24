@@ -111,6 +111,17 @@ class CommunityPostDetailAdapter(private val context: Context) :
                         ContextThemeWrapper(context, R.style.Widget_Material3_PopupMenu_Custom)
                     val popup = PopupMenu(wrapper, it)
                     popup.menuInflater.inflate(R.menu.menu_option_item, popup.menu)
+                    popup.setOnMenuItemClickListener { menuItem ->
+                        when (menuItem.itemId) {
+                            R.id.menu_option_item_delete -> {
+                                onCommunityPostDetailItemClickListener.deleteCommunityPost(
+                                    communityPostDetailResponse
+                                )
+                            }
+                            else -> TODO()
+                        }
+                        false
+                    }
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                         popup.gravity = Gravity.END
                     }
@@ -168,6 +179,17 @@ class CommunityPostDetailAdapter(private val context: Context) :
                         ContextThemeWrapper(context, R.style.Widget_Material3_PopupMenu_Custom)
                     val popup = PopupMenu(wrapper, it)
                     popup.menuInflater.inflate(R.menu.menu_option_item, popup.menu)
+                    popup.setOnMenuItemClickListener { menuItem ->
+                        when (menuItem.itemId) {
+                            R.id.menu_option_item_delete -> {
+                                onCommunityPostDetailItemClickListener.deleteCommunityPost(
+                                    communityPostDetailResponse
+                                )
+                            }
+                            else -> TODO()
+                        }
+                        false
+                    }
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                         popup.gravity = Gravity.END
                     }
