@@ -23,6 +23,9 @@ class CommunityViewModel(private val communityRepository: CommunityRepository) :
     private val _communityPostDetailEvent = MutableLiveData<Event<Long>>()
     val communityPostDetailEvent: LiveData<Event<Long>> = _communityPostDetailEvent
 
+    private val _communityPostDeleteEvent = MutableLiveData<Event<Boolean>>()
+    val communityPostDeleteEvent: LiveData<Event<Boolean>> = _communityPostDeleteEvent
+
     fun setSort(sort: String) {
         _sort.value = sort
     }
@@ -71,6 +74,24 @@ class CommunityViewModel(private val communityRepository: CommunityRepository) :
                 Log.d("COMMUNITY/BOOKMARK/T", response.body().toString())
             } else {
                 Log.d("COMMUNITY/BOOKMARK/F", response.errorBody()?.string()!!)
+            }
+        }
+    }
+
+    fun deletePost(accessToken: String, postId: String) {
+        viewModelScope.launch {
+            val response = communityRepository.deletePost(accessToken, postId)
+            when {
+                response.isSuccessful -> {
+                    _communityPostDeleteEvent.value = Event(true)
+                    Log.d("COMMUNITY/DELETE/T", response.body().toString())
+                }
+                response.code() == 401 -> {
+                    _communityPostDeleteEvent.value = Event(false)
+                }
+                else -> {
+                    Log.d("COMMUNITY/DELETE/F", response.errorBody()?.string()!!)
+                }
             }
         }
     }

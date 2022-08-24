@@ -4,7 +4,7 @@ import com.greenfriends.zeroway.model.CommunityPost
 
 interface OnCommunityItemClickListener {
 
-    fun deleteCommunityPost()
+    fun deleteCommunityPost(communityPost: CommunityPost)
     fun setCommunityPostLike(communityPost: CommunityPost)
     fun setCommunityPostBookmark(communityPost: CommunityPost)
 }
