@@ -193,7 +193,7 @@ class LoginActivity : AppCompatActivity(), LoginView {
     private fun googleLogin() {
         //Google 로그인 옵션 구성. requestIdToken 및 Email 요청
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestIdToken("IHNxsiEIEVYm7WjtNrI2dUuVp972")
             //'R.string.default_web_client_id' 에는 본인의 클라이언트 아이디를 넣어주시면 됩니다.
             //저는 스트링을 따로 빼서 저렇게 사용했지만 스트링을 통째로 넣으셔도 됩니다.
             .requestEmail()
