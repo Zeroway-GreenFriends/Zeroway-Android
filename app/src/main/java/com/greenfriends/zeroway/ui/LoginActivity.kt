@@ -163,9 +163,17 @@ class LoginActivity : AppCompatActivity(), LoginView {
         editor.apply()
     }
 
+    private fun saveProfileImgUrl(profileImgUrl: String?) {
+        val sharedPreferences = getSharedPreferences("profile", MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("profileImgUrl", profileImgUrl)
+        editor.apply()
+    }
+
     override fun onLoginSuccess(result: Result) {
         Log.d("LOGIN/SUCCESS", "기존 회원 로그인 성공")
         saveJwt(result.accessToken)
+        saveProfileImgUrl(result.profileImgUrl)
         startMainActivity()
         finish()
     }
