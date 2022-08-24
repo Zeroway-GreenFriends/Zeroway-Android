@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.ConcatAdapter
+import com.greenfriends.zeroway.GlideApp
 import com.greenfriends.zeroway.R
 import com.greenfriends.zeroway.common.POST_ID
 import com.greenfriends.zeroway.databinding.FragmentCommunityPostDetailBinding
@@ -39,6 +40,7 @@ class CommunityPostDetailFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
 
         setPostId()
+        setUserProfileImg()
         setObserve()
         setOnClickListener()
         setCommunityPostDetailAdapter()
@@ -49,13 +51,11 @@ class CommunityPostDetailFragment : Fragment() {
         arguments?.getString(POST_ID)?.let { viewModel.setPostId(it) }
     }
 
-    /**
-     *  로그인 / 회원 가입 API에서 JWT, userProfileImg를 받아 와야 할 것 같다. 추후 수정 필요
-     *
-     * private fun setUserProfileImg() {
-    binding.communityPostDetailCommentProfileIv
+    private fun setUserProfileImg() {
+        GlideApp.with(this)
+            .load(getProfileImgUrl())
+            .into(binding.communityPostDetailCommentProfileIv)
     }
-     */
 
     private fun setObserve() {
         viewModel.communityPostDetailResponse.observe(
@@ -132,6 +132,12 @@ class CommunityPostDetailFragment : Fragment() {
         val sharedPreferences =
             activity?.getSharedPreferences("auth", AppCompatActivity.MODE_PRIVATE)
         return sharedPreferences!!.getString("jwt", null)
+    }
+
+    private fun getProfileImgUrl(): String? {
+        val sharedPreferences =
+            activity?.getSharedPreferences("profile", AppCompatActivity.MODE_PRIVATE)
+        return sharedPreferences!!.getString("profileImgUrl", null)
     }
 
     private fun startCommunityFragment() {
