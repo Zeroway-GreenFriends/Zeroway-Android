@@ -42,7 +42,7 @@ data class CommunityPostLikeList(
     @SerializedName("level") val userLevel: Int
 )
 
-data class CommunityPostLikeRequest(
+data class CommunityLikeRequest(
     @SerializedName("like") val like: Boolean
 )
 
@@ -73,7 +73,7 @@ data class CommunityPostDetailComment(
     @SerializedName("content") val content: String,
     @SerializedName("weeksAgo") val weeksAgo: Int,
     @SerializedName("likeCount") val likeCount: Int,
-    @SerializedName("liked") val liked: Boolean
+    @SerializedName("liked") var liked: Boolean
 )
 
 data class CommunityPostCommentRequest(

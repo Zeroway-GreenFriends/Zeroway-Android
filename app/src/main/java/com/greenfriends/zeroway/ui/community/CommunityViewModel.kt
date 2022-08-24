@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.greenfriends.zeroway.model.CommunityPost
 import com.greenfriends.zeroway.model.CommunityPostBookmarkRequest
-import com.greenfriends.zeroway.model.CommunityPostLikeRequest
+import com.greenfriends.zeroway.model.CommunityLikeRequest
 import com.greenfriends.zeroway.repository.community.CommunityRepository
 import com.greenfriends.zeroway.ui.common.Event
 import kotlinx.coroutines.launch
@@ -53,7 +53,7 @@ class CommunityViewModel(private val communityRepository: CommunityRepository) :
     fun setPostLike(accessToken: String, postId: String, like: Boolean) {
         viewModelScope.launch {
             val response =
-                communityRepository.setPostLike(accessToken, postId, CommunityPostLikeRequest(like))
+                communityRepository.setPostLike(accessToken, postId, CommunityLikeRequest(like))
             if (response.isSuccessful) {
                 Log.d("COMMUNITY/LIKE/T", response.body().toString())
             } else {
