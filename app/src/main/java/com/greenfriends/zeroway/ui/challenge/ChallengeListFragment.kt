@@ -67,10 +67,11 @@ class ChallengeListFragment : Fragment(), ChallengeListView, ChallengeUpdateView
             }
         })
 
-        //savePatchLevel(2)
+        //savePatchLevel(1)
 
         binding.challengeListOkBtn.setOnClickListener {
-
+            Log.e("level",getLevel().toString())
+            Log.e("patch level",getPatchLevel().toString())
             if ((getLevel()?.toInt()?.plus(1)) == getPatchLevel()?.toInt()) {
                 saveLevel(getPatchLevel()?.toInt()!!)
                 startActivity(Intent(context, LevelUpActivity::class.java))
