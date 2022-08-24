@@ -28,7 +28,7 @@ class WordDialogFragment(val word: TermResponse): DialogFragment() {
         binding = FragmentWordDialogBinding.inflate(inflater,container,false)
 
         //dialog 스크롤 변경
-        binding.wordDialogContent.movementMethod = ScrollingMovementMethod()
+        //binding.wordDialogContent.movementMethod = ScrollingMovementMethod()
 
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
@@ -38,10 +38,10 @@ class WordDialogFragment(val word: TermResponse): DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.wordDialogTitle.text = word.term
-        binding.wordDialogContent.text = word.description
+        binding.wordDialogTitleTv.text = word.term
+        binding.wordDialogContentTv.text = word.description
 
-        binding.wordDialogClose.setOnClickListener {
+        binding.wordDialogCloseBtn.setOnClickListener {
             dismiss()
         }
 

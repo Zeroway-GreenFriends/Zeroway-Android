@@ -5,6 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.greenfriends.zeroway.model.CommunityLikeRequest
+import com.greenfriends.zeroway.model.CommunityPostBookmarkRequest
 import com.greenfriends.zeroway.model.CommunityPostCommentRequest
 import com.greenfriends.zeroway.model.CommunityPostDetailResponse
 import com.greenfriends.zeroway.repository.communitypostdetail.CommunityPostDetailRepository
@@ -24,6 +26,9 @@ class CommunityPostDetailViewModel(private val communityPostDetailRepository: Co
     private val _commentRegisterEvent = MutableLiveData<Event<CommunityPostCommentRequest>>()
     val commentRegisterEvent: LiveData<Event<CommunityPostCommentRequest>> = _commentRegisterEvent
 
+    private val _communityPostDetailDeleteEvent = MutableLiveData<Event<Boolean>>()
+    val communityPostDetailDeleteEvent: LiveData<Event<Boolean>> = _communityPostDetailDeleteEvent
+
     fun setPostId(postId: String) {
         _postId.value = postId
     }
@@ -40,8 +45,8 @@ class CommunityPostDetailViewModel(private val communityPostDetailRepository: Co
         viewModelScope.launch {
             val response =
                 communityPostDetailRepository.setPostComment(accessToken, postId, content)
-            Log.d("COMMUNITY/DETAIL/CMT", response.toString())
             if (response.isSuccessful) {
+                Log.d("COMMUNITY/COMMENT/T", response.body().toString())
                 getPostDetail(accessToken, postId)
             } else {
                 Log.d("COMMUNITY/COMMENT/F", response.errorBody()?.string()!!)
@@ -52,11 +57,76 @@ class CommunityPostDetailViewModel(private val communityPostDetailRepository: Co
     fun getPostDetail(accessToken: String, postId: String) {
         viewModelScope.launch {
             val response = communityPostDetailRepository.getPostDetail(accessToken, postId)
-            Log.d("COMMUNITY/DETAIL", response.body().toString())
             if (response.isSuccessful) {
+                Log.d("COMMUNITY/DETAIL/T", response.body().toString())
                 _communityPostDetailResponse.value = response.body()!!
             } else {
                 Log.d("COMMUNITY/DETAIL/F", response.errorBody()?.string()!!)
+            }
+        }
+    }
+
+    fun setPostLike(accessToken: String, postId: String, like: Boolean) {
+        viewModelScope.launch {
+            val response =
+                communityPostDetailRepository.setPostLike(
+                    accessToken,
+                    postId,
+                    CommunityLikeRequest(like)
+                )
+            if (response.isSuccessful) {
+                Log.d("COMMUNITY/LIKE/T", response.body().toString())
+            } else {
+                Log.d("COMMUNITY/LIKE/F", response.errorBody()?.string()!!)
+            }
+        }
+    }
+
+    fun setPostBookmark(accessToken: String, postId: String, bookmark: Boolean) {
+        viewModelScope.launch {
+            val response =
+                communityPostDetailRepository.setPostBookmark(
+                    accessToken,
+                    postId,
+                    CommunityPostBookmarkRequest(bookmark)
+                )
+            if (response.isSuccessful) {
+                Log.d("COMMUNITY/BOOKMARK/T", response.body().toString())
+            } else {
+                Log.d("COMMUNITY/BOOKMARK/F", response.errorBody()?.string()!!)
+            }
+        }
+    }
+
+    fun deletePost(accessToken: String, postId: String) {
+        viewModelScope.launch {
+            val response = communityPostDetailRepository.deletePost(accessToken, postId)
+            when {
+                response.isSuccessful -> {
+                    _communityPostDetailDeleteEvent.value = Event(true)
+                    Log.d("COMMUNITY/DELETE/T", response.body().toString())
+                }
+                response.code() == 401 -> {
+                    _communityPostDetailDeleteEvent.value = Event(false)
+                }
+                else -> {
+                    Log.d("COMMUNITY/DELETE/F", response.errorBody()?.string()!!)
+                }
+            }
+        }
+    }
+
+    fun setPostCommentLike(accessToken: String, commentId: String, like: Boolean) {
+        viewModelScope.launch {
+            val response = communityPostDetailRepository.setPostCommentLike(
+                accessToken,
+                commentId,
+                CommunityLikeRequest(like)
+            )
+            if (response.isSuccessful) {
+                Log.d("COMMUNITY/LIKE/T", response.body().toString())
+            } else {
+                Log.d("COMMUNITY/LIKE/F", response.errorBody()?.string()!!)
             }
         }
     }

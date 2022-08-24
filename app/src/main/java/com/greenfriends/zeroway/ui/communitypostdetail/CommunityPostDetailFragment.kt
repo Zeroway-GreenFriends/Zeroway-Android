@@ -4,18 +4,27 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.ConcatAdapter
+import com.greenfriends.zeroway.GlideApp
+import com.greenfriends.zeroway.R
+import com.greenfriends.zeroway.common.POST_ID
 import com.greenfriends.zeroway.databinding.FragmentCommunityPostDetailBinding
+import com.greenfriends.zeroway.model.CommunityPostDetailComment
+import com.greenfriends.zeroway.model.CommunityPostDetailResponse
 import com.greenfriends.zeroway.ui.common.EventObserve
 import com.greenfriends.zeroway.ui.common.ViewModelFactory
+import com.greenfriends.zeroway.ui.community.CommunityFragment
 
 class CommunityPostDetailFragment : Fragment() {
 
     private val viewModel: CommunityPostDetailViewModel by viewModels { ViewModelFactory() }
     private lateinit var binding: FragmentCommunityPostDetailBinding
+    private lateinit var communityPostDetailAdapter: CommunityPostDetailAdapter
+    private lateinit var communityPostDetailCommentsAdapter: CommunityPostDetailCommentsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,29 +41,24 @@ class CommunityPostDetailFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
 
         setPostId()
+        setUserProfileImg()
         setObserve()
         setOnClickListener()
+        setCommunityPostDetailAdapter()
         getPostDetail()
     }
 
     private fun setPostId() {
-        arguments?.getString("postId")?.let { viewModel.setPostId(it) }
+        arguments?.getString(POST_ID)?.let { viewModel.setPostId(it) }
     }
 
-    /**
-     *  로그인 / 회원 가입 API에서 JWT, userProfileImg를 받아 와야 할 것 같다. 추후 수정 필요
-     *
-     * private fun setUserProfileImg() {
-            binding.communityPostDetailCommentProfileIv
-        }
-     */
+    private fun setUserProfileImg() {
+        GlideApp.with(this)
+            .load(getProfileImgUrl())
+            .into(binding.communityPostDetailCommentProfileIv)
+    }
 
     private fun setObserve() {
-        val communityPostDetailAdapter = CommunityPostDetailAdapter()
-        val communityPostDetailCommentsAdapter = CommunityPostDetailCommentsAdapter()
-        binding.communityPostDetailRv.adapter =
-            ConcatAdapter(communityPostDetailAdapter, communityPostDetailCommentsAdapter)
-
         viewModel.communityPostDetailResponse.observe(
             viewLifecycleOwner
         ) { communityPostDetailResponse ->
@@ -67,12 +71,74 @@ class CommunityPostDetailFragment : Fragment() {
                 viewModel.setPostComment(getJwt()!!, viewModel.getPostId()!!, it)
             }
         )
+
+        viewModel.communityPostDetailDeleteEvent.observe(
+            viewLifecycleOwner, EventObserve { isDeleted ->
+                if (isDeleted) {
+                    Toast.makeText(requireContext(), "게시물이 삭제되었습니다.", Toast.LENGTH_SHORT).show()
+                    startCommunityFragment()
+                } else {
+                    Toast.makeText(requireContext(), "해당 게시물 삭제 권한이 없습니다.", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
+        )
     }
 
     private fun setOnClickListener() {
         binding.communityPostDetailCommentRegisterTv.setOnClickListener {
             viewModel.setCommentRegisterEvent(binding.communityPostDetailCommentEt.text.toString())
         }
+    }
+
+    private fun setCommunityPostDetailAdapter() {
+        communityPostDetailAdapter = CommunityPostDetailAdapter(requireContext())
+        communityPostDetailCommentsAdapter = CommunityPostDetailCommentsAdapter()
+        binding.communityPostDetailRv.adapter =
+            ConcatAdapter(communityPostDetailAdapter, communityPostDetailCommentsAdapter)
+
+        communityPostDetailAdapter.setOnCommunityPostDetailPostClickListener(object :
+            OnCommunityPostDetailPostClickListener {
+
+            override fun deleteCommunityPost(communityPostDetailResponse: CommunityPostDetailResponse) {
+                viewModel.deletePost(
+                    getJwt()!!,
+                    communityPostDetailResponse.postId.toString()
+                )
+            }
+
+            override fun setCommunityPostLike(communityPostDetailResponse: CommunityPostDetailResponse) {
+                viewModel.setPostLike(
+                    getJwt()!!,
+                    communityPostDetailResponse.postId.toString(),
+                    communityPostDetailResponse.liked
+                )
+            }
+
+            override fun setCommunityPostBookmark(communityPostDetailResponse: CommunityPostDetailResponse) {
+                viewModel.setPostBookmark(
+                    getJwt()!!,
+                    communityPostDetailResponse.postId.toString(),
+                    communityPostDetailResponse.bookmarked
+                )
+            }
+        })
+
+        communityPostDetailCommentsAdapter.setOnCommunityPostDetailCommentClickListener(object :
+            OnCommunityPostDetailCommentClickListener {
+
+            override fun deleteCommunityPostComment(communityPostDetailComment: CommunityPostDetailComment) {
+                TODO("Not yet implemented")
+            }
+
+            override fun setCommunityPostCommentLike(communityPostDetailComment: CommunityPostDetailComment) {
+                viewModel.setPostCommentLike(
+                    getJwt()!!,
+                    communityPostDetailComment.commentId.toString(),
+                    communityPostDetailComment.liked
+                )
+            }
+        })
     }
 
     private fun getPostDetail() {
@@ -83,5 +149,17 @@ class CommunityPostDetailFragment : Fragment() {
         val sharedPreferences =
             activity?.getSharedPreferences("auth", AppCompatActivity.MODE_PRIVATE)
         return sharedPreferences!!.getString("jwt", null)
+    }
+
+    private fun getProfileImgUrl(): String? {
+        val sharedPreferences =
+            activity?.getSharedPreferences("profile", AppCompatActivity.MODE_PRIVATE)
+        return sharedPreferences!!.getString("profileImgUrl", null)
+    }
+
+    private fun startCommunityFragment() {
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.main_fl, CommunityFragment())
+            .commit()
     }
 }

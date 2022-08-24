@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.greenfriends.zeroway.R
 import com.greenfriends.zeroway.databinding.ItemCommunityPostCommentBinding
 import com.greenfriends.zeroway.model.CommunityPostDetailComment
 
@@ -12,6 +13,12 @@ class CommunityPostDetailCommentAdapter :
     ListAdapter<CommunityPostDetailComment, CommunityPostDetailCommentAdapter.CommunityPostDetailCommentViewHolder>(
         CommunityPostDetailCommentDiffCallback()
     ) {
+
+    private lateinit var onCommunityPostDetailCommentClickListener: OnCommunityPostDetailCommentClickListener
+
+    fun setOnCommunityPostDetailCommentClickListener(onCommunityPostDetailCommentClickListener: OnCommunityPostDetailCommentClickListener) {
+        this.onCommunityPostDetailCommentClickListener = onCommunityPostDetailCommentClickListener
+    }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -29,12 +36,31 @@ class CommunityPostDetailCommentAdapter :
         holder.bind(getItem(position))
     }
 
-    class CommunityPostDetailCommentViewHolder(private val binding: ItemCommunityPostCommentBinding) :
+    inner class CommunityPostDetailCommentViewHolder(private val binding: ItemCommunityPostCommentBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(communityPostDetailComment: CommunityPostDetailComment) {
             binding.communityPostDetailComment = communityPostDetailComment
             binding.executePendingBindings()
+
+            with(binding) {
+                itemCommunityPostCommentLikeIv.setOnClickListener {
+                    communityPostDetailComment.liked = !communityPostDetailComment.liked
+                    if (communityPostDetailComment.liked) {
+                        itemCommunityPostCommentLikeIv.setImageResource(R.drawable.ic_like_on)
+                        (itemCommunityPostCommentLikeCountTv.text.substring(0).toInt() + 1).toString()
+                            .also { itemCommunityPostCommentLikeCountTv.text = it }
+                    } else {
+                        itemCommunityPostCommentLikeIv.setImageResource(R.drawable.ic_like_off)
+                        (itemCommunityPostCommentLikeCountTv.text.substring(0).toInt() - 1).toString()
+                            .also { itemCommunityPostCommentLikeCountTv.text = it }
+                    }
+
+                    onCommunityPostDetailCommentClickListener.setCommunityPostCommentLike(
+                        communityPostDetailComment
+                    )
+                }
+            }
         }
     }
 }

@@ -1,8 +1,6 @@
 package com.greenfriends.zeroway.network
 
-import com.greenfriends.zeroway.model.CommunityPostCommentRequest
-import com.greenfriends.zeroway.model.CommunityPostDetailResponse
-import com.greenfriends.zeroway.model.CommunityResponse
+import com.greenfriends.zeroway.model.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -47,5 +45,44 @@ interface CommunityRetrofitInterface {
         @Header("Bearer") accessToken: String,
         @Path("postId") postId: String,
         @Body content: CommunityPostCommentRequest
+    ): Response<Void>
+
+    /**
+     * 커뮤니티 게시물 좋아요 API
+     */
+    @POST("post/{postId}/like")
+    suspend fun setPostLike(
+        @Header("Bearer") accessToken: String,
+        @Path("postId") postId: String,
+        @Body like: CommunityLikeRequest
+    ): Response<Void>
+
+    /**
+     * 커뮤니티 게시물 북마크 API
+     */
+    @POST("post/{postId}/bookmark")
+    suspend fun setPostBookmark(
+        @Header("Bearer") accessToken: String,
+        @Path("postId") postId: String,
+        @Body bookmark: CommunityPostBookmarkRequest
+    ): Response<Void>
+
+    /**
+     * 커뮤니티 게시물 삭제 API
+     */
+    @PATCH("post/{postId}/delete")
+    suspend fun deletePost(
+        @Header("Bearer") accessToken: String,
+        @Path("postId") postId: String
+    ): Response<Void>
+
+    /**
+     * 커뮤니티 게시물 댓글 좋아요 API
+     */
+    @POST("comment/{commentId}/like")
+    suspend fun setPostCommentLike(
+        @Header("Bearer") accessToken: String,
+        @Path("commentId") commentId: String,
+        @Body like: CommunityLikeRequest
     ): Response<Void>
 }

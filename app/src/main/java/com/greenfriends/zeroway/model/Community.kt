@@ -14,8 +14,8 @@ data class CommunityPost(
     @SerializedName("userProfileImg") val userProfileImg: String?,
     @SerializedName("likeCount") val likeCount: Int,
     @SerializedName("commentCount") val commentCount: Int,
-    @SerializedName("liked") val liked: Boolean,
-    @SerializedName("bookmarked") val bookmarked: Boolean,
+    @SerializedName("liked") var liked: Boolean,
+    @SerializedName("bookmarked") var bookmarked: Boolean,
     @SerializedName("imageList") val imageList: List<String>
 )
 
@@ -42,12 +42,12 @@ data class CommunityPostLikeList(
     @SerializedName("level") val userLevel: Int
 )
 
-data class CommunityPostBookmarkResponse(
-    @SerializedName("bookmark") val bookmark: Boolean
+data class CommunityLikeRequest(
+    @SerializedName("like") val like: Boolean
 )
 
-data class CommunityPostLikeResponse(
-    @SerializedName("like") val like: Boolean
+data class CommunityPostBookmarkRequest(
+    @SerializedName("bookmark") val bookmark: Boolean
 )
 
 data class CommunityPostDetailResponse(
@@ -59,8 +59,8 @@ data class CommunityPostDetailResponse(
     @SerializedName("challenge") val challenge: Boolean,
     @SerializedName("likeCount") val likeCount: Int,
     @SerializedName("commentCount") val commentCount: Int,
-    @SerializedName("liked") val liked: Boolean,
-    @SerializedName("bookmarked") val bookmarked: Boolean,
+    @SerializedName("liked") var liked: Boolean,
+    @SerializedName("bookmarked") var bookmarked: Boolean,
     @SerializedName("imageList") val imageList: List<String>,
     @SerializedName("commentList") val communityPostDetailComments: List<CommunityPostDetailComment>
 )
@@ -73,7 +73,7 @@ data class CommunityPostDetailComment(
     @SerializedName("content") val content: String,
     @SerializedName("weeksAgo") val weeksAgo: Int,
     @SerializedName("likeCount") val likeCount: Int,
-    @SerializedName("liked") val liked: Boolean
+    @SerializedName("liked") var liked: Boolean
 )
 
 data class CommunityPostCommentRequest(
