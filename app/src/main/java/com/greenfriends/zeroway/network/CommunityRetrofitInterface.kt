@@ -54,7 +54,7 @@ interface CommunityRetrofitInterface {
     suspend fun setPostLike(
         @Header("Bearer") accessToken: String,
         @Path("postId") postId: String,
-        @Body like: CommunityPostLikeRequest
+        @Body like: CommunityLikeRequest
     ): Response<Void>
 
     /**
@@ -74,5 +74,15 @@ interface CommunityRetrofitInterface {
     suspend fun deletePost(
         @Header("Bearer") accessToken: String,
         @Path("postId") postId: String
+    ): Response<Void>
+
+    /**
+     * 커뮤니티 게시물 댓글 좋아요 API
+     */
+    @POST("comment/{commentId}/like")
+    suspend fun setPostCommentLike(
+        @Header("Bearer") accessToken: String,
+        @Path("commentId") commentId: String,
+        @Body like: CommunityLikeRequest
     ): Response<Void>
 }

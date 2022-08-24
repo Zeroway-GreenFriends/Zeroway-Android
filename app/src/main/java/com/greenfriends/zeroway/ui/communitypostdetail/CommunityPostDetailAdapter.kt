@@ -21,10 +21,10 @@ class CommunityPostDetailAdapter(private val context: Context) :
         CommunityPostDetailDiffCallback()
     ) {
 
-    private lateinit var onCommunityPostDetailItemClickListener: OnCommunityPostDetailItemClickListener
+    private lateinit var onCommunityPostDetailPostClickListener: OnCommunityPostDetailPostClickListener
 
-    fun setOnCommunityPostDetailItemClickListener(onCommunityPostDetailItemClickListener: OnCommunityPostDetailItemClickListener) {
-        this.onCommunityPostDetailItemClickListener = onCommunityPostDetailItemClickListener
+    fun setOnCommunityPostDetailPostClickListener(onCommunityPostDetailPostClickListener: OnCommunityPostDetailPostClickListener) {
+        this.onCommunityPostDetailPostClickListener = onCommunityPostDetailPostClickListener
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -89,7 +89,7 @@ class CommunityPostDetailAdapter(private val context: Context) :
                             itemCommunityIncludeImagePostDetailLikeCountTv.text = it
                         }
                     }
-                    onCommunityPostDetailItemClickListener.setCommunityPostLike(
+                    onCommunityPostDetailPostClickListener.setCommunityPostLike(
                         communityPostDetailResponse
                     )
                 }
@@ -101,7 +101,7 @@ class CommunityPostDetailAdapter(private val context: Context) :
                     } else {
                         itemCommunityIncludeImagePostDetailBookmarkIv.setImageResource(R.drawable.ic_bookmark_off)
                     }
-                    onCommunityPostDetailItemClickListener.setCommunityPostBookmark(
+                    onCommunityPostDetailPostClickListener.setCommunityPostBookmark(
                         communityPostDetailResponse
                     )
                 }
@@ -114,7 +114,7 @@ class CommunityPostDetailAdapter(private val context: Context) :
                     popup.setOnMenuItemClickListener { menuItem ->
                         when (menuItem.itemId) {
                             R.id.menu_option_item_delete -> {
-                                onCommunityPostDetailItemClickListener.deleteCommunityPost(
+                                onCommunityPostDetailPostClickListener.deleteCommunityPost(
                                     communityPostDetailResponse
                                 )
                             }
@@ -157,7 +157,7 @@ class CommunityPostDetailAdapter(private val context: Context) :
                             itemCommunityExcludeImagePostDetailLikeCountTv.text = it
                         }
                     }
-                    onCommunityPostDetailItemClickListener.setCommunityPostLike(
+                    onCommunityPostDetailPostClickListener.setCommunityPostLike(
                         communityPostDetailResponse
                     )
                 }
@@ -169,7 +169,7 @@ class CommunityPostDetailAdapter(private val context: Context) :
                     } else {
                         itemCommunityExcludeImagePostDetailBookmarkIv.setImageResource(R.drawable.ic_bookmark_off)
                     }
-                    onCommunityPostDetailItemClickListener.setCommunityPostBookmark(
+                    onCommunityPostDetailPostClickListener.setCommunityPostBookmark(
                         communityPostDetailResponse
                     )
                 }
@@ -182,7 +182,7 @@ class CommunityPostDetailAdapter(private val context: Context) :
                     popup.setOnMenuItemClickListener { menuItem ->
                         when (menuItem.itemId) {
                             R.id.menu_option_item_delete -> {
-                                onCommunityPostDetailItemClickListener.deleteCommunityPost(
+                                onCommunityPostDetailPostClickListener.deleteCommunityPost(
                                     communityPostDetailResponse
                                 )
                             }
