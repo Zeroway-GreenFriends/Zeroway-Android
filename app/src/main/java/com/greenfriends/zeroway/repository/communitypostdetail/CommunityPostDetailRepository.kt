@@ -38,4 +38,8 @@ class CommunityPostDetailRepository(private val communityPostDetailDataSourceImp
     ): Response<Void> {
         return communityPostDetailDataSourceImpl.setPostBookmark(accessToken, postId, bookmark)
     }
+
+    suspend fun deletePost(accessToken: String, postId: String): Response<Void> {
+        return communityPostDetailDataSourceImpl.deletePost(accessToken, postId)
+    }
 }
