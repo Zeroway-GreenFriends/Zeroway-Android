@@ -1,5 +1,7 @@
 package com.greenfriends.zeroway.ui.home
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.view.LayoutInflater
@@ -26,7 +28,9 @@ class WordDialogFragment(val word: TermResponse): DialogFragment() {
         binding = FragmentWordDialogBinding.inflate(inflater,container,false)
 
         //dialog 스크롤 변경
-        //binding.wordDialogContent.movementMethod = ScrollingMovementMethod()
+        binding.wordDialogContent.movementMethod = ScrollingMovementMethod()
+
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         return binding.root
     }
