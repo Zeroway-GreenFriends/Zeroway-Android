@@ -66,4 +66,13 @@ interface CommunityRetrofitInterface {
         @Path("postId") postId: String,
         @Body bookmark: CommunityPostBookmarkRequest
     ): Response<Void>
+
+    /**
+     * 커뮤니티 게시물 삭제 API
+     */
+    @PATCH("post/{postId}/delete")
+    suspend fun deletePost(
+        @Header("Bearer") accessToken: String,
+        @Path("postId") postId: String
+    ): Response<Void>
 }

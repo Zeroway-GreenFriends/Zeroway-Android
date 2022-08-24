@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -64,6 +65,17 @@ class CommunityFragment : Fragment() {
                 startCommunityPostDetailFragment(postId.toString())
             }
         )
+
+        viewModel.communityPostDeleteEvent.observe(
+            viewLifecycleOwner, EventObserve { isDeleted ->
+                if (isDeleted) {
+                    Toast.makeText(requireContext(), "게시물이 삭제되었습니다.", Toast.LENGTH_SHORT).show()
+                    getPosts()
+                } else {
+                    Toast.makeText(requireContext(), "해당 게시물 삭제 권한이 없습니다.", Toast.LENGTH_SHORT).show()
+                }
+            }
+        )
     }
 
     private fun setOnClickListener() {
@@ -84,8 +96,11 @@ class CommunityFragment : Fragment() {
         binding.communityPostRv.adapter = adapter
         adapter.setOnCommunityItemClickListener(object : OnCommunityItemClickListener {
 
-            override fun deleteCommunityPost() {
-                TODO("Not yet implemented")
+            override fun deleteCommunityPost(communityPost: CommunityPost) {
+                viewModel.deletePost(
+                    getJwt()!!,
+                    communityPost.postId.toString()
+                )
             }
 
             override fun setCommunityPostLike(communityPost: CommunityPost) {
