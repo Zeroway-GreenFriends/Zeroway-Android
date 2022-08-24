@@ -30,4 +30,9 @@ interface CommunityPostDetailDataSource {
         postId: String,
         bookmark: CommunityPostBookmarkRequest
     ): Response<Void>
+
+    suspend fun deletePost(
+        accessToken: String,
+        postId: String
+    ): Response<Void>
 }
