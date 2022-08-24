@@ -51,6 +51,8 @@ class ChallengeListFragment : Fragment(), ChallengeListView, ChallengeUpdateView
             challengeList.add(i)
         }
 
+        Log.e("challengeList",challengeList.toString())
+
         val challengeListAdapter = ChallengeListAdapter(challengeList)
         binding.challengeListRv.adapter = challengeListAdapter
         binding.challengeListRv.layoutManager =
@@ -65,7 +67,7 @@ class ChallengeListFragment : Fragment(), ChallengeListView, ChallengeUpdateView
             }
         })
 
-        savePatchLevel(2)
+        //savePatchLevel(2)
 
         binding.challengeListOkBtn.setOnClickListener {
 

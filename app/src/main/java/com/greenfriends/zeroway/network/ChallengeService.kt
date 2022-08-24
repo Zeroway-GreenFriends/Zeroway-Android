@@ -40,6 +40,7 @@ class ChallengeService {
                 if (response.isSuccessful) {
                     challengeView.onChallengeSuccess(response.body()!!)
                 } else {
+                    Log.d("CHALLENGE", response.errorBody()?.string()!!)
                     challengeView.onChallengeFailure()
                 }
             }

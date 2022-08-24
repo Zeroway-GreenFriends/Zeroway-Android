@@ -63,7 +63,8 @@ class HomeFragment : Fragment(), TipView, TermView, StoreListView, ChallengeView
                 ?.commitAllowingStateLoss()
         }
 
-        getChallenge(getJwt()!!)
+        getChallenge(getJwt().toString())
+        Log.e("jwt",getJwt().toString())
         getStoreList(null,1,5)
         getTip()
         getTerm(null, null, null)
