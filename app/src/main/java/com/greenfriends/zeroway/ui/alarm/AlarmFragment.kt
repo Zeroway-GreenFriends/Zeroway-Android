@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.greenfriends.zeroway.model.AlarmList
+import com.greenfriends.zeroway.data.model.AlarmList
 import com.greenfriends.zeroway.databinding.FragmentAlarmBinding
 
 class AlarmFragment : Fragment() {

@@ -4,7 +4,7 @@ package com.greenfriends.zeroway.ui.home
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.greenfriends.zeroway.model.UseList
+import com.greenfriends.zeroway.data.model.UseList
 import com.greenfriends.zeroway.databinding.ItemHomeUseBinding
 
 

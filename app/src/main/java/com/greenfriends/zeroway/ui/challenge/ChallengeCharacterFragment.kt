@@ -10,11 +10,9 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.greenfriends.zeroway.R
 import com.greenfriends.zeroway.databinding.FragmentChallengeCharacterBinding
-import com.greenfriends.zeroway.model.ChallengeResponse
-import com.greenfriends.zeroway.network.ChallengeService
-import com.greenfriends.zeroway.network.ChallengeView
-import com.greenfriends.zeroway.network.HomeService
-import com.greenfriends.zeroway.ui.alarm.AlarmFragment
+import com.greenfriends.zeroway.data.model.ChallengeResponse
+import com.greenfriends.zeroway.data.api.ChallengeService
+import com.greenfriends.zeroway.data.api.ChallengeView
 
 class ChallengeCharacterFragment : Fragment(), ChallengeView {
     private lateinit var binding: FragmentChallengeCharacterBinding

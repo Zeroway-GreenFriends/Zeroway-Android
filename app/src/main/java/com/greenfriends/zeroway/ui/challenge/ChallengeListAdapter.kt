@@ -1,16 +1,13 @@
 package com.greenfriends.zeroway.ui.challenge
 
 
-import android.annotation.SuppressLint
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.greenfriends.zeroway.R
 import com.greenfriends.zeroway.databinding.ItemChallengeListBinding
-import com.greenfriends.zeroway.model.TermResponse
-import com.greenfriends.zeroway.databinding.ItemWordSearchBinding
-import com.greenfriends.zeroway.model.ChallengeListResponse
+import com.greenfriends.zeroway.data.model.ChallengeListResponse
 
 
 class ChallengeListAdapter(private val challengeList: ArrayList<ChallengeListResponse>) :

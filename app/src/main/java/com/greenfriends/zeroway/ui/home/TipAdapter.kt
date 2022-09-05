@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.greenfriends.zeroway.databinding.ItemHomeTipBinding
-import com.greenfriends.zeroway.model.TipResponse
+import com.greenfriends.zeroway.data.model.TipResponse
 
 
 class TipAdapter(private val tipList: ArrayList<TipResponse>) :

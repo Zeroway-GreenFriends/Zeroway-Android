@@ -1,6 +1,6 @@
 package com.greenfriends.zeroway.ui.community
 
-import com.greenfriends.zeroway.model.CommunityPost
+import com.greenfriends.zeroway.data.model.CommunityPost
 
 interface OnCommunityItemClickListener {
 
