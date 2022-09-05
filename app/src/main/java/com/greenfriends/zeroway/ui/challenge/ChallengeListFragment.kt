@@ -11,11 +11,11 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.greenfriends.zeroway.R
 import com.greenfriends.zeroway.databinding.FragmentChallengeListBinding
-import com.greenfriends.zeroway.model.ChallengeLevelResponse
-import com.greenfriends.zeroway.model.ChallengeListResponse
-import com.greenfriends.zeroway.network.ChallengeListView
-import com.greenfriends.zeroway.network.ChallengeService
-import com.greenfriends.zeroway.network.ChallengeUpdateView
+import com.greenfriends.zeroway.data.model.ChallengeLevelResponse
+import com.greenfriends.zeroway.data.model.ChallengeListResponse
+import com.greenfriends.zeroway.data.api.ChallengeListView
+import com.greenfriends.zeroway.data.api.ChallengeService
+import com.greenfriends.zeroway.data.api.ChallengeUpdateView
 
 class ChallengeListFragment : Fragment(), ChallengeListView, ChallengeUpdateView {
     private lateinit var binding: FragmentChallengeListBinding

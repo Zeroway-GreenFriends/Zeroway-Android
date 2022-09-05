@@ -4,7 +4,7 @@ package com.greenfriends.zeroway.ui.home
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.greenfriends.zeroway.model.TermResponse
+import com.greenfriends.zeroway.data.model.TermResponse
 import com.greenfriends.zeroway.databinding.ItemWordSearchBinding
 
 

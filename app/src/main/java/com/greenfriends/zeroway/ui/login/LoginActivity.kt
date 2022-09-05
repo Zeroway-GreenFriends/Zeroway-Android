@@ -7,10 +7,10 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.greenfriends.zeroway.R
 import com.greenfriends.zeroway.databinding.ActivityLoginBinding
-import com.greenfriends.zeroway.model.LoginRequest
-import com.greenfriends.zeroway.model.Result
-import com.greenfriends.zeroway.network.AuthService
-import com.greenfriends.zeroway.network.LoginView
+import com.greenfriends.zeroway.data.model.LoginRequest
+import com.greenfriends.zeroway.data.model.Result
+import com.greenfriends.zeroway.data.api.AuthService
+import com.greenfriends.zeroway.data.api.LoginView
 import com.greenfriends.zeroway.ui.MainActivity
 import com.greenfriends.zeroway.ui.signup.SignUpActivity
 import com.kakao.sdk.user.UserApiClient

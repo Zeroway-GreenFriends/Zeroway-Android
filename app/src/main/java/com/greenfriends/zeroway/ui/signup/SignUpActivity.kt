@@ -16,10 +16,10 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
-import com.greenfriends.zeroway.network.AuthService
-import com.greenfriends.zeroway.network.SignUpView
-import com.greenfriends.zeroway.model.Result
-import com.greenfriends.zeroway.model.User
+import com.greenfriends.zeroway.data.api.AuthService
+import com.greenfriends.zeroway.data.api.SignUpView
+import com.greenfriends.zeroway.data.model.Result
+import com.greenfriends.zeroway.data.model.User
 import com.greenfriends.zeroway.databinding.ActivitySignUpBinding
 import com.greenfriends.zeroway.ui.MainActivity
 import okhttp3.MediaType.Companion.toMediaType

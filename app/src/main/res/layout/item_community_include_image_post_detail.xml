@@ -7,7 +7,7 @@
 
         <variable
             name="communityPostDetail"
-            type="com.greenfriends.zeroway.model.CommunityPostDetailResponse" />
+            type="com.greenfriends.zeroway.data.model.CommunityPostDetailResponse" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
