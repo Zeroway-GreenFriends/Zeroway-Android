@@ -8,22 +8,24 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.greenfriends.zeroway.model.*
 import com.greenfriends.zeroway.*
 import com.greenfriends.zeroway.databinding.FragmentHomeBinding
-import com.greenfriends.zeroway.network.*
 import com.greenfriends.zeroway.ui.alarm.AlarmFragment
+import com.greenfriends.zeroway.ui.common.ViewModelFactory
 import com.greenfriends.zeroway.ui.store.StoreFragment
 
-class HomeFragment : Fragment(), TipView, TermView, StoreListView, ChallengeView {
+class HomeFragment : Fragment() {
+
+    private val viewModel: HomeViewModel by viewModels { ViewModelFactory() }
+    private lateinit var termAdapter: TermAdapter
+    private lateinit var tipAdapter: TipAdapter
+
     private lateinit var binding: FragmentHomeBinding
-    private var termDatas = ArrayList<TermResponse>()
-    private var shopDatas = ArrayList<ShopList>()
-    private var tipDatas = ArrayList<TipResponse>()
     private var useDatas = ArrayList<UseList>()
-    private var homeStoreList = ArrayList<ShopList>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,12 +42,12 @@ class HomeFragment : Fragment(), TipView, TermView, StoreListView, ChallengeView
 
         binding.homeWordMoreIv.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(R.id.main_fl, WordFragment())
+                ?.replace(R.id.main_fl, TermFragment())
                 ?.commitAllowingStateLoss()
         }
         binding.homeWordMoreTv.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(R.id.main_fl, WordFragment())
+                ?.replace(R.id.main_fl, TermFragment())
                 ?.commitAllowingStateLoss()
         }
 
@@ -60,13 +62,57 @@ class HomeFragment : Fragment(), TipView, TermView, StoreListView, ChallengeView
                 ?.commitAllowingStateLoss()
         }
 
-        getChallenge(getJwt().toString())
+        setObserve()
+
+        setTermAdapter()
+        setTipAdapter()
         Log.e("jwt",getJwt().toString())
-        getStoreList(null,1,5)
+
+        getChallenge()
+        //getStoreList(null,1,5)
         getTip()
         getTerm(null, null, null)
 
-        //사용횟수 RecyclerView 연결
+        setUseView()
+        return binding.root
+    }
+
+    private fun setObserve() {
+        viewModel.cr.observe(
+            viewLifecycleOwner
+        ) { cr ->
+            binding.challengeResponse = cr
+            Glide.with(binding.homeLevelIv.context)
+                .load(Uri.parse(cr.imgUrl))
+                .disallowHardwareConfig()
+                .into(binding.homeLevelIv)
+        }
+
+        viewModel.tr.observe(
+            viewLifecycleOwner
+        ) { tr ->
+            termAdapter.submitList(tr)
+        }
+
+        viewModel.tipResponse.observe(
+            viewLifecycleOwner
+        ) {
+            tipResponse ->
+            tipAdapter.submitList(tipResponse)
+        }
+    }
+
+    private fun setTermAdapter() {
+        termAdapter = TermAdapter(viewModel)
+        binding.homeWordRv.adapter = termAdapter
+    }
+
+    private fun setTipAdapter() {
+        tipAdapter = TipAdapter(viewModel)
+        binding.homeTipRv.adapter = tipAdapter
+    }
+
+    private fun setUseView(){
         useDatas.apply {
             add(UseList("15회 사용", "유리재질 텀블러"))
             add(UseList("17회 사용", "플라스틱 텀블러"))
@@ -78,112 +124,44 @@ class HomeFragment : Fragment(), TipView, TermView, StoreListView, ChallengeView
         binding.homeUseRv.adapter = useAdapter
         binding.homeUseRv.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-
-        return binding.root
     }
 
-    private fun getTip() {
-        val homeService = HomeService()
-        homeService.setTipView(this)
-        homeService.getTip()
-    }
+//    private fun getStoreList(keyword: String?, page: Int?, size: Int?) {
+//        val storeService = StoreService()
+//        storeService.setStoreListView(this)
+//        storeService.getStoreList(keyword, page, size)
+//    }
+//
+//    override fun onStoreListSuccess(result: List<StoreResponse>) {
+//        for (i in result){
+//            if (i.imageUrl != null){
+//                homeStoreList.add(ShopList(i.name,i.imageUrl))
+//            } else {
+//                homeStoreList.add(ShopList(i.name,""))
+//            }
+//        }
+//
+//        Log.e("list",homeStoreList.toString())
+//        val shopAdapter = ShopAdapter(homeStoreList)
+//        binding.homeShopRv.adapter = shopAdapter
+//        binding.homeShopRv.layoutManager =
+//            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+//    }
+//
+//    override fun onStoreListFailure() {
+//        TODO("Not yet implemented")
+//    }
 
-    override fun onTipSuccess(result: List<TipResponse>) {
-        var count = 0
-        for (i in result) {
-            Log.e("i", i.toString())
-            count++
-            tipDatas.add(TipResponse("Tip ${count}", i.title, i.content))
-        }
-        val tipAdapter = TipAdapter(tipDatas)
-        binding.homeTipRv.adapter = tipAdapter
-        binding.homeTipRv.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-
-    }
-
-    override fun onTipFailure() {
-        TODO("Not yet implemented")
+    private fun getChallenge() {
+        viewModel.getUserChallenge(getJwt()!!)
     }
 
     private fun getTerm(keyword: String?, page: Int?, size: Int?) {
-        val homeService = HomeService()
-        homeService.setTermView(this)
-        homeService.getTerm(keyword, page, size)
+        viewModel.getTerm(keyword, page, size)
     }
 
-    override fun onTermSuccess(result: List<TermResponse>) {
-        var cnt = 0
-        for (i in result) {
-            termDatas.add(i)
-            cnt++
-            if (cnt == 3) {
-                break
-            }
-        }
-        val termAdapter = TermAdapter(termDatas)
-        termAdapter.setMyItemClickListener(object: TermAdapter.MyItemClickListener {
-            override fun onItemClick(word: TermResponse) {
-                //dialog 띄우기
-                 WordDialogFragment(word).show(
-                    fragmentManager!!,"WordDialog"
-                )
-            }
-
-        })
-        binding.homeWordRv.adapter = termAdapter
-        binding.homeWordRv.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-
-    }
-
-    override fun onTermFailure() {
-        TODO("Not yet implemented")
-    }
-
-    private fun getStoreList(keyword: String?, page: Int?, size: Int?) {
-        val storeService = StoreService()
-        storeService.setStoreListView(this)
-        storeService.getStoreList(keyword, page, size)
-    }
-
-    override fun onStoreListSuccess(result: List<StoreResponse>) {
-        for (i in result){
-            if (i.imageUrl != null){
-                homeStoreList.add(ShopList(i.name,i.imageUrl))
-            } else {
-                homeStoreList.add(ShopList(i.name,""))
-            }
-        }
-
-        Log.e("list",homeStoreList.toString())
-        val shopAdapter = ShopAdapter(homeStoreList)
-        binding.homeShopRv.adapter = shopAdapter
-        binding.homeShopRv.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-    }
-
-    override fun onStoreListFailure() {
-        TODO("Not yet implemented")
-    }
-
-    private fun getChallenge(token: String) {
-        val challengeService = ChallengeService()
-        challengeService.setChallengeView(this)
-        challengeService.getChallenge(token)
-    }
-
-    override fun onChallengeSuccess(result: ChallengeResponse) {
-        binding.homeUserNameTv.text = result.nickname+" 님,"
-        binding.homeLevelTv.text = "Level "+result.level.toString()
-        Glide.with(binding.homeLevelIv.context)
-            .load(Uri.parse(result.imgUrl))
-            .disallowHardwareConfig()
-            .into(binding.homeLevelIv)
-    }
-
-    override fun onChallengeFailure() {
-        TODO("Not yet implemented")
+    private fun getTip() {
+        viewModel.getTip()
     }
 
     private fun getJwt(): String? {

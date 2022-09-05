@@ -28,30 +28,6 @@ class ChallengeService {
         this.challengeUpdateView = challengeUpdateView
     }
 
-    fun getChallenge(token: String) {
-        val challengeService = retrofit?.create(ChallengeRetrofitInterface::class.java)
-        challengeService!!.getChallenge(token).enqueue(object : Callback<ChallengeResponse> {
-
-            override fun onResponse(
-                call: Call<ChallengeResponse>,
-                response: Response<ChallengeResponse>
-            ) {
-                Log.d("CHALLENGE/SUCCESS", response.toString())
-                if (response.isSuccessful) {
-                    challengeView.onChallengeSuccess(response.body()!!)
-                } else {
-                    Log.d("CHALLENGE", response.errorBody()?.string()!!)
-                    challengeView.onChallengeFailure()
-                }
-            }
-
-            override fun onFailure(call: Call<ChallengeResponse>, t: Throwable) {
-                Log.d("CHALLENGE/FAILURE", t.message.toString())
-            }
-
-        })
-    }
-
     fun getChallengeList(token: String) {
         val challengeService = retrofit?.create(ChallengeRetrofitInterface::class.java)
         challengeService!!.getChallengeList(token).enqueue(object : Callback<List<ChallengeListResponse>> {

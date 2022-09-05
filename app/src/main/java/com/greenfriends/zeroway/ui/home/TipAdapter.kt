@@ -3,13 +3,18 @@ package com.greenfriends.zeroway.ui.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.greenfriends.zeroway.databinding.ItemHomeTipBinding
+import com.greenfriends.zeroway.model.TermResponse
 import com.greenfriends.zeroway.model.TipResponse
 
 
-class TipAdapter(private val tipList: ArrayList<TipResponse>) :
-    RecyclerView.Adapter<TipAdapter.ViewHolder>() {
+class TipAdapter(
+    private val viewModel: HomeViewModel
+    ) :
+    ListAdapter<TipResponse, RecyclerView.ViewHolder>(diffUtil) {
 
     interface MyItemClickListener {
         fun onItemClick(tip: TipResponse)
@@ -28,25 +33,26 @@ class TipAdapter(private val tipList: ArrayList<TipResponse>) :
         return ViewHolder(binding)
     }
 
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(tipList[position])
-        holder.itemView.setOnClickListener {
-            mItemClickListener.onItemClick(tipList[position])
-        }
-    }
-
-    override fun getItemCount(): Int {
-        return tipList.size
-    }
-
     inner class ViewHolder(val binding: ItemHomeTipBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(tip: TipResponse) {
-            binding.itemHomeTipNumberTv.text = tip.num
-            binding.itemHomeTipTitleTv.text = tip.title
-            binding.itemHomeTipContentTv.text = tip.content
+            binding.viewModel = viewModel
+            binding.tipResponse = tip
+        }
+    }
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        (holder as ViewHolder).bind(getItem(position))
+    }
+
+    companion object {
+        val diffUtil = object : DiffUtil.ItemCallback<TipResponse>() {
+            override fun areContentsTheSame(oldItem: TipResponse, newItem: TipResponse) =
+                oldItem == newItem
+
+            override fun areItemsTheSame(oldItem: TipResponse, newItem: TipResponse) =
+                oldItem == newItem
         }
     }
 

@@ -8,9 +8,12 @@ import com.greenfriends.zeroway.repository.communitypostdetail.CommunityPostDeta
 import com.greenfriends.zeroway.repository.communitypostdetail.CommunityPostDetailRepository
 import com.greenfriends.zeroway.repository.communitypostregister.CommunityPostRegisterDataSourceImpl
 import com.greenfriends.zeroway.repository.communitypostregister.CommunityPostRegisterRepository
+import com.greenfriends.zeroway.repository.home.HomeDataSourceImpl
+import com.greenfriends.zeroway.repository.home.HomeRepository
 import com.greenfriends.zeroway.ui.community.CommunityViewModel
 import com.greenfriends.zeroway.ui.communitypostdetail.CommunityPostDetailViewModel
 import com.greenfriends.zeroway.ui.communitypostregister.CommunityPostRegisterViewModel
+import com.greenfriends.zeroway.ui.home.HomeViewModel
 
 class ViewModelFactory : ViewModelProvider.Factory {
 
@@ -30,6 +33,13 @@ class ViewModelFactory : ViewModelProvider.Factory {
                 CommunityPostDetailViewModel(
                     CommunityPostDetailRepository(
                         CommunityPostDetailDataSourceImpl()
+                    )
+                ) as T
+            }
+            modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
+                HomeViewModel(
+                    HomeRepository(
+                        HomeDataSourceImpl()
                     )
                 ) as T
             }

@@ -13,9 +13,9 @@ import retrofit2.http.*
 interface ChallengeRetrofitInterface {
 
     @GET("challenge")
-    fun getChallenge(
+    suspend fun getChallenge(
         @Header("Bearer") accessToken: String
-    ): Call<ChallengeResponse>
+    ): Response<ChallengeResponse>
 
     @GET("challenge/list")
     fun getChallengeList(

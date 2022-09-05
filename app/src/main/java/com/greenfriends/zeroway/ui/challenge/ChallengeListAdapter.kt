@@ -8,8 +8,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.greenfriends.zeroway.R
 import com.greenfriends.zeroway.databinding.ItemChallengeListBinding
-import com.greenfriends.zeroway.model.TermResponse
-import com.greenfriends.zeroway.databinding.ItemWordSearchBinding
 import com.greenfriends.zeroway.model.ChallengeListResponse
 
 
