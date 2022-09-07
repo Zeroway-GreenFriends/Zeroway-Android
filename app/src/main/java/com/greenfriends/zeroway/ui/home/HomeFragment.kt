@@ -15,7 +15,7 @@ import com.greenfriends.zeroway.*
 import com.greenfriends.zeroway.databinding.FragmentHomeBinding
 import com.greenfriends.zeroway.data.api.*
 import com.greenfriends.zeroway.ui.alarm.AlarmFragment
-import com.greenfriends.zeroway.ui.store.StoreFragment
+import com.greenfriends.zeroway.ui.store.view.StoreFragment
 
 class HomeFragment : Fragment(), TipView, TermView, StoreListView, ChallengeView {
     private lateinit var binding: FragmentHomeBinding
