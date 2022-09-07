@@ -1,83 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <data>
+
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/store_tb"
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:contentInsetStartWithNavigation="0dp"
-            app:layout_scrollFlags="scroll|enterAlways"
-            app:menu="@menu/tool_bar_item"
-            app:navigationIcon="@drawable/ic_back">
+            android:background="@color/white">
 
-            <TextView
-                android:id="@+id/store_toolbar_title_tv"
-                android:layout_width="wrap_content"
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/store_tb"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="제로웨이스트 샵"
-                android:textColor="@color/zeroway_black"
-                android:textSize="14sp" />
+                app:contentInsetStartWithNavigation="0dp"
+                app:layout_scrollFlags="scroll|enterAlways"
+                app:menu="@menu/tool_bar_item"
+                app:navigationIcon="@drawable/ic_back">
 
-        </androidx.appcompat.widget.Toolbar>
+                <TextView
+                    android:id="@+id/store_toolbar_title_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="제로웨이스트 샵"
+                    android:textColor="@color/zeroway_black"
+                    android:textSize="14sp" />
 
-    </com.google.android.material.appbar.AppBarLayout>
+            </androidx.appcompat.widget.Toolbar>
 
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+        </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/store_search_til"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <EditText
+                android:id="@+id/store_search_et"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:hint="검색"
-                app:endIconDrawable="@drawable/ic_search"
-                app:endIconMode="custom"
-                app:endIconTint="@color/zeroway_gray"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/ic_shop_gray_border"
+                android:hint="주소를 입력하세요."
+                android:maxLines="1"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/store_search_et"
-                    android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:textSize="12sp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
+            <ImageButton
+                android:id="@+id/store_search_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:background="@null"
+                android:src="@drawable/ic_search"
+                app:layout_constraintBottom_toBottomOf="@id/store_search_et"
+                app:layout_constraintEnd_toEndOf="@id/store_search_et"
+                app:layout_constraintTop_toTopOf="@id/store_search_et" />
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/store_rv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:nestedScrollingEnabled="false"
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/store_search_til"
+                app:layout_constraintTop_toBottomOf="@id/store_search_et"
                 tools:listitem="@layout/item_store_post" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.core.widget.NestedScrollView>
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>
