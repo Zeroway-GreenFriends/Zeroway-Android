@@ -5,4 +5,9 @@
     <string name="popularity">인기순</string>
     <string name="latest">최신순</string>
     <string name="like">좋아요</string>
+
+    <string name="false_id_check">중복된 닉네임입니다.</string>
+    <string name="true_id_check">사용 가능한 닉네임입니다.</string>
+    <string name="before_id_check">중복확인</string>
+    <string name="after_id_check">등록하기</string>
 </resources>
