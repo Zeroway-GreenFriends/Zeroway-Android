@@ -8,7 +8,7 @@ data class User(
     @SerializedName("provider") val provider: String
 )
 
-data class Result(
+data class UserIdentification(
     @SerializedName("accessToken") val accessToken: String,
     @SerializedName("refreshToken") val refreshToken: String,
     @SerializedName("profileImgUrl") val profileImgUrl: String
@@ -22,5 +22,12 @@ data class AuthResponse(
     @SerializedName("isSuccess") val isSuccess: Boolean,
     @SerializedName("code") val code: Int,
     @SerializedName("message") val message: String,
-    @SerializedName("result") val result: Result
+    @SerializedName("result") val result: UserIdentification
+)
+
+data class IdCheckResponse(
+    @SerializedName("isSuccess") val isSuccess: Boolean,
+    @SerializedName("code") val code: Int,
+    @SerializedName("message") val message: String,
+    @SerializedName("result") val result: Boolean
 )
