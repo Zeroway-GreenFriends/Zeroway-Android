@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
-    private const val BASE_URL = "https://www.zeroway.site/api/"
+    private const val BASE_URL = "https://dev.zeroway.site/api/"
     private var retrofit: Retrofit? = null
 
     fun getRetrofit(): Retrofit? {
