@@ -21,8 +21,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.google.gson.Gson
 import com.greenfriends.zeroway.R
-import com.greenfriends.zeroway.databinding.FragmentCommunityPostRegisterBinding
 import com.greenfriends.zeroway.data.model.CommunityPostRegisterContentRequest
+import com.greenfriends.zeroway.databinding.FragmentCommunityPostRegisterBinding
 import com.greenfriends.zeroway.ui.common.ViewModelFactory
 import com.greenfriends.zeroway.ui.community.adapter.CommunityPostRegisterAdapter
 import com.greenfriends.zeroway.ui.community.viewmodel.CommunityPostRegisterViewModel
@@ -56,8 +56,7 @@ class CommunityPostRegisterFragment : Fragment() {
 
         setObserve()
         setCommunityPostRegisterAdapter()
-        setChallengeClickListener()
-        setAlbumClickListener()
+        setOnClickListener()
         setPermission()
         setActivityResultLauncher()
         setPost()
@@ -66,14 +65,19 @@ class CommunityPostRegisterFragment : Fragment() {
     private fun setObserve() {
         viewModel.isChallenge.observe(
             viewLifecycleOwner
-        ) {
-            binding.isChallenge = it
+        ) { isChallenge ->
+            binding.isChallenge = isChallenge
         }
 
-        viewModel.imageUrl.observe(
+        viewModel.isReview.observe(
             viewLifecycleOwner
-        ) {
-            adapter.submitList(it)
+        ) { isReview ->
+            binding.isReview = isReview
+        }
+        viewModel.imageUrls.observe(
+            viewLifecycleOwner
+        ) { imageUrls ->
+            adapter.submitList(imageUrls)
         }
 
         viewModel.setPostIsSuccess.observe(
@@ -98,18 +102,22 @@ class CommunityPostRegisterFragment : Fragment() {
         binding.communityPostRegisterRv.adapter = adapter
     }
 
-    private fun setChallengeClickListener() {
-        binding.communityPostRegisterChallengeTv.setOnClickListener {
-            viewModel.setIsChallenge()
-        }
-    }
+    private fun setOnClickListener() {
+        with(binding) {
+            communityPostRegisterChallengeTv.setOnClickListener {
+                viewModel.setIsChallenge()
+            }
 
-    private fun setAlbumClickListener() {
-        binding.communityPostRegisterAlbumIv.setOnClickListener {
-            val intent = Intent(Intent.ACTION_PICK)
-            intent.data = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
-            intent.type = "image/*"
-            launcher.launch(intent)
+            communityPostRegisterReviewTv.setOnClickListener {
+                viewModel.setIsReview()
+            }
+
+            communityPostRegisterAlbumIv.setOnClickListener {
+                val intent = Intent(Intent.ACTION_PICK)
+                intent.data = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+                intent.type = "image/*"
+                launcher.launch(intent)
+            }
         }
     }
 
@@ -155,7 +163,8 @@ class CommunityPostRegisterFragment : Fragment() {
             val content =
                 CommunityPostRegisterContentRequest(
                     binding.communityPostRegisterContentTv.text.toString(),
-                    viewModel.getIsChallenge()!!
+                    viewModel.getIsChallenge()!!,
+                    viewModel.getIsReview()!!
                 )
             val imageUrls = viewModel.getImageUrls()
             val postContentRequestBody =

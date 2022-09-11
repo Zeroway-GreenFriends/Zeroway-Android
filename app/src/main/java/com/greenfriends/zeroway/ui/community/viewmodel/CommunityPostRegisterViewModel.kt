@@ -13,11 +13,14 @@ import okhttp3.RequestBody
 class CommunityPostRegisterViewModel(private val communityPostRepository: CommunityPostRegisterRepository) :
     ViewModel() {
 
-    private val _isChallenge = MutableLiveData<Boolean>(false)
+    private val _isChallenge = MutableLiveData(false)
     val isChallenge: LiveData<Boolean> = _isChallenge
 
-    private val _imageUrl = MutableLiveData<List<String>>()
-    val imageUrl: LiveData<List<String>> = _imageUrl
+    private val _isReview = MutableLiveData(false)
+    val isReview: LiveData<Boolean> = _isReview
+
+    private val _imageUrls = MutableLiveData<List<String>>()
+    val imageUrls: LiveData<List<String>> = _imageUrls
 
     private val _setPostIsSuccess = MutableLiveData<Boolean?>(null)
     val setPostIsSuccess: LiveData<Boolean?> = _setPostIsSuccess
@@ -26,8 +29,24 @@ class CommunityPostRegisterViewModel(private val communityPostRepository: Commun
         _isChallenge.value = !_isChallenge.value!!
     }
 
+    fun getIsChallenge(): Boolean? {
+        return _isChallenge.value
+    }
+
+    fun setIsReview() {
+        _isReview.value = !_isReview.value!!
+    }
+
+    fun getIsReview(): Boolean? {
+        return _isReview.value
+    }
+
     fun setImageUrl(imageUrl: String) {
-        _imageUrl.value = _imageUrl.value?.plus(imageUrl) ?: listOf(imageUrl)
+        _imageUrls.value = _imageUrls.value?.plus(imageUrl) ?: listOf(imageUrl)
+    }
+
+    fun getImageUrls(): List<String>? {
+        return _imageUrls.value
     }
 
     fun setPost(accessToken: String, images: List<MultipartBody.Part>, post: RequestBody) {
@@ -40,13 +59,5 @@ class CommunityPostRegisterViewModel(private val communityPostRepository: Commun
                 Log.d("COMMUNITY/REGISTER/F", response.toString())
             }
         }
-    }
-
-    fun getIsChallenge(): Boolean? {
-        return _isChallenge.value
-    }
-
-    fun getImageUrls(): List<String>? {
-        return _imageUrl.value
     }
 }
