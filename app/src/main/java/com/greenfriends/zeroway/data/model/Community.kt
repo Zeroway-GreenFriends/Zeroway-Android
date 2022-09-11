@@ -2,6 +2,24 @@ package com.greenfriends.zeroway.data.model
 
 import com.google.gson.annotations.SerializedName
 
+data class CommunityPostRegisterContentRequest(
+    @SerializedName("content") val content: String,
+    @SerializedName("challenge") val isChallenge: Boolean,
+    @SerializedName("review") val review: Boolean
+)
+
+data class CommunityPostCommentRequest(
+    @SerializedName("content") val content: String
+)
+
+data class CommunityLikeRequest(
+    @SerializedName("like") val like: Boolean
+)
+
+data class CommunityPostBookmarkRequest(
+    @SerializedName("bookmark") val bookmark: Boolean
+)
+
 data class CommunityResponse(
     @SerializedName("data") val communityPosts: List<CommunityPost>
 )
@@ -20,38 +38,6 @@ data class CommunityPost(
     @SerializedName("imageList") val imageList: List<String>
 )
 
-data class CommunityPostRegisterContentRequest(
-    @SerializedName("content") val content: String,
-    @SerializedName("challenge") val isChallenge: Boolean,
-    @SerializedName("review") val review: Boolean
-)
-
-data class CommunityPostDeleteResponse(
-    @SerializedName("isSuccess") val isSuccess: Boolean,
-    @SerializedName("code") val code: Int,
-    @SerializedName("message") val message: String
-)
-
-data class CommunityPostLikeListResponse(
-    @SerializedName("totalCount") val totalCount: Int,
-    @SerializedName("likeList") val communityPostLikeList: CommunityPostLikeList
-)
-
-data class CommunityPostLikeList(
-    @SerializedName("userId") val userId: Long,
-    @SerializedName("username") val userName: String,
-    @SerializedName("userProfileImg") val userProfileImg: String,
-    @SerializedName("level") val userLevel: Int
-)
-
-data class CommunityLikeRequest(
-    @SerializedName("like") val like: Boolean
-)
-
-data class CommunityPostBookmarkRequest(
-    @SerializedName("bookmark") val bookmark: Boolean
-)
-
 data class CommunityPostDetailResponse(
     @SerializedName("postId") val postId: Long,
     @SerializedName("username") val userName: String,
@@ -59,6 +45,7 @@ data class CommunityPostDetailResponse(
     @SerializedName("content") val content: String,
     @SerializedName("weeksAgo") val weeksAgo: Int,
     @SerializedName("challenge") val challenge: Boolean,
+    @SerializedName("review") val review: Boolean,
     @SerializedName("likeCount") val likeCount: Int,
     @SerializedName("commentCount") val commentCount: Int,
     @SerializedName("liked") var liked: Boolean,
@@ -78,6 +65,14 @@ data class CommunityPostDetailComment(
     @SerializedName("liked") var liked: Boolean
 )
 
-data class CommunityPostCommentRequest(
-    @SerializedName("content") val content: String
+data class CommunityPostLikeListResponse(
+    @SerializedName("totalCount") val totalCount: Int,
+    @SerializedName("likeList") val communityPostLikeList: CommunityPostLikeList
+)
+
+data class CommunityPostLikeList(
+    @SerializedName("userId") val userId: Long,
+    @SerializedName("username") val userName: String,
+    @SerializedName("userProfileImg") val userProfileImg: String,
+    @SerializedName("level") val userLevel: Int
 )
