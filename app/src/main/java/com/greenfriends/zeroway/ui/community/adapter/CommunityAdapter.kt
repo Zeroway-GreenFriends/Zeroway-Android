@@ -3,7 +3,6 @@ package com.greenfriends.zeroway.ui.community.adapter
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Build
-import android.util.Log
 import android.view.ContextThemeWrapper
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -80,18 +79,15 @@ class CommunityAdapter(
         notifyItemRangeInserted(itemCount, communityPosts.size)
     }
 
-    fun setLoading(isLoading: Boolean): Boolean {
-        return when (isLoading) {
+    fun setLoading(isLoading: Boolean) {
+        when (isLoading) {
             true -> {
                 communityPosts.add(null)
                 notifyItemInserted(itemCount - 1)
-                true
             }
             else -> {
                 communityPosts.removeAt(itemCount - 1)
                 notifyItemRemoved(itemCount)
-                Log.d("SSS", communityPosts.toString())
-                true
             }
         }
     }

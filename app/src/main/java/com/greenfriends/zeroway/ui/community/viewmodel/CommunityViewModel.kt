@@ -23,6 +23,9 @@ class CommunityViewModel(private val communityRepository: CommunityRepository) :
     private val _challenge = MutableLiveData(false)
     val challenge: LiveData<Boolean> = _challenge
 
+    private val _isLoading = MutableLiveData(true)
+    val isLoading: LiveData<Boolean> = _isLoading
+
     private val _page = MutableLiveData<Long>(1)
     val page: LiveData<Long> = _page
 
@@ -57,6 +60,14 @@ class CommunityViewModel(private val communityRepository: CommunityRepository) :
 
     fun getChallenge(): Boolean? {
         return _challenge.value
+    }
+
+    fun setIsLoading(isLoading: Boolean) {
+        _isLoading.value = isLoading
+    }
+
+    fun getIsLoading(): Boolean? {
+        return _isLoading.value
     }
 
     fun setPage(page: Long) {
