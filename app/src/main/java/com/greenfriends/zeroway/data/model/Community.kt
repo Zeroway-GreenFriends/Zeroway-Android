@@ -10,6 +10,7 @@ data class CommunityPost(
     @SerializedName("postId") val postId: Long,
     @SerializedName("content") val content: String,
     @SerializedName("challenge") val challenge: Boolean,
+    @SerializedName("review") val review: Boolean,
     @SerializedName("username") val username: String,
     @SerializedName("userProfileImg") val userProfileImg: String?,
     @SerializedName("likeCount") val likeCount: Int,
