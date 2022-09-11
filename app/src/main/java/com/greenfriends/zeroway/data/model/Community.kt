@@ -22,7 +22,8 @@ data class CommunityPost(
 
 data class CommunityPostRegisterContentRequest(
     @SerializedName("content") val content: String,
-    @SerializedName("challenge") val isChallenge: Boolean
+    @SerializedName("challenge") val isChallenge: Boolean,
+    @SerializedName("review") val review: Boolean
 )
 
 data class CommunityPostDeleteResponse(

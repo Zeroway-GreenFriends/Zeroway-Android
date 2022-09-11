@@ -27,7 +27,6 @@ class CommunityFragment : Fragment() {
     private val viewModel: CommunityViewModel by viewModels { ViewModelFactory() }
     private lateinit var binding: FragmentCommunityBinding
     private lateinit var adapter: CommunityAdapter
-    private var isLoading: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,7 +42,7 @@ class CommunityFragment : Fragment() {
 
         binding.lifecycleOwner = viewLifecycleOwner
 
-        getPosts(isInit = true)
+        getPosts(isInit = true, state = getState())
         setObserve()
         setOnClickListener()
         setCommunityAdapter()
@@ -51,7 +50,7 @@ class CommunityFragment : Fragment() {
         startCommunityPostRegisterFragment()
     }
 
-    private fun getPosts(page: Long = 1, size: Long = 30, isInit: Boolean = false) {
+    private fun getPosts(page: Long = 1, size: Long = 30, isInit: Boolean = false, state: String) {
         when (isInit) {
             true -> {
                 viewModel.getPosts(
@@ -68,8 +67,8 @@ class CommunityFragment : Fragment() {
                 val handler = Handler(Looper.getMainLooper())
                 handler.postDelayed(
                     {
-                        val isFinish = adapter.setLoading(false)
-                        if (isFinish) {
+                        if (state == getState()) {
+                            adapter.setLoading(false)
                             viewModel.getPosts(
                                 getJwt()!!,
                                 viewModel.getSort()!!,
@@ -83,6 +82,11 @@ class CommunityFragment : Fragment() {
                 )
             }
         }
+    }
+
+    private fun getState(): String {
+        return viewModel.getSort().toString() + viewModel.getReview()
+            .toString() + viewModel.getChallenge().toString()
     }
 
     private fun setObserve() {
@@ -114,7 +118,7 @@ class CommunityFragment : Fragment() {
             viewLifecycleOwner, EventObserve { isDeleted ->
                 if (isDeleted) {
                     Toast.makeText(requireContext(), "게시물이 삭제되었습니다.", Toast.LENGTH_SHORT).show()
-                    getPosts()
+                    //getPosts()
                 } else {
                     Toast.makeText(requireContext(), "해당 게시물 삭제 권한이 없습니다.", Toast.LENGTH_SHORT)
                         .show()
@@ -127,30 +131,34 @@ class CommunityFragment : Fragment() {
         with(binding) {
             communityLatestTv.setOnClickListener {
                 adapter.clear()
+                viewModel.setIsLoading(true)
                 viewModel.setSort("createdAt")
                 viewModel.setPage(1)
-                getPosts(isInit = true)
+                getPosts(isInit = true, state = getState())
             }
 
             communityPopularityTv.setOnClickListener {
                 adapter.clear()
+                viewModel.setIsLoading(true)
                 viewModel.setSort("like")
                 viewModel.setPage(1)
-                getPosts(isInit = true)
+                getPosts(isInit = true, state = getState())
             }
 
             communityReviewTv.setOnClickListener {
                 adapter.clear()
+                viewModel.setIsLoading(true)
                 viewModel.setReview()
                 viewModel.setPage(1)
-                getPosts(isInit = true)
+                getPosts(isInit = true, state = getState())
             }
 
             communityChallengeTv.setOnClickListener {
                 adapter.clear()
+                viewModel.setIsLoading(true)
                 viewModel.setChallenge()
                 viewModel.setPage(1)
-                getPosts(isInit = true)
+                getPosts(isInit = true, state = getState())
             }
         }
     }
@@ -187,8 +195,10 @@ class CommunityFragment : Fragment() {
         viewModel.communityPosts.observe(
             viewLifecycleOwner
         ) { communityPosts ->
-            adapter.submitCommunityPosts(communityPosts)
-            isLoading = false
+            if (!communityPosts.isNullOrEmpty()) {
+                adapter.submitCommunityPosts(communityPosts)
+                viewModel.setIsLoading(false)
+            }
         }
     }
 
@@ -201,10 +211,10 @@ class CommunityFragment : Fragment() {
                 val totalItemCount = recyclerView.adapter!!.itemCount
                 val lastVisibleItemPosition =
                     (recyclerView.layoutManager as LinearLayoutManager).findLastCompletelyVisibleItemPosition()
-                if (!recyclerView.canScrollVertically(1) && lastVisibleItemPosition == totalItemCount - 1 && !isLoading) {
-                    isLoading = true
+                if (!recyclerView.canScrollVertically(1) && lastVisibleItemPosition == totalItemCount - 1 && !viewModel.getIsLoading()!!) {
+                    viewModel.setIsLoading(true)
                     viewModel.setPage(viewModel.getPage()!! + 1)
-                    getPosts(page = viewModel.getPage()!!)
+                    getPosts(page = viewModel.getPage()!!, state = getState())
                 }
             }
         })

@@ -109,7 +109,7 @@
 
         <TextView
             android:id="@+id/item_community_include_image_challenge_tv"
-            isVisible="@{communityPost.challenge}"
+            isVisible="@{communityPost.challenge || communityPost.review}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
