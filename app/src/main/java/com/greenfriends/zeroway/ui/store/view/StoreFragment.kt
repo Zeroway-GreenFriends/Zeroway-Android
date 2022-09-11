@@ -82,7 +82,7 @@ class StoreFragment : Fragment() {
                 adapter.clear()
                 viewModel.setPage(1)
                 viewModel.setKeyword(storeSearchEt.text.toString())
-                getStores(viewModel.getKeyword(), viewModel.getPage()!!)
+                getStores(viewModel.getKeyword(), isInit = true)
             }
         }
     }

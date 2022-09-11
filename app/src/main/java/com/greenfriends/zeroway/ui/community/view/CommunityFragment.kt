@@ -1,6 +1,8 @@
 package com.greenfriends.zeroway.ui.community.view
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,21 +10,24 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.greenfriends.zeroway.R
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.greenfriends.zeroway.POST_ID
-import com.greenfriends.zeroway.databinding.FragmentCommunityBinding
+import com.greenfriends.zeroway.R
 import com.greenfriends.zeroway.data.model.CommunityPost
+import com.greenfriends.zeroway.databinding.FragmentCommunityBinding
 import com.greenfriends.zeroway.ui.common.EventObserve
 import com.greenfriends.zeroway.ui.common.ViewModelFactory
-import com.greenfriends.zeroway.ui.community.viewmodel.CommunityViewModel
 import com.greenfriends.zeroway.ui.community.OnCommunityItemClickListener
 import com.greenfriends.zeroway.ui.community.adapter.CommunityAdapter
+import com.greenfriends.zeroway.ui.community.viewmodel.CommunityViewModel
 
 class CommunityFragment : Fragment() {
 
     private val viewModel: CommunityViewModel by viewModels { ViewModelFactory() }
     private lateinit var binding: FragmentCommunityBinding
     private lateinit var adapter: CommunityAdapter
+    private var isLoading: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,15 +43,46 @@ class CommunityFragment : Fragment() {
 
         binding.lifecycleOwner = viewLifecycleOwner
 
-        getPosts()
+        getPosts(isInit = true)
         setObserve()
         setOnClickListener()
         setCommunityAdapter()
+        setOnScrollChangeListener()
         startCommunityPostRegisterFragment()
     }
 
-    private fun getPosts() {
-        viewModel.getPosts(getJwt()!!, viewModel.getSort()!!)
+    private fun getPosts(page: Long = 1, size: Long = 30, isInit: Boolean = false) {
+        when (isInit) {
+            true -> {
+                viewModel.getPosts(
+                    getJwt()!!,
+                    viewModel.getSort()!!,
+                    page,
+                    size,
+                    viewModel.getChallenge(),
+                    viewModel.getReview()
+                )
+            }
+            else -> {
+                adapter.setLoading(true)
+                val handler = Handler(Looper.getMainLooper())
+                handler.postDelayed(
+                    {
+                        val isFinish = adapter.setLoading(false)
+                        if (isFinish) {
+                            viewModel.getPosts(
+                                getJwt()!!,
+                                viewModel.getSort()!!,
+                                page,
+                                size,
+                                viewModel.getChallenge(),
+                                viewModel.getReview()
+                            )
+                        }
+                    }, 1000
+                )
+            }
+        }
     }
 
     private fun setObserve() {
@@ -56,10 +92,16 @@ class CommunityFragment : Fragment() {
             binding.sort = sort
         }
 
-        viewModel.communityPosts.observe(
+        viewModel.review.observe(
             viewLifecycleOwner
-        ) { communityPosts ->
-            adapter.submitList(communityPosts)
+        ) { review ->
+            binding.review = review
+        }
+
+        viewModel.challenge.observe(
+            viewLifecycleOwner
+        ) { challenge ->
+            binding.challenge = challenge
         }
 
         viewModel.communityPostDetailEvent.observe(
@@ -84,12 +126,31 @@ class CommunityFragment : Fragment() {
     private fun setOnClickListener() {
         with(binding) {
             communityLatestTv.setOnClickListener {
+                adapter.clear()
                 viewModel.setSort("createdAt")
-                getPosts()
+                viewModel.setPage(1)
+                getPosts(isInit = true)
             }
+
             communityPopularityTv.setOnClickListener {
+                adapter.clear()
                 viewModel.setSort("like")
-                getPosts()
+                viewModel.setPage(1)
+                getPosts(isInit = true)
+            }
+
+            communityReviewTv.setOnClickListener {
+                adapter.clear()
+                viewModel.setReview()
+                viewModel.setPage(1)
+                getPosts(isInit = true)
+            }
+
+            communityChallengeTv.setOnClickListener {
+                adapter.clear()
+                viewModel.setChallenge()
+                viewModel.setPage(1)
+                getPosts(isInit = true)
             }
         }
     }
@@ -120,6 +181,31 @@ class CommunityFragment : Fragment() {
                     communityPost.postId.toString(),
                     communityPost.bookmarked
                 )
+            }
+        })
+
+        viewModel.communityPosts.observe(
+            viewLifecycleOwner
+        ) { communityPosts ->
+            adapter.submitCommunityPosts(communityPosts)
+            isLoading = false
+        }
+    }
+
+    private fun setOnScrollChangeListener() {
+        binding.communityPostRv.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                val totalItemCount = recyclerView.adapter!!.itemCount
+                val lastVisibleItemPosition =
+                    (recyclerView.layoutManager as LinearLayoutManager).findLastCompletelyVisibleItemPosition()
+                if (!recyclerView.canScrollVertically(1) && lastVisibleItemPosition == totalItemCount - 1 && !isLoading) {
+                    isLoading = true
+                    viewModel.setPage(viewModel.getPage()!! + 1)
+                    getPosts(page = viewModel.getPage()!!)
+                }
             }
         })
     }

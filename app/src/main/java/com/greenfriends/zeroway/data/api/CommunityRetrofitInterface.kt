@@ -20,12 +20,16 @@ interface CommunityRetrofitInterface {
     ): Response<Void>
 
     /**
-     * 커뮤니티 게시물 전체 조회 API
+     * 커뮤니티 게시물 조회 API
      */
     @GET("post/list")
     suspend fun getPosts(
         @Header("Bearer") accessToken: String,
-        @Query("sort") sort: String
+        @Query("sort") sort: String?,
+        @Query("page") page: Long?,
+        @Query("size") size: Long?,
+        @Query("challenge") challenge: Boolean?,
+        @Query("review") review: Boolean?
     ): Response<CommunityResponse>
 
     /**

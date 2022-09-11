@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.greenfriends.zeroway.data.model.StoreResponse
 import com.greenfriends.zeroway.databinding.ItemLoadingBinding
 import com.greenfriends.zeroway.databinding.ItemStorePostBinding
+import com.greenfriends.zeroway.ui.common.LoadingViewHolder
 
 private const val VIEW_TYPE_LOADING = 0
 private const val VIEW_TYPE_POST = 1
@@ -38,7 +39,7 @@ class StoreAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
-            is StoreViewHolder -> holder.bind(stores[position] as StoreResponse)
+            is StoreViewHolder -> holder.bind(stores[position]!!)
         }
     }
 
@@ -85,9 +86,5 @@ class StoreAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             binding.storeResponse = storeResponse
             binding.executePendingBindings()
         }
-    }
-
-    class LoadingViewHolder(private val binding: ItemLoadingBinding) :
-        RecyclerView.ViewHolder(binding.root) {
     }
 }
