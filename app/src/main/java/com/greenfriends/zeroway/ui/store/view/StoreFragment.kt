@@ -1,7 +1,8 @@
 package com.greenfriends.zeroway.ui.store.view
 
 import android.os.Bundle
-import android.util.Log
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,6 +20,7 @@ class StoreFragment : Fragment() {
     private val viewModel: StoreViewModel by viewModels { ViewModelFactory() }
     private lateinit var binding: FragmentStoreBinding
     private lateinit var adapter: StoreAdapter
+    private var isLoading: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,14 +36,33 @@ class StoreFragment : Fragment() {
 
         binding.lifecycleOwner = viewLifecycleOwner
 
-        getStores()
+        getStores(isInit = true)
         setStoreAdapter()
         setOnClickListener()
         setOnScrollChangeListener()
     }
 
-    private fun getStores(keyword: String? = null, page: Int = 1, size: Int = 5) {
-        viewModel.getStores(keyword, page, size)
+    private fun getStores(
+        keyword: String? = null,
+        page: Int = 1,
+        size: Int = 5,
+        isInit: Boolean = false
+    ) {
+        when (isInit) {
+            true -> viewModel.getStores(keyword, page, size)
+            else -> {
+                adapter.setLoading(true)
+                val handler = Handler(Looper.getMainLooper())
+                handler.postDelayed(
+                    {
+                        val isFinish = adapter.setLoading(false)
+                        if (isFinish) {
+                            viewModel.getStores(keyword, page, size)
+                        }
+                    }, 1000
+                )
+            }
+        }
     }
 
     private fun setStoreAdapter() {
@@ -51,6 +72,7 @@ class StoreFragment : Fragment() {
             viewLifecycleOwner
         ) { stores ->
             adapter.submitStores(stores)
+            isLoading = false
         }
     }
 
@@ -72,9 +94,10 @@ class StoreFragment : Fragment() {
                 super.onScrolled(recyclerView, dx, dy)
 
                 val totalItemCount = recyclerView.adapter!!.itemCount
-                val lastVisibleItemPosition = (recyclerView.layoutManager as LinearLayoutManager).findLastCompletelyVisibleItemPosition()
-                Log.d("SSS", totalItemCount.toString() +"dd"+ lastVisibleItemPosition.toString())
-                if (!recyclerView.canScrollVertically(1) && lastVisibleItemPosition == totalItemCount - 1) {
+                val lastVisibleItemPosition =
+                    (recyclerView.layoutManager as LinearLayoutManager).findLastCompletelyVisibleItemPosition()
+                if (!recyclerView.canScrollVertically(1) && lastVisibleItemPosition == totalItemCount - 1 && !isLoading) {
+                    isLoading = true
                     viewModel.setPage(viewModel.getPage()!! + 1)
                     getStores(viewModel.getKeyword(), viewModel.getPage()!!)
                 }
