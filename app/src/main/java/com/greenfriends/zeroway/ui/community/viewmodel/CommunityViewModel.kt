@@ -5,17 +5,26 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.greenfriends.zeroway.data.model.CommunityLikeRequest
 import com.greenfriends.zeroway.data.model.CommunityPost
 import com.greenfriends.zeroway.data.model.CommunityPostBookmarkRequest
-import com.greenfriends.zeroway.data.model.CommunityLikeRequest
 import com.greenfriends.zeroway.data.repository.community.CommunityRepository
 import com.greenfriends.zeroway.ui.common.Event
 import kotlinx.coroutines.launch
 
 class CommunityViewModel(private val communityRepository: CommunityRepository) : ViewModel() {
 
-    private val _sort = MutableLiveData<String>("createdAt")
+    private val _sort = MutableLiveData("createdAt")
     val sort: LiveData<String> = _sort
+
+    private val _review = MutableLiveData(false)
+    val review: LiveData<Boolean> = _review
+
+    private val _challenge = MutableLiveData(false)
+    val challenge: LiveData<Boolean> = _challenge
+
+    private val _page = MutableLiveData<Long>(1)
+    val page: LiveData<Long> = _page
 
     private val _communityPosts = MutableLiveData<List<CommunityPost>>()
     val communityPosts: LiveData<List<CommunityPost>> = _communityPosts
@@ -34,13 +43,45 @@ class CommunityViewModel(private val communityRepository: CommunityRepository) :
         return _sort.value
     }
 
+    fun setReview() {
+        _review.value = !_review.value!!
+    }
+
+    fun getReview(): Boolean? {
+        return _review.value
+    }
+
+    fun setChallenge() {
+        _challenge.value = !_challenge.value!!
+    }
+
+    fun getChallenge(): Boolean? {
+        return _challenge.value
+    }
+
+    fun setPage(page: Long) {
+        _page.value = page
+    }
+
+    fun getPage(): Long? {
+        return _page.value
+    }
+
     fun setCommunityPostDetailEvent(postId: Long) {
         _communityPostDetailEvent.value = Event(postId)
     }
 
-    fun getPosts(accessToken: String, sort: String) {
+    fun getPosts(
+        accessToken: String,
+        sort: String?,
+        page: Long?,
+        size: Long?,
+        challenge: Boolean?,
+        review: Boolean?
+    ) {
         viewModelScope.launch {
-            val response = communityRepository.getPosts(accessToken, sort)
+            val response =
+                communityRepository.getPosts(accessToken, sort, page, size, challenge, review)
             if (response.isSuccessful) {
                 _communityPosts.value = response.body()!!.communityPosts
                 Log.d("COMMUNITY/ALLPOST/T", response.body().toString())
