@@ -2,6 +2,8 @@ package com.greenfriends.zeroway.ui.common
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.greenfriends.zeroway.repository.challenge.ChallengeDataSourceImpl
+import com.greenfriends.zeroway.repository.challenge.ChallengeRepository
 import com.greenfriends.zeroway.repository.community.CommunityDataSourceImpl
 import com.greenfriends.zeroway.repository.community.CommunityRepository
 import com.greenfriends.zeroway.repository.communitypostdetail.CommunityPostDetailDataSourceImpl
@@ -10,6 +12,7 @@ import com.greenfriends.zeroway.repository.communitypostregister.CommunityPostRe
 import com.greenfriends.zeroway.repository.communitypostregister.CommunityPostRegisterRepository
 import com.greenfriends.zeroway.repository.home.HomeDataSourceImpl
 import com.greenfriends.zeroway.repository.home.HomeRepository
+import com.greenfriends.zeroway.ui.challenge.ChallengeViewModel
 import com.greenfriends.zeroway.ui.community.CommunityViewModel
 import com.greenfriends.zeroway.ui.communitypostdetail.CommunityPostDetailViewModel
 import com.greenfriends.zeroway.ui.communitypostregister.CommunityPostRegisterViewModel
@@ -40,6 +43,13 @@ class ViewModelFactory : ViewModelProvider.Factory {
                 HomeViewModel(
                     HomeRepository(
                         HomeDataSourceImpl()
+                    )
+                ) as T
+            }
+            modelClass.isAssignableFrom(ChallengeViewModel::class.java) -> {
+                ChallengeViewModel(
+                    ChallengeRepository(
+                        ChallengeDataSourceImpl()
                     )
                 ) as T
             }

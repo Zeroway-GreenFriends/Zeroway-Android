@@ -1,100 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#E7F4F3">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageButton
-        android:id="@+id/challenge_character_goback_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="15dp"
-        android:layout_marginStart="10dp"
-        android:src="@drawable/ic_goback"
-        android:backgroundTint="#E7F4F3"/>
+    <data>
 
-    <TextView
-        android:id="@+id/challenge_character_nickname_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:text="닉네임"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/challenge_charactier_level_cl"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <variable
+            name="challengeResponse"
+            type="com.greenfriends.zeroway.model.ChallengeResponse" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/challenge_charactier_level_cl"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/challenge_character_challenge_btn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+    </data>
 
-        <TextView
-            android:id="@+id/challenge_character_level_tv"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#E7F4F3">
+
+        <ImageButton
+            android:id="@+id/challenge_character_goback_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:text="Lv.5"
-            android:textColor="#6FE0D6"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/challenge_character_level_pb"
-            app:layout_constraintEnd_toStartOf="@+id/challenge_character_level_pb"
-            app:layout_constraintTop_toTopOf="@+id/challenge_character_level_pb" />
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="15dp"
+            android:backgroundTint="#E7F4F3"
+            android:src="@drawable/ic_goback"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <ProgressBar
-            android:id="@+id/challenge_character_level_pb"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="215dp"
-            android:layout_height="9dp"
-            android:layout_marginBottom="130dp"
-            android:progressDrawable="@drawable/ic_level_progressbar"
+        <TextView
+            android:id="@+id/challenge_character_nickname_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:text="@{challengeResponse.nickname}"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/challenge_charactier_level_cl"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/challenge_charactier_level_cl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/challenge_character_challenge_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                android:id="@+id/challenge_character_level_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                levelToLvString="@{challengeResponse.level}"
+                android:textColor="#6FE0D6"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/challenge_character_level_pb"
+                app:layout_constraintEnd_toStartOf="@+id/challenge_character_level_pb"
+                app:layout_constraintTop_toTopOf="@+id/challenge_character_level_pb" />
+
+            <ProgressBar
+                android:id="@+id/challenge_character_level_pb"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="215dp"
+                android:layout_height="9dp"
+                android:layout_marginBottom="130dp"
+                android:progressDrawable="@drawable/ic_level_progressbar"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+            android:id="@+id/challenge_character_challenge_btn"
+            android:layout_width="240dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/ic_ok_btn_detail"
+            android:text="챌린지 참여하기"
+            android:textColor="@color/white"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="76dp"
+            android:src="@drawable/ic_challenge_character_background"
+            app:layout_constraintEnd_toEndOf="@+id/challenge_character_level_img"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/challenge_character_level_img"
+            app:layout_constraintTop_toBottomOf="@+id/challenge_character_goback_btn" />
+
+        <ImageView
+            android:id="@+id/challenge_character_level_img"
+            android:layout_width="240dp"
+            android:layout_height="225dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="50dp"
+            app:layout_constraintBottom_toTopOf="@+id/challenge_character_nickname_tv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <Button
-        android:id="@+id/challenge_character_challenge_btn"
-        android:layout_width="240dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="40dp"
-        android:background="@drawable/ic_ok_btn_detail"
-        android:text="챌린지 참여하기"
-        android:textColor="@color/white"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
-        android:src="@drawable/ic_challenge_character_background"
-        app:layout_constraintEnd_toEndOf="@+id/challenge_character_level_img"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/challenge_character_level_img"
-        app:layout_constraintTop_toBottomOf="@+id/challenge_character_goback_btn" />
-
-    <ImageView
-        android:id="@+id/challenge_character_level_img"
-        android:layout_width="240dp"
-        android:layout_height="225dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginBottom="50dp"
-        app:layout_constraintBottom_toTopOf="@+id/challenge_character_nickname_tv"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

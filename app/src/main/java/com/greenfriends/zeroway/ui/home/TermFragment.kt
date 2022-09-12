@@ -83,18 +83,25 @@ class TermFragment : Fragment() {
         binding.wordWordRv.adapter = termAdapter
         termAdapter.setMyItemClickListener(object : TermAdapter.MyItemClickListener {
             override fun onItemClick(word: TermResponse) {
-                //dialog 띄우기
+
                 WordDialogFragment(word).show(
                     fragmentManager!!, "WordDialog"
                 )
             }
-
         })
     }
 
     private fun setTermSearchAdapter() {
         termSearchAdapter = TermSearchAdapter(viewModel)
         binding.wordSearchRv.adapter = termSearchAdapter
+        termSearchAdapter.setMyItemClickListener(object : TermSearchAdapter.MyItemClickListener {
+            override fun onItemClick(word: TermResponse) {
+
+                WordDialogFragment(word).show(
+                    fragmentManager!!, "WordDialog"
+                )
+            }
+        })
     }
 
     private fun getTerm(keyword: String?, page: Int?, size: Int?) {

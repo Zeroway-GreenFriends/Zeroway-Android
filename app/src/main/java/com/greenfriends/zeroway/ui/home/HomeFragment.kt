@@ -105,6 +105,14 @@ class HomeFragment : Fragment() {
     private fun setTermAdapter() {
         termAdapter = TermAdapter(viewModel)
         binding.homeWordRv.adapter = termAdapter
+        termAdapter.setMyItemClickListener(object : TermAdapter.MyItemClickListener {
+            override fun onItemClick(word: TermResponse) {
+
+                WordDialogFragment(word).show(
+                    fragmentManager!!, "WordDialog"
+                )
+            }
+        })
     }
 
     private fun setTipAdapter() {

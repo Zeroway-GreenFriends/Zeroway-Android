@@ -18,14 +18,14 @@ interface ChallengeRetrofitInterface {
     ): Response<ChallengeResponse>
 
     @GET("challenge/list")
-    fun getChallengeList(
+    suspend fun getChallengeList(
         @Header("Bearer") accessToken: String
-    ): Call<List<ChallengeListResponse>>
+    ): Response<List<ChallengeListResponse>>
 
     @PATCH("challenge/{challenge_id}/complete")
-    fun updateChallenge(
+    suspend fun updateChallenge(
         @Header("Bearer") accessToken: String,
         @Path("challenge_id") challengeId: Long
-    ): Call<ChallengeLevelResponse>
+    ): Response<ChallengeLevelResponse>
 
 }

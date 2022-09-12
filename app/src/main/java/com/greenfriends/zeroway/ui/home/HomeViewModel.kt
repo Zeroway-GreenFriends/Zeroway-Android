@@ -8,7 +8,6 @@ import androidx.lifecycle.viewModelScope
 import com.greenfriends.zeroway.model.ChallengeResponse
 import com.greenfriends.zeroway.model.TermResponse
 import com.greenfriends.zeroway.model.TipResponse
-import com.greenfriends.zeroway.network.HomeService
 import com.greenfriends.zeroway.repository.home.HomeRepository
 import kotlinx.coroutines.launch
 
