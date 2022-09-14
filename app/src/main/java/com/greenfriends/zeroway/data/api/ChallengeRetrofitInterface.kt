@@ -10,17 +10,17 @@ import retrofit2.http.*
 interface ChallengeRetrofitInterface {
 
     @GET("challenge")
-    suspend fun getChallenge(
+    fun getChallenge(
         @Header("Bearer") accessToken: String
     ): Response<ChallengeResponse>
 
     @GET("challenge/list")
-    suspend fun getChallengeList(
+    fun getChallengeList(
         @Header("Bearer") accessToken: String
     ): Response<List<ChallengeListResponse>>
 
     @PATCH("challenge/{challenge_id}/complete")
-    suspend fun updateChallenge(
+    fun updateChallenge(
         @Header("Bearer") accessToken: String,
         @Path("challenge_id") challengeId: Long
     ): Response<ChallengeLevelResponse>

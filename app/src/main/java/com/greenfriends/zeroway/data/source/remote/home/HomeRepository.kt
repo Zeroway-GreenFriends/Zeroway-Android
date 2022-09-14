@@ -3,6 +3,7 @@ package com.greenfriends.zeroway.repository.home
 import com.greenfriends.zeroway.data.model.ChallengeResponse
 import com.greenfriends.zeroway.data.model.TermResponse
 import com.greenfriends.zeroway.data.model.TipResponse
+import com.greenfriends.zeroway.data.source.remote.home.HomeDataSourceImpl
 import retrofit2.Response
 
 class HomeRepository(private val homeDataSourceImpl: HomeDataSourceImpl) {

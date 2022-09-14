@@ -1,4 +1,4 @@
-package com.greenfriends.zeroway.repository.home
+package com.greenfriends.zeroway.data.source.remote.home
 
 import com.greenfriends.zeroway.data.model.ChallengeResponse
 import com.greenfriends.zeroway.data.model.TermResponse
@@ -6,6 +6,7 @@ import com.greenfriends.zeroway.data.model.TipResponse
 import com.greenfriends.zeroway.data.api.ChallengeRetrofitInterface
 import com.greenfriends.zeroway.data.api.HomeRetrofitInterface
 import com.greenfriends.zeroway.data.api.RetrofitClient
+import com.greenfriends.zeroway.repository.home.HomeDataSource
 import retrofit2.Response
 
 class HomeDataSourceImpl: HomeDataSource {
@@ -28,8 +29,16 @@ class HomeDataSourceImpl: HomeDataSource {
         return homeService!!.getTip()
     }
 
-    override suspend fun getTermSearch(keyword: String?, page: Int?, size: Int?): Response<List<TermResponse>> {
-        return homeService!!.getTermSearch(keyword, page, size)
+    override suspend fun getTermSearch(
+        keyword: String?,
+        page: Int?,
+        size: Int?
+    ): Response<List<TermResponse>> {
+        TODO("Not yet implemented")
     }
+
+//    override suspend fun getTermSearch(keyword: String?, page: Int?, size: Int?): Response<List<TermResponse>> {
+//        //return homeService!!.getTermSearch(keyword, page, size)
+//    }
 
 }

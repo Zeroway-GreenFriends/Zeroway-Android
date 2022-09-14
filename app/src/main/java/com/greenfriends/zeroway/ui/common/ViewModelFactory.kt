@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.greenfriends.zeroway.repository.challenge.ChallengeDataSourceImpl
 import com.greenfriends.zeroway.repository.challenge.ChallengeRepository
-import com.greenfriends.zeroway.repository.home.HomeDataSourceImpl
+import com.greenfriends.zeroway.data.source.remote.home.HomeDataSourceImpl
 import com.greenfriends.zeroway.repository.home.HomeRepository
 import com.greenfriends.zeroway.ui.challenge.ChallengeViewModel
 import com.greenfriends.zeroway.ui.home.HomeViewModel
@@ -45,6 +45,7 @@ class ViewModelFactory : ViewModelProvider.Factory {
                     )
                 ) as T
             }
+
             modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
                 HomeViewModel(
                     HomeRepository(
@@ -59,6 +60,7 @@ class ViewModelFactory : ViewModelProvider.Factory {
                     )
                 ) as T
             }
+
             modelClass.isAssignableFrom(StoreViewModel::class.java) -> {
                 StoreViewModel(
                     StoreRepository(

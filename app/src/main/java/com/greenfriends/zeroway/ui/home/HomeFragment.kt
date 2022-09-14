@@ -19,6 +19,7 @@ import com.greenfriends.zeroway.ui.common.ViewModelFactory
 import com.greenfriends.zeroway.data.api.*
 import com.greenfriends.zeroway.ui.store.view.StoreFragment
 
+
 class HomeFragment : Fragment() {
 
     private val viewModel: HomeViewModel by viewModels { ViewModelFactory() }
