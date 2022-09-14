@@ -1,17 +1,23 @@
 package com.greenfriends.zeroway.ui.challenge
 
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.greenfriends.zeroway.R
-import com.greenfriends.zeroway.databinding.ItemChallengeListBinding
 import com.greenfriends.zeroway.data.model.ChallengeListResponse
+import com.greenfriends.zeroway.databinding.ItemChallengeListBinding
 
 
-class ChallengeListAdapter(private val challengeList: ArrayList<ChallengeListResponse>) :
-    RecyclerView.Adapter<ChallengeListAdapter.ViewHolder>() {
+
+class ChallengeListAdapter(
+    private val viewModel: ChallengeViewModel
+) :
+    ListAdapter<ChallengeListResponse, RecyclerView.ViewHolder>(diffUtil) {
 
     interface MyItemClickListener {
         fun onItemClick(challengeList: ChallengeListResponse)
@@ -34,23 +40,12 @@ class ChallengeListAdapter(private val challengeList: ArrayList<ChallengeListRes
         return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(challengeList[position])
-        holder.itemView.setOnClickListener {
-            mItemClickListener.onItemClick(challengeList[position])
-        }
-    }
-
-    override fun getItemCount(): Int {
-        return challengeList.size
-    }
-
     inner class ViewHolder(val binding: ItemChallengeListBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(challengeList: ChallengeListResponse) {
 
-            binding.challengeListListTv1.text = challengeList.content
+            binding.viewModel = viewModel
 
             when (challengeList.complete) {
                 true -> {
@@ -64,5 +59,25 @@ class ChallengeListAdapter(private val challengeList: ArrayList<ChallengeListRes
             }
         }
     }
+
+    companion object {
+        val diffUtil = object : DiffUtil.ItemCallback<ChallengeListResponse>() {
+            override fun areContentsTheSame(oldItem: ChallengeListResponse, newItem: ChallengeListResponse) =
+                oldItem == newItem
+
+            override fun areItemsTheSame(oldItem: ChallengeListResponse, newItem: ChallengeListResponse) =
+                oldItem == newItem
+        }
+    }
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        (holder as ViewHolder).bind(getItem(position))
+
+        //밑에 꺼 설정하면 클릭되는지 확인할 것
+        holder.itemView.setOnClickListener {
+            mItemClickListener.onItemClick(getItem(position))
+        }
+    }
+
 
 }

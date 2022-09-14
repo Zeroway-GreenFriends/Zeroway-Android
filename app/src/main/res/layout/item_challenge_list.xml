@@ -1,34 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:id="@+id/challenge_list_list_tv1"
+    <data>
+        <variable
+            name="viewModel"
+            type="com.greenfriends.zeroway.ui.challenge.ChallengeViewModel" />
+
+        <variable
+            name="challengeList"
+            type="com.greenfriends.zeroway.data.model.ChallengeListResponse" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="22dp"
-        android:background="@drawable/ic_challenge_list_detail"
-        android:gravity="center"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content">
 
-    <ImageButton
-        android:id="@+id/challenge_list_check_btn1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/challenge_list_list_tv1"
-        app:layout_constraintBottom_toBottomOf="@id/challenge_list_list_tv1"
-        app:layout_constraintStart_toStartOf="@id/challenge_list_list_tv1"
-        android:layout_marginStart="10dp"
-        android:src="@drawable/ic_check_circle"
-        android:backgroundTint="@color/white"/>
+        <TextView
+            android:id="@+id/challenge_list_list_tv1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="22dp"
+            android:background="@drawable/ic_challenge_list_detail"
+            android:gravity="center"
+            android:text="@{challengeList.content}"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageButton
+            android:id="@+id/challenge_list_check_btn1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/challenge_list_list_tv1"
+            app:layout_constraintBottom_toBottomOf="@id/challenge_list_list_tv1"
+            app:layout_constraintStart_toStartOf="@id/challenge_list_list_tv1"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/ic_check_circle"
+            android:backgroundTint="@color/white"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

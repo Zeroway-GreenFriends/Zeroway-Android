@@ -8,19 +8,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.fragment.app.viewModels
 import com.greenfriends.zeroway.R
-import com.greenfriends.zeroway.databinding.FragmentChallengeListBinding
-import com.greenfriends.zeroway.data.model.ChallengeLevelResponse
 import com.greenfriends.zeroway.data.model.ChallengeListResponse
-import com.greenfriends.zeroway.data.api.ChallengeListView
-import com.greenfriends.zeroway.data.api.ChallengeService
-import com.greenfriends.zeroway.data.api.ChallengeUpdateView
+import com.greenfriends.zeroway.databinding.FragmentChallengeListBinding
+import com.greenfriends.zeroway.ui.common.ViewModelFactory
 
 class ChallengeListFragment : Fragment() {
-    private lateinit var binding: FragmentChallengeListBinding
 
-    private var challengeList = ArrayList<ChallengeListResponse>()
+    private val viewModel: ChallengeViewModel by viewModels { ViewModelFactory() }
+    private lateinit var challengeListAdapter: ChallengeListAdapter
+
+    private lateinit var binding: FragmentChallengeListBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,10 +28,58 @@ class ChallengeListFragment : Fragment() {
     ): View? {
         binding = FragmentChallengeListBinding.inflate(inflater, container, false)
 
-       // getChallengeList(getJwt()!!)
+        getChallengeList()
+        setObserve()
+        setChallengeListAdapter()
+
+        binding.challengeListOkBtn.setOnClickListener {
+            Log.e("level", getLevel().toString())
+            Log.e("patch level", getPatchLevel().toString())
+            if ((getLevel()?.toInt()?.plus(1)) == getPatchLevel()?.toInt()) {
+                saveLevel(getPatchLevel()?.toInt()!!)
+                startActivity(Intent(context, LevelUpActivity::class.java))
+
+            } else {
+                activity?.supportFragmentManager?.beginTransaction()
+                    ?.replace(R.id.main_fl, ChallengeCharacterFragment())
+                    ?.commitAllowingStateLoss()
+            }
+        }
 
         return binding.root
     }
+
+    private fun setObserve() {
+
+        viewModel.challengeList.observe(
+            viewLifecycleOwner
+        ) { challengeList ->
+            challengeListAdapter.submitList(challengeList)
+        }
+
+        viewModel.challengeLevelResponse.observe(
+            viewLifecycleOwner
+        ) { challengeLevelResponse ->
+            savePatchLevel(challengeLevelResponse.level)
+        }
+
+    }
+
+    private fun getChallengeList() {
+        viewModel.getChallengeList(getJwt()!!)
+    }
+
+    private fun setChallengeListAdapter() {
+        challengeListAdapter = ChallengeListAdapter(viewModel)
+        challengeListAdapter.setMyItemClickListener(object :
+            ChallengeListAdapter.MyItemClickListener {
+            override fun onItemClick(challengeList: ChallengeListResponse) {
+                viewModel.updateChallenge(getJwt()!!, challengeList.challengeId)
+            }
+        })
+        binding.challengeListRv.adapter = challengeListAdapter
+    }
+
 
 //    private fun getChallengeList(token: String) {
 //        val challengeListService = ChallengeService()
@@ -59,13 +106,13 @@ class ChallengeListFragment : Fragment() {
 //            ChallengeListAdapter.MyItemClickListener {
 //            override fun onItemClick(challengeList: ChallengeListResponse) {
 //
-//                //updateChallenge(getJwt()!!, challengeList.challengeId)
+//                updateChallenge(getJwt()!!, challengeList.challengeId)
 //
 //            }
 //        })
-
-        //savePatchLevel(1)
-
+//
+//        //savePatchLevel(1)
+//
 //        binding.challengeListOkBtn.setOnClickListener {
 //            Log.e("level",getLevel().toString())
 //            Log.e("patch level",getPatchLevel().toString())
@@ -81,7 +128,7 @@ class ChallengeListFragment : Fragment() {
 //        }
 //
 //    }
-
+//
 //    override fun onChallengeListFailure() {
 //        TODO("Not yet implemented")
 //    }
@@ -125,7 +172,7 @@ class ChallengeListFragment : Fragment() {
 //        challengeService.setChallengeUpdateView(this)
 //        challengeService.updateChallenge(token, challengeId)
 //    }
-//
+
 //    override fun onChallengeUpdateSuccess(result: ChallengeLevelResponse) {
 //
 //        getChallengeList(getJwt()!!)

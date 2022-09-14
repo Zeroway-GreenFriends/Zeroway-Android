@@ -54,6 +54,10 @@ class TermSearchAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         (holder as ViewHolder).bind(getItem(position))
+
+        holder.itemView.setOnClickListener {
+            mItemClickListener.onItemClick(getItem(position))
+        }
     }
 
 }

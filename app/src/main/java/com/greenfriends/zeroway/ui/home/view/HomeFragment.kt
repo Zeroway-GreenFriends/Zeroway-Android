@@ -17,6 +17,7 @@ import com.greenfriends.zeroway.databinding.FragmentHomeBinding
 import com.greenfriends.zeroway.data.api.*
 import com.greenfriends.zeroway.ui.alarm.AlarmFragment
 import com.greenfriends.zeroway.ui.common.ViewModelFactory
+import com.greenfriends.zeroway.ui.home.WordDialogFragment
 import com.greenfriends.zeroway.ui.home.adapter.TermAdapter
 import com.greenfriends.zeroway.ui.home.adapter.TipAdapter
 import com.greenfriends.zeroway.ui.home.adapter.UseAdapter
@@ -110,6 +111,15 @@ class HomeFragment : Fragment() {
     private fun setTermAdapter() {
         termAdapter = TermAdapter(viewModel)
         binding.homeWordRv.adapter = termAdapter
+
+        termAdapter.setMyItemClickListener(object : TermAdapter.MyItemClickListener {
+            override fun onItemClick(word: TermResponse) {
+
+                WordDialogFragment(word).show(
+                    fragmentManager!!, "WordDialog"
+                )
+            }
+        })
     }
 
     private fun setTipAdapter() {
