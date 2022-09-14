@@ -50,7 +50,7 @@ class CommunityFragment : Fragment() {
         startCommunityPostRegisterFragment()
     }
 
-    private fun getPosts(page: Long = 1, size: Long = 30, isInit: Boolean = false, state: String) {
+    private fun getPosts(page: Long = 1, size: Long = 5, isInit: Boolean = false, state: String) {
         when (isInit) {
             true -> {
                 viewModel.getPosts(
