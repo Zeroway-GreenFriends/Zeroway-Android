@@ -1,4 +1,4 @@
-package com.greenfriends.zeroway.ui.challenge
+package com.greenfriends.zeroway.ui.challenge.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -8,11 +8,11 @@ import androidx.lifecycle.viewModelScope
 import com.greenfriends.zeroway.data.model.ChallengeLevelResponse
 import com.greenfriends.zeroway.data.model.ChallengeListResponse
 import com.greenfriends.zeroway.data.model.ChallengeResponse
-import com.greenfriends.zeroway.data.repository.home.ChallengeRepository
+import com.greenfriends.zeroway.data.repository.challenge.ChallengeRepository
 import com.greenfriends.zeroway.ui.common.Event
 import kotlinx.coroutines.launch
 
-class ChallengeViewModel (private val challengeRepository: ChallengeRepository) : ViewModel() {
+class ChallengeViewModel(private val challengeRepository: ChallengeRepository) : ViewModel() {
 
     private val _cr = MutableLiveData<ChallengeResponse>()
     val cr: LiveData<ChallengeResponse> = _cr
@@ -24,7 +24,7 @@ class ChallengeViewModel (private val challengeRepository: ChallengeRepository) 
     val challengeLevelResponse: LiveData<ChallengeLevelResponse> = _challengeLevelResponse
 
     private val _updateEvent = MutableLiveData<Event<Boolean>>()
-    val updateEvent : LiveData<Event<Boolean>> = _updateEvent
+    val updateEvent: LiveData<Event<Boolean>> = _updateEvent
 
     fun getUserChallenge(accessToken: String) {
         viewModelScope.launch {
@@ -52,7 +52,7 @@ class ChallengeViewModel (private val challengeRepository: ChallengeRepository) 
         }
     }
 
-    fun updateChallenge(accessToken: String,challengeId: Long) {
+    fun updateChallenge(accessToken: String, challengeId: Long) {
         viewModelScope.launch {
             val response = challengeRepository.updateChallenge(accessToken, challengeId)
             if (response.isSuccessful) {
@@ -64,5 +64,4 @@ class ChallengeViewModel (private val challengeRepository: ChallengeRepository) 
             }
         }
     }
-
 }

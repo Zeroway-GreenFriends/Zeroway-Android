@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="viewModel"
-            type="com.greenfriends.zeroway.ui.challenge.ChallengeViewModel" />
+            type="com.greenfriends.zeroway.ui.challenge.viewmodel.ChallengeViewModel" />
 
         <variable
             name="challengeList"
             type="com.greenfriends.zeroway.data.model.ChallengeListResponse" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -41,12 +40,12 @@
             android:id="@+id/challenge_list_check_btn1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@id/challenge_list_list_tv1"
+            android:layout_marginStart="10dp"
+            android:backgroundTint="@color/white"
+            android:src="@{challengeList.complete ? @drawable/ic_check_circle_mint : @drawable/ic_check_circle_gray, default=@drawable/ic_check_circle_gray}"
             app:layout_constraintBottom_toBottomOf="@id/challenge_list_list_tv1"
             app:layout_constraintStart_toStartOf="@id/challenge_list_list_tv1"
-            android:layout_marginStart="10dp"
-            android:src="@{challengeList.complete ? @drawable/ic_check_circle_mint : @drawable/ic_check_circle_gray, default=@drawable/ic_check_circle_gray}"
-            android:backgroundTint="@color/white"/>
+            app:layout_constraintTop_toTopOf="@id/challenge_list_list_tv1" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

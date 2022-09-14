@@ -8,7 +8,7 @@ import com.greenfriends.zeroway.data.model.TermResponse
 import com.greenfriends.zeroway.data.model.TipResponse
 import retrofit2.Response
 
-class HomeDataSourceImpl: HomeDataSource {
+class HomeDataSourceImpl : HomeDataSource {
 
     private val challengeService =
         RetrofitClient.getRetrofit()?.create(ChallengeRetrofitInterface::class.java)
@@ -20,7 +20,11 @@ class HomeDataSourceImpl: HomeDataSource {
         return challengeService!!.getChallenge(accessToken)
     }
 
-    override suspend fun getTerm(keyword: String?, page: Int?, size: Int?): Response<List<TermResponse>> {
+    override suspend fun getTerm(
+        keyword: String?,
+        page: Int?,
+        size: Int?
+    ): Response<List<TermResponse>> {
         return homeService!!.getTerm(keyword, page, size)
     }
 
@@ -28,8 +32,11 @@ class HomeDataSourceImpl: HomeDataSource {
         return homeService!!.getTip()
     }
 
-    override suspend fun getTermSearch(keyword: String?, page: Int?, size: Int?): Response<List<TermResponse>> {
+    override suspend fun getTermSearch(
+        keyword: String?,
+        page: Int?,
+        size: Int?
+    ): Response<List<TermResponse>> {
         return homeService!!.getTermSearch(keyword, page, size)
     }
-
 }

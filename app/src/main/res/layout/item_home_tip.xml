@@ -11,7 +11,6 @@
         <variable
             name="tipResponse"
             type="com.greenfriends.zeroway.data.model.TipResponse" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -42,9 +41,9 @@
                 android:id="@+id/item_home_tip_number_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@{tipResponse.tipNum}"
                 android:textColor="@color/white"
                 android:textSize="10sp"
-                android:text="@{tipResponse.tipNum}"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView3"
                 app:layout_constraintEnd_toEndOf="@+id/imageView3"
                 app:layout_constraintStart_toStartOf="@+id/imageView3"
@@ -56,9 +55,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="27dp"
+                android:text="@{tipResponse.title}"
                 android:textColor="@color/zeroway_dark_gray"
                 android:textSize="10sp"
-                android:text="@{tipResponse.title}"
                 app:layout_constraintStart_toEndOf="@+id/imageView3"
                 app:layout_constraintTop_toTopOf="parent" />
 

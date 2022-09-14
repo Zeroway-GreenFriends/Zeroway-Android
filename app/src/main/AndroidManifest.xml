@@ -41,7 +41,7 @@
             android:name=".ui.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.SplashActivity"
+            android:name=".ui.splash.SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.Zeroway.Splash">
             <intent-filter>
@@ -57,7 +57,7 @@
             android:name=".ui.signup.view.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.challenge.LevelUpActivity"
+            android:name=".ui.challenge.view.LevelUpActivity"
             android:exported="false" />
     </application>
 

@@ -1,4 +1,4 @@
-package com.greenfriends.zeroway.ui
+package com.greenfriends.zeroway.ui.splash
 
 import android.content.Intent
 import android.os.Bundle

@@ -1,17 +1,13 @@
-package com.greenfriends.zeroway.ui.challenge
+package com.greenfriends.zeroway.ui.challenge.adapter
 
-
-import android.annotation.SuppressLint
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.greenfriends.zeroway.R
 import com.greenfriends.zeroway.data.model.ChallengeListResponse
 import com.greenfriends.zeroway.databinding.ItemChallengeListBinding
-
+import com.greenfriends.zeroway.ui.challenge.viewmodel.ChallengeViewModel
 
 class ChallengeListAdapter(
     private val viewModel: ChallengeViewModel
@@ -67,10 +63,16 @@ class ChallengeListAdapter(
 
     companion object {
         val diffUtil = object : DiffUtil.ItemCallback<ChallengeListResponse>() {
-            override fun areContentsTheSame(oldItem: ChallengeListResponse, newItem: ChallengeListResponse) =
+            override fun areContentsTheSame(
+                oldItem: ChallengeListResponse,
+                newItem: ChallengeListResponse
+            ) =
                 oldItem == newItem
 
-            override fun areItemsTheSame(oldItem: ChallengeListResponse, newItem: ChallengeListResponse) =
+            override fun areItemsTheSame(
+                oldItem: ChallengeListResponse,
+                newItem: ChallengeListResponse
+            ) =
                 oldItem.challengeId == newItem.challengeId
         }
     }
@@ -83,6 +85,4 @@ class ChallengeListAdapter(
 //            mItemClickListener.onItemClick(getItem(position))
 //        }
     }
-
-
 }
