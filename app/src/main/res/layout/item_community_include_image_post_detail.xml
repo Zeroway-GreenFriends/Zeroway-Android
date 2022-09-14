@@ -7,7 +7,7 @@
 
         <variable
             name="communityPostDetail"
-            type="com.greenfriends.zeroway.model.CommunityPostDetailResponse" />
+            type="com.greenfriends.zeroway.data.model.CommunityPostDetailResponse" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -95,7 +95,7 @@
 
         <TextView
             android:id="@+id/item_community_include_image_post_detail_challenge_tv"
-            isVisible="@{communityPostDetail.challenge}"
+            isVisible="@{communityPostDetail.challenge || communityPostDetail.review}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
@@ -104,11 +104,29 @@
             android:paddingTop="2dp"
             android:paddingEnd="10dp"
             android:paddingBottom="2dp"
-            android:text="챌린지 인증"
+            android:text="@{communityPostDetail.challenge ? @string/challenge : @string/review}"
             android:textColor="@color/white"
             android:textSize="8sp"
             app:layout_constraintBottom_toBottomOf="@id/item_community_include_image_post_detail_bookmark_iv"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/item_community_include_image_post_detail_bookmark_iv" />
+
+        <TextView
+            android:id="@+id/item_community_include_image_post_detail_review_tv"
+            isVisible="@{communityPostDetail.review &amp; communityPostDetail.challenge}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/ic_challenge_selected_background"
+            android:paddingStart="10dp"
+            android:paddingTop="2dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="2dp"
+            android:text="@string/review"
+            android:textColor="@color/white"
+            android:textSize="8sp"
+            app:layout_constraintBottom_toBottomOf="@id/item_community_include_image_post_detail_bookmark_iv"
+            app:layout_constraintEnd_toStartOf="@id/item_community_include_image_post_detail_challenge_tv"
             app:layout_constraintTop_toTopOf="@id/item_community_include_image_post_detail_bookmark_iv" />
 
         <TextView
@@ -170,9 +188,9 @@
             android:layout_height="2dp"
             android:layout_marginTop="10dp"
             android:background="@color/zeroway_community_detail_background"
-            app:layout_constraintTop_toBottomOf="@id/item_community_include_image_post_detail_day_tv"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/item_community_include_image_post_detail_day_tv" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

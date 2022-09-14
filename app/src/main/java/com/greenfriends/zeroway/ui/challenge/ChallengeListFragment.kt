@@ -11,10 +11,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.greenfriends.zeroway.R
 import com.greenfriends.zeroway.databinding.FragmentChallengeListBinding
-import com.greenfriends.zeroway.model.ChallengeListResponse
 import com.greenfriends.zeroway.ui.common.EventObserve
 import com.greenfriends.zeroway.ui.common.ViewModelFactory
-
+import com.greenfriends.zeroway.data.model.ChallengeListResponse
 class ChallengeListFragment : Fragment() {
 
     private val viewModel: ChallengeViewModel by viewModels { ViewModelFactory() }

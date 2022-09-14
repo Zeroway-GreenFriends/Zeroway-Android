@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="storeResponse"
+            type="com.greenfriends.zeroway.data.model.StoreResponse" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="16dp"
+        app:cardCornerRadius="12dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/item_store_post_thumbnail_iv"
+                imageUrl="@{storeResponse.imageUrl}"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/ic_delete" />
+
+            <TextView
+                android:id="@+id/item_store_post_name_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="30dp"
+                android:text="@{storeResponse.name}"
+                android:textColor="@color/zeroway_black"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item_store_post_thumbnail_iv"
+                tools:text="제로웨이스트샵안녕상점" />
+
+            <ImageView
+                android:id="@+id/item_store_post_address_iv"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="26dp"
+                android:scaleType="center"
+                android:src="@drawable/ic_store_address"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item_store_post_name_tv" />
+
+            <TextView
+                android:id="@+id/item_store_post_address_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="30dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{storeResponse.addressNew}"
+                android:textColor="@color/zeroway_black"
+                android:textSize="8sp"
+                app:layout_constraintBottom_toBottomOf="@id/item_store_post_address_iv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/item_store_post_address_iv"
+                app:layout_constraintTop_toTopOf="@id/item_store_post_address_iv"
+                tools:text="서울특별시 도봉구 도봉로143길 18" />
+
+            <ImageView
+                android:id="@+id/item_store_post_time_iv"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:scaleType="center"
+                android:src="@drawable/ic_store_clock"
+                app:layout_constraintEnd_toEndOf="@id/item_store_post_address_iv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item_store_post_address_iv" />
+
+            <TextView
+                android:id="@+id/item_store_post_time_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="30dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{storeResponse.operatingTime}"
+                android:textColor="@color/zeroway_black"
+                android:textSize="8sp"
+                app:layout_constraintBottom_toBottomOf="@id/item_store_post_time_iv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/item_store_post_time_iv"
+                app:layout_constraintTop_toTopOf="@id/item_store_post_time_iv"
+                tools:text="수~금 13:00~19:00, 토 11:00~15:00 월~화, 공휴일 휴무" />
+
+            <ImageView
+                android:id="@+id/item_store_post_phone_iv"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:scaleType="center"
+                android:src="@drawable/ic_store_phone"
+                app:layout_constraintEnd_toEndOf="@id/item_store_post_time_iv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item_store_post_time_iv" />
+
+            <TextView
+                android:id="@+id/item_store_post_phone_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="30dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{storeResponse.contact}"
+                android:textColor="@color/zeroway_black"
+                android:textSize="8sp"
+                app:layout_constraintBottom_toBottomOf="@id/item_store_post_phone_iv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/item_store_post_phone_iv"
+                app:layout_constraintTop_toTopOf="@id/item_store_post_phone_iv"
+                tools:text="02-955-3330" />
+
+            <ImageView
+                android:id="@+id/item_store_post_url_iv"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:scaleType="center"
+                android:src="@drawable/ic_store_globe"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/item_store_post_phone_iv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item_store_post_phone_iv" />
+
+            <TextView
+                android:id="@+id/item_store_post_url_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="30dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{storeResponse.instagram}"
+                android:textColor="@color/zeroway_black"
+                android:textSize="8sp"
+                app:layout_constraintBottom_toBottomOf="@id/item_store_post_url_iv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/item_store_post_url_iv"
+                app:layout_constraintTop_toTopOf="@id/item_store_post_url_iv"
+                tools:text="https://cafe.naver.com/coopdodam" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

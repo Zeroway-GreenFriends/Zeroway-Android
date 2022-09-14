@@ -10,7 +10,7 @@
 
         <variable
             name="challengeList"
-            type="com.greenfriends.zeroway.model.ChallengeListResponse" />
+            type="com.greenfriends.zeroway.data.model.ChallengeListResponse" />
 
     </data>
 

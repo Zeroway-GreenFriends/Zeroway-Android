@@ -11,12 +11,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.greenfriends.zeroway.model.*
+import com.greenfriends.zeroway.data.model.*
 import com.greenfriends.zeroway.*
 import com.greenfriends.zeroway.databinding.FragmentHomeBinding
 import com.greenfriends.zeroway.ui.alarm.AlarmFragment
 import com.greenfriends.zeroway.ui.common.ViewModelFactory
-import com.greenfriends.zeroway.ui.store.StoreFragment
+import com.greenfriends.zeroway.data.api.*
+import com.greenfriends.zeroway.ui.store.view.StoreFragment
 
 class HomeFragment : Fragment() {
 

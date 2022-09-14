@@ -7,8 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.greenfriends.zeroway.databinding.ItemHomeTermBinding
-import com.greenfriends.zeroway.model.CommunityPost
-import com.greenfriends.zeroway.model.TermResponse
+import com.greenfriends.zeroway.data.model.TermResponse
 
 
 class TermAdapter(

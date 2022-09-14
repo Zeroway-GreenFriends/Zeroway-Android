@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.greenfriends.zeroway.model.ShopList
+import com.greenfriends.zeroway.data.model.ShopList
 import com.greenfriends.zeroway.databinding.ItemHomeShopBinding
 
 

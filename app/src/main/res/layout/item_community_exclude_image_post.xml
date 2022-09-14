@@ -7,11 +7,11 @@
 
         <variable
             name="viewModel"
-            type="com.greenfriends.zeroway.ui.community.CommunityViewModel" />
+            type="com.greenfriends.zeroway.ui.community.viewmodel.CommunityViewModel" />
 
         <variable
             name="communityPost"
-            type="com.greenfriends.zeroway.model.CommunityPost" />
+            type="com.greenfriends.zeroway.data.model.CommunityPost" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -2,7 +2,6 @@ package com.greenfriends.zeroway.ui.challenge
 
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,10 +11,7 @@ import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.greenfriends.zeroway.R
 import com.greenfriends.zeroway.databinding.FragmentChallengeCharacterBinding
-import com.greenfriends.zeroway.model.ChallengeResponse
-import com.greenfriends.zeroway.network.ChallengeView
 import com.greenfriends.zeroway.ui.common.ViewModelFactory
-import com.greenfriends.zeroway.ui.home.HomeViewModel
 
 class ChallengeCharacterFragment : Fragment() {
 
