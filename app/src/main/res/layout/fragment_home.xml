@@ -1,275 +1,289 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <data>
+
+        <variable
+            name="challengeResponse"
+            type="com.greenfriends.zeroway.data.model.ChallengeResponse" />
+
+    </data>
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <View
-            android:id="@+id/view"
-            android:layout_width="match_parent"
-            android:layout_height="243dp"
-            android:background="@drawable/ic_home_top_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"></View>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
-            android:layout_marginTop="9dp"
-            android:src="@drawable/ic_zeroway_logo_v1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/home_alarm_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:src="@drawable/ic_alarm_white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/home_level_tv"
-            android:layout_width="49dp"
-            android:layout_height="14dp"
-            android:layout_marginStart="33dp"
-            android:layout_marginTop="87dp"
-            android:lineHeight="14dp"
-            android:text="Level 2"
-            android:fontFamily="@font/notosans_regular"
-            android:textColor="@color/zeroway_dark_mint"
-            android:textFontWeight="500"
-            android:textSize="10sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <LinearLayout
-            android:layout_width="209dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="33dp"
-            android:layout_marginTop="9dp"
-            android:orientation="vertical"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/home_level_tv">
-
-            <TextView
-                android:id="@+id/home_user_name_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:lineHeight="22dp"
-                android:text="쏘멍 님,"
-                android:fontFamily="@font/notosans_regular"
-                android:letterSpacing="-0.02"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:textFontWeight="600"
-                android:textSize="16sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:lineHeight="22dp"
-                android:text="오늘의 챌린지를"
-                android:fontFamily="@font/notosans_regular"
-                android:letterSpacing="-0.02"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:textFontWeight="600"
-                android:textSize="16sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:lineHeight="22dp"
-                android:text="도전해보세요."
-                android:fontFamily="@font/notosans_regular"
-                android:letterSpacing="-0.02"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:textFontWeight="600"
-                android:textSize="16sp" />
-
-        </LinearLayout>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:layout_marginEnd="42dp"
-            android:src="@drawable/ic_home_character_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/home_alarm_iv" />
-        <ImageView
-            android:id="@+id/home_level_iv"
-            android:layout_width="174dp"
-            android:layout_height="193dp"
-            android:layout_marginTop="53dp"
-            android:layout_marginEnd="40dp"
-            android:src="@drawable/ic_home_shadow"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/home_alarm_iv" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="21dp"
-            android:layout_marginTop="32dp"
-            android:fontFamily="@font/notosans_medium"
-            android:text="환경용어"
-            android:textColor="@color/zeroway_black"
-            android:letterSpacing="0.1"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/home_level_iv" />
-
-        <TextView
-            android:id="@+id/home_word_more_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="37dp"
-            android:text="더보기"
-            android:letterSpacing="0.1"
-            android:textColor="@color/zeroway_gray"
-            android:textSize="10sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/home_level_iv" />
-
-        <ImageView
-            android:id="@+id/home_word_more_iv"
-            android:layout_width="14dp"
-            android:layout_height="14dp"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="20dp"
-            android:src="@drawable/ic_arrow_right_gray"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/home_word_more_tv"
-            app:layout_constraintTop_toBottomOf="@id/home_level_iv" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/home_word_rv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="18dp"
-            android:layout_marginEnd="20dp"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
-            tools:listitem="@layout/item_home_term" />
-
-        <TextView
-            android:id="@+id/home_shop_title_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="35dp"
-            android:text="제로웨이스트 샵"
-            android:fontFamily="@font/notosans_medium"
-            android:letterSpacing="0.1"
-            android:textColor="@color/zeroway_black"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/home_word_rv" />
-
-        <TextView
-            android:id="@+id/home_shop_more_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="35dp"
-            android:layout_marginEnd="37dp"
-            android:text="더보기"
-            android:letterSpacing="0.1"
-            android:textColor="@color/zeroway_gray"
-            android:textSize="10sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/home_word_rv" />
-
-        <ImageView
-            android:id="@+id/home_shop_more_iv"
-            android:layout_width="14dp"
-            android:layout_height="14dp"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="35dp"
-            android:layout_marginEnd="20dp"
-            android:src="@drawable/ic_arrow_right_gray"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/home_shop_more_tv"
-            app:layout_constraintTop_toBottomOf="@id/home_word_rv" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/home_shop_rv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/home_shop_more_tv"
-            tools:listitem="@layout/item_home_shop" />
-
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/home_tip_cl"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:background="@color/zeroway_background"
-            app:layout_constraintTop_toBottomOf="@id/home_shop_rv">
+            android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/home_tip_tv"
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="243dp"
+                android:background="@drawable/ic_home_top_background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"></View>
+
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:text="오늘의 실천 Tip"
-                android:fontFamily="@font/notosans_medium"
-                android:letterSpacing="0.1"
-                android:textColor="@color/zeroway_black"
-                android:textSize="14sp"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="9dp"
+                android:src="@drawable/ic_zeroway_logo_v1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <ImageView
+                android:id="@+id/home_alarm_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/ic_alarm_white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/home_level_tv"
+                android:layout_width="49dp"
+                android:layout_height="14dp"
+                android:layout_marginStart="33dp"
+                android:layout_marginTop="87dp"
+                android:fontFamily="@font/notosans_regular"
+                android:lineHeight="14dp"
+                levelToString="@{challengeResponse.level}"
+                android:textColor="@color/zeroway_dark_mint"
+                android:textFontWeight="500"
+                android:textSize="10sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:layout_width="209dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="33dp"
+                android:layout_marginTop="9dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/home_level_tv">
+
+                <TextView
+                    android:id="@+id/home_user_name_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/notosans_regular"
+                    android:letterSpacing="-0.02"
+                    android:lineHeight="22dp"
+                    android:text="@{challengeResponse.nickname}"
+                    android:textColor="@color/white"
+                    android:textFontWeight="600"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/notosans_regular"
+                    android:letterSpacing="-0.02"
+                    android:lineHeight="22dp"
+                    android:text="오늘의 챌린지를"
+                    android:textColor="@color/white"
+                    android:textFontWeight="600"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/notosans_regular"
+                    android:letterSpacing="-0.02"
+                    android:lineHeight="22dp"
+                    android:text="도전해보세요."
+                    android:textColor="@color/white"
+                    android:textFontWeight="600"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:layout_marginEnd="42dp"
+                android:src="@drawable/ic_home_character_background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/home_alarm_iv" />
+
+            <ImageView
+                android:id="@+id/home_level_iv"
+                android:layout_width="174dp"
+                android:layout_height="193dp"
+                android:layout_marginTop="53dp"
+                android:layout_marginEnd="40dp"
+                android:src="@drawable/ic_home_shadow"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/home_alarm_iv" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="21dp"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/notosans_medium"
+                android:letterSpacing="0.1"
+                android:text="환경용어"
+                android:textColor="@color/zeroway_black"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/home_level_iv" />
+
+            <TextView
+                android:id="@+id/home_word_more_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="37dp"
+                android:letterSpacing="0.1"
+                android:text="더보기"
+                android:textColor="@color/zeroway_gray"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/home_level_iv" />
+
+            <ImageView
+                android:id="@+id/home_word_more_iv"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_marginStart="3dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/ic_arrow_right_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/home_word_more_tv"
+                app:layout_constraintTop_toBottomOf="@id/home_level_iv" />
+
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/home_tip_rv"
+                android:id="@+id/home_word_rv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="18dp"
-                android:orientation="vertical"
+                android:layout_marginEnd="20dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/home_tip_tv" />
+                app:layout_constraintTop_toBottomOf="@+id/textView"
+                tools:listitem="@layout/item_home_term" />
+
+            <TextView
+                android:id="@+id/home_shop_title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="35dp"
+                android:fontFamily="@font/notosans_medium"
+                android:letterSpacing="0.1"
+                android:text="제로웨이스트 샵"
+                android:textColor="@color/zeroway_black"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/home_word_rv" />
+
+            <TextView
+                android:id="@+id/home_shop_more_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:layout_marginEnd="37dp"
+                android:letterSpacing="0.1"
+                android:text="더보기"
+                android:textColor="@color/zeroway_gray"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/home_word_rv" />
+
+            <ImageView
+                android:id="@+id/home_shop_more_iv"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_marginStart="3dp"
+                android:layout_marginTop="35dp"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/ic_arrow_right_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/home_shop_more_tv"
+                app:layout_constraintTop_toBottomOf="@id/home_word_rv" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/home_shop_rv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/home_shop_more_tv"
+                tools:listitem="@layout/item_home_shop" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/home_tip_cl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:background="@color/zeroway_background"
+                app:layout_constraintTop_toBottomOf="@id/home_shop_rv">
+
+                <TextView
+                    android:id="@+id/home_tip_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/notosans_medium"
+                    android:letterSpacing="0.1"
+                    android:text="오늘의 실천 Tip"
+                    android:textColor="@color/zeroway_black"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/home_tip_rv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:orientation="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/home_tip_tv"
+                    tools:listitem="@layout/item_home_tip" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/home_use_rv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="30dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/home_tip_cl"
+                tools:listitem="@layout/item_home_use" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/home_use_rv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="18dp"
-            android:layout_marginEnd="30dp"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/home_tip_cl"
-            tools:listitem="@layout/item_home_use" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+    </ScrollView>
+</layout>

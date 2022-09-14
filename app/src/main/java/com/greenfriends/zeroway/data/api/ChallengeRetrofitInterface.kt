@@ -4,24 +4,25 @@ import com.greenfriends.zeroway.data.model.ChallengeLevelResponse
 import com.greenfriends.zeroway.data.model.ChallengeListResponse
 import com.greenfriends.zeroway.data.model.ChallengeResponse
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.*
 
 interface ChallengeRetrofitInterface {
 
     @GET("challenge")
-    fun getChallenge(
+    suspend fun getChallenge(
         @Header("Bearer") accessToken: String
-    ): Call<ChallengeResponse>
+    ): Response<ChallengeResponse>
 
     @GET("challenge/list")
-    fun getChallengeList(
+    suspend fun getChallengeList(
         @Header("Bearer") accessToken: String
-    ): Call<List<ChallengeListResponse>>
+    ): Response<List<ChallengeListResponse>>
 
     @PATCH("challenge/{challenge_id}/complete")
-    fun updateChallenge(
+    suspend fun updateChallenge(
         @Header("Bearer") accessToken: String,
         @Path("challenge_id") challengeId: Long
-    ): Call<ChallengeLevelResponse>
+    ): Response<ChallengeLevelResponse>
 
 }

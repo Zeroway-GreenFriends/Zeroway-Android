@@ -1,4 +1,4 @@
-package com.greenfriends.zeroway.ui.home
+package com.greenfriends.zeroway.ui.home.adapter
 
 
 import android.view.LayoutInflater

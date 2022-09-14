@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#E7F4F3">
 
-    <ImageView
+    <View
         android:id="@+id/mypage_background_mint_iv"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_width="match_parent"
         android:layout_height="207dp"
-        android:src="@drawable/ic_background_mint"/>
+        android:background="@drawable/ic_background_mint"/>
 
     <ImageButton
         android:id="@+id/mypage_goback_btn"
@@ -88,74 +89,50 @@
         android:id="@+id/mypage_section_1_posting_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/mypage_section_1_iv"
-        app:layout_constraintStart_toStartOf="@id/mypage_section_1_iv"
+        android:layout_marginStart="90dp"
         android:layout_marginTop="20dp"
-        android:layout_marginStart="50dp"
+        android:background="@color/white"
         android:src="@drawable/ic_posting"
-        android:background="@color/white"/>
+        app:layout_constraintBottom_toTopOf="@+id/mypage_section_1_scrab_tv"
+        app:layout_constraintStart_toStartOf="@+id/mypage_section_1_iv"
+        app:layout_constraintTop_toTopOf="@id/mypage_section_1_iv" />
 
     <TextView
         android:id="@+id/mypage_section_1_posting_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/mypage_section_1_posting_btn"
-        app:layout_constraintStart_toStartOf="@id/mypage_section_1_iv"
         android:layout_marginTop="5dp"
-        android:layout_marginStart="30dp"
+        android:letterSpacing="0.1"
         android:text="게시물 관리"
         android:textColor="#000000"
         android:textSize="12sp"
-        android:letterSpacing="0.1"/>
-
-    <ImageButton
-        android:id="@+id/mypage_section_1_review_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_chat_mint"
-        app:layout_constraintTop_toTopOf="@id/mypage_section_1_iv"
-        app:layout_constraintStart_toEndOf="@id/mypage_section_1_posting_btn"
-        android:background="@color/white"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="70dp"/>
+        app:layout_constraintEnd_toEndOf="@+id/mypage_section_1_posting_btn"
+        app:layout_constraintStart_toStartOf="@+id/mypage_section_1_posting_btn"
+        app:layout_constraintTop_toBottomOf="@id/mypage_section_1_posting_btn" />
 
     <ImageButton
         android:id="@+id/mypage_section_1_scrab_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_bookmark_mint"
-        app:layout_constraintTop_toTopOf="@id/mypage_section_1_iv"
-        app:layout_constraintStart_toEndOf="@id/mypage_section_1_review_btn"
-        app:layout_constraintEnd_toEndOf="@id/mypage_section_1_iv"
-        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="90dp"
         android:background="@color/white"
-        android:layout_marginTop="20dp"/>
-
-    <TextView
-        android:id="@+id/mypage_section_1_review_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/mypage_section_1_review_btn"
-        app:layout_constraintStart_toEndOf="@id/mypage_section_1_posting_tv"
-        android:layout_marginTop="5dp"
-        android:layout_marginStart="42dp"
-        android:text="리뷰관리"
-        android:textColor="#000000"
-        android:textSize="12sp"
-        android:letterSpacing="0.1"/>
+        android:src="@drawable/ic_bookmark_mint"
+        app:layout_constraintEnd_toEndOf="@id/mypage_section_1_iv"
+        app:layout_constraintTop_toTopOf="@id/mypage_section_1_iv" />
 
     <TextView
         android:id="@+id/mypage_section_1_scrab_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/mypage_section_1_scrab_btn"
-        app:layout_constraintStart_toEndOf="@id/mypage_section_1_review_tv"
         android:layout_marginTop="5dp"
-        android:layout_marginStart="48dp"
+        android:letterSpacing="0.1"
         android:text="스크랩"
         android:textColor="#000000"
         android:textSize="12sp"
-        android:letterSpacing="0.1"/>
+        app:layout_constraintEnd_toEndOf="@+id/mypage_section_1_scrab_btn"
+        app:layout_constraintStart_toStartOf="@+id/mypage_section_1_scrab_btn"
+        app:layout_constraintTop_toBottomOf="@id/mypage_section_1_scrab_btn" />
 
     <ImageView
         android:id="@+id/mypage_section_2_iv"

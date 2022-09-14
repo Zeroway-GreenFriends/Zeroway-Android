@@ -1,5 +1,6 @@
 package com.greenfriends.zeroway.ui.challenge
 
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,14 +8,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.greenfriends.zeroway.R
 import com.greenfriends.zeroway.databinding.FragmentChallengeCharacterBinding
-import com.greenfriends.zeroway.data.model.ChallengeResponse
-import com.greenfriends.zeroway.data.api.ChallengeService
-import com.greenfriends.zeroway.data.api.ChallengeView
+import com.greenfriends.zeroway.ui.common.ViewModelFactory
 
-class ChallengeCharacterFragment : Fragment(), ChallengeView {
+
+class ChallengeCharacterFragment : Fragment() {
+
+    private val viewModel: ChallengeViewModel by viewModels { ViewModelFactory() }
     private lateinit var binding: FragmentChallengeCharacterBinding
 
     override fun onCreateView(
@@ -30,34 +33,28 @@ class ChallengeCharacterFragment : Fragment(), ChallengeView {
                 ?.commitAllowingStateLoss()
         }
 
-        getChallenge(getJwt()!!)
-
+        getChallenge()
+        setObserve()
 
         return binding.root
     }
 
-    private fun getChallenge(token: String) {
-        val challengeService = ChallengeService()
-        challengeService.setChallengeView(this)
-        challengeService.getChallenge(token)
+    private fun setObserve() {
+        viewModel.cr.observe(
+            viewLifecycleOwner
+        ) { cr ->
+            binding.challengeResponse = cr
+            Glide.with(binding.challengeCharacterLevelImg.context)
+                .load(Uri.parse(cr.imgUrl))
+                .disallowHardwareConfig()
+                .into(binding.challengeCharacterLevelImg)
+            binding.challengeCharacterLevelPb.setProgress(cr.exp)
+            saveLevel(cr.level)
+        }
     }
 
-    override fun onChallengeSuccess(result: ChallengeResponse) {
-        Log.e("challenge", result.toString())
-
-        saveLevel(result.level)
-
-        binding.challengeCharacterNicknameTv.text = result.nickname
-        binding.challengeCharacterLevelTv.text = "Lv." + result.level.toString()
-        binding.challengeCharacterLevelPb.setProgress(result.exp)
-
-        Glide.with(binding.challengeCharacterLevelImg.context)
-            .load(result.imgUrl)
-            .into(binding.challengeCharacterLevelImg)
-    }
-
-    override fun onChallengeFailure() {
-        TODO("Not yet implemented")
+    private fun getChallenge() {
+        viewModel.getUserChallenge(getJwt()!!)
     }
 
     private fun saveLevel(level: Int) {

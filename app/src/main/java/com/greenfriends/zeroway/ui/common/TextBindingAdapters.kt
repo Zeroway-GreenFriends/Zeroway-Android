@@ -22,3 +22,13 @@ fun communityPostDate(view: TextView, weeksAgo: Int) {
 fun convertIntToString(view: TextView, text: Int) {
     view.text = text.toString()
 }
+
+@BindingAdapter("levelToString")
+fun levelToString(view: TextView, level: Int) {
+    view.text = "Level " + "$level"
+}
+
+@BindingAdapter("levelToLvString")
+fun levelToLvString(view: TextView, level: Int) {
+    view.text = "Lv."+"$level"
+}
