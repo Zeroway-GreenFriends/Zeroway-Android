@@ -30,17 +30,17 @@ class ChallengeCharacterFragment : Fragment(), ChallengeView {
                 ?.commitAllowingStateLoss()
         }
 
-        getChallenge(getJwt()!!)
+        //getChallenge(getJwt()!!)
 
 
         return binding.root
     }
 
-    private fun getChallenge(token: String) {
-        val challengeService = ChallengeService()
-        challengeService.setChallengeView(this)
-        challengeService.getChallenge(token)
-    }
+//    private fun getChallenge(token: String) {
+//        val challengeService = ChallengeService()
+//        challengeService.setChallengeView(this)
+//        challengeService.getChallenge(token)
+//    }
 
     override fun onChallengeSuccess(result: ChallengeResponse) {
         Log.e("challenge", result.toString())
