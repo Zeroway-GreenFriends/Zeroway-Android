@@ -9,6 +9,7 @@ import com.greenfriends.zeroway.data.model.ChallengeLevelResponse
 import com.greenfriends.zeroway.data.model.ChallengeListResponse
 import com.greenfriends.zeroway.data.model.ChallengeResponse
 import com.greenfriends.zeroway.data.repository.home.ChallengeRepository
+import com.greenfriends.zeroway.ui.common.Event
 import kotlinx.coroutines.launch
 
 class ChallengeViewModel (private val challengeRepository: ChallengeRepository) : ViewModel() {
@@ -21,6 +22,9 @@ class ChallengeViewModel (private val challengeRepository: ChallengeRepository) 
 
     private val _challengeLevelResponse = MutableLiveData<ChallengeLevelResponse>()
     val challengeLevelResponse: LiveData<ChallengeLevelResponse> = _challengeLevelResponse
+
+    private val _updateEvent = MutableLiveData<Event<Boolean>>()
+    val updateEvent : LiveData<Event<Boolean>> = _updateEvent
 
     fun getUserChallenge(accessToken: String) {
         viewModelScope.launch {
@@ -53,7 +57,7 @@ class ChallengeViewModel (private val challengeRepository: ChallengeRepository) 
             val response = challengeRepository.updateChallenge(accessToken, challengeId)
             if (response.isSuccessful) {
                 _challengeLevelResponse.value = response.body()!!
-
+                _updateEvent.value = Event(true)
                 Log.d("CL-LV/VM/S", response.body().toString())
             } else {
                 Log.d("CL-LV/VM/F", response.errorBody()?.string()!!)

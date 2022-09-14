@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import com.greenfriends.zeroway.R
 import com.greenfriends.zeroway.data.model.ChallengeListResponse
 import com.greenfriends.zeroway.databinding.FragmentChallengeListBinding
+import com.greenfriends.zeroway.ui.common.EventObserve
 import com.greenfriends.zeroway.ui.common.ViewModelFactory
 
 class ChallengeListFragment : Fragment() {
@@ -54,6 +55,9 @@ class ChallengeListFragment : Fragment() {
         viewModel.challengeList.observe(
             viewLifecycleOwner
         ) { challengeList ->
+
+            Log.e("c-L",challengeList.toString())
+
             challengeListAdapter.submitList(challengeList)
         }
 
@@ -63,10 +67,22 @@ class ChallengeListFragment : Fragment() {
             savePatchLevel(challengeLevelResponse.level)
         }
 
+        viewModel.updateEvent.observe(
+            viewLifecycleOwner,
+            EventObserve{
+                getChallengeList()
+            }
+        )
+
     }
 
     private fun getChallengeList() {
         viewModel.getChallengeList(getJwt()!!)
+    }
+
+    private fun updateChallengeList(challengeId:Long) {
+        viewModel.updateChallenge(getJwt()!!, challengeId)
+        //getChallengeList()
     }
 
     private fun setChallengeListAdapter() {
@@ -74,7 +90,10 @@ class ChallengeListFragment : Fragment() {
         challengeListAdapter.setMyItemClickListener(object :
             ChallengeListAdapter.MyItemClickListener {
             override fun onItemClick(challengeList: ChallengeListResponse) {
-                viewModel.updateChallenge(getJwt()!!, challengeList.challengeId)
+                //viewModel.updateChallenge(getJwt()!!, challengeList.challengeId)
+                Log.e("challengeId",challengeList.challengeId.toString())
+                updateChallengeList(challengeList.challengeId)
+                //getChallengeList()
             }
         })
         binding.challengeListRv.adapter = challengeListAdapter
