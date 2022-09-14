@@ -10,7 +10,7 @@ import androidx.fragment.app.DialogFragment
 import com.greenfriends.zeroway.data.model.TermResponse
 import com.greenfriends.zeroway.databinding.FragmentWordDialogBinding
 
-class WordDialogFragment(val word: TermResponse): DialogFragment() {
+class WordDialogFragment(private val word: TermResponse) : DialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +24,7 @@ class WordDialogFragment(val word: TermResponse): DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentWordDialogBinding.inflate(inflater,container,false)
+        binding = FragmentWordDialogBinding.inflate(inflater, container, false)
 
         //dialog 스크롤 변경
         //binding.wordDialogContent.movementMethod = ScrollingMovementMethod()
@@ -43,6 +43,5 @@ class WordDialogFragment(val word: TermResponse): DialogFragment() {
         binding.wordDialogCloseBtn.setOnClickListener {
             dismiss()
         }
-
     }
 }

@@ -1,15 +1,13 @@
 package com.greenfriends.zeroway.ui.home.adapter
 
-
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.greenfriends.zeroway.databinding.ItemHomeTermBinding
 import com.greenfriends.zeroway.data.model.TermResponse
+import com.greenfriends.zeroway.databinding.ItemHomeTermBinding
 import com.greenfriends.zeroway.ui.home.viewmodel.HomeViewModel
-
 
 class TermAdapter(
     private val viewModel: HomeViewModel
@@ -27,7 +25,7 @@ class TermAdapter(
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
-        val binding:  ItemHomeTermBinding=
+        val binding: ItemHomeTermBinding =
             ItemHomeTermBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
 
         return ViewHolder(binding)
@@ -55,5 +53,4 @@ class TermAdapter(
                 oldItem == newItem
         }
     }
-
 }

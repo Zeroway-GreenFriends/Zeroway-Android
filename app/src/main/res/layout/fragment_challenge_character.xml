@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
         <variable
             name="challengeResponse"
             type="com.greenfriends.zeroway.data.model.ChallengeResponse" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -48,10 +46,10 @@
 
             <TextView
                 android:id="@+id/challenge_character_level_tv"
+                levelToLvString="@{challengeResponse.level}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
-                levelToLvString="@{challengeResponse.level}"
                 android:textColor="#6FE0D6"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/challenge_character_level_pb"

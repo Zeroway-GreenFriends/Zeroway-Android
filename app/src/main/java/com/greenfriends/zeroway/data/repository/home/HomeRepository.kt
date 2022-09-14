@@ -13,15 +13,18 @@ class HomeRepository(private val homeDataSourceImpl: HomeDataSourceImpl) {
     }
 
     suspend fun getTerm(keyword: String?, page: Int?, size: Int?): Response<List<TermResponse>> {
-        return homeDataSourceImpl.getTerm(keyword,page,size)
+        return homeDataSourceImpl.getTerm(keyword, page, size)
     }
 
     suspend fun getTip(): Response<List<TipResponse>> {
         return homeDataSourceImpl.getTip()
     }
 
-    suspend fun getTermSearch(keyword: String?, page: Int?, size: Int?): Response<List<TermResponse>> {
-        return homeDataSourceImpl.getTermSearch(keyword,page,size)
+    suspend fun getTermSearch(
+        keyword: String?,
+        page: Int?,
+        size: Int?
+    ): Response<List<TermResponse>> {
+        return homeDataSourceImpl.getTermSearch(keyword, page, size)
     }
-
 }

@@ -1,6 +1,5 @@
 package com.greenfriends.zeroway.data.source.remote.home
 
-
 import com.greenfriends.zeroway.data.model.ChallengeResponse
 import com.greenfriends.zeroway.data.model.TermResponse
 import com.greenfriends.zeroway.data.model.TipResponse
@@ -19,5 +18,4 @@ interface HomeDataSource {
         page: Int?,
         size: Int?
     ): Response<List<TermResponse>>
-
 }

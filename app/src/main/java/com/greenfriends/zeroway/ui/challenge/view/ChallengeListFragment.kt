@@ -1,4 +1,4 @@
-package com.greenfriends.zeroway.ui.challenge
+package com.greenfriends.zeroway.ui.challenge.view
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,6 +12,8 @@ import androidx.fragment.app.viewModels
 import com.greenfriends.zeroway.R
 import com.greenfriends.zeroway.data.model.ChallengeListResponse
 import com.greenfriends.zeroway.databinding.FragmentChallengeListBinding
+import com.greenfriends.zeroway.ui.challenge.viewmodel.ChallengeViewModel
+import com.greenfriends.zeroway.ui.challenge.adapter.ChallengeListAdapter
 import com.greenfriends.zeroway.ui.common.EventObserve
 import com.greenfriends.zeroway.ui.common.ViewModelFactory
 
@@ -56,7 +58,7 @@ class ChallengeListFragment : Fragment() {
             viewLifecycleOwner
         ) { challengeList ->
 
-            Log.e("c-L",challengeList.toString())
+            Log.e("c-L", challengeList.toString())
 
             challengeListAdapter.submitList(challengeList)
         }
@@ -69,7 +71,7 @@ class ChallengeListFragment : Fragment() {
 
         viewModel.updateEvent.observe(
             viewLifecycleOwner,
-            EventObserve{
+            EventObserve {
                 getChallengeList()
             }
         )
@@ -80,7 +82,7 @@ class ChallengeListFragment : Fragment() {
         viewModel.getChallengeList(getJwt()!!)
     }
 
-    private fun updateChallengeList(challengeId:Long) {
+    private fun updateChallengeList(challengeId: Long) {
         viewModel.updateChallenge(getJwt()!!, challengeId)
         //getChallengeList()
     }
@@ -91,7 +93,7 @@ class ChallengeListFragment : Fragment() {
             ChallengeListAdapter.MyItemClickListener {
             override fun onItemClick(challengeList: ChallengeListResponse) {
                 //viewModel.updateChallenge(getJwt()!!, challengeList.challengeId)
-                Log.e("challengeId",challengeList.challengeId.toString())
+                Log.e("challengeId", challengeList.challengeId.toString())
                 updateChallengeList(challengeList.challengeId)
                 //getChallengeList()
             }
@@ -203,5 +205,4 @@ class ChallengeListFragment : Fragment() {
 //    override fun onChallengeUpdateFailure() {
 //        TODO("Not yet implemented")
 //    }
-
 }

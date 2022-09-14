@@ -11,8 +11,7 @@ import com.greenfriends.zeroway.data.model.TipResponse
 import com.greenfriends.zeroway.data.repository.home.HomeRepository
 import kotlinx.coroutines.launch
 
-class HomeViewModel (private val homeRepository: HomeRepository) : ViewModel() {
-
+class HomeViewModel(private val homeRepository: HomeRepository) : ViewModel() {
 
     private val _cr = MutableLiveData<ChallengeResponse>()
     val cr: LiveData<ChallengeResponse> = _cr
@@ -41,7 +40,7 @@ class HomeViewModel (private val homeRepository: HomeRepository) : ViewModel() {
 
     fun getTerm(keyword: String?, page: Int?, size: Int?) {
         viewModelScope.launch {
-            val response = homeRepository.getTerm(keyword,page,size)
+            val response = homeRepository.getTerm(keyword, page, size)
             if (response.isSuccessful) {
                 _tr.value = response.body()!!
 
@@ -67,7 +66,7 @@ class HomeViewModel (private val homeRepository: HomeRepository) : ViewModel() {
 
     fun getTermSearch(keyword: String?, page: Int?, size: Int?) {
         viewModelScope.launch {
-            val response = homeRepository.getTermSearch(keyword,page,size)
+            val response = homeRepository.getTermSearch(keyword, page, size)
             if (response.isSuccessful) {
                 _termSearchResponse.value = response.body()!!
 
@@ -77,6 +76,4 @@ class HomeViewModel (private val homeRepository: HomeRepository) : ViewModel() {
             }
         }
     }
-
-
 }

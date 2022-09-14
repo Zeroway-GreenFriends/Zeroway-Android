@@ -2,21 +2,21 @@ package com.greenfriends.zeroway.ui.common
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.greenfriends.zeroway.data.repository.challenge.ChallengeRepository
 import com.greenfriends.zeroway.data.repository.community.CommunityPostDetailRepository
 import com.greenfriends.zeroway.data.repository.community.CommunityPostRegisterRepository
 import com.greenfriends.zeroway.data.repository.community.CommunityRepository
-import com.greenfriends.zeroway.data.repository.home.ChallengeRepository
 import com.greenfriends.zeroway.data.repository.home.HomeRepository
 import com.greenfriends.zeroway.data.repository.signup.SignUpRepository
 import com.greenfriends.zeroway.data.repository.store.StoreRepository
+import com.greenfriends.zeroway.data.source.remote.challenge.ChallengeDataSourceImpl
 import com.greenfriends.zeroway.data.source.remote.community.CommunityDataSourceImpl
 import com.greenfriends.zeroway.data.source.remote.community.CommunityPostDetailDataSourceImpl
 import com.greenfriends.zeroway.data.source.remote.community.CommunityPostRegisterDataSourceImpl
-import com.greenfriends.zeroway.data.source.remote.home.ChallengeDataSourceImpl
 import com.greenfriends.zeroway.data.source.remote.home.HomeDataSourceImpl
 import com.greenfriends.zeroway.data.source.remote.signup.SignUpDataSourceImpl
 import com.greenfriends.zeroway.data.source.remote.store.StoreDataSourceImpl
-import com.greenfriends.zeroway.ui.challenge.ChallengeViewModel
+import com.greenfriends.zeroway.ui.challenge.viewmodel.ChallengeViewModel
 import com.greenfriends.zeroway.ui.community.viewmodel.CommunityPostDetailViewModel
 import com.greenfriends.zeroway.ui.community.viewmodel.CommunityPostRegisterViewModel
 import com.greenfriends.zeroway.ui.community.viewmodel.CommunityViewModel

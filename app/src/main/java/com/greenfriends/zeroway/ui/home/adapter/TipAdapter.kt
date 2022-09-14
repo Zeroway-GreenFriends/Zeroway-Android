@@ -1,15 +1,13 @@
 package com.greenfriends.zeroway.ui.home.adapter
 
-
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.greenfriends.zeroway.databinding.ItemHomeTipBinding
 import com.greenfriends.zeroway.data.model.TipResponse
+import com.greenfriends.zeroway.databinding.ItemHomeTipBinding
 import com.greenfriends.zeroway.ui.home.viewmodel.HomeViewModel
-
 
 class TipAdapter(
     private val viewModel: HomeViewModel
@@ -55,5 +53,4 @@ class TipAdapter(
                 oldItem == newItem
         }
     }
-
 }
