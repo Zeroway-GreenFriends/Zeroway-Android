@@ -1,9 +1,9 @@
-package com.greenfriends.zeroway.data.repository.home
+package com.greenfriends.zeroway.data.repository.challenge
 
 import com.greenfriends.zeroway.data.model.ChallengeLevelResponse
 import com.greenfriends.zeroway.data.model.ChallengeListResponse
 import com.greenfriends.zeroway.data.model.ChallengeResponse
-import com.greenfriends.zeroway.data.source.remote.home.ChallengeDataSourceImpl
+import com.greenfriends.zeroway.data.source.remote.challenge.ChallengeDataSourceImpl
 import retrofit2.Response
 
 class ChallengeRepository(private val homeDataSourceImpl: ChallengeDataSourceImpl) {

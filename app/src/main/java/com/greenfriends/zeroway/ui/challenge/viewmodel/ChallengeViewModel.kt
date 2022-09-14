@@ -1,4 +1,4 @@
-package com.greenfriends.zeroway.ui.challenge
+package com.greenfriends.zeroway.ui.challenge.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -8,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.greenfriends.zeroway.data.model.ChallengeLevelResponse
 import com.greenfriends.zeroway.data.model.ChallengeListResponse
 import com.greenfriends.zeroway.data.model.ChallengeResponse
-import com.greenfriends.zeroway.data.repository.home.ChallengeRepository
+import com.greenfriends.zeroway.data.repository.challenge.ChallengeRepository
 import com.greenfriends.zeroway.ui.common.Event
 import kotlinx.coroutines.launch
 

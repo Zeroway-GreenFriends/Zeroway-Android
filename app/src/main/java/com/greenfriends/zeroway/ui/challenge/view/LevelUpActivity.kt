@@ -1,4 +1,4 @@
-package com.greenfriends.zeroway.ui.challenge
+package com.greenfriends.zeroway.ui.challenge.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

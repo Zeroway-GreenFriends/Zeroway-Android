@@ -1,16 +1,14 @@
-package com.greenfriends.zeroway.ui.challenge
+package com.greenfriends.zeroway.ui.challenge.adapter
 
 
-import android.annotation.SuppressLint
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.greenfriends.zeroway.R
 import com.greenfriends.zeroway.data.model.ChallengeListResponse
 import com.greenfriends.zeroway.databinding.ItemChallengeListBinding
+import com.greenfriends.zeroway.ui.challenge.viewmodel.ChallengeViewModel
 
 
 class ChallengeListAdapter(

@@ -1,88 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="146dp"
-    android:layout_height="153dp"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="121dp"
+    <data>
+
+        <variable
+            name="storeResponse"
+            type="com.greenfriends.zeroway.data.model.StoreResponse" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="146dp"
         android:layout_height="153dp"
-        app:cardCornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <androidx.cardview.widget.CardView
+            android:layout_width="121dp"
+            android:layout_height="153dp"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/item_home_shop_img"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:src="@color/zeroway_gray" />
+                android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/item_home_shop_title_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="13dp"
-                android:layout_marginEnd="13dp"
-                android:layout_marginBottom="22dp"
-                android:text="제로웨이스트 쑥"
-                android:fontFamily="@font/notosans_regular"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:textSize="10sp"
-                android:letterSpacing="0.1"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                <ImageView
+                    android:id="@+id/item_home_shop_img"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    imageUrl="@{storeResponse.imageUrl}" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/item_home_shop_title_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="13dp"
+                    android:layout_marginEnd="13dp"
+                    android:layout_marginBottom="22dp"
+                    android:fontFamily="@font/notosans_regular"
+                    android:letterSpacing="0.1"
+                    android:text="@{storeResponse.name}"
+                    android:textColor="@color/white"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
 
-    </androidx.cardview.widget.CardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
 
 
-    <!--    <LinearLayout-->
-    <!--        android:layout_width="74dp"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginStart="13dp"-->
-    <!--        android:layout_marginTop="8dp"-->
-    <!--        android:layout_marginBottom="13dp"-->
-    <!--        android:gravity="center_vertical"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/item_home_shop_title_tv">-->
+        <!--    <LinearLayout-->
+        <!--        android:layout_width="74dp"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:layout_marginStart="13dp"-->
+        <!--        android:layout_marginTop="8dp"-->
+        <!--        android:layout_marginBottom="13dp"-->
+        <!--        android:gravity="center_vertical"-->
+        <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--        app:layout_constraintStart_toStartOf="parent"-->
+        <!--        app:layout_constraintTop_toBottomOf="@+id/item_home_shop_title_tv">-->
 
-    <!--        <ImageView-->
-    <!--            android:id="@+id/item_home_shop_image_iv"-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_marginRight="3dp"-->
-    <!--            android:src="@drawable/ic_star_white" />-->
+        <!--        <ImageView-->
+        <!--            android:id="@+id/item_home_shop_image_iv"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginRight="3dp"-->
+        <!--            android:src="@drawable/ic_star_white" />-->
 
-    <!--        <TextView-->
-    <!--            android:id="@+id/item_home_shop_score_tv"-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_marginRight="3dp"-->
-    <!--            android:text="4.2 점"-->
-    <!--            android:textColor="@color/white"-->
-    <!--            android:textSize="7sp" />-->
+        <!--        <TextView-->
+        <!--            android:id="@+id/item_home_shop_score_tv"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginRight="3dp"-->
+        <!--            android:text="4.2 점"-->
+        <!--            android:textColor="@color/white"-->
+        <!--            android:textSize="7sp" />-->
 
-    <!--        <TextView-->
-    <!--            android:id="@+id/item_home_shop_count_tv"-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:text="(268명)"-->
-    <!--            android:textColor="@color/white"-->
-    <!--            android:textSize="7sp" />-->
+        <!--        <TextView-->
+        <!--            android:id="@+id/item_home_shop_count_tv"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="(268명)"-->
+        <!--            android:textColor="@color/white"-->
+        <!--            android:textSize="7sp" />-->
 
-    <!--    </LinearLayout>-->
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <!--    </LinearLayout>-->
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

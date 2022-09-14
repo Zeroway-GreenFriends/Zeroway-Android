@@ -1,4 +1,4 @@
-package com.greenfriends.zeroway.data.source.remote.home
+package com.greenfriends.zeroway.data.source.remote.challenge
 
 import com.greenfriends.zeroway.data.model.ChallengeLevelResponse
 import com.greenfriends.zeroway.data.model.ChallengeListResponse

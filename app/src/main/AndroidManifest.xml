@@ -57,7 +57,7 @@
             android:name=".ui.signup.view.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.challenge.LevelUpActivity"
+            android:name=".ui.challenge.view.LevelUpActivity"
             android:exported="false" />
     </application>
 

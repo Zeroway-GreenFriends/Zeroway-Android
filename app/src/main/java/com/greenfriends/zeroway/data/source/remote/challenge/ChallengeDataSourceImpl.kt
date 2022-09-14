@@ -1,4 +1,4 @@
-package com.greenfriends.zeroway.data.source.remote.home
+package com.greenfriends.zeroway.data.source.remote.challenge
 
 import com.greenfriends.zeroway.data.api.ChallengeRetrofitInterface
 import com.greenfriends.zeroway.data.api.RetrofitClient
