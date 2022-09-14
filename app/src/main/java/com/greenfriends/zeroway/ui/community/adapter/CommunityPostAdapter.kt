@@ -1,14 +1,15 @@
 package com.greenfriends.zeroway.ui.community.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.greenfriends.zeroway.databinding.ItemCommunityPostImageBinding
 
 class CommunityPostAdapter :
-    ListAdapter<String, CommunityPostAdapter.CommunityPostViewHolder>(CommunityPostDiffCallback()) {
+    RecyclerView.Adapter<CommunityPostAdapter.CommunityPostViewHolder>() {
+
+    private val imageUrls = mutableListOf<String>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommunityPostViewHolder {
         val binding = ItemCommunityPostImageBinding.inflate(
@@ -20,7 +21,18 @@ class CommunityPostAdapter :
     }
 
     override fun onBindViewHolder(holder: CommunityPostViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(imageUrls[position])
+    }
+
+    override fun getItemCount(): Int = imageUrls.size
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun submitList(imageUrls: List<String>) {
+        if (imageUrls.isNotEmpty()) {
+            this.imageUrls.clear()
+        }
+        this.imageUrls.addAll(imageUrls)
+        notifyDataSetChanged()
     }
 
     class CommunityPostViewHolder(private val binding: ItemCommunityPostImageBinding) :
@@ -30,16 +42,5 @@ class CommunityPostAdapter :
             binding.imageUrl = imageUrl
             binding.executePendingBindings()
         }
-    }
-}
-
-class CommunityPostDiffCallback : DiffUtil.ItemCallback<String>() {
-
-    override fun areItemsTheSame(oldItem: String, newItem: String): Boolean {
-        return oldItem == newItem
-    }
-
-    override fun areContentsTheSame(oldItem: String, newItem: String): Boolean {
-        return oldItem == newItem
     }
 }
