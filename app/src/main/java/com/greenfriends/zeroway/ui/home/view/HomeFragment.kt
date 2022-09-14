@@ -18,17 +18,23 @@ import com.greenfriends.zeroway.databinding.FragmentHomeBinding
 import com.greenfriends.zeroway.ui.alarm.AlarmFragment
 import com.greenfriends.zeroway.ui.common.ViewModelFactory
 import com.greenfriends.zeroway.ui.home.WordDialogFragment
+import com.greenfriends.zeroway.ui.home.adapter.HomeStoreAdapter
 import com.greenfriends.zeroway.ui.home.adapter.TermAdapter
 import com.greenfriends.zeroway.ui.home.adapter.TipAdapter
 import com.greenfriends.zeroway.ui.home.adapter.UseAdapter
 import com.greenfriends.zeroway.ui.home.viewmodel.HomeViewModel
+import com.greenfriends.zeroway.ui.store.adapter.StoreAdapter
 import com.greenfriends.zeroway.ui.store.view.StoreFragment
+import com.greenfriends.zeroway.ui.store.viewmodel.StoreViewModel
 
 class HomeFragment : Fragment() {
 
     private val viewModel: HomeViewModel by viewModels { ViewModelFactory() }
+    private val store_vm: StoreViewModel by viewModels { ViewModelFactory() }
+
     private lateinit var termAdapter: TermAdapter
     private lateinit var tipAdapter: TipAdapter
+    private lateinit var storeAdapter: HomeStoreAdapter
 
     private lateinit var binding: FragmentHomeBinding
     private var useDatas = ArrayList<UseList>()
@@ -72,10 +78,11 @@ class HomeFragment : Fragment() {
 
         setTermAdapter()
         setTipAdapter()
-        Log.e("jwt", getJwt().toString())
+        setStoreAdapter()
+        Log.e("jwt",getJwt().toString())
 
         getChallenge()
-        //getStoreList(null,1,5)
+        getStores(null,1,5)
         getTip()
         getTerm(null, null, null)
 
@@ -140,6 +147,17 @@ class HomeFragment : Fragment() {
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
     }
 
+    private fun setStoreAdapter() {
+        storeAdapter = HomeStoreAdapter()
+        binding.homeShopRv.adapter = storeAdapter
+        store_vm.stores.observe(
+            viewLifecycleOwner
+        ) { stores ->
+            storeAdapter.submitStores(stores)
+        }
+    }
+
+
 //    private fun getStoreList(keyword: String?, page: Int?, size: Int?) {
 //        val storeService = StoreService()
 //        storeService.setStoreListView(this)
@@ -176,6 +194,13 @@ class HomeFragment : Fragment() {
 
     private fun getTip() {
         viewModel.getTip()
+    }
+
+    private fun getStores(
+        keyword: String? = null,
+        page: Int = 1,
+        size: Int = 5) {
+        store_vm.getStores(keyword, page, size)
     }
 
     private fun getJwt(): String? {

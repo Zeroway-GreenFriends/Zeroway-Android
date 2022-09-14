@@ -14,7 +14,7 @@ interface ChallengeRetrofitInterface {
         @Header("Bearer") accessToken: String
     ): Response<ChallengeResponse>
 
-    @GET("challenge/list")
+    @GET("challenge/list/today")
     suspend fun getChallengeList(
         @Header("Bearer") accessToken: String
     ): Response<List<ChallengeListResponse>>

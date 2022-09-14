@@ -12,8 +12,8 @@ import androidx.fragment.app.viewModels
 import com.greenfriends.zeroway.R
 import com.greenfriends.zeroway.data.model.ChallengeListResponse
 import com.greenfriends.zeroway.databinding.FragmentChallengeListBinding
-import com.greenfriends.zeroway.ui.challenge.viewmodel.ChallengeViewModel
 import com.greenfriends.zeroway.ui.challenge.adapter.ChallengeListAdapter
+import com.greenfriends.zeroway.ui.challenge.viewmodel.ChallengeViewModel
 import com.greenfriends.zeroway.ui.common.EventObserve
 import com.greenfriends.zeroway.ui.common.ViewModelFactory
 
