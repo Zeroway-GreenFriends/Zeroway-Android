@@ -7,7 +7,7 @@ import com.greenfriends.zeroway.data.model.ChallengeListResponse
 import com.greenfriends.zeroway.data.model.ChallengeResponse
 import retrofit2.Response
 
-class ChallengeDataSourceImpl: ChallengeDataSource {
+class ChallengeDataSourceImpl : ChallengeDataSource {
 
     private val challengeService =
         RetrofitClient.getRetrofit()?.create(ChallengeRetrofitInterface::class.java)
@@ -20,8 +20,10 @@ class ChallengeDataSourceImpl: ChallengeDataSource {
         return challengeService!!.getChallengeList(accessToken)
     }
 
-    override suspend fun updateChallenge(accessToken: String, challengeId: Long): Response<ChallengeLevelResponse> {
-        return challengeService!!.updateChallenge(accessToken,challengeId)
+    override suspend fun updateChallenge(
+        accessToken: String,
+        challengeId: Long
+    ): Response<ChallengeLevelResponse> {
+        return challengeService!!.updateChallenge(accessToken, challengeId)
     }
-
 }

@@ -14,7 +14,6 @@ import com.greenfriends.zeroway.databinding.FragmentChallengeCharacterBinding
 import com.greenfriends.zeroway.ui.challenge.viewmodel.ChallengeViewModel
 import com.greenfriends.zeroway.ui.common.ViewModelFactory
 
-
 class ChallengeCharacterFragment : Fragment() {
 
     private val viewModel: ChallengeViewModel by viewModels { ViewModelFactory() }
@@ -48,7 +47,7 @@ class ChallengeCharacterFragment : Fragment() {
                 .load(Uri.parse(cr.imgUrl))
                 .disallowHardwareConfig()
                 .into(binding.challengeCharacterLevelImg)
-            binding.challengeCharacterLevelPb.setProgress(cr.exp)
+            binding.challengeCharacterLevelPb.progress = cr.exp
             saveLevel(cr.level)
         }
     }
@@ -58,7 +57,8 @@ class ChallengeCharacterFragment : Fragment() {
     }
 
     private fun saveLevel(level: Int) {
-        val sharedPreferences = activity?.getSharedPreferences("level", AppCompatActivity.MODE_PRIVATE)
+        val sharedPreferences =
+            activity?.getSharedPreferences("level", AppCompatActivity.MODE_PRIVATE)
         val editor = sharedPreferences!!.edit()
         editor.putString("level", level.toString())
         editor.apply()
@@ -69,5 +69,4 @@ class ChallengeCharacterFragment : Fragment() {
             activity?.getSharedPreferences("auth", AppCompatActivity.MODE_PRIVATE)
         return sharedPreferences!!.getString("jwt", null)
     }
-
 }

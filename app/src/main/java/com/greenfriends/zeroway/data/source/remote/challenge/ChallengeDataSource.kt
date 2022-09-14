@@ -11,6 +11,8 @@ interface ChallengeDataSource {
 
     suspend fun getChallengeList(accessToken: String): Response<List<ChallengeListResponse>>
 
-    suspend fun updateChallenge(accessToken: String, challengeId: Long): Response<ChallengeLevelResponse>
-
+    suspend fun updateChallenge(
+        accessToken: String,
+        challengeId: Long
+    ): Response<ChallengeLevelResponse>
 }

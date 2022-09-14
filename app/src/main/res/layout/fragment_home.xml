@@ -8,7 +8,6 @@
         <variable
             name="challengeResponse"
             type="com.greenfriends.zeroway.data.model.ChallengeResponse" />
-
     </data>
 
     <ScrollView
@@ -49,13 +48,13 @@
 
             <TextView
                 android:id="@+id/home_level_tv"
+                levelToString="@{challengeResponse.level}"
                 android:layout_width="49dp"
                 android:layout_height="14dp"
                 android:layout_marginStart="33dp"
                 android:layout_marginTop="87dp"
                 android:fontFamily="@font/notosans_regular"
                 android:lineHeight="14dp"
-                levelToString="@{challengeResponse.level}"
                 android:textColor="@color/zeroway_dark_mint"
                 android:textFontWeight="500"
                 android:textSize="10sp"
@@ -282,7 +281,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/home_tip_cl"
                 tools:listitem="@layout/item_home_use" />
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

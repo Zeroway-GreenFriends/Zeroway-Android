@@ -11,10 +11,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.greenfriends.zeroway.data.model.*
-import com.greenfriends.zeroway.*
+import com.greenfriends.zeroway.R
+import com.greenfriends.zeroway.data.model.TermResponse
+import com.greenfriends.zeroway.data.model.UseList
 import com.greenfriends.zeroway.databinding.FragmentHomeBinding
-import com.greenfriends.zeroway.data.api.*
 import com.greenfriends.zeroway.ui.alarm.AlarmFragment
 import com.greenfriends.zeroway.ui.common.ViewModelFactory
 import com.greenfriends.zeroway.ui.home.WordDialogFragment
@@ -109,8 +109,7 @@ class HomeFragment : Fragment() {
 
         viewModel.tipResponse.observe(
             viewLifecycleOwner
-        ) {
-                tipResponse ->
+        ) { tipResponse ->
             tipAdapter.submitList(tipResponse)
         }
     }
@@ -134,7 +133,7 @@ class HomeFragment : Fragment() {
         binding.homeTipRv.adapter = tipAdapter
     }
 
-    private fun setUseView(){
+    private fun setUseView() {
         useDatas.apply {
             add(UseList("15회 사용", "유리재질 텀블러"))
             add(UseList("17회 사용", "플라스틱 텀블러"))
@@ -209,5 +208,4 @@ class HomeFragment : Fragment() {
             activity?.getSharedPreferences("auth", AppCompatActivity.MODE_PRIVATE)
         return sharedPreferences!!.getString("jwt", null)
     }
-
 }

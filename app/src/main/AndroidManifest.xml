@@ -41,7 +41,7 @@
             android:name=".ui.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.SplashActivity"
+            android:name=".ui.splash.SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.Zeroway.Splash">
             <intent-filter>

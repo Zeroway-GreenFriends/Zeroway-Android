@@ -1,7 +1,7 @@
 package com.greenfriends.zeroway.ui.challenge.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.greenfriends.zeroway.R
 import com.greenfriends.zeroway.databinding.ActivityLevelupBinding
 
@@ -12,34 +12,34 @@ class LevelUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLevelupBinding.inflate(layoutInflater)
 
-        binding.levelupLevelTv.text = "Lv."+getLevel().toString()
+        binding.levelupLevelTv.text = "Lv." + getLevel().toString()
 
-        when(getLevel()){
-            "2" ->{
+        when (getLevel()) {
+            "2" -> {
                 binding.levelupCharacterIv.setImageResource(R.drawable.ic_level_up_2)
             }
-            "3" ->{
+            "3" -> {
                 binding.levelupCharacterIv.setImageResource(R.drawable.ic_level_up_3)
             }
-            "4" ->{
+            "4" -> {
                 binding.levelupCharacterIv.setImageResource(R.drawable.ic_level_up_4)
             }
-            "5" ->{
+            "5" -> {
                 binding.levelupCharacterIv.setImageResource(R.drawable.ic_level_up_5)
             }
-            "6" ->{
+            "6" -> {
                 binding.levelupCharacterIv.setImageResource(R.drawable.ic_level_up_6)
             }
-            "7" ->{
+            "7" -> {
                 binding.levelupCharacterIv.setImageResource(R.drawable.ic_level_up_7)
             }
-            "8" ->{
+            "8" -> {
                 binding.levelupCharacterIv.setImageResource(R.drawable.ic_level_up_8)
             }
-            "9" ->{
+            "9" -> {
                 binding.levelupCharacterIv.setImageResource(R.drawable.ic_level_up_9)
             }
-            "10" ->{
+            "10" -> {
                 binding.levelupCharacterIv.setImageResource(R.drawable.ic_level_up_10)
             }
         }
@@ -55,5 +55,4 @@ class LevelUpActivity : AppCompatActivity() {
         val sharedPreferences = getSharedPreferences("level", MODE_PRIVATE)
         return sharedPreferences!!.getString("level", null)
     }
-
 }

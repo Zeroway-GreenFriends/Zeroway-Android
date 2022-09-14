@@ -1,12 +1,10 @@
 package com.greenfriends.zeroway.ui.home.adapter
 
-
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.greenfriends.zeroway.data.model.UseList
 import com.greenfriends.zeroway.databinding.ItemHomeUseBinding
-
 
 class UseAdapter(private val useList: ArrayList<UseList>) :
     RecyclerView.Adapter<UseAdapter.ViewHolder>() {
@@ -48,5 +46,4 @@ class UseAdapter(private val useList: ArrayList<UseList>) :
             binding.itemHomeUseTitleTv.text = use.title
         }
     }
-
 }

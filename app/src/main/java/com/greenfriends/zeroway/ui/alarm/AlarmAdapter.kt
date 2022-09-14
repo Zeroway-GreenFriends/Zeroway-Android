@@ -1,12 +1,10 @@
 package com.greenfriends.zeroway.ui.alarm
 
-
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.greenfriends.zeroway.data.model.AlarmList
 import com.greenfriends.zeroway.databinding.ItemAlarmBinding
-
 
 class AlarmAdapter(private val alarmList: ArrayList<AlarmList>) :
     RecyclerView.Adapter<AlarmAdapter.ViewHolder>() {
@@ -47,5 +45,4 @@ class AlarmAdapter(private val alarmList: ArrayList<AlarmList>) :
             binding.itemAlarmTimeTv.text = alarm.time
         }
     }
-
 }

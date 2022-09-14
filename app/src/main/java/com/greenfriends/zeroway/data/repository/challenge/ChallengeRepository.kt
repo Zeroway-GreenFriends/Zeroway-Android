@@ -16,7 +16,10 @@ class ChallengeRepository(private val homeDataSourceImpl: ChallengeDataSourceImp
         return homeDataSourceImpl.getChallengeList(accessToken)
     }
 
-    suspend fun updateChallenge(accessToken: String, challengeId: Long): Response<ChallengeLevelResponse> {
-        return homeDataSourceImpl.updateChallenge(accessToken,challengeId)
+    suspend fun updateChallenge(
+        accessToken: String,
+        challengeId: Long
+    ): Response<ChallengeLevelResponse> {
+        return homeDataSourceImpl.updateChallenge(accessToken, challengeId)
     }
 }
