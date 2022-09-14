@@ -47,17 +47,23 @@ class ChallengeListAdapter(
         fun bind(challengeList: ChallengeListResponse) {
 
             binding.viewModel = viewModel
+            binding.challengeList = challengeList
+            binding.executePendingBindings()
 
-            when (challengeList.complete) {
-                true -> {
-                    binding.challengeListListTv1.setTextColor(Color.parseColor("#6FE0D6"))
-                    binding.challengeListCheckBtn1.setImageResource(R.drawable.ic_check_circle_mint)
-                }
-                false -> {
-                    binding.challengeListListTv1.setTextColor(Color.parseColor("#000000"))
-                    binding.challengeListCheckBtn1.setImageResource(R.drawable.ic_check_circle_gray)
-                }
+            binding.challengeListListTv1.setOnClickListener {
+                mItemClickListener.onItemClick(challengeList)
             }
+//        }
+//            when (challengeList.complete) {
+//                true -> {
+//                    binding.challengeListListTv1.setTextColor(Color.parseColor("#6FE0D6"))
+//                    binding.challengeListCheckBtn1.setImageResource(R.drawable.ic_check_circle_mint)
+//                }
+//                false -> {
+//                    binding.challengeListListTv1.setTextColor(Color.parseColor("#000000"))
+//                    binding.challengeListCheckBtn1.setImageResource(R.drawable.ic_check_circle_gray)
+//                }
+//            }
         }
     }
 
@@ -67,7 +73,7 @@ class ChallengeListAdapter(
                 oldItem == newItem
 
             override fun areItemsTheSame(oldItem: ChallengeListResponse, newItem: ChallengeListResponse) =
-                oldItem == newItem
+                oldItem.challengeId == newItem.challengeId
         }
     }
 
@@ -75,9 +81,9 @@ class ChallengeListAdapter(
         (holder as ViewHolder).bind(getItem(position))
 
         //밑에 꺼 설정하면 클릭되는지 확인할 것
-        holder.itemView.setOnClickListener {
-            mItemClickListener.onItemClick(getItem(position))
-        }
+//        holder.itemView.setOnClickListener {
+//            mItemClickListener.onItemClick(getItem(position))
+//        }
     }
 
 

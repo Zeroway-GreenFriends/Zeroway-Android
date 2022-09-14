@@ -15,6 +15,7 @@
     </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/challenge_list_cl"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -28,7 +29,7 @@
         android:background="@drawable/ic_challenge_list_detail"
         android:gravity="center"
         android:text="@{challengeList.content}"
-        android:textColor="@color/black"
+        android:textColor="@{challengeList.complete ? @color/zeroway_mint : @color/zeroway_black, default=@color/zeroway_black}"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,7 +45,7 @@
         app:layout_constraintBottom_toBottomOf="@id/challenge_list_list_tv1"
         app:layout_constraintStart_toStartOf="@id/challenge_list_list_tv1"
         android:layout_marginStart="10dp"
-        android:src="@drawable/ic_check_circle"
+        android:src="@{challengeList.complete ? @drawable/ic_check_circle_mint : @drawable/ic_check_circle_gray, default=@drawable/ic_check_circle_gray}"
         android:backgroundTint="@color/white"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
