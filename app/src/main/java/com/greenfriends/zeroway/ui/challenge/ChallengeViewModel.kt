@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.greenfriends.zeroway.data.model.*
+import com.greenfriends.zeroway.model.*
 import com.greenfriends.zeroway.repository.challenge.ChallengeRepository
 import com.greenfriends.zeroway.repository.home.HomeRepository
 import com.greenfriends.zeroway.ui.common.Event

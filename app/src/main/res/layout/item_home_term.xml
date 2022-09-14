@@ -10,7 +10,7 @@
 
         <variable
             name="termResponse"
-            type="com.greenfriends.zeroway.data.model.TermResponse" />
+            type="com.greenfriends.zeroway.model.TermResponse" />
 
     </data>
 

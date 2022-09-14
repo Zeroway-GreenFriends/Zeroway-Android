@@ -8,14 +8,6 @@
         <variable
             name="sort"
             type="String" />
-
-        <variable
-            name="review"
-            type="Boolean" />
-
-        <variable
-            name="challenge"
-            type="Boolean" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -48,106 +40,75 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/zeroway_background"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-            <TextView
-                android:id="@+id/community_review_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:background="@{review ? @drawable/ic_challenge_selected_background : @drawable/ic_community_post_background, default=@drawable/ic_community_post_background}"
-                android:paddingStart="9dp"
-                android:paddingTop="4dp"
-                android:paddingEnd="9dp"
-                android:paddingBottom="4dp"
-                android:text="리뷰"
-                android:textColor="@{review ? @color/white : @color/zeroway_gray, default=@color/zeroway_gray}"
-                android:textSize="10sp"
-                app:layout_constraintBottom_toBottomOf="@id/community_challenge_tv"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/community_challenge_tv" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/community_challenge_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:background="@{challenge ? @drawable/ic_challenge_selected_background : @drawable/ic_community_post_background, default=@drawable/ic_community_post_background}"
-                android:paddingStart="9dp"
-                android:paddingTop="4dp"
-                android:paddingEnd="9dp"
-                android:paddingBottom="4dp"
-                android:text="챌린지 인증하기"
-                android:textColor="@{challenge ? @color/white : @color/zeroway_gray, default=@color/zeroway_gray}"
-                android:textSize="10sp"
-                app:layout_constraintBottom_toBottomOf="@id/community_latest_iv"
-                app:layout_constraintStart_toEndOf="@id/community_review_tv"
-                app:layout_constraintTop_toTopOf="@id/community_latest_iv" />
+                <ImageView
+                    android:id="@+id/community_latest_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="6dp"
+                    android:src='@{sort.equals("createdAt") ? @drawable/ic_sort_on : @drawable/ic_sort_off, default=@drawable/ic_sort_on}'
+                    app:layout_constraintBottom_toBottomOf="@id/community_latest_tv"
+                    app:layout_constraintEnd_toStartOf="@id/community_latest_tv"
+                    app:layout_constraintTop_toTopOf="@id/community_latest_tv" />
 
-            <ImageView
-                android:id="@+id/community_latest_iv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="6dp"
-                android:src='@{sort.equals("createdAt") ? @drawable/ic_sort_on : @drawable/ic_sort_off, default=@drawable/ic_sort_on}'
-                app:layout_constraintBottom_toBottomOf="@id/community_latest_tv"
-                app:layout_constraintEnd_toStartOf="@id/community_latest_tv"
-                app:layout_constraintTop_toTopOf="@id/community_latest_tv" />
+                <TextView
+                    android:id="@+id/community_latest_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:text="@string/latest"
+                    android:textColor="@color/zeroway_black"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@id/community_popularity_iv"
+                    app:layout_constraintEnd_toStartOf="@id/community_popularity_iv"
+                    app:layout_constraintTop_toTopOf="@id/community_popularity_iv" />
 
-            <TextView
-                android:id="@+id/community_latest_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:text="@string/latest"
-                android:textColor="@color/zeroway_black"
-                android:textSize="10sp"
-                app:layout_constraintBottom_toBottomOf="@id/community_popularity_iv"
-                app:layout_constraintEnd_toStartOf="@id/community_popularity_iv"
-                app:layout_constraintTop_toTopOf="@id/community_popularity_iv" />
+                <ImageView
+                    android:id="@+id/community_popularity_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="6dp"
+                    android:src='@{sort.equals("like") ? @drawable/ic_sort_on : @drawable/ic_sort_off, default=@drawable/ic_sort_off}'
+                    app:layout_constraintBottom_toBottomOf="@id/community_popularity_tv"
+                    app:layout_constraintEnd_toStartOf="@id/community_popularity_tv"
+                    app:layout_constraintTop_toTopOf="@id/community_popularity_tv" />
 
-            <ImageView
-                android:id="@+id/community_popularity_iv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="6dp"
-                android:src='@{sort.equals("like") ? @drawable/ic_sort_on : @drawable/ic_sort_off, default=@drawable/ic_sort_off}'
-                app:layout_constraintBottom_toBottomOf="@id/community_popularity_tv"
-                app:layout_constraintEnd_toStartOf="@id/community_popularity_tv"
-                app:layout_constraintTop_toTopOf="@id/community_popularity_tv" />
+                <TextView
+                    android:id="@+id/community_popularity_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/popularity"
+                    android:textColor="@color/zeroway_black"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/community_popularity_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:text="@string/popularity"
-                android:textColor="@color/zeroway_black"
-                android:textSize="10sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/community_post_rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:scrollbars="none"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@id/community_latest_iv"
+                    tools:listitem="@layout/item_community_include_image_post" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/community_post_rv"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:scrollbars="none"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/community_latest_iv"
-                tools:listitem="@layout/item_community_include_image_post" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/community_fab"

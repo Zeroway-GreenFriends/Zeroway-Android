@@ -1,83 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <data>
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/signup_profile_iv"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="270dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_signup_profile"
+        app:civ_border_color="@android:color/transparent"
+        app:civ_border_overlay="true"
+        app:civ_border_width="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <variable
-            name="idCheck"
-            type="Boolean" />
+    <EditText
+        android:id="@+id/signup_nickname_et"
+        android:layout_width="286dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:hint="닉네임 입력"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signup_profile_iv" />
 
-        <variable
-            name="idCheckEvent"
-            type="Boolean" />
-    </data>
+    <Button
+        android:id="@+id/signup_start_btn"
+        android:layout_width="286dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="42dp"
+        android:background="@drawable/ic_ok_btn_detail"
+        android:text="시작하기"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signup_nickname_et" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="한글, 영어, 숫자, 밑줄, 띄어쓰기를 사용할 수 있습니다."
+        android:textColor="@color/zeroway_gray"
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="@+id/signup_start_btn"
+        app:layout_constraintTop_toBottomOf="@+id/signup_start_btn" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/signup_profile_iv"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center"
-            android:layout_marginBottom="200dp"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_signup_profile"
-            app:civ_border_color="@android:color/transparent"
-            app:civ_border_overlay="true"
-            app:civ_border_width="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-
-        <EditText
-            android:id="@+id/signup_nickname_et"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="36dp"
-            android:gravity="center"
-            android:hint="닉네임을 입력해주세요."
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/signup_profile_iv" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="3dp"
-            android:text='@{idCheck == null ? "" : idCheck ? @string/true_id_check : @string/false_id_check}'
-            app:layout_constraintStart_toStartOf="@id/signup_nickname_et"
-            app:layout_constraintTop_toBottomOf="@id/signup_nickname_et" />
-
-        <Button
-            android:id="@+id/signup_auth_btn"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="42dp"
-            android:layout_marginEnd="36dp"
-            android:background="@drawable/ic_ok_btn_detail"
-            android:text="@{idCheck ? @string/after_id_check : @string/before_id_check, default=@string/before_id_check}"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/signup_nickname_et" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="한글, 영어, 숫자, 밑줄, 띄어쓰기를 사용할 수 있습니다."
-            android:textColor="@color/zeroway_gray"
-            android:textSize="10sp"
-            app:layout_constraintStart_toStartOf="@+id/signup_auth_btn"
-            app:layout_constraintTop_toBottomOf="@+id/signup_auth_btn" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
+</androidx.constraintlayout.widget.ConstraintLayout>

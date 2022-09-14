@@ -6,9 +6,9 @@ import com.greenfriends.zeroway.R
 import com.greenfriends.zeroway.databinding.ActivityMainBinding
 import com.greenfriends.zeroway.ui.challenge.ChallengeCharacterFragment
 import com.greenfriends.zeroway.ui.home.HomeFragment
-import com.greenfriends.zeroway.ui.community.view.CommunityFragment
+import com.greenfriends.zeroway.ui.store.StoreFragment
+import com.greenfriends.zeroway.ui.community.CommunityFragment
 import com.greenfriends.zeroway.ui.mypage.MyPageFragment
-import com.greenfriends.zeroway.ui.store.view.StoreFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

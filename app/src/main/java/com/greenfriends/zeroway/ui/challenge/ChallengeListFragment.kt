@@ -11,10 +11,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.greenfriends.zeroway.R
 import com.greenfriends.zeroway.databinding.FragmentChallengeListBinding
+import com.greenfriends.zeroway.model.ChallengeListResponse
 import com.greenfriends.zeroway.ui.common.EventObserve
 import com.greenfriends.zeroway.ui.common.ViewModelFactory
+<<<<<<< HEAD
 import com.greenfriends.zeroway.data.model.ChallengeListResponse
 
+=======
+>>>>>>> parent of 39dddb6 (fix: 패키지 구조 반영)
 
 class ChallengeListFragment : Fragment() {
 

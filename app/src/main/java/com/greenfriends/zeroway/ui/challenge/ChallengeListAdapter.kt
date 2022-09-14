@@ -1,6 +1,7 @@
 package com.greenfriends.zeroway.ui.challenge
 
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,7 +10,14 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.greenfriends.zeroway.R
 import com.greenfriends.zeroway.databinding.ItemChallengeListBinding
+<<<<<<< HEAD
 import com.greenfriends.zeroway.data.model.ChallengeListResponse
+
+=======
+import com.greenfriends.zeroway.model.ChallengeListResponse
+import com.greenfriends.zeroway.model.TermResponse
+import com.greenfriends.zeroway.ui.home.TermAdapter
+>>>>>>> parent of 39dddb6 (fix: 패키지 구조 반영)
 
 
 class ChallengeListAdapter(

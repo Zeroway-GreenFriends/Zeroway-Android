@@ -6,10 +6,6 @@
     <data>
 
         <variable
-            name="isReview"
-            type="Boolean" />
-
-        <variable
             name="isChallenge"
             type="Boolean" />
     </data>
@@ -45,109 +41,99 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/community_post_register_cl"
-                android:layout_width="0dp"
-                android:layout_height="360dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/ic_community_post_background"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-                <EditText
-                    android:id="@+id/community_post_register_content_tv"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/community_post_register_cl"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:background="@null"
-                    android:hint="내용을 입력하세요."
-                    android:maxLines="15"
+                    android:layout_height="380dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/ic_community_post_background"
+                    app:layout_constraintBottom_toTopOf="@id/community_post_register_rv"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent">
 
-                <ImageView
-                    android:id="@+id/community_post_register_camera_iv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
-                    android:src="@drawable/ic_camera"
-                    app:layout_constraintBottom_toBottomOf="@id/community_post_register_album_iv"
-                    app:layout_constraintEnd_toStartOf="@id/community_post_register_album_iv"
-                    app:layout_constraintTop_toTopOf="@id/community_post_register_album_iv" />
+                    <EditText
+                        android:id="@+id/community_post_register_content_tv"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:background="@null"
+                        android:hint="내용을 입력하세요."
+                        android:maxLines="15"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
-                    android:id="@+id/community_post_register_album_iv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:src="@drawable/ic_album"
+                    <ImageView
+                        android:id="@+id/community_post_register_camera_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:src="@drawable/ic_camera"
+                        app:layout_constraintBottom_toBottomOf="@id/community_post_register_album_iv"
+                        app:layout_constraintEnd_toStartOf="@id/community_post_register_album_iv"
+                        app:layout_constraintTop_toTopOf="@id/community_post_register_album_iv" />
+
+                    <ImageView
+                        android:id="@+id/community_post_register_album_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:src="@drawable/ic_album"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                    <TextView
+                        android:id="@+id/community_post_register_challenge_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@{isChallenge ? @drawable/ic_challenge_selected_background : @drawable/ic_challenge_unselected_background}"
+                        android:paddingStart="6dp"
+                        android:paddingTop="3dp"
+                        android:paddingEnd="6dp"
+                        android:paddingBottom="3dp"
+                        android:text="챌린지 인증하기"
+                        android:textColor="@color/white"
+                        app:layout_constraintBottom_toBottomOf="@id/community_post_register_camera_iv"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/community_post_register_camera_iv" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/community_post_register_rv"
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_marginBottom="30dp"
+                    android:orientation="horizontal"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
-
-                <TextView
-                    android:id="@+id/community_post_register_review_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:background="@{isReview ? @drawable/ic_challenge_selected_background : @drawable/ic_challenge_unselected_background, default=@drawable/ic_challenge_unselected_background}"
-                    android:paddingStart="9dp"
-                    android:paddingTop="4dp"
-                    android:paddingEnd="9dp"
-                    android:paddingBottom="4dp"
-                    android:text="리뷰"
-                    android:textColor="@color/white"
-                    android:textSize="10sp"
-                    app:layout_constraintBottom_toBottomOf="@id/community_post_register_camera_iv"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/community_post_register_camera_iv" />
-
-                <TextView
-                    android:id="@+id/community_post_register_challenge_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:background="@{isChallenge ? @drawable/ic_challenge_selected_background : @drawable/ic_challenge_unselected_background, default=@drawable/ic_challenge_unselected_background}"
-                    android:paddingStart="9dp"
-                    android:paddingTop="4dp"
-                    android:paddingEnd="9dp"
-                    android:paddingBottom="4dp"
-                    android:text="챌린지 인증하기"
-                    android:textColor="@color/white"
-                    android:textSize="10sp"
-                    app:layout_constraintBottom_toBottomOf="@id/community_post_register_review_tv"
-                    app:layout_constraintStart_toEndOf="@id/community_post_register_review_tv"
-                    app:layout_constraintTop_toTopOf="@id/community_post_register_review_tv" />
+                    app:reverseLayout="true"
+                    tools:listitem="@layout/item_community_post_register_image" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/community_post_register_rv"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:orientation="horizontal"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/community_post_register_cl"
-                app:reverseLayout="true"
-                tools:listitem="@layout/item_community_post_register_image" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/community_post_register_fab"

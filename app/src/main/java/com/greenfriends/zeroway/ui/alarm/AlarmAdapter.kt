@@ -4,7 +4,7 @@ package com.greenfriends.zeroway.ui.alarm
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.greenfriends.zeroway.data.model.AlarmList
+import com.greenfriends.zeroway.model.AlarmList
 import com.greenfriends.zeroway.databinding.ItemAlarmBinding
 
 

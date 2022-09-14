@@ -7,7 +7,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.greenfriends.zeroway.databinding.ItemHomeTipBinding
-import com.greenfriends.zeroway.data.model.TipResponse
+import com.greenfriends.zeroway.model.TermResponse
+import com.greenfriends.zeroway.model.TipResponse
 
 
 class TipAdapter(
