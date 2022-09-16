@@ -50,7 +50,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/ic_shop_gray_border"
-                android:hint="주소를 입력하세요."
+                android:hint="이름 혹은 주소로 검색하세요."
                 android:maxLines="1"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
