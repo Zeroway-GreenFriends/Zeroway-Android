@@ -14,7 +14,7 @@ class SignUpDataSourceImpl : SignUpDataSource {
         RetrofitClient.getRetrofit()?.create(AuthRetrofitInterface::class.java)
 
     override suspend fun signUp(
-        profileImg: MultipartBody.Part,
+        profileImg: MultipartBody.Part?,
         user: RequestBody
     ): Response<AuthResponse> {
         return authService!!.signUp(profileImg, user)

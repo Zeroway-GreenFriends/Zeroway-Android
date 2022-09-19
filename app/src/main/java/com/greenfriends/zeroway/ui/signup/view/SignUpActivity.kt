@@ -68,6 +68,7 @@ class SignUpActivity : AppCompatActivity() {
             saveJwt(userIdentification.accessToken)
             saveProfileImgUrl(userIdentification.profileImgUrl)
             startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }
     }
 
@@ -103,6 +104,7 @@ class SignUpActivity : AppCompatActivity() {
                     val uri = data?.data as Uri
                     Glide.with(applicationContext).load(uri).into(binding.signupProfileIv)
                     viewModel.setFile(File(getAbsolutelyPath(uri, this)))
+                    viewModel.setIsSetImage()
                 }
             }
     }
@@ -119,9 +121,11 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun authentication() {
         binding.signupAuthBtn.setOnClickListener {
-            viewModel.setNickname(binding.signupNicknameEt.text.toString())
             when (viewModel.getIdCheckEvent()) {
-                false -> viewModel.idCheck(viewModel.getNickname()!!)
+                false -> {
+                    viewModel.setNickname(binding.signupNicknameEt.text.toString())
+                    viewModel.idCheck(viewModel.getNickname()!!)
+                }
                 else -> {
                     val user = User(
                         viewModel.getEmail()!!,
@@ -131,15 +135,19 @@ class SignUpActivity : AppCompatActivity() {
                     val userRequestBody =
                         gson.toJson(user)
                             .toRequestBody("application/json; charset=utf-8".toMediaType())
-                    val fileRequestBody = viewModel.getFile()!!
-                        .asRequestBody("image/jpeg; charset=utf-8".toMediaType())
-                    val multipartBodyPartFile =
-                        MultipartBody.Part.createFormData(
-                            "profileImg",
-                            viewModel.getFile()!!.name,
-                            fileRequestBody
-                        )
-                    viewModel.signUp(multipartBodyPartFile, userRequestBody)
+                    if (viewModel.getIsSetImage()!!) {
+                        val fileRequestBody = viewModel.getFile()!!
+                            .asRequestBody("image/jpeg; charset=utf-8".toMediaType())
+                        val multipartBodyPartFile =
+                            MultipartBody.Part.createFormData(
+                                "profileImg",
+                                viewModel.getFile()!!.name,
+                                fileRequestBody
+                            )
+                        viewModel.signUp(multipartBodyPartFile, userRequestBody)
+                    } else {
+                        viewModel.signUp(null, userRequestBody)
+                    }
                 }
             }
         }

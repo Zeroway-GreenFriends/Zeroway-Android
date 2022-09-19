@@ -17,7 +17,7 @@ class SignUpViewModel(private val signUpRepository: SignUpRepository) : ViewMode
     private val _idCheck = MutableLiveData<Boolean>(null)
     val idCheck: LiveData<Boolean> = _idCheck
 
-    private val _idCheckEvent = MutableLiveData<Boolean>(false)
+    private val _idCheckEvent = MutableLiveData(false)
     val idCheckEvent: LiveData<Boolean> = _idCheckEvent
 
     private val _email = MutableLiveData<String>()
@@ -31,6 +31,9 @@ class SignUpViewModel(private val signUpRepository: SignUpRepository) : ViewMode
 
     private val _file = MutableLiveData<File>()
     val file: LiveData<File> = _file
+
+    private val _isSetImage = MutableLiveData(false)
+    val isSetImage: LiveData<Boolean> = _isSetImage
 
     private val _userIdentification = MutableLiveData<UserIdentification>()
     val userIdentification: LiveData<UserIdentification> = _userIdentification
@@ -67,18 +70,27 @@ class SignUpViewModel(private val signUpRepository: SignUpRepository) : ViewMode
         return _file.value
     }
 
+    fun setIsSetImage() {
+        _isSetImage.value = true
+    }
+
+    fun getIsSetImage(): Boolean? {
+        return _isSetImage.value
+    }
+
     fun getIdCheckEvent(): Boolean? {
         return _idCheckEvent.value
     }
 
-    fun signUp(profileImg: MultipartBody.Part, user: RequestBody) {
+    fun signUp(profileImg: MultipartBody.Part?, user: RequestBody) {
         viewModelScope.launch {
             val response = signUpRepository.signUp(profileImg, user)
             if (response.isSuccessful) {
                 val accessToken = response.body()!!.result.accessToken
                 val refreshToken = response.body()!!.result.refreshToken
                 val profileImgUrl = response.body()!!.result.profileImgUrl
-                _userIdentification.value = UserIdentification(accessToken, refreshToken, profileImgUrl)
+                _userIdentification.value =
+                    UserIdentification(accessToken, refreshToken, profileImgUrl)
                 Log.d("AUTH/SIGNUP/T", response.body().toString())
             } else {
                 Log.d("AUTH/SIGNUP/F", response.errorBody()?.string()!!)
