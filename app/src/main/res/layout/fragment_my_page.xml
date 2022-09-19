@@ -145,7 +145,7 @@
         android:src="@drawable/ic_section_2"/>
 
     <TextView
-        android:id="@+id/mypage_section_2_tv1"
+        android:id="@+id/mypage_notice_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="@id/mypage_section_2_iv"
@@ -161,17 +161,17 @@
         android:id="@+id/mypage_section_2_line_iv1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/mypage_section_2_tv1"
+        app:layout_constraintTop_toBottomOf="@id/mypage_notice_tv"
         app:layout_constraintStart_toStartOf="@id/mypage_section_2_iv"
         app:layout_constraintEnd_toEndOf="@id/mypage_section_2_iv"
         android:layout_marginTop="25dp"
         android:src="@drawable/ic_line_gray"/>
 
     <TextView
-        android:id="@+id/mypage_section_2_tv2"
+        android:id="@+id/mypage_alarm_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/mypage_section_2_tv1"
+        app:layout_constraintTop_toTopOf="@id/mypage_notice_tv"
         app:layout_constraintStart_toStartOf="@id/mypage_section_2_iv"
         android:layout_marginStart="40dp"
         android:layout_marginTop="70dp"
@@ -184,18 +184,18 @@
         android:id="@+id/mypage_section_2_line_iv2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/mypage_section_2_tv2"
+        app:layout_constraintTop_toBottomOf="@id/mypage_alarm_tv"
         app:layout_constraintStart_toStartOf="@id/mypage_section_2_iv"
         app:layout_constraintEnd_toEndOf="@id/mypage_section_2_iv"
         android:layout_marginTop="25dp"
         android:src="@drawable/ic_line_gray"/>
 
     <TextView
-        android:id="@+id/mypage_section_2_tv3"
+        android:id="@+id/mypage_center_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
-        app:layout_constraintTop_toTopOf="@id/mypage_section_2_tv2"
+        app:layout_constraintTop_toTopOf="@id/mypage_alarm_tv"
         app:layout_constraintStart_toStartOf="@id/mypage_section_2_iv"
         android:layout_marginStart="40dp"
         android:text="고객센터"
@@ -207,18 +207,18 @@
         android:id="@+id/mypage_section_2_line_iv_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/mypage_section_2_tv3"
+        app:layout_constraintTop_toBottomOf="@id/mypage_center_tv"
         app:layout_constraintStart_toStartOf="@id/mypage_section_2_iv"
         app:layout_constraintEnd_toEndOf="@id/mypage_section_2_iv"
         android:layout_marginTop="25dp"
         android:src="@drawable/ic_line_gray"/>
 
     <TextView
-        android:id="@+id/mypage_section_2_tv4"
+        android:id="@+id/mypage_use_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
-        app:layout_constraintTop_toTopOf="@id/mypage_section_2_tv3"
+        app:layout_constraintTop_toTopOf="@id/mypage_center_tv"
         app:layout_constraintStart_toStartOf="@id/mypage_section_2_iv"
         android:layout_marginStart="40dp"
         android:text="이용약관"
