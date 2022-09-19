@@ -10,6 +10,7 @@ import retrofit2.Response
 import retrofit2.http.*
 
 interface AuthRetrofitInterface {
+
     @POST("user/auth/login")
     fun login(
         @Body loginRequest: LoginRequest
@@ -21,7 +22,7 @@ interface AuthRetrofitInterface {
     @Multipart
     @POST("user")
     suspend fun signUp(
-        @Part profileImg: MultipartBody.Part,
+        @Part profileImg: MultipartBody.Part?,
         @Part("signInReq") user: RequestBody
     ): Response<AuthResponse>
 

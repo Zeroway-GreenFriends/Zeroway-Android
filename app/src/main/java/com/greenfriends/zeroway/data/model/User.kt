@@ -11,7 +11,7 @@ data class User(
 data class UserIdentification(
     @SerializedName("accessToken") val accessToken: String,
     @SerializedName("refreshToken") val refreshToken: String,
-    @SerializedName("profileImgUrl") val profileImgUrl: String
+    @SerializedName("profileImgUrl") val profileImgUrl: String?
 )
 
 data class LoginRequest(

@@ -8,7 +8,7 @@ import retrofit2.Response
 
 interface SignUpDataSource {
 
-    suspend fun signUp(profileImg: MultipartBody.Part, user: RequestBody): Response<AuthResponse>
+    suspend fun signUp(profileImg: MultipartBody.Part?, user: RequestBody): Response<AuthResponse>
 
     suspend fun idCheck(nickname: String): Response<IdCheckResponse>
 }

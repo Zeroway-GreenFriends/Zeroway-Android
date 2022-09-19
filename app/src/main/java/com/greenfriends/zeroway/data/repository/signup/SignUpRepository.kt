@@ -9,7 +9,7 @@ import retrofit2.Response
 
 class SignUpRepository(private val signUpDataSourceImpl: SignUpDataSourceImpl) {
 
-    suspend fun signUp(profileImg: MultipartBody.Part, user: RequestBody): Response<AuthResponse> {
+    suspend fun signUp(profileImg: MultipartBody.Part?, user: RequestBody): Response<AuthResponse> {
         return signUpDataSourceImpl.signUp(profileImg, user)
     }
 
