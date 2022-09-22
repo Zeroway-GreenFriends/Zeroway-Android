@@ -16,23 +16,23 @@
 
         <TextView
             android:id="@+id/item_community_post_comments_tv"
+            style="@style/Text12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="10dp"
-            android:text="댓글"
+            android:text="@string/comment"
             android:textColor="@color/zeroway_gray"
-            android:textSize="10sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            style="@style/Text12"
             convertIntToString="@{communityPostDetailResponse.commentCount}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
             android:textColor="@color/zeroway_gray"
-            android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="@id/item_community_post_comments_tv"
             app:layout_constraintStart_toEndOf="@id/item_community_post_comments_tv"
             app:layout_constraintTop_toTopOf="@id/item_community_post_comments_tv"

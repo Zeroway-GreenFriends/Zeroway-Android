@@ -35,11 +35,10 @@
 
                 <TextView
                     android:id="@+id/community_post_register_toolbar_title_tv"
+                    style="@style/Text14"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="게시물 작성"
-                    android:textColor="@color/zeroway_black"
-                    android:textSize="14sp" />
+                    android:text="@string/write_post" />
 
             </androidx.appcompat.widget.Toolbar>
 
@@ -90,31 +89,32 @@
                     android:id="@+id/community_post_register_album_iv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="15dp"
                     android:src="@drawable/ic_album"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" />
 
                 <TextView
                     android:id="@+id/community_post_register_review_tv"
+                    style="@style/Text12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="20dp"
                     android:background="@{isReview ? @drawable/ic_challenge_selected_background : @drawable/ic_challenge_unselected_background, default=@drawable/ic_challenge_unselected_background}"
                     android:paddingStart="9dp"
                     android:paddingTop="4dp"
                     android:paddingEnd="9dp"
                     android:paddingBottom="4dp"
-                    android:text="리뷰"
+                    android:text="@string/review"
                     android:textColor="@color/white"
-                    android:textSize="10sp"
                     app:layout_constraintBottom_toBottomOf="@id/community_post_register_camera_iv"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@id/community_post_register_camera_iv" />
 
                 <TextView
                     android:id="@+id/community_post_register_challenge_tv"
+                    style="@style/Text12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -123,9 +123,8 @@
                     android:paddingTop="4dp"
                     android:paddingEnd="9dp"
                     android:paddingBottom="4dp"
-                    android:text="챌린지 인증하기"
+                    android:text="@string/challenge_confirm"
                     android:textColor="@color/white"
-                    android:textSize="10sp"
                     app:layout_constraintBottom_toBottomOf="@id/community_post_register_review_tv"
                     app:layout_constraintStart_toEndOf="@id/community_post_register_review_tv"
                     app:layout_constraintTop_toTopOf="@id/community_post_register_review_tv" />
