@@ -38,11 +38,10 @@
 
                 <TextView
                     android:id="@+id/community_toolbar_title_tv"
+                    style="@style/Text14"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="커뮤니티"
-                    android:textColor="@color/zeroway_black"
-                    android:textSize="14sp" />
+                    android:text="@string/community" />
 
             </androidx.appcompat.widget.Toolbar>
 
@@ -56,34 +55,34 @@
 
             <TextView
                 android:id="@+id/community_review_tv"
+                style="@style/Text12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:background="@{review ? @drawable/ic_challenge_selected_background : @drawable/ic_community_post_background, default=@drawable/ic_community_post_background}"
-                android:paddingStart="9dp"
+                android:paddingStart="12dp"
                 android:paddingTop="4dp"
-                android:paddingEnd="9dp"
+                android:paddingEnd="12dp"
                 android:paddingBottom="4dp"
-                android:text="리뷰"
+                android:text="@string/review"
                 android:textColor="@{review ? @color/white : @color/zeroway_gray, default=@color/zeroway_gray}"
-                android:textSize="10sp"
                 app:layout_constraintBottom_toBottomOf="@id/community_challenge_tv"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/community_challenge_tv" />
 
             <TextView
                 android:id="@+id/community_challenge_tv"
+                style="@style/Text12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="12dp"
                 android:background="@{challenge ? @drawable/ic_challenge_selected_background : @drawable/ic_community_post_background, default=@drawable/ic_community_post_background}"
-                android:paddingStart="9dp"
+                android:paddingStart="12dp"
                 android:paddingTop="4dp"
-                android:paddingEnd="9dp"
+                android:paddingEnd="12dp"
                 android:paddingBottom="4dp"
-                android:text="챌린지 인증하기"
+                android:text="@string/challenge_confirm"
                 android:textColor="@{challenge ? @color/white : @color/zeroway_gray, default=@color/zeroway_gray}"
-                android:textSize="10sp"
                 app:layout_constraintBottom_toBottomOf="@id/community_latest_iv"
                 app:layout_constraintStart_toEndOf="@id/community_review_tv"
                 app:layout_constraintTop_toTopOf="@id/community_latest_iv" />
@@ -100,12 +99,11 @@
 
             <TextView
                 android:id="@+id/community_latest_tv"
+                style="@style/Text12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="12dp"
                 android:text="@string/latest"
-                android:textColor="@color/zeroway_black"
-                android:textSize="10sp"
                 app:layout_constraintBottom_toBottomOf="@id/community_popularity_iv"
                 app:layout_constraintEnd_toStartOf="@id/community_popularity_iv"
                 app:layout_constraintTop_toTopOf="@id/community_popularity_iv" />
@@ -122,13 +120,12 @@
 
             <TextView
                 android:id="@+id/community_popularity_tv"
+                style="@style/Text12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="25dp"
                 android:layout_marginEnd="16dp"
                 android:text="@string/popularity"
-                android:textColor="@color/zeroway_black"
-                android:textSize="10sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -137,7 +134,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="25dp"
                 android:layout_marginEnd="16dp"
                 android:scrollbars="none"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
