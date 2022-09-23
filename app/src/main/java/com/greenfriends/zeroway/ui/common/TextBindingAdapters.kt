@@ -10,7 +10,7 @@ fun communityPostLikeCount(view: TextView, likeCount: Int) {
 
 @BindingAdapter("communityPostCommentCount")
 fun communityPostCommentCount(view: TextView, commentCount: Int) {
-    view.text = "댓글" + "$commentCount" + "개 모두 보기"
+    view.text = "댓글 " + "$commentCount" + "개 모두 보기"
 }
 
 @BindingAdapter("communityPostDate")
