@@ -113,6 +113,8 @@ class CommunityPostDetailAdapter(private val context: Context) :
                     popup.menuInflater.inflate(R.menu.menu_option_item, popup.menu)
                     popup.setOnMenuItemClickListener { menuItem ->
                         when (menuItem.itemId) {
+                            R.id.menu_option_item_report -> {
+                            }
                             R.id.menu_option_item_delete -> {
                                 onCommunityPostDetailPostClickListener.deleteCommunityPost(
                                     communityPostDetailResponse
@@ -181,6 +183,8 @@ class CommunityPostDetailAdapter(private val context: Context) :
                     popup.menuInflater.inflate(R.menu.menu_option_item, popup.menu)
                     popup.setOnMenuItemClickListener { menuItem ->
                         when (menuItem.itemId) {
+                            R.id.menu_option_item_report -> {
+                            }
                             R.id.menu_option_item_delete -> {
                                 onCommunityPostDetailPostClickListener.deleteCommunityPost(
                                     communityPostDetailResponse

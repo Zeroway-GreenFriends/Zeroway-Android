@@ -10,17 +10,17 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.ConcatAdapter
 import com.greenfriends.zeroway.GlideApp
-import com.greenfriends.zeroway.R
 import com.greenfriends.zeroway.POST_ID
-import com.greenfriends.zeroway.databinding.FragmentCommunityPostDetailBinding
+import com.greenfriends.zeroway.R
 import com.greenfriends.zeroway.data.model.CommunityPostDetailComment
 import com.greenfriends.zeroway.data.model.CommunityPostDetailResponse
+import com.greenfriends.zeroway.databinding.FragmentCommunityPostDetailBinding
 import com.greenfriends.zeroway.ui.common.EventObserve
 import com.greenfriends.zeroway.ui.common.ViewModelFactory
-import com.greenfriends.zeroway.ui.community.adapter.CommunityPostDetailAdapter
-import com.greenfriends.zeroway.ui.community.adapter.CommunityPostDetailCommentsAdapter
 import com.greenfriends.zeroway.ui.community.OnCommunityPostDetailCommentClickListener
 import com.greenfriends.zeroway.ui.community.OnCommunityPostDetailPostClickListener
+import com.greenfriends.zeroway.ui.community.adapter.CommunityPostDetailAdapter
+import com.greenfriends.zeroway.ui.community.adapter.CommunityPostDetailCommentsAdapter
 import com.greenfriends.zeroway.ui.community.viewmodel.CommunityPostDetailViewModel
 
 class CommunityPostDetailFragment : Fragment() {
@@ -49,6 +49,7 @@ class CommunityPostDetailFragment : Fragment() {
         setObserve()
         setOnClickListener()
         setCommunityPostDetailAdapter()
+        setNavigation()
         getPostDetail()
     }
 
@@ -143,6 +144,12 @@ class CommunityPostDetailFragment : Fragment() {
                 )
             }
         })
+    }
+
+    private fun setNavigation() {
+        binding.communityPostDetailTb.setNavigationOnClickListener {
+            startCommunityFragment()
+        }
     }
 
     private fun getPostDetail() {

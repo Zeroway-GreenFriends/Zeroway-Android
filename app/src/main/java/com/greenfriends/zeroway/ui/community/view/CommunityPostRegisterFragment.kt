@@ -57,6 +57,7 @@ class CommunityPostRegisterFragment : Fragment() {
         setObserve()
         setCommunityPostRegisterAdapter()
         setOnClickListener()
+        setNavigation()
         setPermission()
         setActivityResultLauncher()
         setPost()
@@ -90,9 +91,7 @@ class CommunityPostRegisterFragment : Fragment() {
                 } else {
                     Toast.makeText(requireContext(), "게시물 작성을 실패했습니다.", Toast.LENGTH_SHORT).show()
                 }
-                parentFragmentManager.beginTransaction()
-                    .replace(R.id.main_fl, CommunityFragment())
-                    .commit()
+                startCommunityFragment()
             }
         }
     }
@@ -118,6 +117,12 @@ class CommunityPostRegisterFragment : Fragment() {
                 intent.type = "image/*"
                 launcher.launch(intent)
             }
+        }
+    }
+
+    private fun setNavigation() {
+        binding.communityPostRegisterTb.setNavigationOnClickListener {
+            startCommunityFragment()
         }
     }
 
@@ -186,5 +191,11 @@ class CommunityPostRegisterFragment : Fragment() {
 
             viewModel.setPost(getJwt()!!, postImageUrls.toList(), postContentRequestBody)
         }
+    }
+
+    private fun startCommunityFragment() {
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.main_fl, CommunityFragment())
+            .commit()
     }
 }
