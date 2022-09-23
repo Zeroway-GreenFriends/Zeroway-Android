@@ -144,11 +144,10 @@ class CommunityAdapter(
                     val wrapper =
                         ContextThemeWrapper(context, R.style.Widget_Material3_PopupMenu_Custom)
                     val popup = PopupMenu(wrapper, it)
-                    popup.menuInflater.inflate(R.menu.menu_option_item, popup.menu)
+                    popup.menuInflater.inflate(R.menu.menu_option_report_item, popup.menu)
                     popup.setOnMenuItemClickListener { menuItem ->
                         when (menuItem.itemId) {
-                            R.id.menu_option_item_delete -> {
-                                onCommunityItemClickListener.deleteCommunityPost(communityPost)
+                            R.id.menu_option_report_item_report -> {
                             }
                             else -> TODO()
                         }
@@ -207,11 +206,10 @@ class CommunityAdapter(
                     val wrapper =
                         ContextThemeWrapper(context, R.style.Widget_Material3_PopupMenu_Custom)
                     val popup = PopupMenu(wrapper, it)
-                    popup.menuInflater.inflate(R.menu.menu_option_item, popup.menu)
+                    popup.menuInflater.inflate(R.menu.menu_option_report_item, popup.menu)
                     popup.setOnMenuItemClickListener { menuItem ->
                         when (menuItem.itemId) {
-                            R.id.menu_option_item_delete -> {
-                                onCommunityItemClickListener.deleteCommunityPost(communityPost)
+                            R.id.menu_option_report_item_report -> {
                             }
                             else -> TODO()
                         }

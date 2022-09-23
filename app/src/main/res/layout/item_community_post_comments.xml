@@ -16,7 +16,7 @@
 
         <TextView
             android:id="@+id/item_community_post_comments_tv"
-            style="@style/Text12"
+            style="@style/Text14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -27,7 +27,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            style="@style/Text12"
+            style="@style/Text14"
             convertIntToString="@{communityPostDetailResponse.commentCount}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -42,9 +42,7 @@
             android:id="@+id/item_community_post_comments_rv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="16dp"
             android:layout_marginBottom="55dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"

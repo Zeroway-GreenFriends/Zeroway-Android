@@ -17,9 +17,9 @@
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/item_community_post_comment_profile_iv"
             userImageUrl="@{communityPostDetailComment.userProfileImg}"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginStart="6dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="14dp"
             android:layout_marginTop="6dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -27,10 +27,10 @@
 
         <TextView
             android:id="@+id/item_community_post_comment_profile_name_tv"
-            style="@style/Text10"
+            style="@style/Text14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
+            android:layout_marginStart="10dp"
             android:text="@{communityPostDetailComment.userName}"
             app:layout_constraintBottom_toBottomOf="@id/item_community_post_comment_profile_iv"
             app:layout_constraintStart_toEndOf="@id/item_community_post_comment_profile_iv"
@@ -39,7 +39,7 @@
 
         <TextView
             android:id="@+id/item_community_post_comment_content_tv"
-            style="@style/Text10"
+            style="@style/Text14"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:paddingStart="6dp"
@@ -54,14 +54,14 @@
             android:id="@+id/item_community_post_comment_like_iv"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginEnd="6dp"
+            android:layout_marginEnd="14dp"
             android:src="@{communityPostDetailComment.liked ? @drawable/ic_like_on : @drawable/ic_like_off, default=@drawable/ic_like_off}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/item_community_post_comment_profile_name_tv" />
 
         <TextView
             android:id="@+id/item_community_post_comment_day_iv"
-            style="@style/Text10"
+            style="@style/Text12"
             communityPostDate="@{communityPostDetailComment.weeksAgo}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -76,7 +76,7 @@
 
         <TextView
             android:id="@+id/item_community_post_comment_like_tv"
-            style="@style/Text10"
+            style="@style/Text12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
@@ -88,11 +88,11 @@
 
         <TextView
             android:id="@+id/item_community_post_comment_like_count_tv"
-            style="@style/Text10"
+            style="@style/Text12"
             convertIntToString="@{communityPostDetailComment.likeCount}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="3dp"
+            android:layout_marginStart="6dp"
             android:textColor="@color/zeroway_gray"
             app:layout_constraintBottom_toBottomOf="@id/item_community_post_comment_like_tv"
             app:layout_constraintStart_toEndOf="@id/item_community_post_comment_like_tv"
@@ -101,7 +101,7 @@
 
         <TextView
             android:id="@+id/item_community_post_comment_report_tv"
-            style="@style/Text10"
+            style="@style/Text12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
@@ -113,7 +113,7 @@
 
         <TextView
             android:id="@+id/item_community_post_comment_delete_tv"
-            style="@style/Text10"
+            style="@style/Text12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"

@@ -22,6 +22,8 @@
 
     <style name="Widget.Material3.PopupMenu.Custom" parent="Widget.Material3.PopupMenu">
         <item name="android:popupBackground">@drawable/ic_popup_menu_background</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/zeroway_black</item>
+        <item name="android:fontFamily">@font/notosans_medium</item>
     </style>
 </resources>

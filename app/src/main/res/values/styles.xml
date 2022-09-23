@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <style name="Text16" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:textColor">@color/zeroway_black</item>
+        <item name="android:fontFamily">@font/notosans_medium</item>
+    </style>
+
     <style name="Text14" parent="TextAppearance.MaterialComponents.Subtitle2">
         <item name="android:textColor">@color/zeroway_black</item>
         <item name="android:fontFamily">@font/notosans_medium</item>
