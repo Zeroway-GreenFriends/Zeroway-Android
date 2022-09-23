@@ -33,10 +33,10 @@
 
         <TextView
             android:id="@+id/item_community_exclude_image_profile_name_tv"
-            style="@style/Text12"
+            style="@style/Text14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
+            android:layout_marginStart="10dp"
             android:text="@{communityPost.username}"
             app:layout_constraintBottom_toBottomOf="@id/item_community_exclude_image_profile_iv"
             app:layout_constraintStart_toEndOf="@id/item_community_exclude_image_profile_iv"
@@ -68,6 +68,7 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginStart="12dp"
+            android:onClick="@{() -> viewModel.setCommunityPostDetailEvent(communityPost.postId)}"
             android:src="@drawable/ic_chat"
             app:layout_constraintBottom_toBottomOf="@id/item_community_exclude_image_like_iv"
             app:layout_constraintStart_toEndOf="@id/item_community_exclude_image_like_iv"
@@ -85,7 +86,7 @@
 
         <TextView
             android:id="@+id/item_community_exclude_image_like_tv"
-            style="@style/Text12"
+            style="@style/Text14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
@@ -96,7 +97,7 @@
 
         <TextView
             android:id="@+id/item_community_exclude_image_like_count_tv"
-            style="@style/Text12"
+            style="@style/Text14"
             communityPostLikeCount="@{communityPost.likeCount}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -124,18 +125,19 @@
 
         <TextView
             android:id="@+id/item_community_exclude_image_detail_tv"
-            style="@style/Text12"
+            style="@style/Text14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="14dp"
-            android:text="더보기"
+            android:onClick="@{() -> viewModel.setCommunityPostDetailEvent(communityPost.postId)}"
+            android:text="@string/detail"
             android:textColor="@color/zeroway_gray"
             app:layout_constraintBottom_toBottomOf="@id/item_community_exclude_image_content_tv"
             app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
             android:id="@+id/item_community_exclude_image_comments_tv"
-            style="@style/Text12"
+            style="@style/Text14"
             communityPostCommentCount="@{communityPost.commentCount}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

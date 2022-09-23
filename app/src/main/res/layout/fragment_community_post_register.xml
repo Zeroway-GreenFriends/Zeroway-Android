@@ -31,14 +31,9 @@
                 app:contentInsetStartWithNavigation="0dp"
                 app:layout_scrollFlags="scroll|enterAlways"
                 app:menu="@menu/tool_bar_item"
-                app:navigationIcon="@drawable/ic_back">
-
-                <TextView
-                    android:id="@+id/community_post_register_toolbar_title_tv"
-                    style="@style/Text14"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/write_post" />
+                app:navigationIcon="@drawable/ic_back"
+                app:title="@string/write_post"
+                app:titleTextAppearance="@style/Text16">
 
             </androidx.appcompat.widget.Toolbar>
 
@@ -77,8 +72,8 @@
 
                 <ImageView
                     android:id="@+id/community_post_register_camera_iv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_marginEnd="10dp"
                     android:src="@drawable/ic_camera"
                     app:layout_constraintBottom_toBottomOf="@id/community_post_register_album_iv"
@@ -87,8 +82,8 @@
 
                 <ImageView
                     android:id="@+id/community_post_register_album_iv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="15dp"
                     android:src="@drawable/ic_album"
@@ -97,14 +92,14 @@
 
                 <TextView
                     android:id="@+id/community_post_register_review_tv"
-                    style="@style/Text12"
+                    style="@style/Text14"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:background="@{isReview ? @drawable/ic_challenge_selected_background : @drawable/ic_challenge_unselected_background, default=@drawable/ic_challenge_unselected_background}"
-                    android:paddingStart="9dp"
+                    android:paddingStart="12dp"
                     android:paddingTop="4dp"
-                    android:paddingEnd="9dp"
+                    android:paddingEnd="12dp"
                     android:paddingBottom="4dp"
                     android:text="@string/review"
                     android:textColor="@color/white"
@@ -114,14 +109,14 @@
 
                 <TextView
                     android:id="@+id/community_post_register_challenge_tv"
-                    style="@style/Text12"
+                    style="@style/Text14"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="12dp"
                     android:background="@{isChallenge ? @drawable/ic_challenge_selected_background : @drawable/ic_challenge_unselected_background, default=@drawable/ic_challenge_unselected_background}"
-                    android:paddingStart="9dp"
+                    android:paddingStart="12dp"
                     android:paddingTop="4dp"
-                    android:paddingEnd="9dp"
+                    android:paddingEnd="12dp"
                     android:paddingBottom="4dp"
                     android:text="@string/challenge_confirm"
                     android:textColor="@color/white"

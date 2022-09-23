@@ -27,10 +27,10 @@
 
         <TextView
             android:id="@+id/item_community_include_image_post_detail_profile_name_tv"
-            style="@style/Text12"
+            style="@style/Text14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
+            android:layout_marginStart="10dp"
             android:text="@{communityPostDetail.userName}"
             app:layout_constraintBottom_toBottomOf="@id/item_community_include_image_post_detail_profile_iv"
             app:layout_constraintStart_toEndOf="@id/item_community_include_image_post_detail_profile_iv"
@@ -131,7 +131,7 @@
 
         <TextView
             android:id="@+id/item_community_include_image_post_detail_like_tv"
-            style="@style/Text12"
+            style="@style/Text14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
@@ -142,7 +142,7 @@
 
         <TextView
             android:id="@+id/item_community_include_image_post_detail_like_count_tv"
-            style="@style/Text12"
+            style="@style/Text14"
             communityPostLikeCount="@{communityPostDetail.likeCount}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -168,7 +168,7 @@
 
         <TextView
             android:id="@+id/item_community_include_image_post_detail_day_tv"
-            style="@style/Text12"
+            style="@style/Text14"
             communityPostDate="@{communityPostDetail.weeksAgo}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

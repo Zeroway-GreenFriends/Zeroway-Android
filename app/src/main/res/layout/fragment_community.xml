@@ -31,17 +31,10 @@
                 android:id="@+id/community_tb"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:contentInsetStartWithNavigation="0dp"
                 app:layout_scrollFlags="scroll|enterAlways"
                 app:menu="@menu/tool_bar_item"
-                app:navigationIcon="@drawable/ic_back">
-
-                <TextView
-                    android:id="@+id/community_toolbar_title_tv"
-                    style="@style/Text14"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/community" />
+                app:title="@string/community"
+                app:titleTextAppearance="@style/Text16">
 
             </androidx.appcompat.widget.Toolbar>
 
