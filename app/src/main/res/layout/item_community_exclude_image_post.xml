@@ -125,7 +125,7 @@
 
         <TextView
             android:id="@+id/item_community_exclude_image_detail_tv"
-            style="@style/Text14"
+            style="@style/Text12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="14dp"
@@ -137,7 +137,7 @@
 
         <TextView
             android:id="@+id/item_community_exclude_image_comments_tv"
-            style="@style/Text14"
+            style="@style/Text12"
             communityPostCommentCount="@{communityPost.commentCount}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
