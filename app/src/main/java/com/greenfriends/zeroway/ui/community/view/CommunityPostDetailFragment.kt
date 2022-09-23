@@ -58,9 +58,11 @@ class CommunityPostDetailFragment : Fragment() {
     }
 
     private fun setUserProfileImg() {
-        GlideApp.with(this)
-            .load(getProfileImgUrl())
-            .into(binding.communityPostDetailCommentProfileIv)
+        if (!getProfileImgUrl().isNullOrEmpty()) {
+            GlideApp.with(this)
+                .load(getProfileImgUrl())
+                .into(binding.communityPostDetailCommentProfileIv)
+        }
     }
 
     private fun setObserve() {
@@ -91,8 +93,13 @@ class CommunityPostDetailFragment : Fragment() {
     }
 
     private fun setOnClickListener() {
-        binding.communityPostDetailCommentRegisterTv.setOnClickListener {
-            viewModel.setCommentRegisterEvent(binding.communityPostDetailCommentEt.text.toString())
+        with(binding) {
+            communityPostDetailCommentRegisterTv.setOnClickListener {
+                if (!communityPostDetailCommentEt.text.isNullOrEmpty()) {
+                    viewModel.setCommentRegisterEvent(communityPostDetailCommentEt.text.toString())
+                    communityPostDetailCommentEt.text.clear()
+                }
+            }
         }
     }
 
