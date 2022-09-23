@@ -4,21 +4,25 @@
     <style name="Text16" parent="TextAppearance.MaterialComponents.Subtitle1">
         <item name="android:textColor">@color/zeroway_black</item>
         <item name="android:fontFamily">@font/notosans_medium</item>
+        <item name="android:lineSpacingExtra">1dp</item>
     </style>
 
     <style name="Text14" parent="TextAppearance.MaterialComponents.Subtitle2">
         <item name="android:textColor">@color/zeroway_black</item>
         <item name="android:fontFamily">@font/notosans_medium</item>
+        <item name="android:lineSpacingExtra">1dp</item>
     </style>
 
     <style name="Text12" parent="TextAppearance.MaterialComponents.Caption">
         <item name="android:textColor">@color/zeroway_black</item>
         <item name="android:fontFamily">@font/notosans_medium</item>
+        <item name="android:lineSpacingExtra">1dp</item>
     </style>
 
     <style name="Text10" parent="TextAppearance.MaterialComponents.Overline">
         <item name="android:textColor">@color/zeroway_black</item>
         <item name="android:fontFamily">@font/notosans_medium</item>
+        <item name="android:lineSpacingExtra">1dp</item>
     </style>
 
 </resources>

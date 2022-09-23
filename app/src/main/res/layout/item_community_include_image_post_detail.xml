@@ -74,8 +74,8 @@
 
         <ImageView
             android:id="@+id/item_community_include_image_post_detail_like_iv"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
             android:layout_marginTop="6dp"
             android:src="@{communityPostDetail.liked ? @drawable/ic_like_on : @drawable/ic_like_off, default=@drawable/ic_like_off}"
@@ -84,9 +84,9 @@
 
         <ImageView
             android:id="@+id/item_community_include_image_post_detail_bookmark_iv"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginStart="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:src="@{communityPostDetail.bookmarked ? @drawable/ic_bookmark_on : @drawable/ic_bookmark_off, default=@drawable/ic_bookmark_off}"
             app:layout_constraintBottom_toBottomOf="@id/item_community_include_image_post_detail_like_iv"
             app:layout_constraintStart_toEndOf="@id/item_community_include_image_post_detail_like_iv"
