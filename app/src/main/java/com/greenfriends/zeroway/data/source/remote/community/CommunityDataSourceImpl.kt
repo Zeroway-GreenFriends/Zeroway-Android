@@ -38,8 +38,4 @@ class CommunityDataSourceImpl : CommunityDataSource {
     ): Response<Void> {
         return communityService!!.setPostBookmark(accessToken, postId, bookmark)
     }
-
-    override suspend fun deletePost(accessToken: String, postId: String): Response<Void> {
-        return communityService!!.deletePost(accessToken, postId)
-    }
 }

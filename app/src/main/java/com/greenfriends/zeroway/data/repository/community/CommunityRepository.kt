@@ -34,8 +34,4 @@ class CommunityRepository(private val communityDataSourceImpl: CommunityDataSour
     ): Response<Void> {
         return communityDataSourceImpl.setPostBookmark(accessToken, postId, bookmark)
     }
-
-    suspend fun deletePost(accessToken: String, postId: String): Response<Void> {
-        return communityDataSourceImpl.deletePost(accessToken, postId)
-    }
 }
