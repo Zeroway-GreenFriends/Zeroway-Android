@@ -47,6 +47,7 @@
 
             <EditText
                 android:id="@+id/community_post_detail_comment_et"
+                style="@style/Text14"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
@@ -58,7 +59,7 @@
                 android:paddingTop="12dp"
                 android:paddingEnd="40dp"
                 android:paddingBottom="12dp"
-                android:textSize="14sp"
+                android:textColor="@color/zeroway_gray"
                 app:layout_constraintBottom_toBottomOf="@id/community_post_detail_comment_profile_iv"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/community_post_detail_comment_profile_iv"
