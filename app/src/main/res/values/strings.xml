@@ -21,4 +21,6 @@
     <string name="challenge_confirm">챌린지 인증</string>
     <string name="comment">댓글</string>
     <string name="detail">더보기</string>
+    <string name="store_exception">제공되지 않는 정보입니다.</string>
+    <string name="store">제로웨이스트 샵</string>
 </resources>
