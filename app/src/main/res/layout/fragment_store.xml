@@ -20,18 +20,10 @@
                 android:id="@+id/store_tb"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:contentInsetStartWithNavigation="0dp"
                 app:layout_scrollFlags="scroll|enterAlways"
                 app:menu="@menu/tool_bar_item"
-                app:navigationIcon="@drawable/ic_back">
-
-                <TextView
-                    android:id="@+id/store_toolbar_title_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="제로웨이스트 샵"
-                    android:textColor="@color/zeroway_black"
-                    android:textSize="14sp" />
+                app:title="@string/store"
+                app:titleTextAppearance="@style/Text16">
 
             </androidx.appcompat.widget.Toolbar>
 
@@ -44,17 +36,17 @@
 
             <EditText
                 android:id="@+id/store_search_et"
+                style="@style/Text14"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="25dp"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/ic_shop_gray_border"
                 android:hint="이름 혹은 주소로 검색하세요."
                 android:maxLines="1"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
-                android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -74,7 +66,7 @@
                 android:id="@+id/store_rv"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="25dp"
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
