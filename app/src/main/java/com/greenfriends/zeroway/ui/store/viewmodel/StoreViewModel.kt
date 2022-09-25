@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.greenfriends.zeroway.data.model.StoreResponse
 import com.greenfriends.zeroway.data.repository.store.StoreRepository
+import com.greenfriends.zeroway.ui.common.Event
 import kotlinx.coroutines.launch
 
 class StoreViewModel(private val storeRepository: StoreRepository) : ViewModel() {
@@ -19,6 +20,9 @@ class StoreViewModel(private val storeRepository: StoreRepository) : ViewModel()
 
     private val _page = MutableLiveData<Int>(1)
     val page: LiveData<Int> = _page
+
+    private val _storePostDetailEvent = MutableLiveData<Event<Long>>()
+    val storePostDetailEvent: LiveData<Event<Long>> = _storePostDetailEvent
 
     fun setKeyword(keyword: String?) {
         _keyword.value = keyword
@@ -34,6 +38,10 @@ class StoreViewModel(private val storeRepository: StoreRepository) : ViewModel()
 
     fun getPage(): Int? {
         return _page.value
+    }
+
+    fun setStorePostDetailEvent(storeId: Long) {
+        _storePostDetailEvent.value = Event(storeId)
     }
 
     fun getStores(keyword: String?, page: Int, size: Int) {

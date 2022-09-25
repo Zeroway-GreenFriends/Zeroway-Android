@@ -8,6 +8,7 @@ import com.greenfriends.zeroway.data.repository.community.CommunityPostRegisterR
 import com.greenfriends.zeroway.data.repository.community.CommunityRepository
 import com.greenfriends.zeroway.data.repository.home.HomeRepository
 import com.greenfriends.zeroway.data.repository.signup.SignUpRepository
+import com.greenfriends.zeroway.data.repository.store.StorePostDetailRepository
 import com.greenfriends.zeroway.data.repository.store.StoreRepository
 import com.greenfriends.zeroway.data.source.remote.challenge.ChallengeDataSourceImpl
 import com.greenfriends.zeroway.data.source.remote.community.CommunityDataSourceImpl
@@ -16,12 +17,14 @@ import com.greenfriends.zeroway.data.source.remote.community.CommunityPostRegist
 import com.greenfriends.zeroway.data.source.remote.home.HomeDataSourceImpl
 import com.greenfriends.zeroway.data.source.remote.signup.SignUpDataSourceImpl
 import com.greenfriends.zeroway.data.source.remote.store.StoreDataSourceImpl
+import com.greenfriends.zeroway.data.source.remote.store.StorePostDetailDataSourceImpl
 import com.greenfriends.zeroway.ui.challenge.viewmodel.ChallengeViewModel
 import com.greenfriends.zeroway.ui.community.viewmodel.CommunityPostDetailViewModel
 import com.greenfriends.zeroway.ui.community.viewmodel.CommunityPostRegisterViewModel
 import com.greenfriends.zeroway.ui.community.viewmodel.CommunityViewModel
 import com.greenfriends.zeroway.ui.home.viewmodel.HomeViewModel
 import com.greenfriends.zeroway.ui.signup.viewmodel.SignUpViewModel
+import com.greenfriends.zeroway.ui.store.viewmodel.StorePostDetailViewModel
 import com.greenfriends.zeroway.ui.store.viewmodel.StoreViewModel
 
 class ViewModelFactory : ViewModelProvider.Factory {
@@ -70,6 +73,13 @@ class ViewModelFactory : ViewModelProvider.Factory {
                 ChallengeViewModel(
                     ChallengeRepository(
                         ChallengeDataSourceImpl()
+                    )
+                ) as T
+            }
+            modelClass.isAssignableFrom(StorePostDetailViewModel::class.java) -> {
+                StorePostDetailViewModel(
+                    StorePostDetailRepository(
+                        StorePostDetailDataSourceImpl()
                     )
                 ) as T
             }
