@@ -13,8 +13,8 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         app:cardCornerRadius="12dp">
 
@@ -35,70 +35,84 @@
 
             <TextView
                 android:id="@+id/item_store_post_name_tv"
+                style="@style/Text16"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="30dp"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:text="@{storeResponse.name}"
-                android:textColor="@color/zeroway_black"
-                android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/item_store_post_thumbnail_iv"
-                tools:text="제로웨이스트샵안녕상점" />
+                tools:text="조이 상점" />
+
+            <TextView
+                android:id="@+id/item_store_post_item_tv"
+                style="@style/Text14"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{storeResponse.item != null ? storeResponse.item : @string/store_exception}"
+                android:textColor="@color/zeroway_gray"
+                app:layout_constraintEnd_toEndOf="@id/item_store_post_name_tv"
+                app:layout_constraintStart_toStartOf="@id/item_store_post_name_tv"
+                app:layout_constraintTop_toBottomOf="@id/item_store_post_name_tv"
+                tools:text="아무거나 다 팔아요~~~~" />
 
             <ImageView
                 android:id="@+id/item_store_post_address_iv"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_marginStart="30dp"
-                android:layout_marginTop="26dp"
-                android:scaleType="center"
+                android:layout_marginTop="16dp"
+                android:scaleType="fitCenter"
                 android:src="@drawable/ic_store_address"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/item_store_post_name_tv" />
+                app:layout_constraintTop_toBottomOf="@id/item_store_post_item_tv" />
 
             <TextView
                 android:id="@+id/item_store_post_address_tv"
+                style="@style/Text14"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="30dp"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="@{storeResponse.addressNew}"
-                android:textColor="@color/zeroway_black"
-                android:textSize="8sp"
+                android:text="@{storeResponse.addressNew != null ? storeResponse.addressNew : @string/store_exception}"
                 app:layout_constraintBottom_toBottomOf="@id/item_store_post_address_iv"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/item_store_post_address_iv"
                 app:layout_constraintTop_toTopOf="@id/item_store_post_address_iv"
-                tools:text="서울특별시 도봉구 도봉로143길 18" />
+                tools:text="서울특별시 종로구" />
 
             <ImageView
                 android:id="@+id/item_store_post_time_iv"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_marginStart="30dp"
-                android:layout_marginTop="10dp"
-                android:scaleType="center"
-                android:src="@drawable/ic_store_clock"
+                android:layout_marginTop="12dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_store_time"
                 app:layout_constraintEnd_toEndOf="@id/item_store_post_address_iv"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/item_store_post_address_iv" />
 
             <TextView
                 android:id="@+id/item_store_post_time_tv"
+                style="@style/Text14"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="30dp"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="@{storeResponse.operatingTime}"
-                android:textColor="@color/zeroway_black"
-                android:textSize="8sp"
+                android:text="@{storeResponse.operatingTime != null ? storeResponse.operatingTime : @string/store_exception}"
                 app:layout_constraintBottom_toBottomOf="@id/item_store_post_time_iv"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/item_store_post_time_iv"
@@ -107,11 +121,11 @@
 
             <ImageView
                 android:id="@+id/item_store_post_phone_iv"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_marginStart="30dp"
-                android:layout_marginTop="10dp"
-                android:scaleType="center"
+                android:layout_marginTop="12dp"
+                android:scaleType="fitCenter"
                 android:src="@drawable/ic_store_phone"
                 app:layout_constraintEnd_toEndOf="@id/item_store_post_time_iv"
                 app:layout_constraintStart_toStartOf="parent"
@@ -119,51 +133,77 @@
 
             <TextView
                 android:id="@+id/item_store_post_phone_tv"
+                style="@style/Text14"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="30dp"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="@{storeResponse.contact}"
-                android:textColor="@color/zeroway_black"
-                android:textSize="8sp"
+                android:text="@{storeResponse.contact != null ? storeResponse.contact : @string/store_exception}"
                 app:layout_constraintBottom_toBottomOf="@id/item_store_post_phone_iv"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/item_store_post_phone_iv"
                 app:layout_constraintTop_toTopOf="@id/item_store_post_phone_iv"
-                tools:text="02-955-3330" />
+                tools:text="02-123-4567" />
 
             <ImageView
-                android:id="@+id/item_store_post_url_iv"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
+                android:id="@+id/item_store_post_instagram_iv"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_marginStart="30dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="20dp"
-                android:scaleType="center"
-                android:src="@drawable/ic_store_globe"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="12dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_store_instagram"
                 app:layout_constraintEnd_toEndOf="@id/item_store_post_phone_iv"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/item_store_post_phone_iv" />
 
             <TextView
-                android:id="@+id/item_store_post_url_tv"
+                android:id="@+id/item_store_post_instagram_tv"
+                style="@style/Text14"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="30dp"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="@{storeResponse.instagram}"
-                android:textColor="@color/zeroway_black"
-                android:textSize="8sp"
+                android:text="@{storeResponse.instagram != null ? storeResponse.instagram : @string/store_exception}"
+                app:layout_constraintBottom_toBottomOf="@id/item_store_post_instagram_iv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/item_store_post_instagram_iv"
+                app:layout_constraintTop_toTopOf="@id/item_store_post_instagram_iv"
+                tools:text="https://cafe.naver.com" />
+
+            <ImageView
+                android:id="@+id/item_store_post_url_iv"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="20dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_store_url"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/item_store_post_instagram_iv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item_store_post_instagram_iv" />
+
+            <TextView
+                android:id="@+id/item_store_post_url_tv"
+                style="@style/Text14"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="30dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{storeResponse.siteUrl != null ? storeResponse.siteUrl : @string/store_exception}"
                 app:layout_constraintBottom_toBottomOf="@id/item_store_post_url_iv"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/item_store_post_url_iv"
                 app:layout_constraintTop_toTopOf="@id/item_store_post_url_iv"
-                tools:text="https://cafe.naver.com/coopdodam" />
+                tools:text="https://cafe.naver.com" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
