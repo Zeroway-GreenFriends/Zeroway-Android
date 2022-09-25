@@ -9,11 +9,13 @@ import com.greenfriends.zeroway.data.model.StoreResponse
 import com.greenfriends.zeroway.databinding.ItemLoadingBinding
 import com.greenfriends.zeroway.databinding.ItemStorePostBinding
 import com.greenfriends.zeroway.ui.common.LoadingViewHolder
+import com.greenfriends.zeroway.ui.store.viewmodel.StoreViewModel
 
 private const val VIEW_TYPE_LOADING = 0
 private const val VIEW_TYPE_POST = 1
 
-class StoreAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class StoreAdapter(private val viewModel: StoreViewModel) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val stores = mutableListOf<StoreResponse?>()
 
@@ -79,10 +81,11 @@ class StoreAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         notifyDataSetChanged()
     }
 
-    class StoreViewHolder(private val binding: ItemStorePostBinding) :
+    inner class StoreViewHolder(private val binding: ItemStorePostBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(storeResponse: StoreResponse) {
+            binding.viewModel = viewModel
             binding.storeResponse = storeResponse
             binding.executePendingBindings()
         }

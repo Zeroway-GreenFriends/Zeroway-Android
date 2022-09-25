@@ -10,7 +10,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.greenfriends.zeroway.R
+import com.greenfriends.zeroway.STORE_ID
 import com.greenfriends.zeroway.databinding.FragmentStoreBinding
+import com.greenfriends.zeroway.ui.common.EventObserve
 import com.greenfriends.zeroway.ui.common.ViewModelFactory
 import com.greenfriends.zeroway.ui.store.adapter.StoreAdapter
 import com.greenfriends.zeroway.ui.store.viewmodel.StoreViewModel
@@ -37,8 +40,9 @@ class StoreFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
 
         getStores(isInit = true)
-        setStoreAdapter()
+        setObserve()
         setOnClickListener()
+        setStoreAdapter()
         setOnScrollChangeListener()
     }
 
@@ -65,15 +69,12 @@ class StoreFragment : Fragment() {
         }
     }
 
-    private fun setStoreAdapter() {
-        adapter = StoreAdapter()
-        binding.storeRv.adapter = adapter
-        viewModel.stores.observe(
-            viewLifecycleOwner
-        ) { stores ->
-            adapter.submitStores(stores)
-            isLoading = false
-        }
+    private fun setObserve() {
+        viewModel.storePostDetailEvent.observe(
+            viewLifecycleOwner, EventObserve { storeId ->
+                startStorePostDetailFragment(storeId.toString())
+            }
+        )
     }
 
     private fun setOnClickListener() {
@@ -84,6 +85,17 @@ class StoreFragment : Fragment() {
                 viewModel.setKeyword(storeSearchEt.text.toString())
                 getStores(viewModel.getKeyword(), isInit = true)
             }
+        }
+    }
+
+    private fun setStoreAdapter() {
+        adapter = StoreAdapter(viewModel)
+        binding.storeRv.adapter = adapter
+        viewModel.stores.observe(
+            viewLifecycleOwner
+        ) { stores ->
+            adapter.submitStores(stores)
+            isLoading = false
         }
     }
 
@@ -103,5 +115,16 @@ class StoreFragment : Fragment() {
                 }
             }
         })
+    }
+
+    private fun startStorePostDetailFragment(storeId: String) {
+        val bundle = Bundle()
+        bundle.putString(STORE_ID, storeId)
+
+        val storePostDetailFragment = StorePostDetailFragment()
+        storePostDetailFragment.arguments = bundle
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.main_fl, storePostDetailFragment)
+            .commit()
     }
 }
