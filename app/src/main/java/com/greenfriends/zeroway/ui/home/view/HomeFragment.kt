@@ -6,16 +6,19 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.greenfriends.zeroway.R
+import com.greenfriends.zeroway.data.model.ChallengeListResponse
 import com.greenfriends.zeroway.data.model.TermResponse
 import com.greenfriends.zeroway.data.model.UseList
 import com.greenfriends.zeroway.databinding.FragmentHomeBinding
 import com.greenfriends.zeroway.ui.alarm.AlarmFragment
+import com.greenfriends.zeroway.ui.challenge.adapter.ChallengeListAdapter
 import com.greenfriends.zeroway.ui.common.ViewModelFactory
 import com.greenfriends.zeroway.ui.home.WordDialogFragment
 import com.greenfriends.zeroway.ui.home.adapter.HomeStoreAdapter
@@ -116,16 +119,17 @@ class HomeFragment : Fragment() {
 
     private fun setTermAdapter() {
         termAdapter = TermAdapter(viewModel)
-        binding.homeWordRv.adapter = termAdapter
-
         termAdapter.setMyItemClickListener(object : TermAdapter.MyItemClickListener {
+
             override fun onItemClick(word: TermResponse) {
 
+                Log.e("word",word.toString())
                 WordDialogFragment(word).show(
                     fragmentManager!!, "WordDialog"
                 )
             }
         })
+        binding.homeWordRv.adapter = termAdapter
     }
 
     private fun setTipAdapter() {

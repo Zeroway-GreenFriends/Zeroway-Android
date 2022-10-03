@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.greenfriends.zeroway.ui.community.viewmodel.CommunityViewModel" />
+
+        <variable
+            name="communityPost"
+            type="com.greenfriends.zeroway.data.model.CommunityPost" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10sp"
+        android:background="@drawable/ic_community_post_background">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/item_community_exclude_image_profile_iv"
+            userImageUrl="@{communityPost.userProfileImg}"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_profile" />
+
+        <TextView
+            android:id="@+id/item_community_exclude_image_profile_name_tv"
+            style="@style/Text14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:textSize="10sp"
+            android:text="@{communityPost.username}"
+            app:layout_constraintBottom_toBottomOf="@id/item_community_exclude_image_profile_iv"
+            app:layout_constraintStart_toEndOf="@id/item_community_exclude_image_profile_iv"
+            app:layout_constraintTop_toTopOf="@id/item_community_exclude_image_profile_iv"
+            tools:text="조이" />
+
+        <ImageView
+            android:id="@+id/item_community_exclude_image_select_iv"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="14dp"
+            android:src="@drawable/ic_bookmark_on"
+            app:layout_constraintBottom_toBottomOf="@id/item_community_exclude_image_profile_name_tv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/item_community_exclude_image_profile_name_tv" />
+
+        <ImageView
+            android:id="@+id/item_community_exclude_image_like_iv"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="16dp"
+            android:src="@drawable/ic_like_on"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_community_exclude_image_content_tv" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:text="10"
+            android:textColor="@color/zeroway_gray"
+            android:textSize="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/item_community_exclude_image_like_iv"
+            app:layout_constraintStart_toEndOf="@+id/item_community_exclude_image_like_iv"
+            app:layout_constraintTop_toTopOf="@+id/item_community_exclude_image_like_iv" />
+
+
+        <ImageView
+            android:id="@+id/item_community_exclude_image_chat_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:src="@drawable/ic_chat_fill_mint"
+            app:layout_constraintBottom_toBottomOf="@id/item_community_exclude_image_like_iv"
+            app:layout_constraintStart_toEndOf="@+id/textView13"
+            app:layout_constraintTop_toTopOf="@id/item_community_exclude_image_like_iv"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:text="8"
+            android:textColor="@color/zeroway_gray"
+            android:textSize="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/item_community_exclude_image_chat_iv"
+            app:layout_constraintStart_toEndOf="@+id/item_community_exclude_image_chat_iv"
+            app:layout_constraintTop_toTopOf="@+id/item_community_exclude_image_chat_iv" />
+
+        <TextView
+            android:id="@+id/item_community_exclude_image_content_tv"
+            style="@style/Text14"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:textSize="10sp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:paddingStart="14dp"
+            android:paddingEnd="3dp"
+            android:text="@{communityPost.content}"
+            app:layout_constraintEnd_toStartOf="@id/item_community_exclude_image_detail_tv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_community_exclude_image_profile_iv"
+            tools:text="오늘 나의 실천 인증! 두 줄 이상 작성 시에는 상세 보기에서 더 많은 내용을 확인 할 수 있습니다.오늘 나의 실천 인증! 두 줄 이상 작성 시에는 상세 보기에서 더 많은 내용을 확인 할 수 있습니다." />
+
+        <TextView
+            android:id="@+id/item_community_exclude_image_detail_tv"
+            style="@style/Text12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:layout_marginEnd="14dp"
+            android:onClick="@{() -> viewModel.setCommunityPostDetailEvent(communityPost.postId)}"
+            android:text="@string/detail"
+            android:textColor="@color/zeroway_gray"
+            app:layout_constraintBottom_toBottomOf="@id/item_community_exclude_image_content_tv"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
