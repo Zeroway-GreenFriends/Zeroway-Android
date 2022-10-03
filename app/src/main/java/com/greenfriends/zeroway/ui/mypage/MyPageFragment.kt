@@ -19,17 +19,17 @@ class MyPageFragment : Fragment() {
     ): View? {
         binding = FragmentMyPageBinding.inflate(inflater, container, false)
 
-        binding.mypageNoticeTv.setOnClickListener {
-            activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(R.id.main_fl, NoticeFragment())
-                ?.commitAllowingStateLoss()
-
-        }
-        binding.mypageAlarmTv.setOnClickListener {
-            activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(R.id.main_fl, MyPageSettingAlarmFragment())
-                ?.commitAllowingStateLoss()
-        }
+//        binding.mypageNoticeTv.setOnClickListener {
+//            activity?.supportFragmentManager?.beginTransaction()
+//                ?.replace(R.id.main_fl, NoticeFragment())
+//                ?.commitAllowingStateLoss()
+//
+//        }
+//        binding.mypageAlarmTv.setOnClickListener {
+//            activity?.supportFragmentManager?.beginTransaction()
+//                ?.replace(R.id.main_fl, MyPageSettingAlarmFragment())
+//                ?.commitAllowingStateLoss()
+//        }
         return binding.root
     }
 }
