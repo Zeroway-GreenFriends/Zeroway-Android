@@ -21,7 +21,7 @@ class TermAdapter(
     private lateinit var mItemClickListener: MyItemClickListener
 
     fun setMyItemClickListener(itemClickListener: MyItemClickListener) {
-        mItemClickListener = itemClickListener
+        this.mItemClickListener = itemClickListener
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
@@ -37,6 +37,9 @@ class TermAdapter(
         fun bind(word: TermResponse) {
             binding.viewModel = viewModel
             binding.termResponse = word
+            binding.itemHomeTermCl.setOnClickListener {
+                mItemClickListener.onItemClick(word)
+            }
         }
     }
 
