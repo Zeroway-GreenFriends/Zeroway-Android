@@ -89,21 +89,20 @@
         android:id="@+id/mypage_section_1_posting_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="90dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="8dp"
         android:background="@color/white"
         android:src="@drawable/ic_posting"
-        app:layout_constraintBottom_toTopOf="@+id/mypage_section_1_scrab_tv"
         app:layout_constraintStart_toStartOf="@+id/mypage_section_1_iv"
-        app:layout_constraintTop_toTopOf="@id/mypage_section_1_iv" />
+        app:layout_constraintTop_toBottomOf="@+id/mypage_background_mint_iv" />
 
     <TextView
         android:id="@+id/mypage_section_1_posting_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="4dp"
         android:letterSpacing="0.1"
-        android:text="게시물 관리"
+        android:text="작성 글"
         android:textColor="#000000"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="@+id/mypage_section_1_posting_btn"
@@ -111,38 +110,88 @@
         app:layout_constraintTop_toBottomOf="@id/mypage_section_1_posting_btn" />
 
     <ImageButton
+        android:id="@+id/mypage_comment_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/white"
+        android:src="@drawable/ic_comment_mint"
+        app:layout_constraintStart_toEndOf="@+id/mypage_section_1_posting_btn"
+        app:layout_constraintTop_toTopOf="@+id/mypage_section_1_posting_btn" />
+
+    <TextView
+        android:id="@+id/mypage_comment_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:letterSpacing="0.1"
+        android:text="댓글"
+        android:textColor="#000000"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/mypage_comment_iv"
+        app:layout_constraintStart_toStartOf="@+id/mypage_comment_iv"
+        app:layout_constraintTop_toBottomOf="@+id/mypage_comment_iv" />
+
+    <ImageButton
         android:id="@+id/mypage_section_1_scrab_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="90dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/white"
+        android:src="@drawable/ic_like_mint"
+        app:layout_constraintStart_toEndOf="@+id/mypage_comment_iv"
+        app:layout_constraintTop_toTopOf="@+id/mypage_section_1_posting_btn" />
+
+    <TextView
+        android:id="@+id/mypage_like_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:letterSpacing="0.1"
+        android:text="좋아요"
+        android:textColor="#000000"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/mypage_section_1_scrab_btn"
+        app:layout_constraintStart_toStartOf="@+id/mypage_section_1_scrab_btn"
+        app:layout_constraintTop_toBottomOf="@+id/mypage_section_1_scrab_btn" />
+
+    <ImageButton
+        android:id="@+id/mypage_like_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="38dp"
         android:background="@color/white"
         android:src="@drawable/ic_bookmark_mint"
-        app:layout_constraintEnd_toEndOf="@id/mypage_section_1_iv"
-        app:layout_constraintTop_toTopOf="@id/mypage_section_1_iv" />
+        app:layout_constraintEnd_toEndOf="@+id/mypage_section_1_iv"
+        app:layout_constraintStart_toEndOf="@+id/mypage_section_1_scrab_btn"
+        app:layout_constraintTop_toTopOf="@+id/mypage_section_1_posting_btn" />
 
     <TextView
         android:id="@+id/mypage_section_1_scrab_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="4dp"
         android:letterSpacing="0.1"
         android:text="스크랩"
         android:textColor="#000000"
         android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@+id/mypage_section_1_scrab_btn"
-        app:layout_constraintStart_toStartOf="@+id/mypage_section_1_scrab_btn"
-        app:layout_constraintTop_toBottomOf="@id/mypage_section_1_scrab_btn" />
+        app:layout_constraintEnd_toEndOf="@+id/mypage_like_tv"
+        app:layout_constraintStart_toStartOf="@+id/mypage_like_tv"
+        app:layout_constraintTop_toBottomOf="@+id/mypage_like_tv" />
 
     <ImageView
         android:id="@+id/mypage_section_2_iv"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/mypage_section_1_iv"
+        android:layout_height="349dp"
+        android:layout_marginTop="8dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_section_2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="25dp"
-        android:src="@drawable/ic_section_2"/>
+        app:layout_constraintTop_toBottomOf="@id/mypage_section_1_iv" />
 
     <TextView
         android:id="@+id/mypage_notice_tv"
@@ -198,7 +247,7 @@
         app:layout_constraintTop_toTopOf="@id/mypage_alarm_tv"
         app:layout_constraintStart_toStartOf="@id/mypage_section_2_iv"
         android:layout_marginStart="40dp"
-        android:text="고객센터"
+        android:text="서비스 이용약관"
         android:textColor="#000000"
         android:textSize="12sp"
         android:letterSpacing="0.1"/>
@@ -221,20 +270,45 @@
         app:layout_constraintTop_toTopOf="@id/mypage_center_tv"
         app:layout_constraintStart_toStartOf="@id/mypage_section_2_iv"
         android:layout_marginStart="40dp"
-        android:text="이용약관"
+        android:text="개인정보처리방침"
         android:textColor="#000000"
         android:textSize="12sp"
         android:letterSpacing="0.1"/>
 
     <ImageView
+        android:id="@+id/mypage_ask_line_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:src="@drawable/ic_line_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mypage_use_tv" />
+
+    <TextView
+        android:id="@+id/mypage_ask_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginBottom="22dp"
+        android:letterSpacing="0.1"
+        android:text="문의하기"
+        android:textColor="#000000"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/mypage_section_2_iv"
+        app:layout_constraintStart_toStartOf="@+id/mypage_section_2_iv"
+        app:layout_constraintTop_toBottomOf="@+id/mypage_ask_line_iv" />
+
+    <ImageView
         android:id="@+id/mypage_section_3_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/mypage_section_2_iv"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/ic_section_3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="25dp"
-        android:src="@drawable/ic_section_3"/>
+        app:layout_constraintTop_toBottomOf="@id/mypage_section_2_iv" />
 
     <TextView
         android:id="@+id/mypage_section_3_tv1"

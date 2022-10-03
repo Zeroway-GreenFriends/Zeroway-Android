@@ -20,6 +20,15 @@
         <item name="android:windowBackground">@drawable/splash_screen</item>
     </style>
 
+    <style name="ThemeOverlay.App.Switch" parent="">
+        <item name="colorOnSurface">@color/zeroway_gray</item>
+        <item name="colorSecondary">@color/zeroway_mint</item>
+    </style>
+
+    <style name="Widget.App.Switch" parent="Widget.MaterialComponents.CompoundButton.Switch">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.Switch</item>
+    </style>
+
     <style name="Widget.Material3.PopupMenu.Custom" parent="Widget.Material3.PopupMenu">
         <item name="android:popupBackground">@drawable/ic_popup_menu_background</item>
         <item name="android:textSize">14sp</item>
