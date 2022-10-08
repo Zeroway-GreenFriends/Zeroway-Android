@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/white"
@@ -36,6 +36,12 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
@@ -45,7 +51,7 @@
         android:fontFamily="@font/notosans_regular"
         android:text="공지사항"
         android:textColor="@color/zeroway_dark_gray"
-        android:textSize="10sp"
+        style="@style/Text12"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view6" />
 
@@ -64,6 +70,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/notosans_regular"
+        style="@style/Text14"
         android:paddingHorizontal="20dp"
         android:text="여기가 공지사항 제목부분입니다. 타이틀이 길면 그냥 텍스트 길게 다 써주세요"
         android:textColor="@color/black"
@@ -80,7 +87,7 @@
         android:fontFamily="@font/notosans_regular"
         android:text="2022.08.02 18:27"
         android:textColor="@color/zeroway_gray"
-        android:textSize="8sp"
+        style="@style/Text10"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
@@ -101,8 +108,9 @@
         android:layout_marginTop="41dp"
         android:text="공지사항 글 쭈욱 아래로 내려쓰기"
         android:textColor="@color/zeroway_black"
-        android:textSize="10sp"
+        style="@style/Text12"
         app:layout_constraintTop_toBottomOf="@+id/view3"
         tools:layout_editor_absoluteX="24dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
