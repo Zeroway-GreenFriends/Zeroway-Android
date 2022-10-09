@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.greenfriends.zeroway.ui.community.viewmodel.CommunityViewModel" />
+            type="com.greenfriends.zeroway.presentation.community.viewmodel.CommunityViewModel" />
 
         <variable
             name="communityPost"

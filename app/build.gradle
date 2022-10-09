@@ -41,6 +41,7 @@ android {
     dataBinding {
         enabled = true
     }
+    namespace 'com.greenfriends.zeroway'
 }
 
 dependencies {
