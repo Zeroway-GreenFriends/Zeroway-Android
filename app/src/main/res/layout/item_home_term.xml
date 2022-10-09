@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.greenfriends.zeroway.ui.home.viewmodel.HomeViewModel" />
+            type="com.greenfriends.zeroway.presentation.home.viewmodel.HomeViewModel" />
 
         <variable
             name="termResponse"
