@@ -11,9 +11,9 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.greenfriends.zeroway.R
-import com.greenfriends.zeroway.presentation.common.STORE_ID
 import com.greenfriends.zeroway.databinding.FragmentStoreBinding
 import com.greenfriends.zeroway.presentation.common.EventObserve
+import com.greenfriends.zeroway.presentation.common.STORE_ID
 import com.greenfriends.zeroway.presentation.common.ViewModelFactory
 import com.greenfriends.zeroway.presentation.store.adapter.StoreAdapter
 import com.greenfriends.zeroway.presentation.store.viewmodel.StoreViewModel
@@ -23,7 +23,6 @@ class StoreFragment : Fragment() {
     private val viewModel: StoreViewModel by viewModels { ViewModelFactory() }
     private lateinit var binding: FragmentStoreBinding
     private lateinit var adapter: StoreAdapter
-    private var isLoading: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,7 +39,7 @@ class StoreFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
 
         getStores(isInit = true)
-        setObserve()
+        setObservers()
         setOnClickListener()
         setStoreAdapter()
         setOnScrollChangeListener()
@@ -59,17 +58,15 @@ class StoreFragment : Fragment() {
                 val handler = Handler(Looper.getMainLooper())
                 handler.postDelayed(
                     {
-                        val isFinish = adapter.setLoading(false)
-                        if (isFinish) {
-                            viewModel.getStores(keyword, page, size)
-                        }
+                        adapter.setLoading(false)
+                        viewModel.getStores(keyword, page, size)
                     }, 1000
                 )
             }
         }
     }
 
-    private fun setObserve() {
+    private fun setObservers() {
         viewModel.storePostDetailEvent.observe(
             viewLifecycleOwner, EventObserve { storeId ->
                 startStorePostDetailFragment(storeId.toString())
@@ -81,9 +78,13 @@ class StoreFragment : Fragment() {
         with(binding) {
             storeSearchBtn.setOnClickListener {
                 adapter.clear()
-                viewModel.setPage(1)
-                viewModel.setKeyword(storeSearchEt.text.toString())
-                getStores(viewModel.getKeyword(), isInit = true)
+                with(viewModel) {
+                    setLoading(true)
+                    setPage(1)
+                    setKeyword(storeSearchEt.text.toString())
+                    storeSearchEt.text.clear()
+                    getStores(getKeyword(), isInit = true)
+                }
             }
         }
     }
@@ -95,7 +96,7 @@ class StoreFragment : Fragment() {
             viewLifecycleOwner
         ) { stores ->
             adapter.submitStores(stores)
-            isLoading = false
+            viewModel.setLoading(false)
         }
     }
 
@@ -108,11 +109,14 @@ class StoreFragment : Fragment() {
                 val totalItemCount = recyclerView.adapter!!.itemCount
                 val lastVisibleItemPosition =
                     (recyclerView.layoutManager as LinearLayoutManager).findLastCompletelyVisibleItemPosition()
-                if (!recyclerView.canScrollVertically(1) && lastVisibleItemPosition == totalItemCount - 1 && !isLoading) {
-                    isLoading = true
-                    viewModel.setPage(viewModel.getPage()!! + 1)
-                    getStores(viewModel.getKeyword(), viewModel.getPage()!!)
+                with(viewModel) {
+                    if (!recyclerView.canScrollVertically(1) && lastVisibleItemPosition == totalItemCount - 1 && !getLoading()) {
+                        setLoading(true)
+                        setPage(getPage() + 1)
+                        getStores(getKeyword(), getPage())
+                    }
                 }
+
             }
         })
     }

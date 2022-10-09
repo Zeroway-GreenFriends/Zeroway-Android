@@ -1,7 +1,6 @@
 package com.greenfriends.zeroway.presentation.store.adapter
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -59,18 +58,15 @@ class StoreAdapter(private val viewModel: StoreViewModel) :
         notifyItemRangeInserted(itemCount, stores.size)
     }
 
-    fun setLoading(isLoading: Boolean): Boolean {
+    fun setLoading(isLoading: Boolean) {
         return when (isLoading) {
             true -> {
                 stores.add(null)
                 notifyItemInserted(itemCount - 1)
-                true
             }
             else -> {
                 stores.removeAt(itemCount - 1)
                 notifyItemRemoved(itemCount)
-                Log.d("SSS", stores.toString())
-                true
             }
         }
     }
