@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.greenfriends.zeroway.ui.challenge.viewmodel.ChallengeViewModel" />
+            type="com.greenfriends.zeroway.presentation.challenge.viewmodel.ChallengeViewModel" />
 
         <variable
             name="challengeList"
