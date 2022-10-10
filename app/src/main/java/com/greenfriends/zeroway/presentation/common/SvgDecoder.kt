@@ -1,4 +1,4 @@
-package com.greenfriends.zeroway
+package com.greenfriends.zeroway.presentation.common
 
 import com.bumptech.glide.load.Options
 import com.bumptech.glide.load.ResourceDecoder

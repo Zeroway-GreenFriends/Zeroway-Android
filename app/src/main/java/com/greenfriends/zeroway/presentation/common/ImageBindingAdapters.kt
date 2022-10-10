@@ -2,7 +2,6 @@ package com.greenfriends.zeroway.presentation.common
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
-import com.greenfriends.zeroway.GlideApp
 import com.greenfriends.zeroway.R
 
 @BindingAdapter("imageUrl")

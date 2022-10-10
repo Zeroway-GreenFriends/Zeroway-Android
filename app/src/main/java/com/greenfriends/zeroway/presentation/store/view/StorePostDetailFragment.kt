@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.greenfriends.zeroway.R
-import com.greenfriends.zeroway.STORE_ID
 import com.greenfriends.zeroway.databinding.FragmentStorePostDetailBinding
+import com.greenfriends.zeroway.presentation.common.STORE_ID
 import com.greenfriends.zeroway.presentation.common.ViewModelFactory
 import com.greenfriends.zeroway.presentation.store.viewmodel.StorePostDetailViewModel
 
@@ -30,8 +30,9 @@ class StorePostDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.lifecycleOwner = viewLifecycleOwner
+
         setStoreId()
-        setObserve()
+        setObservers()
         setNavigation()
     }
 
@@ -39,7 +40,7 @@ class StorePostDetailFragment : Fragment() {
         arguments?.getString(STORE_ID)?.let { viewModel.setStoreId(it) }
     }
 
-    private fun setObserve() {
+    private fun setObservers() {
         viewModel.storeId.observe(
             viewLifecycleOwner
         ) { storeId ->

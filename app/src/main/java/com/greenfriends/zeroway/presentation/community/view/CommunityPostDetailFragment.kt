@@ -9,13 +9,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.ConcatAdapter
-import com.greenfriends.zeroway.GlideApp
-import com.greenfriends.zeroway.POST_ID
 import com.greenfriends.zeroway.R
 import com.greenfriends.zeroway.data.model.CommunityPostDetailComment
 import com.greenfriends.zeroway.data.model.CommunityPostDetailResponse
 import com.greenfriends.zeroway.databinding.FragmentCommunityPostDetailBinding
 import com.greenfriends.zeroway.presentation.common.EventObserve
+import com.greenfriends.zeroway.presentation.common.GlideApp
+import com.greenfriends.zeroway.presentation.common.POST_ID
 import com.greenfriends.zeroway.presentation.common.ViewModelFactory
 import com.greenfriends.zeroway.presentation.community.OnCommunityPostDetailCommentClickListener
 import com.greenfriends.zeroway.presentation.community.OnCommunityPostDetailPostClickListener
