@@ -15,6 +15,7 @@ class StoreViewModel(private val storeRepository: StoreRepository) : ViewModel()
     private val _stores = MutableLiveData<List<StoreResponse>>()
     val stores: LiveData<List<StoreResponse>> = _stores
 
+
     private var keyword: String? = null
 
     private var isLoading: Boolean = false

@@ -13,7 +13,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.greenfriends.zeroway.R
 import com.greenfriends.zeroway.databinding.FragmentStoreBinding
 import com.greenfriends.zeroway.presentation.common.EventObserve
-import com.greenfriends.zeroway.presentation.common.STORE_ID import com.greenfriends.zeroway.presentation.common.ViewModelFactory
+import com.greenfriends.zeroway.presentation.common.STORE_ID
+import com.greenfriends.zeroway.presentation.common.ViewModelFactory
 import com.greenfriends.zeroway.presentation.store.adapter.StoreAdapter
 import com.greenfriends.zeroway.presentation.store.viewmodel.StoreViewModel
 
