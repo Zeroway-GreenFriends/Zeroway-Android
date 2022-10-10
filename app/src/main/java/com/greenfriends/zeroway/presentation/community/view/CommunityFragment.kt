@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.greenfriends.zeroway.POST_ID
+import com.greenfriends.zeroway.presentation.common.POST_ID
 import com.greenfriends.zeroway.R
 import com.greenfriends.zeroway.data.model.CommunityPost
 import com.greenfriends.zeroway.databinding.FragmentCommunityBinding

@@ -1,4 +1,4 @@
-package com.greenfriends.zeroway
+package com.greenfriends.zeroway.presentation.common
 
 import android.content.Context
 import android.graphics.drawable.PictureDrawable
@@ -21,5 +21,4 @@ class GlideModule : AppGlideModule() {
     override fun isManifestParsingEnabled(): Boolean {
         return false
     }
-
 }

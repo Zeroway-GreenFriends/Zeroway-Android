@@ -59,18 +59,16 @@ class StoreAdapter(private val viewModel: StoreViewModel) :
         notifyItemRangeInserted(itemCount, stores.size)
     }
 
-    fun setLoading(isLoading: Boolean): Boolean {
+
+    fun setLoading(isLoading: Boolean) {
         return when (isLoading) {
             true -> {
                 stores.add(null)
                 notifyItemInserted(itemCount - 1)
-                true
             }
             else -> {
                 stores.removeAt(itemCount - 1)
                 notifyItemRemoved(itemCount)
-                Log.d("SSS", stores.toString())
-                true
             }
         }
     }

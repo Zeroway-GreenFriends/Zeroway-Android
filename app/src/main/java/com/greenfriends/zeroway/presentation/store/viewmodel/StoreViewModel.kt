@@ -15,29 +15,38 @@ class StoreViewModel(private val storeRepository: StoreRepository) : ViewModel()
     private val _stores = MutableLiveData<List<StoreResponse>>()
     val stores: LiveData<List<StoreResponse>> = _stores
 
-    private val _keyword = MutableLiveData<String?>(null)
-    val keyword: LiveData<String?> = _keyword
 
-    private val _page = MutableLiveData<Int>(1)
-    val page: LiveData<Int> = _page
+    private var keyword: String? = null
+
+    private var isLoading: Boolean = false
+
+    private var page: Int = 1
 
     private val _storePostDetailEvent = MutableLiveData<Event<Long>>()
     val storePostDetailEvent: LiveData<Event<Long>> = _storePostDetailEvent
 
     fun setKeyword(keyword: String?) {
-        _keyword.value = keyword
+        this.keyword = keyword
     }
 
     fun getKeyword(): String? {
-        return _keyword.value
+        return keyword
+    }
+
+    fun setLoading(isLoading: Boolean) {
+        this.isLoading = isLoading
+    }
+
+    fun getLoading(): Boolean {
+        return isLoading
     }
 
     fun setPage(page: Int) {
-        _page.value = page
+        this.page = page
     }
 
-    fun getPage(): Int? {
-        return _page.value
+    fun getPage(): Int {
+        return page
     }
 
     fun setStorePostDetailEvent(storeId: Long) {
