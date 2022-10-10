@@ -28,9 +28,8 @@
                 android:id="@+id/store_toolbar_title_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="공지사항"
-                android:textColor="@color/zeroway_black"
-                android:textSize="14sp" />
+                style="@style/Text16"
+                android:text="내가 쓴 글" />
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -46,8 +45,6 @@
             android:layout_width="match_parent"
             android:layout_height="14dp"
             android:background="@color/zeroway_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -55,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -63,6 +60,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view6"
-            tools:listitem="@layout/item_alarm" />
+            tools:listitem="@layout/item_mypage_post" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

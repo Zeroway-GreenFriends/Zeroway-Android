@@ -30,5 +30,10 @@ fun levelToString(view: TextView, level: Int) {
 
 @BindingAdapter("levelToLvString")
 fun levelToLvString(view: TextView, level: Int) {
-    view.text = "Lv."+"$level"
+    view.text = "Lv." + "$level"
+}
+
+@BindingAdapter("dateToString")
+fun dateToString(view: TextView, date: String) {
+    view.text = date.subSequence(0, 10)
 }

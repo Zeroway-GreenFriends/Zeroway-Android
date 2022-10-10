@@ -7,6 +7,7 @@ import com.greenfriends.zeroway.data.repository.community.CommunityPostDetailRep
 import com.greenfriends.zeroway.data.repository.community.CommunityPostRegisterRepository
 import com.greenfriends.zeroway.data.repository.community.CommunityRepository
 import com.greenfriends.zeroway.data.repository.home.HomeRepository
+import com.greenfriends.zeroway.data.repository.mypage.NoticeRepository
 import com.greenfriends.zeroway.data.repository.signup.SignUpRepository
 import com.greenfriends.zeroway.data.repository.store.StorePostDetailRepository
 import com.greenfriends.zeroway.data.repository.store.StoreRepository
@@ -15,6 +16,7 @@ import com.greenfriends.zeroway.data.source.remote.community.CommunityDataSource
 import com.greenfriends.zeroway.data.source.remote.community.CommunityPostDetailDataSourceImpl
 import com.greenfriends.zeroway.data.source.remote.community.CommunityPostRegisterDataSourceImpl
 import com.greenfriends.zeroway.data.source.remote.home.HomeDataSourceImpl
+import com.greenfriends.zeroway.data.source.remote.mypage.NoticeDataSourceImpl
 import com.greenfriends.zeroway.data.source.remote.signup.SignUpDataSourceImpl
 import com.greenfriends.zeroway.data.source.remote.store.StoreDataSourceImpl
 import com.greenfriends.zeroway.data.source.remote.store.StorePostDetailDataSourceImpl
@@ -23,6 +25,7 @@ import com.greenfriends.zeroway.presentation.community.viewmodel.CommunityPostDe
 import com.greenfriends.zeroway.presentation.community.viewmodel.CommunityPostRegisterViewModel
 import com.greenfriends.zeroway.presentation.community.viewmodel.CommunityViewModel
 import com.greenfriends.zeroway.presentation.home.viewmodel.HomeViewModel
+import com.greenfriends.zeroway.presentation.mypage.viewmodel.NoticeViewModel
 import com.greenfriends.zeroway.presentation.signup.viewmodel.SignUpViewModel
 import com.greenfriends.zeroway.presentation.store.viewmodel.StorePostDetailViewModel
 import com.greenfriends.zeroway.presentation.store.viewmodel.StoreViewModel
@@ -80,6 +83,13 @@ class ViewModelFactory : ViewModelProvider.Factory {
                 StorePostDetailViewModel(
                     StorePostDetailRepository(
                         StorePostDetailDataSourceImpl()
+                    )
+                ) as T
+            }
+            modelClass.isAssignableFrom(NoticeViewModel::class.java) -> {
+                NoticeViewModel(
+                    NoticeRepository(
+                        NoticeDataSourceImpl()
                     )
                 ) as T
             }

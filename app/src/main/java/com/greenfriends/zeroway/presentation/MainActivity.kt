@@ -7,7 +7,7 @@ import com.greenfriends.zeroway.databinding.ActivityMainBinding
 import com.greenfriends.zeroway.presentation.challenge.view.ChallengeCharacterFragment
 import com.greenfriends.zeroway.presentation.home.view.HomeFragment
 import com.greenfriends.zeroway.presentation.community.view.CommunityFragment
-import com.greenfriends.zeroway.presentation.mypage.MyPageFragment
+import com.greenfriends.zeroway.presentation.mypage.view.MyPageFragment
 import com.greenfriends.zeroway.presentation.store.view.StoreFragment
 
 class MainActivity : AppCompatActivity() {

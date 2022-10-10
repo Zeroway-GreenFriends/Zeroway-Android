@@ -30,7 +30,6 @@ class StorePostDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.lifecycleOwner = viewLifecycleOwner
-
         setStoreId()
         setObservers()
         setNavigation()
