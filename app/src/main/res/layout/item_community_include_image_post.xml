@@ -45,9 +45,10 @@
 
         <ImageView
             android:id="@+id/item_community_include_image_select_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="14dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="2dp"
+            android:padding="12dp"
             android:src="@drawable/ic_select"
             app:layout_constraintBottom_toBottomOf="@id/item_community_include_image_profile_name_tv"
             app:layout_constraintEnd_toEndOf="parent"
@@ -78,8 +79,8 @@
 
         <ImageView
             android:id="@+id/item_community_include_image_like_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_marginStart="14dp"
             android:layout_marginTop="6dp"
             android:src="@{communityPost.liked ? @drawable/ic_like_on : @drawable/ic_like_off, default=@drawable/ic_like_off}"
@@ -88,8 +89,8 @@
 
         <ImageView
             android:id="@+id/item_community_include_image_chat_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_marginStart="14dp"
             android:onClick="@{() -> viewModel.setCommunityPostDetailEvent(communityPost.postId)}"
             android:src="@drawable/ic_chat"
@@ -99,8 +100,8 @@
 
         <ImageView
             android:id="@+id/item_community_include_image_bookmark_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_marginStart="16dp"
             android:src="@{communityPost.bookmarked ? @drawable/ic_bookmark_on : @drawable/ic_bookmark_off, default=@drawable/ic_bookmark_off}"
             app:layout_constraintBottom_toBottomOf="@id/item_community_include_image_chat_iv"
