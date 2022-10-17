@@ -42,11 +42,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="24dp"
-                android:fontFamily="@font/notosans_medium"
+                style="@style/Text16"
                 android:letterSpacing="0.1"
                 android:text="마이페이지"
                 android:textColor="@color/white"
-                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="@id/mypage_goback_btn"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -125,7 +124,7 @@
                         android:letterSpacing="0.1"
                         android:text="작성 글"
                         android:textColor="#000000"
-                        android:textSize="12sp"
+                        style="@style/Text14"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="@+id/mypage_section_1_posting_btn"
                         app:layout_constraintStart_toStartOf="@+id/mypage_section_1_posting_btn"
@@ -159,7 +158,7 @@
                         android:letterSpacing="0.1"
                         android:text="댓글"
                         android:textColor="#000000"
-                        android:textSize="12sp"
+                        style="@style/Text14"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="@+id/mypage_comment_iv"
                         app:layout_constraintStart_toStartOf="@+id/mypage_comment_iv"
@@ -193,7 +192,7 @@
                         android:letterSpacing="0.1"
                         android:text="스크랩"
                         android:textColor="#000000"
-                        android:textSize="12sp"
+                        style="@style/Text14"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="@+id/mypage_like_tv"
                         app:layout_constraintStart_toStartOf="@+id/mypage_like_tv"
@@ -226,7 +225,7 @@
                         android:letterSpacing="0.1"
                         android:text="좋아요"
                         android:textColor="#000000"
-                        android:textSize="12sp"
+                        style="@style/Text14"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="@+id/mypage_section_1_scrab_btn"
                         app:layout_constraintStart_toStartOf="@+id/mypage_section_1_scrab_btn"
@@ -257,7 +256,7 @@
                     android:letterSpacing="0.1"
                     android:text="공지사항"
                     android:textColor="#000000"
-                    android:textSize="12sp"
+                    style="@style/Text14"
                     app:layout_constraintStart_toStartOf="@id/mypage_section_2_iv"
                     app:layout_constraintTop_toTopOf="@id/mypage_section_2_iv" />
 
@@ -280,7 +279,7 @@
                     android:letterSpacing="0.1"
                     android:text="알림 설정"
                     android:textColor="#000000"
-                    android:textSize="12sp"
+                    style="@style/Text14"
                     app:layout_constraintStart_toStartOf="@id/mypage_section_2_iv"
                     app:layout_constraintTop_toTopOf="@id/mypage_notice_tv" />
 
@@ -303,7 +302,7 @@
                     android:letterSpacing="0.1"
                     android:text="서비스 이용약관"
                     android:textColor="#000000"
-                    android:textSize="12sp"
+                    style="@style/Text14"
                     app:layout_constraintStart_toStartOf="@id/mypage_section_2_iv"
                     app:layout_constraintTop_toTopOf="@id/mypage_alarm_tv" />
 
@@ -326,7 +325,7 @@
                     android:letterSpacing="0.1"
                     android:text="개인정보처리방침"
                     android:textColor="#000000"
-                    android:textSize="12sp"
+                    style="@style/Text14"
                     app:layout_constraintStart_toStartOf="@id/mypage_section_2_iv"
                     app:layout_constraintTop_toTopOf="@id/mypage_center_tv" />
 
@@ -350,7 +349,7 @@
                     android:letterSpacing="0.1"
                     android:text="문의하기"
                     android:textColor="#000000"
-                    android:textSize="12sp"
+                    style="@style/Text14"
                     app:layout_constraintBottom_toBottomOf="@+id/mypage_section_2_iv"
                     app:layout_constraintStart_toStartOf="@+id/mypage_section_2_iv"
                     app:layout_constraintTop_toBottomOf="@+id/mypage_ask_line_iv" />
@@ -380,7 +379,7 @@
                     android:letterSpacing="0.1"
                     android:text="버전 정보"
                     android:textColor="#000000"
-                    android:textSize="12sp"
+                    style="@style/Text14"
                     app:layout_constraintStart_toStartOf="@id/mypage_section_3_iv"
                     app:layout_constraintTop_toTopOf="@id/mypage_section_3_iv" />
 
@@ -393,7 +392,7 @@
                     android:letterSpacing="0.1"
                     android:text="현재 4.2.0 / 최신 4.1.9"
                     android:textColor="#B5B5B5"
-                    android:textSize="12sp"
+                    style="@style/Text14"
                     app:layout_constraintStart_toEndOf="@id/mypage_section_3_tv1"
                     app:layout_constraintTop_toTopOf="@id/mypage_section_3_iv" />
 

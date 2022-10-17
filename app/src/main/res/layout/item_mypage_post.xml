@@ -7,14 +7,15 @@
 
         <variable
             name="viewModel"
-            type="com.greenfriends.zeroway.presentation.community.viewmodel.CommunityViewModel" />
+            type="com.greenfriends.zeroway.presentation.mypage.viewmodel.MyPageViewModel" />
 
         <variable
-            name="communityPost"
-            type="com.greenfriends.zeroway.data.model.CommunityPost" />
+            name="myPost"
+            type="com.greenfriends.zeroway.data.model.MyPostList" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/mypost_cl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10sp"
@@ -22,7 +23,7 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/item_community_exclude_image_profile_iv"
-            userImageUrl="@{communityPost.userProfileImg}"
+            userImageUrl="@{myPost.profileImgUrl}"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginStart="14dp"
@@ -37,8 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:textSize="10sp"
-            android:text="@{communityPost.username}"
+            android:text="@{myPost.nickname}"
             app:layout_constraintBottom_toBottomOf="@id/item_community_exclude_image_profile_iv"
             app:layout_constraintStart_toEndOf="@id/item_community_exclude_image_profile_iv"
             app:layout_constraintTop_toTopOf="@id/item_community_exclude_image_profile_iv"
@@ -49,7 +49,7 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginEnd="14dp"
-            android:src="@drawable/ic_bookmark_on"
+            android:src="@{myPost.scraped ? @drawable/ic_bookmark_on : @drawable/ic_bookmark_off, default=@drawable/ic_bookmark_off}"
             app:layout_constraintBottom_toBottomOf="@id/item_community_exclude_image_profile_name_tv"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/item_community_exclude_image_profile_name_tv" />
@@ -71,9 +71,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
-            android:text="10"
+            style="@style/Text10"
+            convertIntToString="@{myPost.likeCount}"
             android:textColor="@color/zeroway_gray"
-            android:textSize="8dp"
             app:layout_constraintBottom_toBottomOf="@+id/item_community_exclude_image_like_iv"
             app:layout_constraintStart_toEndOf="@+id/item_community_exclude_image_like_iv"
             app:layout_constraintTop_toTopOf="@+id/item_community_exclude_image_like_iv" />
@@ -94,9 +94,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
-            android:text="8"
+            convertIntToString="@{myPost.commentCount}"
             android:textColor="@color/zeroway_gray"
-            android:textSize="8dp"
+            style="@style/Text10"
             app:layout_constraintBottom_toBottomOf="@+id/item_community_exclude_image_chat_iv"
             app:layout_constraintStart_toEndOf="@+id/item_community_exclude_image_chat_iv"
             app:layout_constraintTop_toTopOf="@+id/item_community_exclude_image_chat_iv" />
@@ -107,12 +107,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:textSize="10sp"
             android:ellipsize="end"
             android:maxLines="2"
             android:paddingStart="14dp"
             android:paddingEnd="3dp"
-            android:text="@{communityPost.content}"
+            android:text="@{myPost.content}"
             app:layout_constraintEnd_toStartOf="@id/item_community_exclude_image_detail_tv"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/item_community_exclude_image_profile_iv"
@@ -123,12 +122,30 @@
             style="@style/Text12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="10sp"
             android:layout_marginEnd="14dp"
-            android:onClick="@{() -> viewModel.setCommunityPostDetailEvent(communityPost.postId)}"
             android:text="@string/detail"
             android:textColor="@color/zeroway_gray"
             app:layout_constraintBottom_toBottomOf="@id/item_community_exclude_image_content_tv"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="12dp"
+            android:src="@drawable/ic_album"
+            app:layout_constraintBottom_toBottomOf="@+id/textView14"
+            app:layout_constraintEnd_toStartOf="@+id/textView14"
+            app:layout_constraintTop_toTopOf="@+id/textView14" />
+
+        <TextView
+            android:id="@+id/textView14"
+            style="@style/Text10"
+            convertIntToString="@{myPost.imgCount}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:textColor="@color/zeroway_gray"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
