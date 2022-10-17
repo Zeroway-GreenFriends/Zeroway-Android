@@ -10,6 +10,7 @@ import com.greenfriends.zeroway.R
 import com.greenfriends.zeroway.data.model.NoticeResponse
 import com.greenfriends.zeroway.databinding.FragmentNoticeBinding
 import com.greenfriends.zeroway.presentation.common.ViewModelFactory
+import com.greenfriends.zeroway.presentation.community.view.CommunityFragment
 import com.greenfriends.zeroway.presentation.mypage.adapter.NoticeAdapter
 import com.greenfriends.zeroway.presentation.mypage.viewmodel.MyPageViewModel
 
@@ -31,6 +32,7 @@ class NoticeFragment : Fragment() {
         getNotice()
         setNoticeAdapter()
         setObserve()
+        setNavigation()
 
         return binding.root
     }
@@ -63,6 +65,17 @@ class NoticeFragment : Fragment() {
 
     private fun getNotice() {
         viewModel.getNotice()
+    }
+
+    private fun setNavigation() {
+        binding.noticeTb.setNavigationOnClickListener {
+            startMyPageFragment()
+        }
+    }
+    private fun startMyPageFragment() {
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.main_fl, MyPageFragment())
+            .commit()
     }
 
 }

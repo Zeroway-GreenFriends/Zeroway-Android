@@ -33,18 +33,23 @@ class MyPagePostFragment : Fragment() {
 
         setObserve()
         setMyPostAdapter()
+        setNavigation()
 
         when (getMyPage()){
             0 -> {
+                binding.mypagePostToolbarTitleTv.text = "내가 쓴 글"
                 getMyPost(getJwt()!!,null,null)
             }
             1 -> {
+                binding.mypagePostToolbarTitleTv.text = "댓글 단 글"
                 getMyComment(getJwt()!!,null,null)
             }
             2 -> {
+                binding.mypagePostToolbarTitleTv.text = "스크랩 한 글"
                 getMyScrap(getJwt()!!,null,null)
             }
             3 -> {
+                binding.mypagePostToolbarTitleTv.text = "좋아요 한 글"
                 getMyLike(getJwt()!!,null,null)
             }
         }
@@ -99,6 +104,18 @@ class MyPagePostFragment : Fragment() {
         val sharedPreferences =
             activity?.getSharedPreferences("page", AppCompatActivity.MODE_PRIVATE)
         return sharedPreferences!!.getInt("page", 6)
+    }
+
+    private fun setNavigation() {
+        binding.mypagePostTb.setNavigationOnClickListener {
+            startMyPageFragment()
+        }
+    }
+
+    private fun startMyPageFragment() {
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.main_fl, MyPageFragment())
+            .commit()
     }
 
 }
