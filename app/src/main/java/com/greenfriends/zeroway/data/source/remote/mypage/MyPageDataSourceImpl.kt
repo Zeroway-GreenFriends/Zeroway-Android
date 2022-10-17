@@ -25,4 +25,28 @@ class MyPageDataSourceImpl : MyPageDataSource {
     ): Response<MyPostResponse> {
         return noticeService!!.getMyPost(accessToken, page, size)
     }
+
+    override suspend fun getMyComment(
+        accessToken: String,
+        page: Long?,
+        size: Long?
+    ): Response<MyPostResponse> {
+        return noticeService!!.getMyComment(accessToken, page, size)
+    }
+
+    override suspend fun getMyScrap(
+        accessToken: String,
+        page: Long?,
+        size: Long?
+    ): Response<MyPostResponse> {
+        return noticeService!!.getMyScrap(accessToken, page, size)
+    }
+
+    override suspend fun getMyLike(
+        accessToken: String,
+        page: Long?,
+        size: Long?
+    ): Response<MyPostResponse> {
+        return noticeService!!.getMyLike(accessToken, page, size)
+    }
 }

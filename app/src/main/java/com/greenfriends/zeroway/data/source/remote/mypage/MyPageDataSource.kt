@@ -14,4 +14,22 @@ interface MyPageDataSource {
         page: Long?,
         size: Long?
     ): Response<MyPostResponse>
+
+    suspend fun getMyComment(
+        accessToken: String,
+        page: Long?,
+        size: Long?
+    ): Response<MyPostResponse>
+
+    suspend fun getMyScrap(
+        accessToken: String,
+        page: Long?,
+        size: Long?
+    ): Response<MyPostResponse>
+
+    suspend fun getMyLike(
+        accessToken: String,
+        page: Long?,
+        size: Long?
+    ): Response<MyPostResponse>
 }

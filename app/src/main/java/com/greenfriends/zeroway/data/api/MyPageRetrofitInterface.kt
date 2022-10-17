@@ -35,4 +35,25 @@ interface MyPageRetrofitInterface {
         @Query("size") size: Long? = null
     ): Response<MyPostResponse>
 
+    @GET("post/comment")
+    suspend fun getMyComment(
+        @Header("Bearer") accessToken: String,
+        @Query("page") page: Long? = null,
+        @Query("size") size: Long? = null
+    ): Response<MyPostResponse>
+
+    @GET("post/like")
+    suspend fun getMyLike(
+        @Header("Bearer") accessToken: String,
+        @Query("page") page: Long? = null,
+        @Query("size") size: Long? = null
+    ): Response<MyPostResponse>
+
+    @GET("post/scrap")
+    suspend fun getMyScrap(
+        @Header("Bearer") accessToken: String,
+        @Query("page") page: Long? = null,
+        @Query("size") size: Long? = null
+    ): Response<MyPostResponse>
+
 }

@@ -22,4 +22,28 @@ class MyPageRepository(private val noticeDataSourceImpl: MyPageDataSourceImpl) {
     ): Response<MyPostResponse> {
         return noticeDataSourceImpl.getMyPost(accessToken, page, size)
     }
+
+    suspend fun getMyComment(
+        accessToken: String,
+        page: Long?,
+        size: Long?
+    ): Response<MyPostResponse> {
+        return noticeDataSourceImpl.getMyComment(accessToken, page, size)
+    }
+
+    suspend fun getMyScrap(
+        accessToken: String,
+        page: Long?,
+        size: Long?
+    ): Response<MyPostResponse> {
+        return noticeDataSourceImpl.getMyScrap(accessToken, page, size)
+    }
+
+    suspend fun getMyLike(
+        accessToken: String,
+        page: Long?,
+        size: Long?
+    ): Response<MyPostResponse> {
+        return noticeDataSourceImpl.getMyLike(accessToken, page, size)
+    }
 }

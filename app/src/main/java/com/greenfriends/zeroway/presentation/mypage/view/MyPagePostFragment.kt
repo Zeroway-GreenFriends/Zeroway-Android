@@ -33,7 +33,22 @@ class MyPagePostFragment : Fragment() {
 
         setObserve()
         setMyPostAdapter()
-        getMyPost(getJwt()!!,null,null)
+
+        when (getMyPage()){
+            0 -> {
+                getMyPost(getJwt()!!,null,null)
+            }
+            1 -> {
+                getMyComment(getJwt()!!,null,null)
+            }
+            2 -> {
+                getMyScrap(getJwt()!!,null,null)
+            }
+            3 -> {
+                getMyLike(getJwt()!!,null,null)
+            }
+        }
+
 
         return binding.root
     }
@@ -62,10 +77,28 @@ class MyPagePostFragment : Fragment() {
         viewModel.getMyPost(accessToken, page, size)
     }
 
+    private fun getMyComment(accessToken: String, page: Long?, size: Long?) {
+        viewModel.getMyComment(accessToken, page, size)
+    }
+
+    private fun getMyScrap(accessToken: String, page: Long?, size: Long?) {
+        viewModel.getMyScrap(accessToken, page, size)
+    }
+
+    private fun getMyLike(accessToken: String, page: Long?, size: Long?) {
+        viewModel.getMyLike(accessToken, page, size)
+    }
+
     private fun getJwt(): String? {
         val sharedPreferences =
             activity?.getSharedPreferences("auth", AppCompatActivity.MODE_PRIVATE)
         return sharedPreferences!!.getString("jwt", null)
+    }
+
+    private fun getMyPage(): Int {
+        val sharedPreferences =
+            activity?.getSharedPreferences("page", AppCompatActivity.MODE_PRIVATE)
+        return sharedPreferences!!.getInt("page", 6)
     }
 
 }

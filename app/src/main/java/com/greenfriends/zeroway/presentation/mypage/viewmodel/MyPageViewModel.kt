@@ -69,4 +69,43 @@ class MyPageViewModel(private val noticeRepository: MyPageRepository) : ViewMode
         }
     }
 
+    fun getMyComment(accessToken: String, page: Long?, size: Long?) {
+        viewModelScope.launch {
+            val response = noticeRepository.getMyComment(accessToken, page, size)
+            if (response.isSuccessful) {
+                _myPostResponse.value = response.body()!!.result!!
+
+                Log.d("Comment/TR/S", response.body().toString())
+            } else {
+                Log.d("Comment/TR/F", response.errorBody()?.string()!!)
+            }
+        }
+    }
+
+    fun getMyScrap(accessToken: String, page: Long?, size: Long?) {
+        viewModelScope.launch {
+            val response = noticeRepository.getMyScrap(accessToken, page, size)
+            if (response.isSuccessful) {
+                _myPostResponse.value = response.body()!!.result!!
+
+                Log.d("Scrap/TR/S", response.body().toString())
+            } else {
+                Log.d("Scrap/TR/F", response.errorBody()?.string()!!)
+            }
+        }
+    }
+
+    fun getMyLike(accessToken: String, page: Long?, size: Long?) {
+        viewModelScope.launch {
+            val response = noticeRepository.getMyLike(accessToken, page, size)
+            if (response.isSuccessful) {
+                _myPostResponse.value = response.body()!!.result!!
+
+                Log.d("Like/TR/S", response.body().toString())
+            } else {
+                Log.d("Like/TR/F", response.errorBody()?.string()!!)
+            }
+        }
+    }
+
 }
