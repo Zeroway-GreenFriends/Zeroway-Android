@@ -6,10 +6,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.greenfriends.zeroway.data.model.*
-import com.greenfriends.zeroway.data.repository.mypage.NoticeRepository
+import com.greenfriends.zeroway.data.repository.mypage.MyPageRepository
 import kotlinx.coroutines.launch
 
-class NoticeViewModel(private val noticeRepository: NoticeRepository) : ViewModel() {
+class MyPageViewModel(private val noticeRepository: MyPageRepository) : ViewModel() {
 
     private val _announceId = MutableLiveData<Long>()
     val announceId: LiveData<Long> = _announceId
@@ -19,6 +19,9 @@ class NoticeViewModel(private val noticeRepository: NoticeRepository) : ViewMode
 
     private val _noticeDetailResponse = MutableLiveData<NoticeDetailResponse>()
     val noticeDetailResponse: LiveData<NoticeDetailResponse> = _noticeDetailResponse
+
+    private val _myPostResponse = MutableLiveData<List<MyPostList>>()
+    val myPostResponse: LiveData<List<MyPostList>> = _myPostResponse
 
     fun setAnnounceId(annouceId: Long) {
         _announceId.value = annouceId
@@ -49,6 +52,19 @@ class NoticeViewModel(private val noticeRepository: NoticeRepository) : ViewMode
                 Log.d("NOTICE-D/S", response.body().toString())
             } else {
                 Log.d("NOTICE-D/F", response.errorBody()?.string()!!)
+            }
+        }
+    }
+
+    fun getMyPost(accessToken: String, page: Long?, size: Long?) {
+        viewModelScope.launch {
+            val response = noticeRepository.getMyPost(accessToken, page, size)
+            if (response.isSuccessful) {
+                _myPostResponse.value = response.body()!!.result!!
+
+                Log.d("MyPost/TR/S", response.body().toString())
+            } else {
+                Log.d("MyPost/TR/F", response.errorBody()?.string()!!)
             }
         }
     }

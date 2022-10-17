@@ -1,10 +1,10 @@
 package com.greenfriends.zeroway.data.repository.mypage
 
 import com.greenfriends.zeroway.data.model.*
-import com.greenfriends.zeroway.data.source.remote.mypage.NoticeDataSourceImpl
+import com.greenfriends.zeroway.data.source.remote.mypage.MyPageDataSourceImpl
 import retrofit2.Response
 
-class NoticeRepository(private val noticeDataSourceImpl: NoticeDataSourceImpl) {
+class MyPageRepository(private val noticeDataSourceImpl: MyPageDataSourceImpl) {
 
     suspend fun getNotice(
     ): Response<List<NoticeResponse>> {
@@ -15,4 +15,11 @@ class NoticeRepository(private val noticeDataSourceImpl: NoticeDataSourceImpl) {
         return noticeDataSourceImpl.getNoticeDetail(announceId)
     }
 
+    suspend fun getMyPost(
+        accessToken: String,
+        page: Long?,
+        size: Long?
+    ): Response<MyPostResponse> {
+        return noticeDataSourceImpl.getMyPost(accessToken, page, size)
+    }
 }

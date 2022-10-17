@@ -5,17 +5,18 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.greenfriends.zeroway.data.model.NoticeResponse
-import com.greenfriends.zeroway.databinding.ItemAlarmBinding
+import com.greenfriends.zeroway.data.model.MyPostList
+import com.greenfriends.zeroway.data.model.MyPostResponse
+import com.greenfriends.zeroway.databinding.ItemMypagePostBinding
 import com.greenfriends.zeroway.presentation.mypage.viewmodel.MyPageViewModel
 
-class NoticeAdapter(
+class MyPostAdapter(
     private val viewModel: MyPageViewModel
 ) :
-    ListAdapter<NoticeResponse, RecyclerView.ViewHolder>(diffUtil) {
+    ListAdapter<MyPostList, RecyclerView.ViewHolder>(diffUtil) {
 
     interface MyItemClickListener {
-        fun onItemClick(notice: NoticeResponse)
+        fun onItemClick(post: MyPostList)
     }
 
     private lateinit var mItemClickListener: MyItemClickListener
@@ -25,20 +26,20 @@ class NoticeAdapter(
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
-        val binding: ItemAlarmBinding =
-            ItemAlarmBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
+        val binding: ItemMypagePostBinding =
+            ItemMypagePostBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
 
         return ViewHolder(binding)
     }
 
-    inner class ViewHolder(val binding: ItemAlarmBinding) :
+    inner class ViewHolder(val binding: ItemMypagePostBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(notice: NoticeResponse) {
+        fun bind(post: MyPostList) {
             binding.viewModel = viewModel
-            binding.noticeResponse = notice
-            binding.itemAlarmCl.setOnClickListener {
-                mItemClickListener.onItemClick(notice)
+            binding.myPost = post
+            binding.mypostCl.setOnClickListener {
+                mItemClickListener.onItemClick(post)
             }
         }
     }
@@ -48,11 +49,11 @@ class NoticeAdapter(
     }
 
     companion object {
-        val diffUtil = object : DiffUtil.ItemCallback<NoticeResponse>() {
-            override fun areContentsTheSame(oldItem: NoticeResponse, newItem: NoticeResponse) =
+        val diffUtil = object : DiffUtil.ItemCallback<MyPostList>() {
+            override fun areContentsTheSame(oldItem: MyPostList, newItem: MyPostList) =
                 oldItem == newItem
 
-            override fun areItemsTheSame(oldItem: NoticeResponse, newItem: NoticeResponse) =
+            override fun areItemsTheSame(oldItem: MyPostList, newItem: MyPostList) =
                 oldItem == newItem
         }
     }

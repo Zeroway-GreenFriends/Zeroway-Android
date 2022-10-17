@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.greenfriends.zeroway.presentation.mypage.viewmodel.NoticeViewModel" />
+            type="com.greenfriends.zeroway.presentation.mypage.viewmodel.MyPageViewModel" />
 
         <variable
             name="noticeDetailResponse"

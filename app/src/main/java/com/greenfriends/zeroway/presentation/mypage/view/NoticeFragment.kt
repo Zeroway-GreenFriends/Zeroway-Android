@@ -1,7 +1,6 @@
 package com.greenfriends.zeroway.presentation.mypage.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,11 +11,11 @@ import com.greenfriends.zeroway.data.model.NoticeResponse
 import com.greenfriends.zeroway.databinding.FragmentNoticeBinding
 import com.greenfriends.zeroway.presentation.common.ViewModelFactory
 import com.greenfriends.zeroway.presentation.mypage.adapter.NoticeAdapter
-import com.greenfriends.zeroway.presentation.mypage.viewmodel.NoticeViewModel
+import com.greenfriends.zeroway.presentation.mypage.viewmodel.MyPageViewModel
 
 class NoticeFragment : Fragment() {
 
-    private val viewModel: NoticeViewModel by activityViewModels { ViewModelFactory() }
+    private val viewModel: MyPageViewModel by activityViewModels { ViewModelFactory() }
 
     private lateinit var binding: FragmentNoticeBinding
     private lateinit var noticeAdapter: NoticeAdapter

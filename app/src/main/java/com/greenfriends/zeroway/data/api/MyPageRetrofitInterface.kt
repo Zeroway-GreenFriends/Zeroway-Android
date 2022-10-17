@@ -1,12 +1,16 @@
 package com.greenfriends.zeroway.data.api
 
+import com.greenfriends.zeroway.data.model.MyPostResponse
 import com.greenfriends.zeroway.data.model.NoticeDetailResponse
 import com.greenfriends.zeroway.data.model.NoticeResponse
+import com.greenfriends.zeroway.data.model.TermResponse
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.Path
+import retrofit2.http.Query
 
-interface NoticeRetrofitInterface {
+interface MyPageRetrofitInterface {
 
     /**
      * 공지사항 전체 조회
@@ -22,4 +26,13 @@ interface NoticeRetrofitInterface {
     suspend fun getNoticeDetail(
         @Path("announceId") announceId: Long
     ): Response<NoticeDetailResponse>
+
+
+    @GET("post/user")
+    suspend fun getMyPost(
+        @Header("Bearer") accessToken: String,
+        @Query("page") page: Long? = null,
+        @Query("size") size: Long? = null
+    ): Response<MyPostResponse>
+
 }
