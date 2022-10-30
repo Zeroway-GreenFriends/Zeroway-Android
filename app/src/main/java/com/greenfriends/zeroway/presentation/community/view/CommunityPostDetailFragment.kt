@@ -13,10 +13,7 @@ import com.greenfriends.zeroway.R
 import com.greenfriends.zeroway.data.model.CommunityPostDetailComment
 import com.greenfriends.zeroway.data.model.CommunityPostDetailResponse
 import com.greenfriends.zeroway.databinding.FragmentCommunityPostDetailBinding
-import com.greenfriends.zeroway.presentation.common.EventObserve
-import com.greenfriends.zeroway.presentation.common.GlideApp
-import com.greenfriends.zeroway.presentation.common.POST_ID
-import com.greenfriends.zeroway.presentation.common.ViewModelFactory
+import com.greenfriends.zeroway.presentation.common.*
 import com.greenfriends.zeroway.presentation.community.OnCommunityPostDetailCommentClickListener
 import com.greenfriends.zeroway.presentation.community.OnCommunityPostDetailPostClickListener
 import com.greenfriends.zeroway.presentation.community.adapter.CommunityPostDetailAdapter
@@ -113,10 +110,22 @@ class CommunityPostDetailFragment : Fragment() {
             OnCommunityPostDetailPostClickListener {
 
             override fun deleteCommunityPost(communityPostDetailResponse: CommunityPostDetailResponse) {
-                viewModel.deletePost(
-                    getJwt()!!,
-                    communityPostDetailResponse.postId.toString()
-                )
+                val confirmDialog = ConfirmDialogFragment("게시물을 삭제하시겠습니까?", "삭제된 게시물은 복구할 수 없습니다.")
+                confirmDialog.setOnConfirmDialogClickListener(object :
+                    OnConfirmDialogClickListener {
+
+                    override fun isSuccess(boolean: Boolean) {
+                        if (boolean) {
+                            viewModel.deletePost(
+                                getJwt()!!,
+                                communityPostDetailResponse.postId.toString()
+                            )
+                            Toast.makeText(requireContext(), "게시물이 삭제되었습니다.", Toast.LENGTH_SHORT)
+                                .show()
+                        }
+                    }
+                })
+                confirmDialog.show(parentFragmentManager, "ConfirmDialog")
             }
 
             override fun setCommunityPostLike(communityPostDetailResponse: CommunityPostDetailResponse) {
