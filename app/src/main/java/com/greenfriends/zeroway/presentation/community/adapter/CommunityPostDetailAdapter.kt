@@ -11,9 +11,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.greenfriends.zeroway.R
+import com.greenfriends.zeroway.data.model.CommunityPostDetailResponse
 import com.greenfriends.zeroway.databinding.ItemCommunityExcludeImagePostDetailBinding
 import com.greenfriends.zeroway.databinding.ItemCommunityIncludeImagePostDetailBinding
-import com.greenfriends.zeroway.data.model.CommunityPostDetailResponse
 import com.greenfriends.zeroway.presentation.community.OnCommunityPostDetailPostClickListener
 
 class CommunityPostDetailAdapter(private val context: Context) :
@@ -114,6 +114,9 @@ class CommunityPostDetailAdapter(private val context: Context) :
                     popup.setOnMenuItemClickListener { menuItem ->
                         when (menuItem.itemId) {
                             R.id.menu_option_item_report -> {
+                                onCommunityPostDetailPostClickListener.reportCommunityPost(
+                                    communityPostDetailResponse
+                                )
                             }
                             R.id.menu_option_item_delete -> {
                                 onCommunityPostDetailPostClickListener.deleteCommunityPost(
@@ -184,6 +187,9 @@ class CommunityPostDetailAdapter(private val context: Context) :
                     popup.setOnMenuItemClickListener { menuItem ->
                         when (menuItem.itemId) {
                             R.id.menu_option_item_report -> {
+                                onCommunityPostDetailPostClickListener.reportCommunityPost(
+                                    communityPostDetailResponse
+                                )
                             }
                             R.id.menu_option_item_delete -> {
                                 onCommunityPostDetailPostClickListener.deleteCommunityPost(

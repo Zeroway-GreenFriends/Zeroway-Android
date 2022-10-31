@@ -3,6 +3,7 @@ package com.greenfriends.zeroway.presentation.community.view
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,13 +12,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.greenfriends.zeroway.presentation.common.POST_ID
 import com.greenfriends.zeroway.R
 import com.greenfriends.zeroway.data.model.CommunityPost
 import com.greenfriends.zeroway.databinding.FragmentCommunityBinding
 import com.greenfriends.zeroway.presentation.common.EventObserve
+import com.greenfriends.zeroway.presentation.common.POST_ID
 import com.greenfriends.zeroway.presentation.common.ViewModelFactory
 import com.greenfriends.zeroway.presentation.community.OnCommunityItemClickListener
+import com.greenfriends.zeroway.presentation.community.OnReportDialogClickListener
 import com.greenfriends.zeroway.presentation.community.adapter.CommunityAdapter
 import com.greenfriends.zeroway.presentation.community.viewmodel.CommunityViewModel
 
@@ -169,6 +171,18 @@ class CommunityFragment : Fragment() {
                     communityPost.postId.toString(),
                     communityPost.bookmarked
                 )
+            }
+
+            override fun reportCommunityPost(communityPost: CommunityPost) {
+                val reportDialog = ReportDialogFragment()
+                reportDialog.setOnReportDialogClickListener(object :
+                    OnReportDialogClickListener {
+
+                    override fun onSuccess(isSuccess: Boolean, option: String?) {
+                        Log.d("DDD", option.toString())
+                    }
+                })
+                reportDialog.show(parentFragmentManager, "ReportDialog")
             }
         })
 

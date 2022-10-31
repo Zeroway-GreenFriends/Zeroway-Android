@@ -24,6 +24,7 @@ import com.greenfriends.zeroway.presentation.challenge.viewmodel.ChallengeViewMo
 import com.greenfriends.zeroway.presentation.community.viewmodel.CommunityPostDetailViewModel
 import com.greenfriends.zeroway.presentation.community.viewmodel.CommunityPostRegisterViewModel
 import com.greenfriends.zeroway.presentation.community.viewmodel.CommunityViewModel
+import com.greenfriends.zeroway.presentation.community.viewmodel.ReportDialogViewModel
 import com.greenfriends.zeroway.presentation.home.viewmodel.HomeViewModel
 import com.greenfriends.zeroway.presentation.mypage.viewmodel.MyPageViewModel
 import com.greenfriends.zeroway.presentation.signup.viewmodel.SignUpViewModel
@@ -51,6 +52,7 @@ class ViewModelFactory : ViewModelProvider.Factory {
                     )
                 ) as T
             }
+            modelClass.isAssignableFrom(ReportDialogViewModel::class.java) -> ReportDialogViewModel() as T
             modelClass.isAssignableFrom(StoreViewModel::class.java) -> {
                 StoreViewModel(
                     StoreRepository(
@@ -93,9 +95,7 @@ class ViewModelFactory : ViewModelProvider.Factory {
                     )
                 ) as T
             }
-            else -> {
-                throw java.lang.IllegalArgumentException("Failed to create ViewModel: ${modelClass.name}")
-            }
+            else -> throw IllegalArgumentException("Failed to create ViewModel: ${modelClass.name}")
         }
     }
 }

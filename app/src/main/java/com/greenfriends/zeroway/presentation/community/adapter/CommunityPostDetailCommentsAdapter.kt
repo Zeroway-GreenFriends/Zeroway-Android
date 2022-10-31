@@ -5,9 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.greenfriends.zeroway.databinding.ItemCommunityPostCommentsBinding
 import com.greenfriends.zeroway.data.model.CommunityPostDetailComment
 import com.greenfriends.zeroway.data.model.CommunityPostDetailResponse
+import com.greenfriends.zeroway.databinding.ItemCommunityPostCommentsBinding
 import com.greenfriends.zeroway.presentation.community.OnCommunityPostDetailCommentClickListener
 
 class CommunityPostDetailCommentsAdapter :
@@ -48,14 +48,20 @@ class CommunityPostDetailCommentsAdapter :
             communityPostDetailCommentAdapter.setOnCommunityPostDetailCommentClickListener(object :
                 OnCommunityPostDetailCommentClickListener {
 
+                override fun setCommunityPostCommentLike(communityPostDetailComment: CommunityPostDetailComment) {
+                    onCommunityPostDetailCommentClickListener.setCommunityPostCommentLike(
+                        communityPostDetailComment
+                    )
+                }
+
                 override fun deleteCommunityPostComment(communityPostDetailComment: CommunityPostDetailComment) {
                     onCommunityPostDetailCommentClickListener.deleteCommunityPostComment(
                         communityPostDetailComment
                     )
                 }
 
-                override fun setCommunityPostCommentLike(communityPostDetailComment: CommunityPostDetailComment) {
-                    onCommunityPostDetailCommentClickListener.setCommunityPostCommentLike(
+                override fun reportCommunityPostComment(communityPostDetailComment: CommunityPostDetailComment) {
+                    onCommunityPostDetailCommentClickListener.reportCommunityPostComment(
                         communityPostDetailComment
                     )
                 }
