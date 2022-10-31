@@ -13,12 +13,6 @@ interface CommunityPostDetailDataSource {
         postId: String
     ): Response<CommunityPostDetailResponse>
 
-    suspend fun setPostComment(
-        accessToken: String,
-        postId: String,
-        content: CommunityPostCommentRequest
-    ): Response<Void>
-
     suspend fun setPostLike(
         accessToken: String,
         postId: String,
@@ -36,9 +30,20 @@ interface CommunityPostDetailDataSource {
         postId: String
     ): Response<Void>
 
+    suspend fun setPostComment(
+        accessToken: String,
+        postId: String,
+        content: CommunityPostCommentRequest
+    ): Response<Void>
+
     suspend fun setPostCommentLike(
         accessToken: String,
         commentId: String,
         like: CommunityLikeRequest
+    ): Response<Void>
+
+    suspend fun deletePostComment(
+        accessToken: String,
+        commentId: String
     ): Response<Void>
 }

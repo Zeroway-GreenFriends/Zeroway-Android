@@ -16,14 +16,6 @@ class CommunityPostDetailRepository(private val communityPostDetailDataSourceImp
         return communityPostDetailDataSourceImpl.getPostDetail(accessToken, postId)
     }
 
-    suspend fun setPostComment(
-        accessToken: String,
-        postId: String,
-        content: CommunityPostCommentRequest
-    ): Response<Void> {
-        return communityPostDetailDataSourceImpl.setPostComment(accessToken, postId, content)
-    }
-
     suspend fun setPostLike(
         accessToken: String,
         postId: String,
@@ -50,5 +42,17 @@ class CommunityPostDetailRepository(private val communityPostDetailDataSourceImp
         like: CommunityLikeRequest
     ): Response<Void> {
         return communityPostDetailDataSourceImpl.setPostCommentLike(accessToken, commentId, like)
+    }
+
+    suspend fun setPostComment(
+        accessToken: String,
+        postId: String,
+        content: CommunityPostCommentRequest
+    ): Response<Void> {
+        return communityPostDetailDataSourceImpl.setPostComment(accessToken, postId, content)
+    }
+
+    suspend fun deletePostComment(accessToken: String, commentId: String): Response<Void> {
+        return communityPostDetailDataSourceImpl.deletePostComment(accessToken, commentId)
     }
 }
