@@ -23,4 +23,9 @@
     <string name="detail">더보기</string>
     <string name="store_exception">제공되지 않는 정보입니다.</string>
     <string name="store">제로웨이스트 샵</string>
+    <string name="report_option_1">욕설/비하</string>
+    <string name="report_option_2">음란물/불건전한 만남 및 대화</string>
+    <string name="report_option_3">유출/사칭/사기</string>
+    <string name="report_option_4">상업적 광고 및 판매</string>
+    <string name="report_option_5">낚시/도배</string>
 </resources>
