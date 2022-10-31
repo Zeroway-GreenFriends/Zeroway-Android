@@ -49,7 +49,9 @@ class CommunityPostDetailCommentsAdapter :
                 OnCommunityPostDetailCommentClickListener {
 
                 override fun deleteCommunityPostComment(communityPostDetailComment: CommunityPostDetailComment) {
-                    TODO("Not yet implemented")
+                    onCommunityPostDetailCommentClickListener.deleteCommunityPostComment(
+                        communityPostDetailComment
+                    )
                 }
 
                 override fun setCommunityPostCommentLike(communityPostDetailComment: CommunityPostDetailComment) {

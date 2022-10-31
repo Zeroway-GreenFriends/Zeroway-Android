@@ -87,6 +87,17 @@ class CommunityPostDetailFragment : Fragment() {
                 }
             }
         )
+
+        viewModel.communityPostDetailCommentDeleteEvent.observe(
+            viewLifecycleOwner, EventObserve { isDeleted ->
+                if (isDeleted) {
+                    Toast.makeText(requireContext(), "댓글이 삭제되었습니다.", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(requireContext(), "해당 댓글 삭제 권한이 없습니다.", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
+        )
     }
 
     private fun setOnClickListener() {
@@ -120,8 +131,6 @@ class CommunityPostDetailFragment : Fragment() {
                                 getJwt()!!,
                                 communityPostDetailResponse.postId.toString()
                             )
-                            Toast.makeText(requireContext(), "게시물이 삭제되었습니다.", Toast.LENGTH_SHORT)
-                                .show()
                         }
                     }
                 })
@@ -149,7 +158,20 @@ class CommunityPostDetailFragment : Fragment() {
             OnCommunityPostDetailCommentClickListener {
 
             override fun deleteCommunityPostComment(communityPostDetailComment: CommunityPostDetailComment) {
-                TODO("Not yet implemented")
+                val confirmDialog = ConfirmDialogFragment("댓글을 삭제하시겠습니까?", "삭제된 댓글은 복구할 수 없습니다.")
+                confirmDialog.setOnConfirmDialogClickListener(object :
+                    OnConfirmDialogClickListener {
+
+                    override fun isSuccess(boolean: Boolean) {
+                        if (boolean) {
+                            viewModel.deletePostComment(
+                                getJwt()!!,
+                                communityPostDetailComment.commentId.toString()
+                            )
+                        }
+                    }
+                })
+                confirmDialog.show(parentFragmentManager, "ConfirmDialog")
             }
 
             override fun setCommunityPostCommentLike(communityPostDetailComment: CommunityPostDetailComment) {
