@@ -143,8 +143,8 @@ class CommunityPostDetailFragment : Fragment() {
                 confirmDialog.setOnConfirmDialogClickListener(object :
                     OnConfirmDialogClickListener {
 
-                    override fun isSuccess(boolean: Boolean) {
-                        if (boolean) {
+                    override fun onSuccess(isSuccess: Boolean) {
+                        if (isSuccess) {
                             viewModel.deletePost(
                                 getJwt()!!,
                                 communityPostDetailResponse.postId.toString()
@@ -184,8 +184,8 @@ class CommunityPostDetailFragment : Fragment() {
                 confirmDialog.setOnConfirmDialogClickListener(object :
                     OnConfirmDialogClickListener {
 
-                    override fun isSuccess(boolean: Boolean) {
-                        if (boolean) {
+                    override fun onSuccess(isSuccess: Boolean) {
+                        if (isSuccess) {
                             viewModel.deletePostComment(
                                 getJwt()!!,
                                 communityPostDetailComment.commentId.toString()

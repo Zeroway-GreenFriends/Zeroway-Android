@@ -82,11 +82,11 @@ class ConfirmDialogFragment(
     private fun setOnClickListener() {
         with(binding) {
             confirmDialogBtn.setOnClickListener {
-                onConfirmDialogClickListener.isSuccess(true)
+                onConfirmDialogClickListener.onSuccess(true)
                 dismiss()
             }
             confirmDialogCloseIv.setOnClickListener {
-                onConfirmDialogClickListener.isSuccess(false)
+                onConfirmDialogClickListener.onSuccess(false)
                 dismiss()
             }
         }
