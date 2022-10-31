@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="java.util.Map" />
+
+        <variable
+            name="viewModel"
+            type="com.greenfriends.zeroway.presentation.community.viewmodel.ReportDialogViewModel" />
+
+        <variable
+            name="options"
+            type="Map&lt;String, Boolean&gt;" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_community_post_background">
+
+        <ImageView
+            android:id="@+id/report_dialog_close_iv"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:padding="12dp"
+            android:src="@drawable/ic_close_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/report_dialog_option_1_tv"
+            style="@style/Text16"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:maxLines="1"
+            android:paddingHorizontal="40dp"
+            android:text="@string/report_option_1"
+            android:textColor="@{options[@string/report_option_1] ? @color/zeroway_mint : @color/zeroway_black}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/report_dialog_close_iv" />
+
+        <TextView
+            android:id="@+id/report_dialog_option_2_tv"
+            style="@style/Text16"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:maxLines="1"
+            android:paddingHorizontal="40dp"
+            android:text="@string/report_option_2"
+            android:textColor="@{options[@string/report_option_2] ? @color/zeroway_mint : @color/zeroway_black}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/report_dialog_option_1_tv" />
+
+        <TextView
+            android:id="@+id/report_dialog_option_3_tv"
+            style="@style/Text16"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:maxLines="1"
+            android:paddingHorizontal="40dp"
+            android:text="@string/report_option_3"
+            android:textColor="@{options[@string/report_option_3] ? @color/zeroway_mint : @color/zeroway_black}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/report_dialog_option_2_tv" />
+
+        <TextView
+            android:id="@+id/report_dialog_option_4_tv"
+            style="@style/Text16"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:maxLines="1"
+            android:paddingHorizontal="40dp"
+            android:text="@string/report_option_4"
+            android:textColor="@{options[@string/report_option_4] ? @color/zeroway_mint : @color/zeroway_black}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/report_dialog_option_3_tv" />
+
+        <TextView
+            android:id="@+id/report_dialog_option_5_tv"
+            style="@style/Text16"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:maxLines="1"
+            android:paddingHorizontal="40dp"
+            android:text="@string/report_option_5"
+            android:textColor="@{options[@string/report_option_5] ? @color/zeroway_mint : @color/zeroway_black}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/report_dialog_option_4_tv" />
+
+        <Button
+            android:id="@+id/report_dialog_btn"
+            style="@style/Text16"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/ic_community_post_background"
+            android:backgroundTint="@color/zeroway_mint"
+            android:text="@string/confirm"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/report_dialog_option_5_tv" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
