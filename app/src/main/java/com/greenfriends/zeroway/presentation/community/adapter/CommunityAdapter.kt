@@ -148,6 +148,7 @@ class CommunityAdapter(
                     popup.setOnMenuItemClickListener { menuItem ->
                         when (menuItem.itemId) {
                             R.id.menu_option_report_item_report -> {
+                                onCommunityItemClickListener.reportCommunityPost(communityPost)
                             }
                             else -> TODO()
                         }
@@ -210,6 +211,7 @@ class CommunityAdapter(
                     popup.setOnMenuItemClickListener { menuItem ->
                         when (menuItem.itemId) {
                             R.id.menu_option_report_item_report -> {
+                                onCommunityItemClickListener.reportCommunityPost(communityPost)
                             }
                             else -> TODO()
                         }

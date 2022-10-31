@@ -6,4 +6,5 @@ interface OnCommunityItemClickListener {
 
     fun setCommunityPostLike(communityPost: CommunityPost)
     fun setCommunityPostBookmark(communityPost: CommunityPost)
+    fun reportCommunityPost(communityPost: CommunityPost)
 }
