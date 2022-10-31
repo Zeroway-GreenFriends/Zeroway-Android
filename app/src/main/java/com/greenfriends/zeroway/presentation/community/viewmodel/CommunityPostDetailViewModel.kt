@@ -17,17 +17,24 @@ class CommunityPostDetailViewModel(private val communityPostDetailRepository: Co
     ViewModel() {
 
     private val _postId = MutableLiveData<String>()
-    val postId: LiveData<String> = _postId
+    val postId: LiveData<String>
+        get() = _postId
 
     private val _communityPostDetailResponse = MutableLiveData<CommunityPostDetailResponse>()
-    val communityPostDetailResponse: LiveData<CommunityPostDetailResponse> =
-        _communityPostDetailResponse
+    val communityPostDetailResponse: LiveData<CommunityPostDetailResponse>
+        get() = _communityPostDetailResponse
 
     private val _commentRegisterEvent = MutableLiveData<Event<CommunityPostCommentRequest>>()
-    val commentRegisterEvent: LiveData<Event<CommunityPostCommentRequest>> = _commentRegisterEvent
+    val commentRegisterEvent: LiveData<Event<CommunityPostCommentRequest>>
+        get() = _commentRegisterEvent
 
     private val _communityPostDetailDeleteEvent = MutableLiveData<Event<Boolean>>()
-    val communityPostDetailDeleteEvent: LiveData<Event<Boolean>> = _communityPostDetailDeleteEvent
+    val communityPostDetailDeleteEvent: LiveData<Event<Boolean>>
+        get() = _communityPostDetailDeleteEvent
+
+    private val _communityPostDetailCommentDeleteEvent = MutableLiveData<Event<Boolean>>()
+    val communityPostDetailCommentDeleteEvent: LiveData<Event<Boolean>>
+        get() = _communityPostDetailCommentDeleteEvent
 
     fun setPostId(postId: String) {
         _postId.value = postId
@@ -39,19 +46,6 @@ class CommunityPostDetailViewModel(private val communityPostDetailRepository: Co
 
     fun setCommentRegisterEvent(comment: String) {
         _commentRegisterEvent.value = Event(CommunityPostCommentRequest(comment))
-    }
-
-    fun setPostComment(accessToken: String, postId: String, content: CommunityPostCommentRequest) {
-        viewModelScope.launch {
-            val response =
-                communityPostDetailRepository.setPostComment(accessToken, postId, content)
-            if (response.isSuccessful) {
-                Log.d("COMMUNITY/COMMENT/T", response.body().toString())
-                getPostDetail(accessToken, postId)
-            } else {
-                Log.d("COMMUNITY/COMMENT/F", response.errorBody()?.string()!!)
-            }
-        }
     }
 
     fun getPostDetail(accessToken: String, postId: String) {
@@ -116,6 +110,19 @@ class CommunityPostDetailViewModel(private val communityPostDetailRepository: Co
         }
     }
 
+    fun setPostComment(accessToken: String, postId: String, content: CommunityPostCommentRequest) {
+        viewModelScope.launch {
+            val response =
+                communityPostDetailRepository.setPostComment(accessToken, postId, content)
+            if (response.isSuccessful) {
+                Log.d("COMMUNITY/COMMENT/T", response.body().toString())
+                getPostDetail(accessToken, postId)
+            } else {
+                Log.d("COMMUNITY/COMMENT/F", response.errorBody()?.string()!!)
+            }
+        }
+    }
+
     fun setPostCommentLike(accessToken: String, commentId: String, like: Boolean) {
         viewModelScope.launch {
             val response = communityPostDetailRepository.setPostCommentLike(
@@ -127,6 +134,29 @@ class CommunityPostDetailViewModel(private val communityPostDetailRepository: Co
                 Log.d("COMMUNITY/LIKE/T", response.body().toString())
             } else {
                 Log.d("COMMUNITY/LIKE/F", response.errorBody()?.string()!!)
+            }
+        }
+    }
+
+    fun deletePostComment(accessToken: String, commentId: String) {
+        viewModelScope.launch {
+            Log.d("SSS", "$accessToken $commentId")
+            val response = communityPostDetailRepository.deletePostComment(
+                accessToken,
+                commentId
+            )
+            when {
+                response.isSuccessful -> {
+                    _communityPostDetailCommentDeleteEvent.value = Event(true)
+                    Log.d("COMMUNITY/DELETE/T", response.body().toString())
+                    getPostDetail(accessToken, getPostId()!!)
+                }
+                response.code() == 401 -> {
+                    _communityPostDetailCommentDeleteEvent.value = Event(false)
+                }
+                else -> {
+                    Log.d("COMMUNITY/DELETE/F", response.errorBody()?.string()!!)
+                }
             }
         }
     }

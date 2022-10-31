@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.greenfriends.zeroway.R
-import com.greenfriends.zeroway.databinding.ItemCommunityPostCommentBinding
 import com.greenfriends.zeroway.data.model.CommunityPostDetailComment
+import com.greenfriends.zeroway.databinding.ItemCommunityPostCommentBinding
 import com.greenfriends.zeroway.presentation.community.OnCommunityPostDetailCommentClickListener
 
 class CommunityPostDetailCommentAdapter :
@@ -49,15 +49,22 @@ class CommunityPostDetailCommentAdapter :
                     communityPostDetailComment.liked = !communityPostDetailComment.liked
                     if (communityPostDetailComment.liked) {
                         itemCommunityPostCommentLikeIv.setImageResource(R.drawable.ic_like_on)
-                        (itemCommunityPostCommentLikeCountTv.text.substring(0).toInt() + 1).toString()
+                        (itemCommunityPostCommentLikeCountTv.text.substring(0)
+                            .toInt() + 1).toString()
                             .also { itemCommunityPostCommentLikeCountTv.text = it }
                     } else {
                         itemCommunityPostCommentLikeIv.setImageResource(R.drawable.ic_like_off)
-                        (itemCommunityPostCommentLikeCountTv.text.substring(0).toInt() - 1).toString()
+                        (itemCommunityPostCommentLikeCountTv.text.substring(0)
+                            .toInt() - 1).toString()
                             .also { itemCommunityPostCommentLikeCountTv.text = it }
                     }
-
                     onCommunityPostDetailCommentClickListener.setCommunityPostCommentLike(
+                        communityPostDetailComment
+                    )
+                }
+
+                itemCommunityPostCommentDeleteTv.setOnClickListener {
+                    onCommunityPostDetailCommentClickListener.deleteCommunityPostComment(
                         communityPostDetailComment
                     )
                 }

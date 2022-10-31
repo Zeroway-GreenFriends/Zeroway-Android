@@ -42,16 +42,6 @@ interface CommunityRetrofitInterface {
     ): Response<CommunityPostDetailResponse>
 
     /**
-     * 커뮤니티 게시물 댓글 작성 API
-     */
-    @POST("post/{postId}/comment")
-    suspend fun setPostComment(
-        @Header("Bearer") accessToken: String,
-        @Path("postId") postId: String,
-        @Body content: CommunityPostCommentRequest
-    ): Response<Void>
-
-    /**
      * 커뮤니티 게시물 좋아요 API
      */
     @POST("post/{postId}/like")
@@ -81,6 +71,16 @@ interface CommunityRetrofitInterface {
     ): Response<Void>
 
     /**
+     * 커뮤니티 게시물 댓글 작성 API
+     */
+    @POST("post/{postId}/comment")
+    suspend fun setPostComment(
+        @Header("Bearer") accessToken: String,
+        @Path("postId") postId: String,
+        @Body content: CommunityPostCommentRequest
+    ): Response<Void>
+
+    /**
      * 커뮤니티 게시물 댓글 좋아요 API
      */
     @POST("comment/{commentId}/like")
@@ -88,5 +88,14 @@ interface CommunityRetrofitInterface {
         @Header("Bearer") accessToken: String,
         @Path("commentId") commentId: String,
         @Body like: CommunityLikeRequest
+    ): Response<Void>
+
+    /**
+     * 커뮤니티 게시물 댓글 삭제 API
+     */
+    @PATCH("comment/{commentId}/delete")
+    suspend fun deletePostComment(
+        @Header("Bearer") accessToken: String,
+        @Path("commentId") commentId: String
     ): Response<Void>
 }
