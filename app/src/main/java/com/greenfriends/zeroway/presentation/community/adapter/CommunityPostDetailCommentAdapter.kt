@@ -68,6 +68,12 @@ class CommunityPostDetailCommentAdapter :
                         communityPostDetailComment
                     )
                 }
+
+                itemCommunityPostCommentReportTv.setOnClickListener {
+                    onCommunityPostDetailCommentClickListener.reportCommunityPostComment(
+                        communityPostDetailComment
+                    )
+                }
             }
         }
     }

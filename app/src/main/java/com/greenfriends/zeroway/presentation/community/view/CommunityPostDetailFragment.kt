@@ -1,6 +1,7 @@
 package com.greenfriends.zeroway.presentation.community.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +17,7 @@ import com.greenfriends.zeroway.databinding.FragmentCommunityPostDetailBinding
 import com.greenfriends.zeroway.presentation.common.*
 import com.greenfriends.zeroway.presentation.community.OnCommunityPostDetailCommentClickListener
 import com.greenfriends.zeroway.presentation.community.OnCommunityPostDetailPostClickListener
+import com.greenfriends.zeroway.presentation.community.OnReportDialogClickListener
 import com.greenfriends.zeroway.presentation.community.adapter.CommunityPostDetailAdapter
 import com.greenfriends.zeroway.presentation.community.adapter.CommunityPostDetailCommentsAdapter
 import com.greenfriends.zeroway.presentation.community.viewmodel.CommunityPostDetailViewModel
@@ -120,6 +122,22 @@ class CommunityPostDetailFragment : Fragment() {
         communityPostDetailAdapter.setOnCommunityPostDetailPostClickListener(object :
             OnCommunityPostDetailPostClickListener {
 
+            override fun setCommunityPostLike(communityPostDetailResponse: CommunityPostDetailResponse) {
+                viewModel.setPostLike(
+                    getJwt()!!,
+                    communityPostDetailResponse.postId.toString(),
+                    communityPostDetailResponse.liked
+                )
+            }
+
+            override fun setCommunityPostBookmark(communityPostDetailResponse: CommunityPostDetailResponse) {
+                viewModel.setPostBookmark(
+                    getJwt()!!,
+                    communityPostDetailResponse.postId.toString(),
+                    communityPostDetailResponse.bookmarked
+                )
+            }
+
             override fun deleteCommunityPost(communityPostDetailResponse: CommunityPostDetailResponse) {
                 val confirmDialog = ConfirmDialogFragment("게시물을 삭제하시겠습니까?", "삭제된 게시물은 복구할 수 없습니다.")
                 confirmDialog.setOnConfirmDialogClickListener(object :
@@ -137,25 +155,29 @@ class CommunityPostDetailFragment : Fragment() {
                 confirmDialog.show(parentFragmentManager, "ConfirmDialog")
             }
 
-            override fun setCommunityPostLike(communityPostDetailResponse: CommunityPostDetailResponse) {
-                viewModel.setPostLike(
-                    getJwt()!!,
-                    communityPostDetailResponse.postId.toString(),
-                    communityPostDetailResponse.liked
-                )
-            }
+            override fun reportCommunityPost(communityPostDetailResponse: CommunityPostDetailResponse) {
+                val reportDialog = ReportDialogFragment()
+                reportDialog.setOnReportDialogClickListener(object :
+                    OnReportDialogClickListener {
 
-            override fun setCommunityPostBookmark(communityPostDetailResponse: CommunityPostDetailResponse) {
-                viewModel.setPostBookmark(
-                    getJwt()!!,
-                    communityPostDetailResponse.postId.toString(),
-                    communityPostDetailResponse.bookmarked
-                )
+                    override fun onSuccess(isSuccess: Boolean, option: String?) {
+                        Log.d("DDD", option.toString())
+                    }
+                })
+                reportDialog.show(parentFragmentManager, "ReportDialog")
             }
         })
 
         communityPostDetailCommentsAdapter.setOnCommunityPostDetailCommentClickListener(object :
             OnCommunityPostDetailCommentClickListener {
+
+            override fun setCommunityPostCommentLike(communityPostDetailComment: CommunityPostDetailComment) {
+                viewModel.setPostCommentLike(
+                    getJwt()!!,
+                    communityPostDetailComment.commentId.toString(),
+                    communityPostDetailComment.liked
+                )
+            }
 
             override fun deleteCommunityPostComment(communityPostDetailComment: CommunityPostDetailComment) {
                 val confirmDialog = ConfirmDialogFragment("댓글을 삭제하시겠습니까?", "삭제된 댓글은 복구할 수 없습니다.")
@@ -174,12 +196,16 @@ class CommunityPostDetailFragment : Fragment() {
                 confirmDialog.show(parentFragmentManager, "ConfirmDialog")
             }
 
-            override fun setCommunityPostCommentLike(communityPostDetailComment: CommunityPostDetailComment) {
-                viewModel.setPostCommentLike(
-                    getJwt()!!,
-                    communityPostDetailComment.commentId.toString(),
-                    communityPostDetailComment.liked
-                )
+            override fun reportCommunityPostComment(communityPostDetailComment: CommunityPostDetailComment) {
+                val reportDialog = ReportDialogFragment()
+                reportDialog.setOnReportDialogClickListener(object :
+                    OnReportDialogClickListener {
+
+                    override fun onSuccess(isSuccess: Boolean, option: String?) {
+                        Log.d("DDD", option.toString())
+                    }
+                })
+                reportDialog.show(parentFragmentManager, "ReportDialog")
             }
         })
     }

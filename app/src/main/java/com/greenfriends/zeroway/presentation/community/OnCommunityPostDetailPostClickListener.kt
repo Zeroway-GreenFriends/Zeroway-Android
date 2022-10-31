@@ -4,7 +4,8 @@ import com.greenfriends.zeroway.data.model.CommunityPostDetailResponse
 
 interface OnCommunityPostDetailPostClickListener {
 
-    fun deleteCommunityPost(communityPostDetailResponse: CommunityPostDetailResponse)
     fun setCommunityPostLike(communityPostDetailResponse: CommunityPostDetailResponse)
     fun setCommunityPostBookmark(communityPostDetailResponse: CommunityPostDetailResponse)
+    fun deleteCommunityPost(communityPostDetailResponse: CommunityPostDetailResponse)
+    fun reportCommunityPost(communityPostDetailResponse: CommunityPostDetailResponse)
 }
