@@ -76,3 +76,8 @@ data class CommunityPostLikeList(
     @SerializedName("userProfileImg") val userProfileImg: String,
     @SerializedName("level") val userLevel: Int
 )
+
+data class CommunityReportRequest(
+    @SerializedName("targetId") val targetId: Long,
+    @SerializedName("type") val content: String
+)
