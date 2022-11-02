@@ -13,35 +13,33 @@ import android.provider.Settings
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
+import com.greenfriends.zeroway.R
 import com.greenfriends.zeroway.data.model.User
 import com.greenfriends.zeroway.databinding.ActivitySignUpBinding
 import com.greenfriends.zeroway.presentation.MainActivity
 import com.greenfriends.zeroway.presentation.common.ViewModelFactory
 import com.greenfriends.zeroway.presentation.signup.viewmodel.SignUpViewModel
+import com.greenfriends.zeroway.util.binding.BindingActivity
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 
-class SignUpActivity : AppCompatActivity() {
+class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_sign_up) {
 
     private val viewModel: SignUpViewModel by viewModels { ViewModelFactory() }
-    private lateinit var binding: ActivitySignUpBinding
     private lateinit var launcher: ActivityResultLauncher<Intent>
     private var gson = Gson()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySignUpBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
         binding.lifecycleOwner = this
 
-        setObserve()
+        setObservers()
         setEmailAndProvider()
         setPermission()
         setActivityResultLauncher()
@@ -50,7 +48,7 @@ class SignUpActivity : AppCompatActivity() {
         authentication()
     }
 
-    private fun setObserve() {
+    private fun setObservers() {
         viewModel.idCheck.observe(
             this
         ) { idCheck ->
