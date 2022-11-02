@@ -1,35 +1,25 @@
 package com.greenfriends.zeroway.presentation.store.view
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.greenfriends.zeroway.R
 import com.greenfriends.zeroway.databinding.FragmentStorePostDetailBinding
-import com.greenfriends.zeroway.util.STORE_ID
 import com.greenfriends.zeroway.presentation.common.ViewModelFactory
 import com.greenfriends.zeroway.presentation.store.viewmodel.StorePostDetailViewModel
+import com.greenfriends.zeroway.util.STORE_ID
+import com.greenfriends.zeroway.util.binding.BindingFragment
 
-class StorePostDetailFragment : Fragment() {
+class StorePostDetailFragment :
+    BindingFragment<FragmentStorePostDetailBinding>(R.layout.fragment_store_post_detail) {
 
     private val viewModel: StorePostDetailViewModel by viewModels { ViewModelFactory() }
-    private lateinit var binding: FragmentStorePostDetailBinding
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentStorePostDetailBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.lifecycleOwner = viewLifecycleOwner
+
         setStoreId()
         setObservers()
         setNavigation()

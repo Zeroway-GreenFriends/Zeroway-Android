@@ -3,35 +3,23 @@ package com.greenfriends.zeroway.presentation.store.view
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.greenfriends.zeroway.R
 import com.greenfriends.zeroway.databinding.FragmentStoreBinding
-import com.greenfriends.zeroway.util.EventObserver
-import com.greenfriends.zeroway.util.STORE_ID
 import com.greenfriends.zeroway.presentation.common.ViewModelFactory
 import com.greenfriends.zeroway.presentation.store.adapter.StoreAdapter
 import com.greenfriends.zeroway.presentation.store.viewmodel.StoreViewModel
+import com.greenfriends.zeroway.util.EventObserver
+import com.greenfriends.zeroway.util.STORE_ID
+import com.greenfriends.zeroway.util.binding.BindingFragment
 
-class StoreFragment : Fragment() {
+class StoreFragment : BindingFragment<FragmentStoreBinding>(R.layout.fragment_store) {
 
     private val viewModel: StoreViewModel by viewModels { ViewModelFactory() }
-    private lateinit var binding: FragmentStoreBinding
     private lateinit var adapter: StoreAdapter
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentStoreBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
