@@ -1,12 +1,9 @@
 package com.greenfriends.zeroway.presentation.community.view
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.ConcatAdapter
 import com.greenfriends.zeroway.R
@@ -14,7 +11,9 @@ import com.greenfriends.zeroway.data.model.CommunityPostDetailComment
 import com.greenfriends.zeroway.data.model.CommunityPostDetailResponse
 import com.greenfriends.zeroway.data.model.CommunityReportRequest
 import com.greenfriends.zeroway.databinding.FragmentCommunityPostDetailBinding
-import com.greenfriends.zeroway.presentation.common.*
+import com.greenfriends.zeroway.presentation.common.ConfirmDialogFragment
+import com.greenfriends.zeroway.presentation.common.OnConfirmDialogClickListener
+import com.greenfriends.zeroway.presentation.common.ViewModelFactory
 import com.greenfriends.zeroway.presentation.community.OnCommunityPostDetailCommentClickListener
 import com.greenfriends.zeroway.presentation.community.OnCommunityPostDetailPostClickListener
 import com.greenfriends.zeroway.presentation.community.OnReportDialogClickListener
@@ -24,22 +23,14 @@ import com.greenfriends.zeroway.presentation.community.viewmodel.CommunityPostDe
 import com.greenfriends.zeroway.util.EventObserver
 import com.greenfriends.zeroway.util.GlideApp
 import com.greenfriends.zeroway.util.POST_ID
+import com.greenfriends.zeroway.util.binding.BindingFragment
 
-class CommunityPostDetailFragment : Fragment() {
+class CommunityPostDetailFragment :
+    BindingFragment<FragmentCommunityPostDetailBinding>(R.layout.fragment_community_post_detail) {
 
     private val viewModel: CommunityPostDetailViewModel by viewModels { ViewModelFactory() }
-    private lateinit var binding: FragmentCommunityPostDetailBinding
     private lateinit var communityPostDetailAdapter: CommunityPostDetailAdapter
     private lateinit var communityPostDetailCommentsAdapter: CommunityPostDetailCommentsAdapter
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentCommunityPostDetailBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

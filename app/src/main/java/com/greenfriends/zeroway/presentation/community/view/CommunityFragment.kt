@@ -3,12 +3,9 @@ package com.greenfriends.zeroway.presentation.community.view
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,28 +13,19 @@ import com.greenfriends.zeroway.R
 import com.greenfriends.zeroway.data.model.CommunityPost
 import com.greenfriends.zeroway.data.model.CommunityReportRequest
 import com.greenfriends.zeroway.databinding.FragmentCommunityBinding
-import com.greenfriends.zeroway.util.EventObserver
-import com.greenfriends.zeroway.util.POST_ID
 import com.greenfriends.zeroway.presentation.common.ViewModelFactory
 import com.greenfriends.zeroway.presentation.community.OnCommunityItemClickListener
 import com.greenfriends.zeroway.presentation.community.OnReportDialogClickListener
 import com.greenfriends.zeroway.presentation.community.adapter.CommunityAdapter
 import com.greenfriends.zeroway.presentation.community.viewmodel.CommunityViewModel
+import com.greenfriends.zeroway.util.EventObserver
+import com.greenfriends.zeroway.util.POST_ID
+import com.greenfriends.zeroway.util.binding.BindingFragment
 
-class CommunityFragment : Fragment() {
+class CommunityFragment : BindingFragment<FragmentCommunityBinding>(R.layout.fragment_community) {
 
     private val viewModel: CommunityViewModel by viewModels { ViewModelFactory() }
-    private lateinit var binding: FragmentCommunityBinding
     private lateinit var adapter: CommunityAdapter
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentCommunityBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

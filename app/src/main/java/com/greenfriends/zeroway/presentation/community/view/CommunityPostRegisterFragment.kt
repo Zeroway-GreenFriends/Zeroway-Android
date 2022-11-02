@@ -10,14 +10,11 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.provider.Settings
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.google.gson.Gson
 import com.greenfriends.zeroway.R
@@ -26,28 +23,20 @@ import com.greenfriends.zeroway.databinding.FragmentCommunityPostRegisterBinding
 import com.greenfriends.zeroway.presentation.common.ViewModelFactory
 import com.greenfriends.zeroway.presentation.community.adapter.CommunityPostRegisterAdapter
 import com.greenfriends.zeroway.presentation.community.viewmodel.CommunityPostRegisterViewModel
+import com.greenfriends.zeroway.util.binding.BindingFragment
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 
-class CommunityPostRegisterFragment : Fragment() {
+class CommunityPostRegisterFragment :
+    BindingFragment<FragmentCommunityPostRegisterBinding>(R.layout.fragment_community_post_register) {
 
     private val viewModel: CommunityPostRegisterViewModel by viewModels { ViewModelFactory() }
-    private lateinit var binding: FragmentCommunityPostRegisterBinding
     private lateinit var launcher: ActivityResultLauncher<Intent>
     private lateinit var adapter: CommunityPostRegisterAdapter
     private val gson = Gson()
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentCommunityPostRegisterBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
