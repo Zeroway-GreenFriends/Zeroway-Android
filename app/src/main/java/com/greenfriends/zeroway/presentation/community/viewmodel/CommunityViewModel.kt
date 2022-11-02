@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.greenfriends.zeroway.data.model.CommunityLikeRequest
 import com.greenfriends.zeroway.data.model.CommunityPost
 import com.greenfriends.zeroway.data.model.CommunityPostBookmarkRequest
+import com.greenfriends.zeroway.data.model.CommunityReportRequest
 import com.greenfriends.zeroway.data.repository.community.CommunityRepository
 import com.greenfriends.zeroway.presentation.common.Event
 import kotlinx.coroutines.launch
@@ -34,6 +35,10 @@ class CommunityViewModel(private val communityRepository: CommunityRepository) :
 
     private val _communityPostDetailEvent = MutableLiveData<Event<Long>>()
     val communityPostDetailEvent: LiveData<Event<Long>> = _communityPostDetailEvent
+
+    private val _communityPostReportEvent = MutableLiveData<Event<Boolean>>()
+    val communityPostReportEvent: LiveData<Event<Boolean>>
+        get() = _communityPostReportEvent
 
     fun setSort(sort: String) {
         _sort.value = sort
@@ -123,6 +128,18 @@ class CommunityViewModel(private val communityRepository: CommunityRepository) :
                 Log.d("COMMUNITY/BOOKMARK/T", response.body().toString())
             } else {
                 Log.d("COMMUNITY/BOOKMARK/F", response.errorBody()?.string()!!)
+            }
+        }
+    }
+
+    fun reportPost(accessToken: String, reportReq: CommunityReportRequest) {
+        viewModelScope.launch {
+            val response = communityRepository.reportPost(accessToken, reportReq)
+            if (response.isSuccessful) {
+                _communityPostReportEvent.value = Event(true)
+                Log.d("COMMUNITY/REPORT/T", response.body().toString())
+            } else {
+                Log.d("COMMUNITY/REPORT/F", response.errorBody()?.string()!!)
             }
         }
     }

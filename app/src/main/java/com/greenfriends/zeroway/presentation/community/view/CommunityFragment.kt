@@ -3,10 +3,10 @@ package com.greenfriends.zeroway.presentation.community.view
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.greenfriends.zeroway.R
 import com.greenfriends.zeroway.data.model.CommunityPost
+import com.greenfriends.zeroway.data.model.CommunityReportRequest
 import com.greenfriends.zeroway.databinding.FragmentCommunityBinding
 import com.greenfriends.zeroway.presentation.common.EventObserve
 import com.greenfriends.zeroway.presentation.common.POST_ID
@@ -44,7 +45,7 @@ class CommunityFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
 
         getPosts(isInit = true, state = getState())
-        setObserve()
+        setObservers()
         setOnClickListener()
         setCommunityAdapter()
         setOnScrollChangeListener()
@@ -90,7 +91,7 @@ class CommunityFragment : Fragment() {
             .toString() + viewModel.getChallenge().toString()
     }
 
-    private fun setObserve() {
+    private fun setObservers() {
         viewModel.sort.observe(
             viewLifecycleOwner
         ) { sort ->
@@ -112,6 +113,14 @@ class CommunityFragment : Fragment() {
         viewModel.communityPostDetailEvent.observe(
             viewLifecycleOwner, EventObserve { postId ->
                 startCommunityPostDetailFragment(postId.toString())
+            }
+        )
+
+        viewModel.communityPostReportEvent.observe(
+            viewLifecycleOwner, EventObserve { isSuccess ->
+                if (isSuccess) {
+                    Toast.makeText(requireContext(), "게시물이 신고되었습니다.", Toast.LENGTH_SHORT).show()
+                }
             }
         )
     }
@@ -179,7 +188,11 @@ class CommunityFragment : Fragment() {
                     OnReportDialogClickListener {
 
                     override fun onSuccess(isSuccess: Boolean, option: String?) {
-                        Log.d("DDD", option.toString())
+                        if (isSuccess) {
+                            val communityReportRequest =
+                                CommunityReportRequest(communityPost.postId, option!!)
+                            viewModel.reportPost(getJwt()!!, communityReportRequest)
+                        }
                     }
                 })
                 reportDialog.show(parentFragmentManager, "ReportDialog")

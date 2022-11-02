@@ -2,6 +2,7 @@ package com.greenfriends.zeroway.data.repository.community
 
 import com.greenfriends.zeroway.data.model.CommunityLikeRequest
 import com.greenfriends.zeroway.data.model.CommunityPostBookmarkRequest
+import com.greenfriends.zeroway.data.model.CommunityReportRequest
 import com.greenfriends.zeroway.data.model.CommunityResponse
 import com.greenfriends.zeroway.data.source.remote.community.CommunityDataSourceImpl
 import retrofit2.Response
@@ -33,5 +34,12 @@ class CommunityRepository(private val communityDataSourceImpl: CommunityDataSour
         bookmark: CommunityPostBookmarkRequest
     ): Response<Void> {
         return communityDataSourceImpl.setPostBookmark(accessToken, postId, bookmark)
+    }
+
+    suspend fun reportPost(
+        accessToken: String,
+        reportReq: CommunityReportRequest
+    ): Response<Void> {
+        return communityDataSourceImpl.reportPost(accessToken, reportReq)
     }
 }

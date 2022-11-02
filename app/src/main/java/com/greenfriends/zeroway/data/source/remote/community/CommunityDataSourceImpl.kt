@@ -4,6 +4,7 @@ import com.greenfriends.zeroway.data.api.CommunityRetrofitInterface
 import com.greenfriends.zeroway.data.api.RetrofitClient
 import com.greenfriends.zeroway.data.model.CommunityLikeRequest
 import com.greenfriends.zeroway.data.model.CommunityPostBookmarkRequest
+import com.greenfriends.zeroway.data.model.CommunityReportRequest
 import com.greenfriends.zeroway.data.model.CommunityResponse
 import retrofit2.Response
 
@@ -37,5 +38,12 @@ class CommunityDataSourceImpl : CommunityDataSource {
         bookmark: CommunityPostBookmarkRequest
     ): Response<Void> {
         return communityService!!.setPostBookmark(accessToken, postId, bookmark)
+    }
+
+    override suspend fun reportPost(
+        accessToken: String,
+        reportReq: CommunityReportRequest
+    ): Response<Void> {
+        return communityService!!.reportPost(accessToken, reportReq)
     }
 }
