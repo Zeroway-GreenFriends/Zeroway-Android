@@ -21,6 +21,7 @@ import com.greenfriends.zeroway.presentation.community.OnReportDialogClickListen
 import com.greenfriends.zeroway.presentation.community.adapter.CommunityPostDetailAdapter
 import com.greenfriends.zeroway.presentation.community.adapter.CommunityPostDetailCommentsAdapter
 import com.greenfriends.zeroway.presentation.community.viewmodel.CommunityPostDetailViewModel
+import com.greenfriends.zeroway.util.GlideApp
 
 class CommunityPostDetailFragment : Fragment() {
 

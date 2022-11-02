@@ -1,4 +1,4 @@
-package com.greenfriends.zeroway.presentation.common
+package com.greenfriends.zeroway.util
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
