@@ -1,9 +1,6 @@
 package com.greenfriends.zeroway.data.source.remote.community
 
-import com.greenfriends.zeroway.data.model.CommunityLikeRequest
-import com.greenfriends.zeroway.data.model.CommunityPostBookmarkRequest
-import com.greenfriends.zeroway.data.model.CommunityPostCommentRequest
-import com.greenfriends.zeroway.data.model.CommunityPostDetailResponse
+import com.greenfriends.zeroway.data.model.*
 import retrofit2.Response
 
 interface CommunityPostDetailDataSource {
@@ -45,5 +42,10 @@ interface CommunityPostDetailDataSource {
     suspend fun deletePostComment(
         accessToken: String,
         commentId: String
+    ): Response<Void>
+
+    suspend fun reportPost(
+        accessToken: String,
+        reportReq: CommunityReportRequest
     ): Response<Void>
 }

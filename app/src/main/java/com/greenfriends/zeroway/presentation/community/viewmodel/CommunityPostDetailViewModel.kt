@@ -5,10 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.greenfriends.zeroway.data.model.CommunityLikeRequest
-import com.greenfriends.zeroway.data.model.CommunityPostBookmarkRequest
-import com.greenfriends.zeroway.data.model.CommunityPostCommentRequest
-import com.greenfriends.zeroway.data.model.CommunityPostDetailResponse
+import com.greenfriends.zeroway.data.model.*
 import com.greenfriends.zeroway.data.repository.community.CommunityPostDetailRepository
 import com.greenfriends.zeroway.presentation.common.Event
 import kotlinx.coroutines.launch
@@ -35,6 +32,10 @@ class CommunityPostDetailViewModel(private val communityPostDetailRepository: Co
     private val _communityPostDetailCommentDeleteEvent = MutableLiveData<Event<Boolean>>()
     val communityPostDetailCommentDeleteEvent: LiveData<Event<Boolean>>
         get() = _communityPostDetailCommentDeleteEvent
+
+    private val _communityPostDetailReportEvent = MutableLiveData<Event<Boolean>>()
+    val communityPostDetailReportEvent: LiveData<Event<Boolean>>
+        get() = _communityPostDetailReportEvent
 
     fun setPostId(postId: String) {
         _postId.value = postId
@@ -140,7 +141,6 @@ class CommunityPostDetailViewModel(private val communityPostDetailRepository: Co
 
     fun deletePostComment(accessToken: String, commentId: String) {
         viewModelScope.launch {
-            Log.d("SSS", "$accessToken $commentId")
             val response = communityPostDetailRepository.deletePostComment(
                 accessToken,
                 commentId
@@ -157,6 +157,18 @@ class CommunityPostDetailViewModel(private val communityPostDetailRepository: Co
                 else -> {
                     Log.d("COMMUNITY/DELETE/F", response.errorBody()?.string()!!)
                 }
+            }
+        }
+    }
+
+    fun reportPost(accessToken: String, reportReq: CommunityReportRequest) {
+        viewModelScope.launch {
+            val response = communityPostDetailRepository.reportPost(accessToken, reportReq)
+            if (response.isSuccessful) {
+                _communityPostDetailReportEvent.value = Event(true)
+                Log.d("COMMUNITY/REPORT/T", response.body().toString())
+            } else {
+                Log.d("COMMUNITY/REPORT/F", response.errorBody()?.string()!!)
             }
         }
     }

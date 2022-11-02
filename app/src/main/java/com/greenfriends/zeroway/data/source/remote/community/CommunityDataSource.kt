@@ -2,6 +2,7 @@ package com.greenfriends.zeroway.data.source.remote.community
 
 import com.greenfriends.zeroway.data.model.CommunityLikeRequest
 import com.greenfriends.zeroway.data.model.CommunityPostBookmarkRequest
+import com.greenfriends.zeroway.data.model.CommunityReportRequest
 import com.greenfriends.zeroway.data.model.CommunityResponse
 import retrofit2.Response
 
@@ -26,5 +27,10 @@ interface CommunityDataSource {
         accessToken: String,
         postId: String,
         bookmark: CommunityPostBookmarkRequest
+    ): Response<Void>
+
+    suspend fun reportPost(
+        accessToken: String,
+        reportReq: CommunityReportRequest
     ): Response<Void>
 }

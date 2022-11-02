@@ -98,4 +98,14 @@ interface CommunityRetrofitInterface {
         @Header("Bearer") accessToken: String,
         @Path("commentId") commentId: String
     ): Response<Void>
+
+    /**
+     * 커뮤니티 게시물 신고 API
+     */
+    @POST("post/report")
+    suspend fun reportPost(
+        @Header("Bearer") accessToken: String,
+        @Body reportReq: CommunityReportRequest
+    ): Response<Void>
+
 }

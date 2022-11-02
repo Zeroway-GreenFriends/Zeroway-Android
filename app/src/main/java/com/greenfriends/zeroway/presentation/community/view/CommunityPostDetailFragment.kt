@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.ConcatAdapter
 import com.greenfriends.zeroway.R
 import com.greenfriends.zeroway.data.model.CommunityPostDetailComment
 import com.greenfriends.zeroway.data.model.CommunityPostDetailResponse
+import com.greenfriends.zeroway.data.model.CommunityReportRequest
 import com.greenfriends.zeroway.databinding.FragmentCommunityPostDetailBinding
 import com.greenfriends.zeroway.presentation.common.*
 import com.greenfriends.zeroway.presentation.community.OnCommunityPostDetailCommentClickListener
@@ -45,7 +46,7 @@ class CommunityPostDetailFragment : Fragment() {
 
         setPostId()
         setUserProfileImg()
-        setObserve()
+        setObservers()
         setOnClickListener()
         setCommunityPostDetailAdapter()
         setNavigation()
@@ -64,7 +65,7 @@ class CommunityPostDetailFragment : Fragment() {
         }
     }
 
-    private fun setObserve() {
+    private fun setObservers() {
         viewModel.communityPostDetailResponse.observe(
             viewLifecycleOwner
         ) { communityPostDetailResponse ->
@@ -97,6 +98,14 @@ class CommunityPostDetailFragment : Fragment() {
                 } else {
                     Toast.makeText(requireContext(), "해당 댓글 삭제 권한이 없습니다.", Toast.LENGTH_SHORT)
                         .show()
+                }
+            }
+        )
+
+        viewModel.communityPostDetailReportEvent.observe(
+            viewLifecycleOwner, EventObserve { isSuccess ->
+                if (isSuccess) {
+                    Toast.makeText(requireContext(), "게시물이 신고되었습니다.", Toast.LENGTH_SHORT).show()
                 }
             }
         )
@@ -161,7 +170,11 @@ class CommunityPostDetailFragment : Fragment() {
                     OnReportDialogClickListener {
 
                     override fun onSuccess(isSuccess: Boolean, option: String?) {
-                        Log.d("DDD", option.toString())
+                        if (isSuccess) {
+                            val communityReportRequest =
+                                CommunityReportRequest(communityPostDetailResponse.postId, option!!)
+                            viewModel.reportPost(getJwt()!!, communityReportRequest)
+                        }
                     }
                 })
                 reportDialog.show(parentFragmentManager, "ReportDialog")
