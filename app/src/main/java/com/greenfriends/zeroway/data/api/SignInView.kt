@@ -2,7 +2,7 @@ package com.greenfriends.zeroway.data.api
 
 import com.greenfriends.zeroway.data.model.UserIdentification
 
-interface LoginView {
-    fun onLoginSuccess(result: UserIdentification)
-    fun onLoginFailure()
+interface SignInView {
+    fun onSignInSuccess(result: UserIdentification)
+    fun onSignInFailure()
 }
