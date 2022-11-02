@@ -2,7 +2,7 @@ package com.greenfriends.zeroway.data.api
 
 import com.greenfriends.zeroway.data.model.AuthResponse
 import com.greenfriends.zeroway.data.model.IdCheckResponse
-import com.greenfriends.zeroway.data.model.LoginRequest
+import com.greenfriends.zeroway.data.model.SignInRequest
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -13,7 +13,7 @@ interface AuthRetrofitInterface {
 
     @POST("user/auth/login")
     fun login(
-        @Body loginRequest: LoginRequest
+        @Body loginRequest: SignInRequest
     ): Call<AuthResponse>
 
     /**

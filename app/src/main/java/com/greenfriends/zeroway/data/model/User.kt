@@ -14,7 +14,7 @@ data class UserIdentification(
     @SerializedName("profileImgUrl") val profileImgUrl: String?
 )
 
-data class LoginRequest(
+data class SignInRequest(
     @SerializedName("email") val email: String
 )
 

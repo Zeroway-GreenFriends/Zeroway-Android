@@ -50,7 +50,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".presentation.login.LoginActivity"
+            android:name=".presentation.signin.SignInActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.signup.view.SignUpActivity"
