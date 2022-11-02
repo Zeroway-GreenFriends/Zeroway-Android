@@ -59,4 +59,11 @@ class CommunityPostDetailRepository(private val communityPostDetailDataSourceImp
     ): Response<Void> {
         return communityPostDetailDataSourceImpl.reportPost(accessToken, reportReq)
     }
+
+    suspend fun reportPostComment(
+        accessToken: String,
+        reportReq: CommunityReportRequest
+    ): Response<Void> {
+        return communityPostDetailDataSourceImpl.reportPostComment(accessToken, reportReq)
+    }
 }
