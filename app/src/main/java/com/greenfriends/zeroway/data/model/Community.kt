@@ -65,18 +65,6 @@ data class CommunityPostDetailComment(
     @SerializedName("liked") var liked: Boolean
 )
 
-data class CommunityPostLikeListResponse(
-    @SerializedName("totalCount") val totalCount: Int,
-    @SerializedName("likeList") val communityPostLikeList: CommunityPostLikeList
-)
-
-data class CommunityPostLikeList(
-    @SerializedName("userId") val userId: Long,
-    @SerializedName("username") val userName: String,
-    @SerializedName("userProfileImg") val userProfileImg: String,
-    @SerializedName("level") val userLevel: Int
-)
-
 data class CommunityReportRequest(
     @SerializedName("targetId") val targetId: Long,
     @SerializedName("type") val content: String
