@@ -10,7 +10,7 @@ import com.greenfriends.zeroway.data.model.CommunityPost
 import com.greenfriends.zeroway.data.model.CommunityPostBookmarkRequest
 import com.greenfriends.zeroway.data.model.CommunityReportRequest
 import com.greenfriends.zeroway.data.repository.community.CommunityRepository
-import com.greenfriends.zeroway.presentation.common.Event
+import com.greenfriends.zeroway.util.Event
 import kotlinx.coroutines.launch
 
 class CommunityViewModel(private val communityRepository: CommunityRepository) : ViewModel() {

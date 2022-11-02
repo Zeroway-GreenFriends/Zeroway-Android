@@ -3,7 +3,7 @@ package com.greenfriends.zeroway.presentation.community.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.greenfriends.zeroway.presentation.common.Event
+import com.greenfriends.zeroway.util.Event
 
 class ReportDialogViewModel : ViewModel() {
 

@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.greenfriends.zeroway.data.model.*
 import com.greenfriends.zeroway.data.repository.community.CommunityPostDetailRepository
-import com.greenfriends.zeroway.presentation.common.Event
+import com.greenfriends.zeroway.util.Event
 import kotlinx.coroutines.launch
 
 class CommunityPostDetailViewModel(private val communityPostDetailRepository: CommunityPostDetailRepository) :

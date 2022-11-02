@@ -16,8 +16,8 @@ import com.greenfriends.zeroway.R
 import com.greenfriends.zeroway.data.model.CommunityPost
 import com.greenfriends.zeroway.data.model.CommunityReportRequest
 import com.greenfriends.zeroway.databinding.FragmentCommunityBinding
-import com.greenfriends.zeroway.presentation.common.EventObserve
-import com.greenfriends.zeroway.presentation.common.POST_ID
+import com.greenfriends.zeroway.util.EventObserver
+import com.greenfriends.zeroway.util.POST_ID
 import com.greenfriends.zeroway.presentation.common.ViewModelFactory
 import com.greenfriends.zeroway.presentation.community.OnCommunityItemClickListener
 import com.greenfriends.zeroway.presentation.community.OnReportDialogClickListener
@@ -111,13 +111,13 @@ class CommunityFragment : Fragment() {
         }
 
         viewModel.communityPostDetailEvent.observe(
-            viewLifecycleOwner, EventObserve { postId ->
+            viewLifecycleOwner, EventObserver { postId ->
                 startCommunityPostDetailFragment(postId.toString())
             }
         )
 
         viewModel.communityPostReportEvent.observe(
-            viewLifecycleOwner, EventObserve { isSuccess ->
+            viewLifecycleOwner, EventObserver { isSuccess ->
                 if (isSuccess) {
                     Toast.makeText(requireContext(), "게시물이 신고되었습니다.", Toast.LENGTH_SHORT).show()
                 }

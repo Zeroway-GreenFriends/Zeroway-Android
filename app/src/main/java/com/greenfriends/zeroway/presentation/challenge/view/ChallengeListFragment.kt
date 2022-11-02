@@ -14,7 +14,7 @@ import com.greenfriends.zeroway.data.model.ChallengeListResponse
 import com.greenfriends.zeroway.databinding.FragmentChallengeListBinding
 import com.greenfriends.zeroway.presentation.challenge.adapter.ChallengeListAdapter
 import com.greenfriends.zeroway.presentation.challenge.viewmodel.ChallengeViewModel
-import com.greenfriends.zeroway.presentation.common.EventObserve
+import com.greenfriends.zeroway.util.EventObserver
 import com.greenfriends.zeroway.presentation.common.ViewModelFactory
 
 class ChallengeListFragment : Fragment() {
@@ -71,7 +71,7 @@ class ChallengeListFragment : Fragment() {
 
         viewModel.updateEvent.observe(
             viewLifecycleOwner,
-            EventObserve {
+            EventObserver {
                 getChallengeList()
             }
         )

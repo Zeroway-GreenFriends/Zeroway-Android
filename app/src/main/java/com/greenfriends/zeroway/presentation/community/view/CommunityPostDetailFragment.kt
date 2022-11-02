@@ -21,7 +21,9 @@ import com.greenfriends.zeroway.presentation.community.OnReportDialogClickListen
 import com.greenfriends.zeroway.presentation.community.adapter.CommunityPostDetailAdapter
 import com.greenfriends.zeroway.presentation.community.adapter.CommunityPostDetailCommentsAdapter
 import com.greenfriends.zeroway.presentation.community.viewmodel.CommunityPostDetailViewModel
+import com.greenfriends.zeroway.util.EventObserver
 import com.greenfriends.zeroway.util.GlideApp
+import com.greenfriends.zeroway.util.POST_ID
 
 class CommunityPostDetailFragment : Fragment() {
 
@@ -74,13 +76,13 @@ class CommunityPostDetailFragment : Fragment() {
         }
 
         viewModel.commentRegisterEvent.observe(
-            viewLifecycleOwner, EventObserve {
+            viewLifecycleOwner, EventObserver {
                 viewModel.setPostComment(getJwt()!!, viewModel.getPostId()!!, it)
             }
         )
 
         viewModel.communityPostDetailDeleteEvent.observe(
-            viewLifecycleOwner, EventObserve { isDeleted ->
+            viewLifecycleOwner, EventObserver { isDeleted ->
                 if (isDeleted) {
                     Toast.makeText(requireContext(), "게시물이 삭제되었습니다.", Toast.LENGTH_SHORT).show()
                     startCommunityFragment()
@@ -92,7 +94,7 @@ class CommunityPostDetailFragment : Fragment() {
         )
 
         viewModel.communityPostDetailCommentDeleteEvent.observe(
-            viewLifecycleOwner, EventObserve { isDeleted ->
+            viewLifecycleOwner, EventObserver { isDeleted ->
                 if (isDeleted) {
                     Toast.makeText(requireContext(), "댓글이 삭제되었습니다.", Toast.LENGTH_SHORT).show()
                 } else {
@@ -103,7 +105,7 @@ class CommunityPostDetailFragment : Fragment() {
         )
 
         viewModel.communityPostDetailReportEvent.observe(
-            viewLifecycleOwner, EventObserve { isSuccess ->
+            viewLifecycleOwner, EventObserver { isSuccess ->
                 if (isSuccess) {
                     Toast.makeText(requireContext(), "게시물이 신고되었습니다.", Toast.LENGTH_SHORT).show()
                 }
@@ -111,7 +113,7 @@ class CommunityPostDetailFragment : Fragment() {
         )
 
         viewModel.communityPostDetailCommentReportEvent.observe(
-            viewLifecycleOwner, EventObserve { isSuccess ->
+            viewLifecycleOwner, EventObserver { isSuccess ->
                 if (isSuccess) {
                     Toast.makeText(requireContext(), "댓글이 신고되었습니다.", Toast.LENGTH_SHORT).show()
                 }

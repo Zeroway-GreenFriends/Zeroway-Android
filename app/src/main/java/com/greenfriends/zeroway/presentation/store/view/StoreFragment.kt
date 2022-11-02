@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.greenfriends.zeroway.R
 import com.greenfriends.zeroway.databinding.FragmentStoreBinding
-import com.greenfriends.zeroway.presentation.common.EventObserve
-import com.greenfriends.zeroway.presentation.common.STORE_ID
+import com.greenfriends.zeroway.util.EventObserver
+import com.greenfriends.zeroway.util.STORE_ID
 import com.greenfriends.zeroway.presentation.common.ViewModelFactory
 import com.greenfriends.zeroway.presentation.store.adapter.StoreAdapter
 import com.greenfriends.zeroway.presentation.store.viewmodel.StoreViewModel
@@ -68,7 +68,7 @@ class StoreFragment : Fragment() {
 
     private fun setObservers() {
         viewModel.storePostDetailEvent.observe(
-            viewLifecycleOwner, EventObserve { storeId ->
+            viewLifecycleOwner, EventObserver { storeId ->
                 startStorePostDetailFragment(storeId.toString())
             }
         )
