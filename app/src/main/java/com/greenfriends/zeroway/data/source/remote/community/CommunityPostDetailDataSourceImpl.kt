@@ -63,4 +63,11 @@ class CommunityPostDetailDataSourceImpl : CommunityPostDetailDataSource {
     ): Response<Void> {
         return communityService!!.reportPost(accessToken, reportReq)
     }
+
+    override suspend fun reportPostComment(
+        accessToken: String,
+        reportReq: CommunityReportRequest
+    ): Response<Void> {
+        return communityService!!.reportPostComment(accessToken, reportReq)
+    }
 }

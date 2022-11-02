@@ -48,4 +48,9 @@ interface CommunityPostDetailDataSource {
         accessToken: String,
         reportReq: CommunityReportRequest
     ): Response<Void>
+
+    suspend fun reportPostComment(
+        accessToken: String,
+        reportReq: CommunityReportRequest
+    ): Response<Void>
 }

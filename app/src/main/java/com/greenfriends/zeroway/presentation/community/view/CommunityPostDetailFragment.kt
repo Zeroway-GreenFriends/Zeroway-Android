@@ -1,7 +1,6 @@
 package com.greenfriends.zeroway.presentation.community.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -106,6 +105,14 @@ class CommunityPostDetailFragment : Fragment() {
             viewLifecycleOwner, EventObserve { isSuccess ->
                 if (isSuccess) {
                     Toast.makeText(requireContext(), "게시물이 신고되었습니다.", Toast.LENGTH_SHORT).show()
+                }
+            }
+        )
+
+        viewModel.communityPostDetailCommentReportEvent.observe(
+            viewLifecycleOwner, EventObserve { isSuccess ->
+                if (isSuccess) {
+                    Toast.makeText(requireContext(), "댓글이 신고되었습니다.", Toast.LENGTH_SHORT).show()
                 }
             }
         )
@@ -215,7 +222,14 @@ class CommunityPostDetailFragment : Fragment() {
                     OnReportDialogClickListener {
 
                     override fun onSuccess(isSuccess: Boolean, option: String?) {
-                        Log.d("DDD", option.toString())
+                        if (isSuccess) {
+                            val communityReportRequest =
+                                CommunityReportRequest(
+                                    communityPostDetailComment.commentId,
+                                    option!!
+                                )
+                            viewModel.reportPostComment(getJwt()!!, communityReportRequest)
+                        }
                     }
                 })
                 reportDialog.show(parentFragmentManager, "ReportDialog")

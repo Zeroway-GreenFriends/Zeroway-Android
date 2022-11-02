@@ -37,6 +37,10 @@ class CommunityPostDetailViewModel(private val communityPostDetailRepository: Co
     val communityPostDetailReportEvent: LiveData<Event<Boolean>>
         get() = _communityPostDetailReportEvent
 
+    private val _communityPostDetailCommentReportEvent = MutableLiveData<Event<Boolean>>()
+    val communityPostDetailCommentReportEvent: LiveData<Event<Boolean>>
+        get() = _communityPostDetailCommentReportEvent
+
     fun setPostId(postId: String) {
         _postId.value = postId
     }
@@ -166,6 +170,18 @@ class CommunityPostDetailViewModel(private val communityPostDetailRepository: Co
             val response = communityPostDetailRepository.reportPost(accessToken, reportReq)
             if (response.isSuccessful) {
                 _communityPostDetailReportEvent.value = Event(true)
+                Log.d("COMMUNITY/REPORT/T", response.body().toString())
+            } else {
+                Log.d("COMMUNITY/REPORT/F", response.errorBody()?.string()!!)
+            }
+        }
+    }
+
+    fun reportPostComment(accessToken: String, reportReq: CommunityReportRequest) {
+        viewModelScope.launch {
+            val response = communityPostDetailRepository.reportPost(accessToken, reportReq)
+            if (response.isSuccessful) {
+                _communityPostDetailCommentReportEvent.value = Event(true)
                 Log.d("COMMUNITY/REPORT/T", response.body().toString())
             } else {
                 Log.d("COMMUNITY/REPORT/F", response.errorBody()?.string()!!)

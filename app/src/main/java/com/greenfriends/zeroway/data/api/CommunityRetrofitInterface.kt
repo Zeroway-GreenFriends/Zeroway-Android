@@ -108,4 +108,12 @@ interface CommunityRetrofitInterface {
         @Body reportReq: CommunityReportRequest
     ): Response<Void>
 
+    /**
+     * 커뮤니티 게시물 댓글 신고 API
+     */
+    @POST("comment/report")
+    suspend fun reportPostComment(
+        @Header("Bearer") accessToken: String,
+        @Body reportReq: CommunityReportRequest
+    ): Response<Void>
 }
