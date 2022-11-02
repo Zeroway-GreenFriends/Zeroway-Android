@@ -10,7 +10,7 @@ import android.view.*
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import com.greenfriends.zeroway.databinding.FragmentReportDialogBinding
-import com.greenfriends.zeroway.presentation.common.EventObserve
+import com.greenfriends.zeroway.util.EventObserver
 import com.greenfriends.zeroway.presentation.common.ViewModelFactory
 import com.greenfriends.zeroway.presentation.community.OnReportDialogClickListener
 import com.greenfriends.zeroway.presentation.community.viewmodel.ReportDialogViewModel
@@ -113,7 +113,7 @@ class ReportDialogFragment : DialogFragment() {
 
     private fun setObserver() {
         viewModel.reportOptionSelectEvent.observe(
-            viewLifecycleOwner, EventObserve { isSelected ->
+            viewLifecycleOwner, EventObserver { isSelected ->
                 if (isSelected) {
                     binding.options = getOptions()
                 }

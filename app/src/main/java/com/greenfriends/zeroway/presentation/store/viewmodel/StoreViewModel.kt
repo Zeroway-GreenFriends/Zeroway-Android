@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.greenfriends.zeroway.data.model.StoreResponse
 import com.greenfriends.zeroway.data.repository.store.StoreRepository
-import com.greenfriends.zeroway.presentation.common.Event
+import com.greenfriends.zeroway.util.Event
 import kotlinx.coroutines.launch
 
 class StoreViewModel(private val storeRepository: StoreRepository) : ViewModel() {

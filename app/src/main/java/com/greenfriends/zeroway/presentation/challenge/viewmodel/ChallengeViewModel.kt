@@ -9,7 +9,7 @@ import com.greenfriends.zeroway.data.model.ChallengeLevelResponse
 import com.greenfriends.zeroway.data.model.ChallengeListResponse
 import com.greenfriends.zeroway.data.model.ChallengeResponse
 import com.greenfriends.zeroway.data.repository.challenge.ChallengeRepository
-import com.greenfriends.zeroway.presentation.common.Event
+import com.greenfriends.zeroway.util.Event
 import kotlinx.coroutines.launch
 
 class ChallengeViewModel(private val challengeRepository: ChallengeRepository) : ViewModel() {
