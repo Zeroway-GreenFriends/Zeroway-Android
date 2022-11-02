@@ -179,7 +179,7 @@ class CommunityPostDetailViewModel(private val communityPostDetailRepository: Co
 
     fun reportPostComment(accessToken: String, reportReq: CommunityReportRequest) {
         viewModelScope.launch {
-            val response = communityPostDetailRepository.reportPost(accessToken, reportReq)
+            val response = communityPostDetailRepository.reportPostComment(accessToken, reportReq)
             if (response.isSuccessful) {
                 _communityPostDetailCommentReportEvent.value = Event(true)
                 Log.d("COMMUNITY/REPORT/T", response.body().toString())
